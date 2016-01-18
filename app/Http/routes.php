@@ -33,8 +33,6 @@ foreach(Lang::get('url') as $k => $v) {
 
 Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
 
-
-
     // Home
     Route::get('/', 'PagesController@home');
 
@@ -64,52 +62,55 @@ Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
     Route::get('/{account}/', 'PagesController@account');
 });
 
+
+
+// Back-End
 Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'admin'], function () {
 
-        // Bull
-        Route::get('import', 'ImportController@import');
-        // End of Bull
+        // General
+        Route::get('dashboard', 'AdminController@dashboard');
 
-        Route::get('/', function() {
+        Route::get('enquiries', 'AdminController@enquiries');
 
-            return redirect('/admin/dashboard');
-        });
 
-        // Main Board
-        //Route::get('dashboard', 'DashboardController@index');
-
-        Route::get('dashboard', function() {
-
-            return view('admin.page.dashboard');
-        });
-
-        Route::get('enquiries', 'EnquiriesController@index');
-
-        Route::get('customers', 'CustomerController@index');
+        // Customer
+        Route::get('customers', 'AdminController@customers');
 
 
         // CMS
-        Route::get('categories', 'CategoriesController@index');
+        Route::get('categories', 'AdminController@categories');
 
-        Route::get('homeslide', 'HomeslideController@index');
-
-        Route::get('pages', 'PagesController@index');
-
-        Route::get('pdf', 'PdfController@index');
+        Route::get('properties', 'AdminController@properties');
 
 
         // Blog
-        Route::get('blog', 'BlogController@getAll');
+        Route::get('blog', 'AdminController@blog');
 
-        Route::get('blogsample', 'BlogController@sample');
+        Route::get('blog-categories', 'AdminController@blogCategories');
+
+        Route::get('blog-comments', 'AdminController@blogComments');
+
+        Route::get('blog-settings', 'AdminController@blogSettings');
 
 
         // Misc
-        Route::get('settings', 'SettingsController@index');
+        Route::get('accounts', 'AdminController@accounts');
 
-        Route::get('about', 'PagesController@adminAbout');
+        Route::get('settings', 'AdminController@settings');
+
+        Route::get('index', 'AdminController@index');
+
+        Route::get('currency', 'AdminController@currency');
+
+        Route::get('notifications', 'AdminController@notifications');
+
+        Route::get('io', 'AdminController@io');
+
+        Route::get('about', 'AdminController@about');
+
+
     });
 });
 

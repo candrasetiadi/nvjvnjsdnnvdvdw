@@ -71,5 +71,5 @@
 
 
 @section('scripts')
-
+Matter.admin.settings();
 @stop

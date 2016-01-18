@@ -4,38 +4,38 @@ return [
 
     "dashboard" => [
 
-        "dashboard" => "dashboard"
+        "dashboard" => "dashboard",
+        "enquiries" => "enquiries"
     ],
 
     "customers" => [
 
-        "customers" => "customers"
+        "customers" => "manage customers"
+
     ],
 
     "content" => [
 
         "categories" => "categories",
-        "products" => "products",
-        "pdf" => "pdf"
-    ],
-
-    "cms" => [
-
-        "villas" => "villas",
-        "land" => "land",
-        "homeslide" => "home slides"
+        "properties" => "properties"
     ],
 
     "blog" => [
 
         "blog" => "blog",
-        "blogcategories" => "categories",
-        "blogsettings" => "settings"
+        "blog-categories" => "categories",
+        "blog-comments" => "comments",
+        "blog-settings" => "settings"
     ],
 
     "settings" => [
 
+        "accounts" => "admin accounts",
         "settings" => "settings",
+        "index" => "index management",
+        "currency" => "currency",
+        "notifications" => "notifications",
+        "io" => "import/export",
         "about" => "about"
     ]
 ];
