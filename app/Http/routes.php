@@ -31,23 +31,32 @@ foreach(Lang::get('url') as $k => $v) {
 }
 
 
-Route::group(array('prefix' => Config::get('app.locale_prefix')), function() {
+Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
 
+
+
+    // Home
     Route::get('/', 'PagesController@home');
 
     Route::get('/{about}/', 'PagesController@about');
 
-    Route::get('/{blogs}/', 'BlogController@listing');
 
-    Route::group(['prefix' => 'blog'], function () {
 
-        Route::any('/', 'BlogController@listing');
+    // Properties
+    Route::get('/{properties}/', 'PagesController@propertyListing');
 
-        Route::any('{url}', array('as' => 'url', 'uses' => 'BlogController@show'));
-    });
+    Route::get('property/{url}', ['as' => 'url','uses' => 'PagesController@propertyView']);
 
-    Route::get('/{catalogues}/', array('as' => 'url', 'uses' => 'PdfController@listing'));
 
+
+    // Blogs
+    Route::get('blogs', 'PagesController@blogListing');
+
+    Route::get('blog/{url}', ['as' => 'url','uses' => 'PagesController@blogView']);
+
+
+
+    // Customer
     Route::get('/{login}/', 'PagesController@login');
 
     Route::get('/{register}/', 'PagesController@register');
@@ -83,14 +92,6 @@ Route::group(['middleware' => 'auth'], function () {
 
         // CMS
         Route::get('categories', 'CategoriesController@index');
-
-        Route::get('collection', 'CollectionController@index');
-
-        Route::get('products', 'ProductsController@index');
-
-        Route::get('projects', 'ProjectsController@index');
-
-        Route::get('awards', 'AwardsController@index');
 
         Route::get('homeslide', 'HomeslideController@index');
 
@@ -132,11 +133,6 @@ Route::group(['prefix' => 'system/ajax'], function () {
         Route::get('retrieve/{id}', ['as' => 'id', 'uses' => 'BlogController@retrieve']);
 
         Route::any('delete/{id}', ['as' => 'id', 'uses' => 'BlogController@destroy']);
-    });
-
-    Route::group(['prefix' => 'contact'], function () {
-
-        Route::any('create', 'ContactController@store');
     });
 
     Route::group(['prefix' => 'analytics'], function () {

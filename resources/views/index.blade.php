@@ -15,8 +15,7 @@
             <h4>Please display the website in portrait mode!</h4>
         </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="{{ asset('assets/js/main.js') }}"></script>
-
+        @include('fragments.scripts')
+        @yield('scripts')
     </body>
 </html>

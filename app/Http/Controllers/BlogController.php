@@ -11,41 +11,12 @@ use App\Http\Controllers\GlobalController;
 
 class BlogController extends GlobalController {
 
-    protected $blog;
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index() {
-
-        $blogs = Blog::orderBy('id', 'DESC')->get();
-
-        foreach($blogs as $b) {
-
-            $b->description = json_decode($b->description);
-        }
-
-        return response()->json($blogs);
-    }
-
-
-
-    public function getAll() {
-
-        $blogs = Blog::orderBy('id', 'DESC')->get();
-
-        return view('admin.page.blog', ['blogs' => $blogs, 'page' => 'Blogs']);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
-
-//        return response()->json(array('status' => 400, 'message' => array('title' => 'Wrong!', 'msg' => 'Somrthings not right mate'), 'data' => Input::all()));
+    public function store() {
 
         $edit = Input::get('edit');
 
@@ -115,110 +86,6 @@ class BlogController extends GlobalController {
         //
     }
 
-
-
-    public function listing() {
-
-        $blogs = Blog::orderBy('id', 'DESC')->get();
-
-        return view('pages.blog-listing', ['navigation' => $this->navigation(), 'blogs' => $blogs, 'searchTerms' => $this->searchTerms(), 'cart' => $this->cartItems()]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($url) {
-        //
-        $blog = Blog::where('url', $url)->first();
-
-        return view('pages.blog-view', ['navigation' => $this->navigation(), 'blog' => $blog, 'searchTerms' => $this->searchTerms(), 'cart' => $this->cartItems()]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function retrieve($id) {
-        //
-        $blog = Blog::find($id);
-
-        unset($blog['author_id']);
-
-        unset($blog['updated_at']);
-
-        unset($blog['created_at']);
-
-        unset($blog['deleted_at']);
-
-        return response()->json($blog);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    public function update() {
-
-        $timestamp = time();
-
-        $this->blog = $this->blog->find(Input::get('id'));
-
-        $oldImageFile = $this->blog->image;
-
-        $this->blog->url = Input::get('url');
-
-        $urlConflict = Blog::where('url', $this->blog->url)->where('id', '<>', Input::get('id'))->first();
-
-        if($urlConflict) return response()->json(array('status' => 405, 'message' => array('title' => 'Blog Error', 'msg' => 'Blog with same url already exists, please insert a different url')));
-
-        if(Input::hasFile('blog-banner')) {
-
-            $oldImage = public_path('media/blog/') . $oldImageFile;
-
-            !is_dir($oldImage) ? unlink($oldImage) : '';
-
-            $fileName = Input::file('blog-banner')->getClientOriginalName();
-
-            $fExp = explode('.', $fileName);
-
-            $fileExt = end($fExp);
-
-            Input::file('blog-banner')->move(public_path('media/blog'), $timestamp . '.' . $fileExt);
-        }
-
-        $this->blog->title = Input::get('title');
-
-        $this->blog->locale = Input::get('locale');
-
-        $this->blog->status = Input::get('status');
-
-        $this->blog->tags = Input::get('tags');
-
-        $this->blog->meta_desc = Input::get('meta_desc');
-
-        $this->blog->category = Input::get('category');
-
-        $this->blog->content = Input::get('content');
-
-        if(isset($fileName)) {
-
-            $this->blog->image = $timestamp . '.' . $fileExt;
-        }
-
-        $this->blog->save();
-
-        return response()->json(array('status' => 200, 'message' => array('title' => 'Blog Update', 'msg' => 'Blog has been updated')));
-    }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -227,12 +94,5 @@ class BlogController extends GlobalController {
      */
     public function destroy($id) {
 
-        $blog = Blog::find($id);
-
-        (!is_dir(public_path('media/blog/') . $blog->image) ? unlink(public_path('media/blog/') . $blog->image) : '');
-
-        $blog->delete();
-
-        return redirect(baseUrl() . '/admin/blog');
     }
 }
