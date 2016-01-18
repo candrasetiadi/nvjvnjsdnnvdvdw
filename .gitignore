@@ -1,0 +1,6 @@
+/vendor
+/node_modules
+/bower_components
+/public/assets/video
+Homestead.yaml
+Homestead.json
