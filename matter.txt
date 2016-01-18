@@ -1,0 +1,27 @@
+Matter 0.5.0
+
+Modular Functions(js)
+- URL input binding
+
+Input:	<input>		class: bind-input-from
+					data-target: {#targetId}
+				
+Output:	<input>		id: {targetId}
+				
+Converts text of input into a valid URL(slug) and by default parses in into the target input
+				
+- Modal Open
+Input: 	<a>			class: modal-open
+					data-target: {targetId}
+					
+Output:	<div>		id: {targetId}
+		<div>		class: app-wrapper
+		
+Opens a modal of the targetted id and blurs the background
+
+- Modal Close
+Input: <a>			class: modal-close
+
+Output:	function	func: modalClose()
+
+Closes all open modal windows and removes blur on background
