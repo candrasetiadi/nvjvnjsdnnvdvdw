@@ -4,8 +4,7 @@ return [
 
     "dashboard" => [
 
-        //"dashboard" => "dashboard",
-        "enquiries" => "enquiries"
+        "dashboard" => "dashboard"
     ],
 
     "customers" => [
@@ -22,19 +21,21 @@ return [
 
     "cms" => [
 
-        "projects" => "projects",
-        "awards" => "awards",
+        "villas" => "villas",
+        "land" => "land",
         "homeslide" => "home slides"
     ],
 
     "blog" => [
 
-        "blog" => "blog"
+        "blog" => "blog",
+        "blogcategories" => "categories",
+        "blogsettings" => "settings"
     ],
 
     "settings" => [
 
-//        "settings" => "settings",
+        "settings" => "settings",
         "about" => "about"
     ]
 ];

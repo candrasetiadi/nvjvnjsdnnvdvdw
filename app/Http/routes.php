@@ -65,7 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/', function() {
 
-            return redirect('/admin/products');
+            return redirect('/admin/dashboard');
         });
 
         // Main Board
@@ -73,7 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('dashboard', function() {
 
-            return redirect('/admin/products');
+            return view('admin.page.dashboard');
         });
 
         Route::get('enquiries', 'EnquiriesController@index');
