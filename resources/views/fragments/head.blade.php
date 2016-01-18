@@ -51,41 +51,19 @@ NNhshdmNNNmNmshdmmd++yyhddmmyssssooo+++s///////::///+y+hhdmy+++yyyhmdhssyhhddo--
 NNhyhdmNNNNmydNNNhh+oydmhddyssssoooooos/////:::/:://s+yshhssooyyoymmysoyydmmho///::/shyo/-:+hsy:+yso
 NNhhhdmNNNmhmNNNdoooohddhodysooooooooso///::///:://o+s++ssosyyshhhyyyhhhhdmmhs+//////ydy++//yys+/+++
 -->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Warisan | @yield('title')</title>
-    <meta name="description" content="{{ 'meta_description' }}">
-    <meta name="keywords" content="{{ 'meta_keywords' }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>{{ env('APP_NAME', 'Matter') }}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <link rel="apple-touch-icon" href="{{ asset('assets/img/common/apple-touch-icon.png') }}">
 
-    <link rel="shortcut icon" href="http://warisan.com/images/icon.jpg">
-    <link rel="icon" href="http://warisan.com/images/icon.jpg">
+    <link rel="stylesheet" href="{{ asset('assets/css/normalize.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/mediaqueries.css') }}">
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,700,600italic,700italic,800italic,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
-
-    <!--   If is homepage     -->
-    @if(Request::path() == '/')
-    <link rel="stylesheet" href="{{ asset('assets/css/main-menu-home.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/revolution-slider/settings.css') }}" media="screen"/>
-
-    @elseif(Request::path() == 'contact')
-    <!--   If is contact page     -->
-    <link rel="stylesheet" href="{{ asset('assets/css/main-menu-home.css') }}">
-
-    @else
-    <!--   If other pages     -->
-    <link rel="stylesheet" href="{{ asset('assets/css/main-menu.css') }}">
-    @endif
-
-    <link rel="stylesheet" href="{{ asset('assets/css/smart-forms.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.css') }}">
-
-    <!-- JQUERY LIB -->
-    <script>var baseUrl = '{{ env('BASE_URL', 'matter.io') }}/';</script>
 </head>

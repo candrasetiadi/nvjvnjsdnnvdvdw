@@ -1,67 +1,50 @@
+
+
 <footer>
-    <div class="footer-content">
-        <div class="footer-about">
-            <span class="title">about us</span>
-            <span class="description">
-                <a href="{{ baseUrl() . '/' . trans('url.about') }}">
-                    Established in 1989 as a purveyor of high quality antiques, Warisan progressively grew to become a modern high end hospitality furniture manufacturer in Bali with several offices and showrooms worldwide. From Bali to the Balkans, from California to the Caribbean's, from Mallorca to the Maldives you may find Warisan's solid mahogany &amp; teak furniture in many of the most elegant and luxurious properties.
-                </a>
-            </span>
+    <section class="row flexbox flexbox-wrap justify-between">
+        <div>
+            <h2>Blog</h2>
+            <ul>
+                <li><a href="">Investissement villa Bali</a></li>
+                <li><a href="">Tourist Destination</a></li>
+                <li><a href="">Uncategorized</a></li>
+            </ul>
         </div>
-        <!-- END FOOTER ABOUT -->
-        <div class="footer-info">
-            <div class="footer-info-col">
-                <span class="title">pages</span>
-                <ul>
-                    <li><a href="{{ baseUrl() }}">{{ trans('word.home') }}</a></li>
-                    <li><a href="{{ baseUrl() . '/' . trans('url.products') }}">{{ trans('word.products') }}</a></li>
-                    <li><a href="{{ baseUrl() . '/' . trans('url.projects') }}">{{ trans('word.projects') }}</a></li>
-                    <li><a href="{{ baseUrl() . '/' . trans('url.materials') }}">{{ trans('word.materials') }}</a></li>
-                    <li><a href="{{ baseUrl() . '/' . trans('url.showroom') }}">{{ trans('word.showroom') }}</a></li>
-                    <li><a href="{{ baseUrl() . '/' . trans('url.contact') }}">{{ trans('word.contact') }}</a></li>
-                </ul>
-            </div>
-            <!-- END FOOTER MENU 1 -->
-            <div class="footer-info-col">
-                <span class="title">informations</span>
-                <ul>
-                    <li><a href="{{ baseUrl() . '/' . trans('url.account') }}#order">{{ trans('word.my_orders') }}</a></li>
-                    <li><a href="{{ baseUrl() . '/' . trans('url.account') }}">{{ trans('word.my_personal_info') }}</a></li>
-                    <li><a href="{{ baseUrl() . '/' . trans('url.about') }}#faqs">FAQs</a></li>
-                    <li><a href="{{ baseUrl() . '/' . trans('url.about') }}#privacy">{{ trans('word.privacy_policy') }}</a></li>
-                    <li><a href="{{ baseUrl() . '/' . trans('url.about') }}#sales">{{ trans('word.condition_of_sales') }}</a></li>
-                    <li><a href="{{ baseUrl() . '/' . trans('url.about') }}#terms">{{ trans('word.terms_and_conditions') }}</a></li>
-                </ul>
-            </div>
-            <!-- END FOOTER MENU 2 -->
-            <div class="footer-info-col">
-                <span class="title">contact us</span>
-                <div class="box-info">
-                    <span class="img"><img src="{{ asset('assets/img/common/phone.png') }}" height="30"></span>
-                    <span class="text">
-                        <a href="tel:+6281805439492"><strong>+62 818 0543 94 92</strong></a>
-                        <em>Informations</em>
-                    </span>
-                </div>
-                <div class="box-info">
-                    <span class="img"><img src="{{ asset('assets/img/common/envelope.png') }}" height="28"></span>
-                    <span class="text">
-                        <a href="mailto:contact@warisan.com"><strong>contact@warisan.com</strong></a>
-                        <em>Orders &amp; Informations</em>
-                    </span>
-                </div>
-            </div>
-            <!-- END FOOTER MENU 2 -->
+        <div>
+            <h2>Links</h2>
+            <ul>
+                <li><a href="">Resource</a></li>
+                <li><a href="">Site Map</a></li>
+                <li><a href="">Sold Villas</a></li>
+            </ul>
         </div>
-
-        <div class="footer-socials flexbox">
-            <a href="https://www.facebook.com/warisan.furniture" target="_blank"><i class="fa fa-facebook icon-facebook "></i></a>
-            <a href="#" target="_blank"><i class="fa fa-instagram icon-instagram "></i></a>
-            <a href="https://plus.google.com/+WarisanFurniture" target="_blank"><i class="fa fa-google-plus icon-google-plus"></i></a>
-            <a href="https://www.linkedin.com/company/warisan/" target="_blank"><i class="fa fa-linkedin icon-linkedin"></i></a>
-            <a href="https://www.pinterest.com/warisan/" target="_blank"><i class="fa fa-pinterest icon-pinterest "></i></a>
-            <a href="http://www.houzz.com/" target="_blank"><img class="icon-houzz" src="{{ asset('assets/img/houzz.png') }}"></a>
+        <div>
+            <h2>Accounts</h2>
+            <ul>
+                <li><a href="">My Account</a></li>
+                <li><a href="">Favorites</a></li>
+            </ul>
         </div>
-
-    </div><!-- END FOOTER ABOUT -->
+        <div>
+            <h2>Partners</h2>
+            <ul>
+                <li><a href="">Bali Je t’aime</a></li>
+                <li><a href="">Atlantis International</a></li>
+            </ul>
+        </div>
+        <div class="gicontact">
+            <div class="flexbox flexbox-wrap justify-between">
+                <a href=""><span class="icon-facebook"></span></a>
+                <a href=""><span class="icon-google-plus"></span></a>
+                <a href=""><span class="icon-twitter"></span></a>
+                <a href=""><span class="icon-linkedin"></span></a>
+                <a href=""><span class="icon-youtube"></span></a>
+                <a href=""><span class="icon-skype"></span></a>
+            </div>
+            <div class="input">
+                <input type="text" placeholder="Subscribe to our newsletter"><div class="fab-button fab-button-small  fab-button-transparent"><a href=""><i class="material-icons">done</i></a></div>
+            </div>
+            <div class="copyright">&copy; Copyright 2016 - Kibarer Development</div>
+        </div>
+    </section>
 </footer>

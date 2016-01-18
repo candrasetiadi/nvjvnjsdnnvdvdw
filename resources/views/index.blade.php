@@ -1,25 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="en">
 
-    @include("fragments.head")
+    @include('fragments.head')
 
     <body>
 
-        @include("fragments.header")
-        <!-- IF home page, main overflow: hidden-->
-        <main>
+        @include('fragments.header')
 
-            @yield("content")
+        @yield('content')
 
-        </main>
+        @include('fragments.footer')
 
-        @include("fragments.footer")
+        <div id="warning">
+            <h4>Please display the website in portrait mode!</h4>
+        </div>
 
-        <!-- FORM -->
-        @include("fragments.scripts")
-
-        @yield('scripts', '')
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="{{ asset('assets/js/main.js') }}"></script>
 
     </body>
 </html>
-
