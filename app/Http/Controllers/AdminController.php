@@ -6,12 +6,23 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\AnalyticsController;
 
 class AdminController extends Controller {
 
     public function dashboard() {
 
-        return view('admin.pages.dashboard');
+        $ga = new AnalyticsController;
+
+        $analytics = $ga->get();
+
+        echo '<pre>';
+
+        var_dump($analytics);
+
+        echo '</pre>'; die();
+
+        return view('admin.pages.dashboard', ['analytics' => $analytics]);
     }
 
 

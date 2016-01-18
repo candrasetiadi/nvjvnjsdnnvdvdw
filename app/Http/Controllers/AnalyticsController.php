@@ -33,4 +33,18 @@ class AnalyticsController extends Controller {
 
         return response()->json(array('status' => 200, 'data' => $completeData));
     }
+
+    // Get data for the last two weeks by default
+    public function get() {
+
+        $metric = 'pageViews';
+
+        $from = '19daysAgo';
+
+        $until = 'today';
+
+        $completeData = $this->analytics->getAll($this->id, $metric, $from, $until);
+
+        return response()->json(array('status' => 200, 'data' => $completeData));
+    }
 }
