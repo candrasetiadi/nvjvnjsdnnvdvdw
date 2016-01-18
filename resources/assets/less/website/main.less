@@ -1,5 +1,4 @@
-@import url('./master.less');
-@import url('./mixins.less');
+// out:null
 
 html {
     color: #222;
@@ -105,7 +104,7 @@ body {
                                 display: inline-block;
                                 .box-sizing (border-box);
                                 margin-bottom: 0;
-                                .transition(); 
+                                .transition();
 
                                 a {
                                     font-size:1rem;
@@ -290,23 +289,23 @@ body {
                         display: block;
                     }
 
-                    &:before, &:after { 
+                    &:before, &:after {
                         content: 'after';
                         text-indent: -999999px;
                         .transition();
                     }
 
-                    &:before { 
+                    &:before {
                         bottom: 0;
                     }
 
-                    &:after { 
+                    &:after {
                         top: 0;
                     }
 
                     &.active {
 
-                        &:before, &:after { 
+                        &:before, &:after {
                             visibility: hidden;
                             opacity: 0
                         }
@@ -685,7 +684,7 @@ body {
 
                         h2 {
                             top: -55%;
-                        } 
+                        }
                     }
                 }
             }
@@ -891,7 +890,7 @@ body {
                     span {
                         color: #b1b1b1;
                         font-size: 30px;
-                        .transition(color 0.33s ease); 
+                        .transition(color 0.33s ease);
                     }
 
                     &:hover, &:focus {

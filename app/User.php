@@ -11,8 +11,8 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Model implements AuthenticatableContract,
-                                    AuthorizableContract,
-                                    CanResetPasswordContract
+AuthorizableContract,
+CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword;
 
@@ -21,7 +21,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var string
      */
-    protected $table = 'users';
+    protected $table = 'Users';
 
     /**
      * The attributes that are mass assignable.
@@ -36,4 +36,18 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+
+
+    public function properties() {
+
+        return $this->hasMany('App\Property');
+    }
+
+
+
+    public function branch() {
+
+        return $this->belongsTo('App\Branch');
+    }
 }

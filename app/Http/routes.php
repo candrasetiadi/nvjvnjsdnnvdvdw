@@ -31,23 +31,30 @@ foreach(Lang::get('url') as $k => $v) {
 }
 
 
-Route::group(array('prefix' => Config::get('app.locale_prefix')), function() {
+Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
 
+    // Home
     Route::get('/', 'PagesController@home');
 
     Route::get('/{about}/', 'PagesController@about');
 
-    Route::get('/{blogs}/', 'BlogController@listing');
 
-    Route::group(['prefix' => 'blog'], function () {
 
-        Route::any('/', 'BlogController@listing');
+    // Properties
+    Route::get('/{properties}/', 'PagesController@propertyListing');
 
-        Route::any('{url}', array('as' => 'url', 'uses' => 'BlogController@show'));
-    });
+    Route::get('property/{url}', ['as' => 'url','uses' => 'PagesController@propertyView']);
 
-    Route::get('/{catalogues}/', array('as' => 'url', 'uses' => 'PdfController@listing'));
 
+
+    // Blogs
+    Route::get('blogs', 'PagesController@blogListing');
+
+    Route::get('blog/{url}', ['as' => 'url','uses' => 'PagesController@blogView']);
+
+
+
+    // Customer
     Route::get('/{login}/', 'PagesController@login');
 
     Route::get('/{register}/', 'PagesController@register');
@@ -55,60 +62,57 @@ Route::group(array('prefix' => Config::get('app.locale_prefix')), function() {
     Route::get('/{account}/', 'PagesController@account');
 });
 
+
+
+// Back-End
 Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'admin'], function () {
 
-        // Bull
-        Route::get('import', 'ImportController@import');
-        // End of Bull
+        // General
+        Route::get('dashboard', 'AdminController@dashboard');
 
-        Route::get('/', function() {
 
-            return redirect('/admin/dashboard');
-        });
+        Route::get('enquiries', 'AdminController@enquiries');
 
-        // Main Board
-        //Route::get('dashboard', 'DashboardController@index');
 
-        Route::get('dashboard', function() {
+        // Customer
+        Route::get('customers', 'AdminController@customers');
 
-            return view('admin.page.dashboard');
-        });
-
-        Route::get('enquiries', 'EnquiriesController@index');
-
-        Route::get('customers', 'CustomerController@index');
 
 
         // CMS
-        Route::get('categories', 'CategoriesController@index');
+        Route::get('categories', 'AdminController@categories');
 
-        Route::get('collection', 'CollectionController@index');
-
-        Route::get('products', 'ProductsController@index');
-
-        Route::get('projects', 'ProjectsController@index');
-
-        Route::get('awards', 'AwardsController@index');
-
-        Route::get('homeslide', 'HomeslideController@index');
-
-        Route::get('pages', 'PagesController@index');
-
-        Route::get('pdf', 'PdfController@index');
+        Route::get('properties', 'AdminController@properties');
 
 
         // Blog
-        Route::get('blog', 'BlogController@getAll');
+        Route::get('blog', 'AdminController@blog');
 
-        Route::get('blogsample', 'BlogController@sample');
+        Route::get('blog-categories', 'AdminController@blogCategories');
+
+        Route::get('blog-comments', 'AdminController@blogComments');
+
+        Route::get('blog-settings', 'AdminController@blogSettings');
 
 
         // Misc
-        Route::get('settings', 'SettingsController@index');
+        Route::get('accounts', 'AdminController@accounts');
 
-        Route::get('about', 'PagesController@adminAbout');
+        Route::get('settings', 'AdminController@settings');
+
+        Route::get('index', 'AdminController@index');
+
+        Route::get('currency', 'AdminController@currency');
+
+        Route::get('notifications', 'AdminController@notifications');
+
+        Route::get('io', 'AdminController@io');
+
+        Route::get('about', 'AdminController@about');
+
+
     });
 });
 
@@ -132,11 +136,6 @@ Route::group(['prefix' => 'system/ajax'], function () {
         Route::get('retrieve/{id}', ['as' => 'id', 'uses' => 'BlogController@retrieve']);
 
         Route::any('delete/{id}', ['as' => 'id', 'uses' => 'BlogController@destroy']);
-    });
-
-    Route::group(['prefix' => 'contact'], function () {
-
-        Route::any('create', 'ContactController@store');
     });
 
     Route::group(['prefix' => 'analytics'], function () {

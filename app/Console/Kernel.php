@@ -26,5 +26,11 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('inspire')
                  ->hourly();
+
+//        $schedule->call(function()
+//                        {
+//                            mail('boris@kesato.com', 'My Subject', 'CRON JOB IS RUNNING!');
+//
+//                        })->everyMinute();
     }
 }
