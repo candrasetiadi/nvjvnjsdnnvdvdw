@@ -580,7 +580,7 @@ var Matter = {
             }
         },
 
-        enquiries: function() {
+        inquiries: function() {
 
         },
 

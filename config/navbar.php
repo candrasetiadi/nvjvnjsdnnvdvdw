@@ -8,6 +8,13 @@ return [
         "enquiries" => "enquiries"
     ],
 
+    "properties" => [
+
+        "properties" => "manage properties",
+        "property/categories" => "categories"
+
+    ],
+
     "customers" => [
 
         "customers" => "manage customers"
