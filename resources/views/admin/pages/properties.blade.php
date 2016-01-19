@@ -32,6 +32,7 @@
             <td>Code</td>
             <td>Title</td>
             <td>Type</td>
+            <td>Category</td>
             <td>Publish</td>
             <td>Agent</td>
             <td>Price</td>
@@ -46,8 +47,9 @@
                 <td class="image">{!! ($images->count() > 0) ? '<a href="'. asset('uploads/property/' . $images->first()->file) . '"></a>' : '-'; !!}</td>
                 <td class="created_at">{{ $property->created_at }}</td>
                 <td class="code">{{ $property->code }}</td>
-                <td class="title">{{ $property->propertyLanguages()->where('locale', Lang::getLocale())->first()->title }}</td>
+                <td class="title">{{ $property->lang()->title }}</td>
                 <td class="type">{{ ucwords($property->type) }}</td>
+                <td class="type">{{ ucwords($property->categoryName()) }}</td>
                 <td class="publish">{{ ucfirst($property->publish) }}</td>
                 <td class="view">{{ $property->user->firstname }}</td>
                 <td class="price align-right">{{ number_format($property->price, 2) }}</td>

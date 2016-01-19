@@ -44,6 +44,36 @@ class Property extends Model
         return $this->hasMany('App\Inquiry');
     }
 
+    public function lang()
+    {
+
+        $propertyLanguages = $this->propertyLanguages()->where('locale', \Lang::getLocale());
+
+        if ($propertyLanguages->count() > 0) {
+
+            return $propertyLanguages->first();
+
+        } else {
+
+            return $this->propertyLanguages()->where('locale', 'en')->first();
+        }
+    }
+
+    public function categoryName()
+    {
+        $categoryLanguages = $this->category->categoryLanguages()->where('locale', \Lang::getLocale());
+
+        if ($categoryLanguages->count() > 0) {
+
+            return $categoryLanguages->first()->title;
+
+        } else {
+
+            return $this->category->categoryLanguages()->where('locale', 'en')->first()->title;
+        }
+
+    }
+
     public static function boot()
     {
         parent::boot();

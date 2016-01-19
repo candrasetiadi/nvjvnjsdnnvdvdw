@@ -12,6 +12,12 @@ use App\Http\Controllers\AnalyticsController;
 class AdminController extends Controller {
 
     private $limit = 20;
+    private $lang = '';
+
+    public function __construct()
+    {   
+        $this->lang = \Lang::getLocale();
+    }
 
     public function dashboard() {
 
@@ -36,7 +42,20 @@ class AdminController extends Controller {
 
     public function properties() {
 
-        $properties = \App\Property::orderBy('created_at', 'desc')->paginate($this->limit);
+        $search = \Input::get('q');
+
+        if ($search) {
+
+            $properties = \App\Property::select('Properties.*')
+                ->join('PropertyLanguages', 'PropertyLanguages.property_id', '=', 'Properties.id')
+                ->where('PropertyLanguages.locale', $this->lang)
+                ->where('PropertyLanguages.title', 'like', $search . '%')
+                ->orderBy('Properties.created_at', 'desc')->paginate($this->limit);
+
+        } else {
+
+            $properties = \App\Property::orderBy('created_at', 'desc')->paginate($this->limit);
+        }
 
         return view('admin.pages.properties', compact('properties'));
 
