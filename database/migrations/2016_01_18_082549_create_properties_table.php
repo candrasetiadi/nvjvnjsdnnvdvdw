@@ -44,6 +44,9 @@ class CreatePropertiesTable extends Migration
             $table->string('certificate_tax');
             $table->double('map_latitude');
             $table->double('map_longitude');
+            $table->string('city');
+            $table->string('province');
+            $table->string('country');
             $table->string('slug');
             $table->integer('view');
             $table->timeStamps();
