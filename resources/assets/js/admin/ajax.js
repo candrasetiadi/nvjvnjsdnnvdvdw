@@ -1,4 +1,4 @@
-var aurl = '/system/ajax/';
+var aurl = base_url + '/system/ajax/';
 
 var Ajax = {
 
@@ -25,7 +25,7 @@ var Ajax = {
 
             error: function(xhr, status, message){
 
-            if(developement) consoleLog(xhr.responseText);
+            if(development) consoleLog(xhr.responseText);
 
         }}).done(function(data) {
 
@@ -49,11 +49,11 @@ var Ajax = {
 
             error: function(xhr, status, message){
 
-            if(developement) consoleLog(xhr.responseText);
+            if(development) consoleLog(xhr.responseText);
 
         }}).done(function(data) {
 
-            if(developement) consoleLog(data);
+            if(development) consoleLog(data);
 
             doneFunc(data);
         });
@@ -85,7 +85,7 @@ var Ajax = {
 
         }}).done(function(data) {
 
-            if(developement) consoleLog(data);
+            if(development) consoleLog(data);
 
             switch(data.status) {
 

@@ -10,5 +10,6 @@
     <link href='https://fonts.googleapis.com/css?family=Product+Sans' rel='stylesheet' type='text/css'>
     <script>
         var development = {{ env('APP_DEBUG', 'false') }};
+        var base_url = "{{ url('/') }}";
     </script>
 </head>

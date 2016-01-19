@@ -65,6 +65,10 @@ class Property extends Model
 
         static::created(function($property)
         {
+            if ($property->propertyLanguages()->count() == 0) {
+
+                $property->propertyLanguages()->save(factory(\App\PropertyLanguage::class)->make());
+            }
 
         });
 

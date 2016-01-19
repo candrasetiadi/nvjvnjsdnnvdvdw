@@ -610,10 +610,44 @@ var Matter = {
 
         categories: function() {
 
+            $(document).on('click', '.item-edit', function(e) {
+
+                e.preventDefault();
+
+                var id = $(this).atrr('href');
+
+                Ajax.get('property/get/' + id, populateProductEdit);
+            });
+
+            function populateProductEdit(data) {
+
+                $.each(data, function(k, v) {
+
+                    $('#properties-input-' + k).val(v);
+                });
+            }
         },
 
         properties: function() {
 
+            $(document).on('click', '.item-edit', function(e) {
+
+                e.preventDefault();
+
+                var id = $(this).attr('href');
+
+                Ajax.get('property/get/' + id, populateProductEdit);
+            });
+
+            function populateProductEdit(data) {
+
+                $.each(data, function(k, v) {
+
+                    $('#properties-input-' + k).val(v);
+                });
+
+                modalOpen('#properties-add');
+            }
         },
 
         blog: function() {
@@ -638,7 +672,7 @@ var Matter = {
 
 
 
-var aurl = '/system/ajax/';
+var aurl = base_url + '/system/ajax/';
 
 var Ajax = {
 
@@ -665,7 +699,7 @@ var Ajax = {
 
             error: function(xhr, status, message){
 
-            if(developement) consoleLog(xhr.responseText);
+            if(development) consoleLog(xhr.responseText);
 
         }}).done(function(data) {
 
@@ -689,11 +723,11 @@ var Ajax = {
 
             error: function(xhr, status, message){
 
-            if(developement) consoleLog(xhr.responseText);
+            if(development) consoleLog(xhr.responseText);
 
         }}).done(function(data) {
 
-            if(developement) consoleLog(data);
+            if(development) consoleLog(data);
 
             doneFunc(data);
         });
@@ -725,7 +759,7 @@ var Ajax = {
 
         }}).done(function(data) {
 
-            if(developement) consoleLog(data);
+            if(development) consoleLog(data);
 
             switch(data.status) {
 

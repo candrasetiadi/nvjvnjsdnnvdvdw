@@ -610,10 +610,44 @@ var Matter = {
 
         categories: function() {
 
+            $(document).on('click', '.item-edit', function(e) {
+
+                e.preventDefault();
+
+                var id = $(this).atrr('href');
+
+                Ajax.get('property/get/' + id, populateProductEdit);
+            });
+
+            function populateProductEdit(data) {
+
+                $.each(data, function(k, v) {
+
+                    $('#properties-input-' + k).val(v);
+                });
+            }
         },
 
         properties: function() {
 
+            $(document).on('click', '.item-edit', function(e) {
+
+                e.preventDefault();
+
+                var id = $(this).attr('href');
+
+                Ajax.get('property/get/' + id, populateProductEdit);
+            });
+
+            function populateProductEdit(data) {
+
+                $.each(data, function(k, v) {
+
+                    $('#properties-input-' + k).val(v);
+                });
+
+                modalOpen('#properties-add');
+            }
         },
 
         blog: function() {

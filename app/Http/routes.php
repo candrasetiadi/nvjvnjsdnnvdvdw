@@ -143,6 +143,13 @@ Route::group(['prefix' => 'system/ajax'], function () {
 
         Route::any('register', 'CustomerController@register');
     });
+
+    Route::group(['prefix' => 'property'], function () {
+
+        Route::any('get/{id}', 'PropertiesController@show');
+
+        // Route::any('register', 'CustomerController@register');
+    });
 });
 
 

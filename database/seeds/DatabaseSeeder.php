@@ -36,9 +36,12 @@ class DatabaseSeeder extends Seeder
 
         factory(App\User::class, 10)->create()->each(function($u) {
 
-            $u->posts()->save(factory(App\Post::class)->make());
+            for($i = 0; $i < 10; $i++) {
 
-            $u->properties()->save(factory(App\Property::class)->make());
+                $u->posts()->save(factory(App\Post::class)->make());
+
+                $u->properties()->save(factory(App\Property::class)->make());
+            }
 
         });
 

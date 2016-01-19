@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Property;
+
 class PropertiesController extends Controller
 {
     /**
@@ -49,6 +51,10 @@ class PropertiesController extends Controller
     public function show($id)
     {
         //
+        $property = Property::find($id);
+
+        // return response()->json($property);
+        return $property;
     }
 
     /**

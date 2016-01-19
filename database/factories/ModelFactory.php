@@ -33,20 +33,6 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\PostCategoryLanguage::class, function (Faker\Generator $faker) {
-    return [
-        'title' => $faker->word,
-        'description' => $faker->sentence($nbWords = 6, $variableNbWords = true)
-    ];
-});
-
-$factory->define(App\Post::class, function (Faker\Generator $faker) {
-    return [
-        'category_id' => 1,
-        'status' => 1
-    ];
-});
-
 $factory->define(App\Testimmony::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->title,
@@ -87,10 +73,26 @@ $factory->define(App\PostCategory::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\PostCategoryLanguage::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->word,
+        'description' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'locale' => 'en'
+    ];
+});
+
+$factory->define(App\Post::class, function (Faker\Generator $faker) {
+    return [
+        'category_id' => 1,
+        'status' => 1
+    ];
+});
+
 $factory->define(App\PostLanguage::class, function (Faker\Generator $faker) {
     return [
-        'title' => $faker->title,
-        'content' => $faker->sentence($nbWords = 10, $variableNbWords = true)
+        'title' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'content' => $faker->paragraph($nbSentences = 6, $variableNbSentences = true),
+        'locale' => 'en'
     ];
 });
 
@@ -120,6 +122,14 @@ $factory->define(App\Property::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\PropertyLanguage::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence($nbWords = 3, $variableNbWords = true),
+        'description' => $faker->sentence($nbWords = 10, $variableNbWords = true),
+        'locale' => 'en'
+    ];
+});
+
 $factory->define(App\Category::class, function (Faker\Generator $faker) {
     return [
         'parent' => 0,
@@ -130,13 +140,7 @@ $factory->define(App\Category::class, function (Faker\Generator $faker) {
 $factory->define(App\CategoryLanguage::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->word,
-        'description' => $faker->sentence($nbWords = 6, $variableNbWords = true)
-    ];
-});
-
-$factory->define(App\PropertyLanguage::class, function (Faker\Generator $faker) {
-    return [
-        'title' => $faker->title,
-        'description' => $faker->sentence($nbWords = 6, $variableNbWords = true)
+        'description' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'locale' => 'en'
     ];
 });

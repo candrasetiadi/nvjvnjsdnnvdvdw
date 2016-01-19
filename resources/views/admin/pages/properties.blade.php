@@ -22,81 +22,41 @@
 @stop
 
 @section('content')
-<<<<<<< HEAD
 <div class="property-wrapper flexbox flexbox-wrap">
 
     <table class="m-table-list property-table">
-=======
-<div class="properties-wrapper flexbox flexbox-wrap">
-
-    <table class="m-table-list properties-table">
->>>>>>> 0ca74c0723d50d77685cc59c2913a356d30eb84c
         <thead>
             <td><a href class="m-table-item-select m-table-item-select-all"><i class="m-checkbox"></i></a></td>
+            <td>Image</td>
+            <td>Created</td>
+            <td>Code</td>
             <td>Title</td>
-            <td>Price</td>
             <td>Type</td>
             <td>Publish</td>
+            <td>Agent</td>
+            <td>Price</td>
+            <td>View</td>
             <td>Action</td>
         </thead>
         <tbody>
-<<<<<<< HEAD
             @foreach($properties as $property)
-            <tr class="property-item" data-id="1">
-                <td class="select"><a href class="m-table-item-select m-table-item-select-single" data-id="1"><i class="m-checkbox"></i></a></td>
+            <?php $images = $property->propertyFiles()->where('type', 'image'); ?>
+            <tr class="property-item" data-id="{{ $property->id }}">
+                <td class="select"><a href class="m-table-item-select m-table-item-select-single" data-id="1"><i class="m-checkbox"></i></a></td>                
+                <td class="image">{!! ($images->count() > 0) ? '<a href="'. asset('uploads/property/' . $images->first()->file) . '"></a>' : '-'; !!}</td>
+                <td class="created_at">{{ $property->created_at }}</td>
+                <td class="code">{{ $property->code }}</td>
                 <td class="title">{{ $property->propertyLanguages()->where('locale', Lang::getLocale())->first()->title }}</td>
-=======
-            <tr class="properties-item" data-id="1">
-                <td class="select"><a href class="m-table-item-select m-table-item-select-single" data-id="1"><i class="m-checkbox"></i></a></td>
-                <td class="title">Beautiful properties</td>
-                <td class="url">VCAN001</td>
-                <td class="created">IDR 9,350,000,000</td>
-                <td class="status">2015-12-21</td>
-                <td class="status">2016-12-20</td>
-                <td class="author">ENABLED</td>
+                <td class="type">{{ ucwords($property->type) }}</td>
+                <td class="publish">{{ ucfirst($property->publish) }}</td>
+                <td class="view">{{ $property->user->firstname }}</td>
+                <td class="price align-right">{{ number_format($property->price, 2) }}</td>
+                <td class="view align-right">{{ $property->view }}</td>
                 <td class="m-table-item-options">
                     <a href class="m-list-item-more"><i class="material-icons">more_horiz</i></a>
-                    <div class="m-list-item-option" data-id="1"><ul>
-                        <li><a href class="item-edit">edit</a></li>
-                        <li><a href class="item-duplicate">duplicate</a></li>
-                        <li><a href class="item-delete">delete</a></li>
-                        </ul>
-                    </div>
-                </td>
-            </tr>
-            <tr class="properties-item" data-id="2">
-                <td class="select"><a href class="m-table-item-select m-table-item-select-single" data-id="2"><i class="m-checkbox"></i></a></td>
-                <td class="title">Beach Front properties in Seminyak</td>
-                <td class="url">VSEM001</td>
-                <td class="created">IDR 23,250,000,000</td>
-                <td class="status">2015-12-21</td>
-                <td class="status">2018-12-20</td>
-                <td class="author">ENABLED</td>
-                <td class="m-table-item-options">
-                    <a href class="m-list-item-more"><i class="material-icons">more_horiz</i></a>
-                    <div class="m-list-item-option" data-id="2"><ul>
-                        <li><a href class="item-edit">edit</a></li>
-                        <li><a href class="item-duplicate">duplicate</a></li>
-                        <li><a href class="item-delete">delete</a></li>
-                        </ul>
-                    </div>
-                </td>
-            </tr>
-            <tr class="properties-item" data-id="1">
-                <td class="select"><a href class="m-table-item-select m-table-item-select-single" data-id="1"><i class="m-checkbox"></i></a></td>
-                <td class="title">5 Bedroom Luxury properties with Ricefield View</td>
-                <td class="url">VKER001</td>
-                <td class="created">IDR 12,000,000,000</td>
-                <td class="status">2015-12-21</td>
-                <td class="status">2017-12-20</td>
-                <td class="author">ENABLED</td>
->>>>>>> 0ca74c0723d50d77685cc59c2913a356d30eb84c
-                <td class="m-table-item-options">
-                    <a href class="m-list-item-more"><i class="material-icons">more_horiz</i></a>
-                    <div class="m-list-item-option" data-id="1"><ul>
-                        <li><a href class="item-edit">edit</a></li>
-                        <li><a href class="item-duplicate">duplicate</a></li>
-                        <li><a href class="item-delete">delete</a></li>
+                    <div class="m-list-item-option" data-id="{{ $property->id }}"><ul>
+                        <li><a href="{{ $property->id }}" class="item-edit">edit</a></li>
+                        <li><a href="/system/ajax/blog/delete/{{ $property->id }}" class="item-delete direct-delete">delete</a></li>
                         </ul>
                     </div>
                 </td>
@@ -104,7 +64,10 @@
             @endforeach
         </tbody>
     </table>
+
 </div>
+
+@include('admin.pagination.default', ['paginator' => $properties])
 
 @endsection
 

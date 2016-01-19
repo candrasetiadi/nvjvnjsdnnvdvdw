@@ -11,6 +11,8 @@ use App\Http\Controllers\AnalyticsController;
 
 class AdminController extends Controller {
 
+    private $limit = 20;
+
     public function dashboard() {
 
         return view('admin.pages.dashboard');
@@ -34,7 +36,7 @@ class AdminController extends Controller {
 
     public function properties() {
 
-        $properties = \App\Property::orderBy('created_at', 'desc')->paginate(40);
+        $properties = \App\Property::orderBy('created_at', 'desc')->paginate($this->limit);
 
         return view('admin.pages.properties', compact('properties'));
 
