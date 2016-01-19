@@ -1,0 +1,74 @@
+// out: null
+
+
+.fab-button-action{
+
+    i{
+        .transition(all .22s ease);
+    }
+
+    &~.small-fab-wrapper{
+        right: 8px;
+        position: absolute;
+        bottom: 8px;
+        z-index: 99;
+
+        .fab-button-small{
+            position: absolute;
+            .transition(all .33s ease);
+        }
+
+        .fab-button-small{
+
+            .drop-fab-hint{
+                position: absolute;
+                right: 36px;
+                width: 80px;
+                margin: 0;
+                top: 6px;
+                background: rgba(0, 0, 0, .65);
+                padding: 4px;
+                border-radius: 2px;
+                opacity: 0;
+                text-transform: uppercase;
+                font-size: 10px;
+                font-weight: 700;
+                letter-spacing: .5px;
+                .transition(all .22s ease);
+            }
+        }
+    }
+
+    &.active{
+
+        i{
+            .transform(rotate(45deg));
+        }
+
+        &~.small-fab-wrapper{
+
+            .fab-button-small{
+                .transform(translate3d(0, 88px, 0));
+
+                &:first-child{
+                    .transform(translate3d(0, 48px, 0));
+                }
+
+                &:last-child{
+                    .transform(translate3d(0, 128px, 0));
+                }
+
+                &:hover{
+
+                    .drop-fab-hint{
+                        opacity: 1;
+                        .transform(translate3d(-4px, 0, 0));
+                    }
+                }
+            }
+        }
+    }
+}
+
+.page-events{
+}

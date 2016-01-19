@@ -1,0 +1,517 @@
+// out: null
+
+.page-dashboard{
+
+    .dashboard-wrapper{
+
+        .dashboard-item{
+            position: relative;
+            margin-bottom: 12px;
+
+            &#overview{
+                width: 100%;
+
+                h3{
+                    width: 100%;
+                }
+
+                .overview-item{
+                    width: 25%;
+                    text-align: right;
+                    padding-right: 20px;
+                    box-sizing: border-box;
+                    border-right: 1px solid #d3d3d3;
+
+                    &:last-child{
+                        border: 0;
+                    }
+
+                    .overview-item-title{
+                        letter-spacing: 0;
+                        font-weight: 500;
+                        color: @ggrey;
+                        margin-bottom: 0;
+                    }
+
+                    .overview-item-count{
+                        margin: 0;
+                        color: #282A36;
+                        font-size: 24px;
+                        font-weight: 300;
+                        letter-spacing: 0;
+                    }
+                }
+            }
+
+            &#statistics{
+                width: calc(~"66.66% - 4px");
+
+                #statistics-legend{
+                    position: absolute;
+                    right: 16px;
+                    top: 16px;
+                    text-transform: capitalize;
+
+                    .legend-info{
+                        position: relative;
+
+                        &:before{
+                            display: block;
+                            content: "";
+                            background: #FF4081;
+                            position: absolute;
+                            width: 12px;
+                            height: 12px;
+                            left: -18px;
+                            top: 2px;
+                        }
+                    }
+                }
+
+                #analytics-timeline{
+                    position: absolute;
+                    right: 16px;
+                    top: 16px;
+                    width: 78px;
+                    padding: 8px 6px;
+                    font-size: 10px;
+                    text-align: right;
+                    padding-right: 24px;
+                    cursor: pointer;
+
+                    i{
+                        .transform(rotate(90deg));
+                        position: absolute;
+                        right: 10px;
+                        top: 0;
+                        bottom: 0;
+                        margin: auto;
+                        font-size: 18px;
+                    }
+
+                    ul{
+                        display: block;
+                        position: absolute;
+                        right: 8px;
+                        top: 32px;
+                        max-height: 0;
+                        max-width: 0;
+                        padding: 0;
+                        overflow: hidden;
+                        background: white;
+                        .transition(all .11s ease);
+
+                        li{
+
+                            a{
+                                padding: 10px;
+                                display: block;
+
+                                &:hover{
+                                    background-color: #fafafa;
+                                }
+                            }
+                        }
+
+                        &.active{
+                            max-height: 108px;
+                            max-width: 98px;
+                        }
+                    }
+                }
+
+                #statistics-data{
+                    height: 320px;
+
+                    canvas{
+                        //width: 100%;
+                        //height: calc(~"100% - 48px");
+                    }
+                }
+
+                #statistics-map{
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 64px;
+                    position: absolute;
+                    visibility: hidden;
+                    background-color: #1F2532;
+                }
+            }
+
+            &#top-results{
+                width: calc(~"33.33% - 8px");
+
+                h3{
+                    display: none;
+                }
+
+                .analytics-viewer{
+                    overflow: hidden;
+
+                    .analytics-viewer-head{
+                        position: relative;
+                        padding-bottom: 8px;
+
+                        ul{
+
+                            li{
+                                width: calc(~"33.33% - 16px");
+
+                                a{
+                                    .transition();
+                                    color: #d3d3d3;
+                                    display: block;
+                                    text-align: center;
+                                    box-sizing: border-box;
+                                    text-transform: uppercase;
+
+                                    &:hover{
+                                        color: #323232;
+                                        font-weight: 700;
+                                    }
+                                }
+                            }
+                        }
+
+                        &:before{
+                            left: 0;
+                            bottom: 0;
+                            right: auto;
+                            height: 3px;
+                            content: "";
+                            .transition();
+                            display: block;
+                            position: absolute;
+                            background-color: #323232;
+                            width: calc(~"33.33% - 16px");
+                        }
+
+                        &.before1{
+
+                            ~ .analytics-viewer-body{
+                                .transform(translate3d(0, 0, 0));
+                            }
+
+                            &:before{
+                                .transform(translate3d(0, 0, 0));
+                            }
+
+                            ul{
+
+                                li:first-child{
+
+                                    a{
+                                        color: #323232;
+                                        font-weight: 700;
+                                    }
+                                }
+                            }
+                        }
+
+                        &.before2{
+
+                            ~ .analytics-viewer-body{
+                                .transform(translate3d(-33.33%, 0, 0));
+                            }
+
+                            &:before{
+                                .transform(translate3d(125%, 0, 0));
+                            }
+
+                            ul{
+
+                                li:nth-child(2){
+
+                                    a{
+                                        color: #323232;
+                                        font-weight: 700;
+                                    }
+                                }
+                            }
+                        }
+
+                        &.before3{
+
+                            ~ .analytics-viewer-body{
+                                .transform(translate3d(-66.66%, 0, 0));
+                            }
+
+                            &:before{
+                                .transform(translate3d(250%, 0, 0));
+                            }
+
+                            ul{
+
+                                li:last-child{
+
+                                    a{
+                                        color: #323232;
+                                        font-weight: 700;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .analytics-viewer-body{
+                        width: 300%;
+                        height: 320px;
+                        .transition();
+
+                        .analytics-viewer-body-item{
+                            height: 100%;
+                            width: 33.33%;
+                            overflow-y: scroll;
+
+                            ul{
+                                padding-top: 16px;
+
+                                li{
+                                    cursor: pointer;
+                                    //overflow: hidden;
+                                    position: relative;
+                                    border-bottom: 1px solid #f1f1f1;
+
+                                    i{
+                                        width: 40px;
+                                        height: 40px;
+                                        line-height: 40px;
+                                        text-align: center;
+                                    }
+
+                                    p{
+                                        margin: 0;
+                                        font-size: 14px;
+                                        line-height: 40px;
+                                        .transition(all .11s ease);
+                                    }
+
+                                    > p{
+                                        text-indent: 8px;
+                                        text-transform: capitalize;
+                                    }
+
+                                    .value-wrapper{
+                                        text-align: right;
+                                        background: @gblue;
+                                        padding: 4px;
+                                        margin: 8px 0;
+                                        line-height: 16px;
+                                        text-align: center;
+                                        border-radius: 2px;
+                                        width: 54px;
+                                        color: white;
+                                        overflow: hidden;
+                                        position: relative;
+
+                                        p{
+                                            top: 4px;
+                                            left: 0;
+                                            right: 0;
+                                            margin: auto;
+                                            line-height: 16px;
+                                            letter-spacing: 0;
+                                            position: absolute;
+
+                                            &:last-child{
+                                                top: 44px;
+                                            }
+                                        }
+                                    }
+
+                                    span{
+                                        left: 2px;
+                                        bottom: 0;
+                                        z-index: -1;
+                                        height: 100%;
+                                        opacity: 0.3;
+                                        position: absolute;
+                                        background-color: @gsalmon;
+                                    }
+
+                                    &:hover{
+
+                                        p{
+                                        }
+
+                                        .value-wrapper{
+
+                                            p{
+                                                .transform(translate3d(0, -40px, 0));
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            &#analytics-devices{
+
+                                ul{
+
+                                    li{
+
+                                        i{
+                                        }
+
+                                        p{
+                                        }
+
+                                        .analytics-devices-name{
+                                            width: calc(~"100% - 94px");
+                                        }
+
+                                        .analytics-devices-perc{
+                                        }
+
+                                        .analytics-devices-count{
+                                        }
+                                    }
+                                }
+                            }
+
+                            &#analytics-countries{
+
+                                ul{
+
+                                    li{
+
+                                        i{
+                                            display: none;
+                                        }
+
+                                        p{
+                                        }
+
+                                        .analytics-countries-name{
+                                            width: calc(~"100% - 54px");
+                                        }
+
+                                        .analytics-countries-perc{
+                                        }
+
+                                        .analytics-countries-count{
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &#some2, &#support-ticket{
+                height: 240px;
+                width: calc(~"33.33% - 8px");
+            }
+
+            &#ga-quick{
+                height: 240px;
+                width: calc(~"33.33% - 8px");
+
+                ul{
+
+                    li{
+                        box-sizing: border-box;
+                        border-bottom: 3px solid;
+
+                        p{
+                            margin: 0;
+                            font-size: 14px;
+                            font-weight: 500;
+                            color: #323232;
+                            padding: 12px 0;
+                        }
+
+                        .quick-title{
+                            width: calc(~"100% - 96px");
+                        }
+
+                        .quick-description{
+                            width: 96px;
+                            text-align: right;
+                        }
+
+                        &:first-child{
+                            border-color: fadeout(@gsalmon, 75%);
+                        }
+
+                        &:nth-child(2){
+                            border-color: fadeout(@ggreen, 75%);
+                        }
+
+                        &:nth-child(3){
+                            border-color: fadeout(@gred, 75%);
+                        }
+
+                        &:last-child{
+                            border-color: fadeout(@gblue, 75%);
+                        }
+                    }
+                }
+            }
+
+            &#support-ticket{
+
+                h3{
+                    color: white;
+                    margin-bottom: 12px;
+                }
+
+                .ticket-wrapper{
+
+                    #ticket-form{
+
+                        input{
+                            color: white;
+                            border-color: #3d3d3d;
+                            background: transparent;
+
+                            &:focus, &:valid{
+                                border-color: #3d3d3d;
+                            }
+                        }
+
+                        label{
+                            color: white;
+                            background: @base;
+                        }
+
+                        textarea{
+                            color: white;
+                            border-color: #3d3d3d;
+                            background: transparent;
+
+                            &:focus, &:valid{
+                                border-color: #3d3d3d;
+                            }
+
+                            &::-webkit-input-placeholder {
+                                color: white;
+                            }
+
+                            &:-moz-placeholder { /* Firefox 18- */
+                                color: white;
+                            }
+
+                            &::-moz-placeholder {  /* Firefox 19+ */
+                                color: white;
+                            }
+
+                            &:-ms-input-placeholder {
+                                color: white;
+                            }
+                        }
+
+                        .button-holder{
+                            position: absolute;
+                            bottom: 16px;
+                            right: 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
