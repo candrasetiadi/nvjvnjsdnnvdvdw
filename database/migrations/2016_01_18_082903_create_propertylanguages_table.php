@@ -16,7 +16,7 @@ class CreatePropertylanguagesTable extends Migration
         Schema::create('PropertyLanguages', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('property_id');
-            $table->integer('language_id');
+            $table->string('locale')->index();
             $table->string('title');
             $table->string('description');
             $table->timeStamps();

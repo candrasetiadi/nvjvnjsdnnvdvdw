@@ -44,7 +44,7 @@
             @foreach($properties as $property)
             <tr class="property-item" data-id="1">
                 <td class="select"><a href class="m-table-item-select m-table-item-select-single" data-id="1"><i class="m-checkbox"></i></a></td>
-                <td class="title">{{ $property->propertyLanguages()->where('language', Lang::getLocale())->first()->title }}</td>
+                <td class="title">{{ $property->propertyLanguages()->where('locale', Lang::getLocale())->first()->title }}</td>
 =======
             <tr class="properties-item" data-id="1">
                 <td class="select"><a href class="m-table-item-select m-table-item-select-single" data-id="1"><i class="m-checkbox"></i></a></td>
