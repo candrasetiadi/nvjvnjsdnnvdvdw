@@ -16,12 +16,10 @@ class CreateBranchesTable extends Migration
         Schema::create('Branches', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-<<<<<<< HEAD
-            $table->string('location');
-            $table->integer('manager');
-=======
-            $table->string('description');
->>>>>>> origin/master
+            $table->string('city');
+            $table->string('province');
+            $table->string('country');
+            $table->string('manager');
             $table->timeStamps();
         });
     }
