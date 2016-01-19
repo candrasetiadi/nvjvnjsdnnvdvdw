@@ -13,4 +13,41 @@ class Country extends Model
     {
         return $this->hasMany('App\Province');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($country)
+        {
+
+        });
+
+        static::updating(function($country)
+        {
+
+        });
+
+        static::deleting(function($country)
+        {
+
+        });
+
+        static::created(function($country)
+        {
+
+        });
+
+        static::updated(function($country)
+        {
+
+        });
+
+        static::deleted(function($country)
+        {
+
+        });
+
+    }
+    
 }

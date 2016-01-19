@@ -18,4 +18,41 @@ class PostCategory extends Model
 
         return $this->belongsTo('App\Post');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($postCategory)
+        {
+
+        });
+
+        static::updating(function($postCategory)
+        {
+
+        });
+
+        static::deleting(function($postCategory)
+        {
+
+        });
+
+        static::created(function($postCategory)
+        {
+
+        });
+
+        static::updated(function($postCategory)
+        {
+
+        });
+
+        static::deleted(function($postCategory)
+        {
+
+        });
+
+    }
+    
 }

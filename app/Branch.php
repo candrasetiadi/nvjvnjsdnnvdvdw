@@ -18,4 +18,40 @@ class Branch extends Model
 
         return $this->hasMany('App\Post');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($branch)
+        {
+
+        });
+
+        static::updating(function($branch)
+        {
+
+        });
+
+        static::deleting(function($branch)
+        {
+
+        });
+
+        static::created(function($branch)
+        {
+
+        });
+
+        static::updated(function($branch)
+        {
+
+        });
+
+        static::deleted(function($branch)
+        {
+
+        });
+
+    }
 }

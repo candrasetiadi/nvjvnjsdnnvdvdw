@@ -39,4 +39,41 @@ class Property extends Model
     {
         return $this->hasMany('App\Inquiry');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($property)
+        {
+
+        });
+
+        static::updating(function($property)
+        {
+
+        });
+
+        static::deleting(function($property)
+        {
+
+        });
+
+        static::created(function($property)
+        {
+
+        });
+
+        static::updated(function($property)
+        {
+
+        });
+
+        static::deleted(function($property)
+        {
+
+        });
+
+    }
+
 }

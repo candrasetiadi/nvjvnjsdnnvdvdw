@@ -13,4 +13,41 @@ class PropertyFile extends Model
     {
         return $this->belongsTo('App\Property');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($propertyFile)
+        {
+
+        });
+
+        static::updating(function($propertyFile)
+        {
+
+        });
+
+        static::deleting(function($propertyFile)
+        {
+
+        });
+
+        static::created(function($propertyFile)
+        {
+
+        });
+
+        static::updated(function($propertyFile)
+        {
+
+        });
+
+        static::deleted(function($propertyFile)
+        {
+
+        });
+
+    }
+
 }

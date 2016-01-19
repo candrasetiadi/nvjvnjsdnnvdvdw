@@ -13,4 +13,40 @@ class PostLanguage extends Model
 
         return $this->belongsTo('App\Post');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($postLanguage)
+        {
+
+        });
+
+        static::updating(function($postLanguage)
+        {
+
+        });
+
+        static::deleting(function($postLanguage)
+        {
+
+        });
+
+        static::created(function($postLanguage)
+        {
+
+        });
+
+        static::updated(function($postLanguage)
+        {
+
+        });
+
+        static::deleted(function($postLanguage)
+        {
+
+        });
+
+    }
 }

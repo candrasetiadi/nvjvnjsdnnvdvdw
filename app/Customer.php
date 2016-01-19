@@ -23,4 +23,40 @@ class Customer extends Model
 
         return $this->hasMany('App\Inquiry');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($customer)
+        {
+
+        });
+
+        static::updating(function($customer)
+        {
+
+        });
+
+        static::deleting(function($customer)
+        {
+
+        });
+
+        static::created(function($customer)
+        {
+
+        });
+
+        static::updated(function($customer)
+        {
+
+        });
+
+        static::deleted(function($customer)
+        {
+
+        });
+
+    }
 }

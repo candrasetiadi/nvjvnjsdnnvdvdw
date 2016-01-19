@@ -13,4 +13,41 @@ class PostCategoryLanguage extends Model
 
         return $this->belongsTo('App\PostCategory');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($postCategoryLanguage)
+        {
+
+        });
+
+        static::updating(function($postCategoryLanguage)
+        {
+
+        });
+
+        static::deleting(function($postCategoryLanguage)
+        {
+
+        });
+
+        static::created(function($postCategoryLanguage)
+        {
+
+        });
+
+        static::updated(function($postCategoryLanguage)
+        {
+
+        });
+
+        static::deleted(function($postCategoryLanguage)
+        {
+
+        });
+
+    }
+
 }

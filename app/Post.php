@@ -23,4 +23,40 @@ class Post extends Model
 
         return $this->belongsTo('App\Branch');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($post)
+        {
+
+        });
+
+        static::updating(function($post)
+        {
+
+        });
+
+        static::deleting(function($post)
+        {
+
+        });
+
+        static::created(function($post)
+        {
+
+        });
+
+        static::updated(function($post)
+        {
+
+        });
+
+        static::deleted(function($post)
+        {
+
+        });
+
+    }
 }

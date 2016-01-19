@@ -50,4 +50,40 @@ CanResetPasswordContract
 
         return $this->belongsTo('App\Branch');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($user)
+        {
+
+        });
+
+        static::updating(function($user)
+        {
+
+        });
+
+        static::deleting(function($user)
+        {
+
+        });
+
+        static::created(function($user)
+        {
+
+        });
+
+        static::updated(function($user)
+        {
+
+        });
+
+        static::deleted(function($user)
+        {
+
+        });
+
+    }
 }

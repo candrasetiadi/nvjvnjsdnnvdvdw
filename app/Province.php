@@ -18,4 +18,41 @@ class Province extends Model
     {
         return $this->hasMany('App\City');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($province)
+        {
+
+        });
+
+        static::updating(function($province)
+        {
+
+        });
+
+        static::deleting(function($province)
+        {
+
+        });
+
+        static::created(function($province)
+        {
+
+        });
+
+        static::updated(function($province)
+        {
+
+        });
+
+        static::deleted(function($province)
+        {
+
+        });
+
+    }
+
 }

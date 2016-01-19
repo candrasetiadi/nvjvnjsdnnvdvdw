@@ -18,4 +18,41 @@ class Category extends Model
     {
         return $this->hasMany('App\CategoryLanguage');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($category)
+        {
+
+        });
+
+        static::updating(function($category)
+        {
+
+        });
+
+        static::deleting(function($category)
+        {
+
+        });
+
+        static::created(function($category)
+        {
+
+        });
+
+        static::updated(function($category)
+        {
+
+        });
+
+        static::deleted(function($category)
+        {
+
+        });
+
+    }
+
 }
