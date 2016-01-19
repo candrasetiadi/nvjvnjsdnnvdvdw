@@ -76,8 +76,7 @@ $factory->define(App\Customer::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Branch::class, function (Faker\Generator $faker) {
     return [
-        'name' => 'denpasar',
-        'description' => $faker->sentence($nbWords = 3, $variableNbWords = true)
+        'name' => 'denpasar'
     ];
 });
 
