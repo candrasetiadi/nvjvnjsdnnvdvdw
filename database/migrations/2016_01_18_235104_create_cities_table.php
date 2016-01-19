@@ -12,8 +12,12 @@ class CreateCitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('Cities', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('code');
+            $table->double('latitude');
+            $table->double('longitude');
             $table->timestamps();
         });
     }
@@ -25,6 +29,6 @@ class CreateCitiesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('cities');
+        Schema::drop('Cities');
     }
 }

@@ -27,7 +27,7 @@ class CreateCustomersTable extends Migration
             $table->string('country');
             $table->string('zipcode');
             $table->string('facebook');
-            $table->string('tritter');
+            $table->string('twitter');
             $table->string('image_profile');
             $table->boolean('newsletter');
             $table->boolean('active');

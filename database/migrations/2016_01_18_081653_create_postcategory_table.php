@@ -13,12 +13,11 @@ class CreatePostcategoryTable extends Migration
     public function up()
     {
         //
-        Schema::create('PostCategory', function (Blueprint $table) {
+        Schema::create('PostCategories', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id');
-            $table->integer('language_id');
-            $table->string('title');
-            $table->string('description');
+            $table->integer('parent');
+            $table->integer('order');
+            $table->string('slug');
             $table->timeStamps();
         });
     }
@@ -31,6 +30,6 @@ class CreatePostcategoryTable extends Migration
     public function down()
     {
         //
-        Schema::drop('PostCategory');
+        Schema::drop('PostCategories');
     }
 }

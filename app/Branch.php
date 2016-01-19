@@ -14,10 +14,10 @@ class Branch extends Model
         return $this->hasMany('App\User');
     }
 
-    public function posts() {
+    // public function posts() {
 
-        return $this->hasMany('App\Post');
-    }
+    //     return $this->hasMany('App\Post');
+    // }
 
     public static function boot()
     {

@@ -48,7 +48,10 @@ CanResetPasswordContract
         return $this->hasMany('App\Property');
     }
 
+    public function posts() {
 
+        return $this->hasMany('App\Post');
+    }
 
     public function branch() {
 

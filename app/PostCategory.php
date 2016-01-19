@@ -9,9 +9,9 @@ class PostCategory extends Model
     //
     protected $table = 'PostCategories';
 
-    public function languages() {
+    public function postCategoryLanguages() {
 
-        return $this->hasMany('App\PostCategoryLanguages');
+        return $this->hasMany('App\PostCategoryLanguage', 'category_id');
     }
 
     public function post() {
