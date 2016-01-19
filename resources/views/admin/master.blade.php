@@ -90,6 +90,11 @@
             <p id="mono-msg">
                 Some message.. This and this has been working correctly..
             </p>
+
+            <div class="mono-buttons flexbox">
+                <a href="modalClose" class="mono-button">yes</a>
+                <a href="modalClose" class="mono-button">no</a>
+            </div>
         </div>
 
         @yield('modal', '')

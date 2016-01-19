@@ -569,6 +569,30 @@ var Matter = {
                     });
                 }
             }
+        },
+
+        enquiries: function() {
+
+        },
+
+        customers: function() {
+
+        },
+
+        categories: function() {
+
+        },
+
+        properties: function() {
+
+        },
+
+        blog: function() {
+
+        },
+
+        settings: function() {
+
         }
     }
 }

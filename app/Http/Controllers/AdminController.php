@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Response;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\AnalyticsController;
@@ -14,7 +15,7 @@ class AdminController extends Controller {
 
         $ga = new AnalyticsController;
 
-        $analytics = $ga->get();
+        $analytics = $ga->getA();
 
         echo '<pre>';
 

@@ -1,40 +1,54 @@
 var Monolog = {
 
-	notify: function(title, msg) {
+    notify: function(title, msg) {
 
-		if($('#monolog').hasClass('active')) {
+        if($('#monolog').hasClass('active')) {
 
-			$('#monolog').removeClass('active');
+            $('#monolog').removeClass('active');
 
-			setTimeout(function() {
+            setTimeout(function() {
 
-				$('#mono-title').html(title);
+                $('#mono-title').html(title);
 
-				$('#mono-msg').html(msg);
+                $('#mono-msg').html(msg);
 
-				$('#monolog').addClass('active');
+                $('#monolog').addClass('active');
 
-			}, 500);
-			
-		} else {
+            }, 500);
 
-			$('#mono-title').html(title);
+        } else {
 
-			$('#mono-msg').html(msg);
+            $('#mono-title').html(title);
 
-			$('#monolog').addClass('active');
-		}
-	},
+            $('#mono-msg').html(msg);
 
-	confirm: function(qst, yes, no) {
+            $('#monolog').addClass('active');
+        }
+    },
 
-		if(confirm(qst)){
+    confirm: function(title, msg, yes) {
 
-			yes('Blog action', 'Blog deleted');
+        if($('#monolog').hasClass('active')) {
 
-		} else {
+            $('#monolog').removeClass('active');
 
-			no('Blog action', 'Blog deletion canceled');
-		}
-	}
+            setTimeout(function() {
+
+                $('#mono-title').html(title);
+
+                $('#mono-msg').html(msg);
+
+                $('#monolog').addClass('active confirm');
+
+            }, 500);
+
+        } else {
+
+            $('#mono-title').html(title);
+
+            $('#mono-msg').html(msg);
+
+            $('#monolog').addClass('active confirm');
+        }
+    }
 }

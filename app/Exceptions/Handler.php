@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use App\Http\Controllers\GlobalController;
 
 class Handler extends ExceptionHandler
 {
@@ -47,9 +46,8 @@ class Handler extends ExceptionHandler
         if($this->isHttpException($e)){
             switch ($e->getStatusCode()) {
                 case '404':
-                    $this->gCtrl = new GlobalController;
                     \Log::error($e);
-                    return \Response::view('errors.404', ['searchTerms' => $this->gCtrl->searchTerms(), 'navigation' => $this->gCtrl->navigation()]);
+                    return \Response::view('errors.404');
                     break;
 
                 case '500':

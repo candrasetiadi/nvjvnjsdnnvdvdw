@@ -5,9 +5,9 @@
 
 <a href class="fab-button fab-button-salmon fab-button-action shadow-hover target-active"><i class="material-icons">add</i></a>
 
-<div class="small-fab-wrapper">
+<div class="small-fab-wrapper sub-fab-wrapper">
     <a class="fab-button fab-button-small shadow-hover modal-open" data-target="#villa-add">
-        <i class="material-icons">location_on</i>
+        <i class="material-icons">business</i>
         <span class="drop-fab-hint">add villa</span>
     </a>
 
@@ -90,7 +90,6 @@
             </tr>
         </tbody>
     </table>
-
 </div>
 
 @endsection

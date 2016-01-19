@@ -35,7 +35,7 @@ class AnalyticsController extends Controller {
     }
 
     // Get data for the last two weeks by default
-    public function get() {
+    public function getA() {
 
         $metric = 'pageViews';
 

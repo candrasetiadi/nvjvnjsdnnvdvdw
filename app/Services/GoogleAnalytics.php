@@ -10,6 +10,7 @@ class GoogleAnalytics {
     protected $service;
 
     function __construct() {
+
         /* Get config variables */
         $client_id = Config::get('google.client_id');
 

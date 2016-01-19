@@ -448,6 +448,7 @@
     border-radius: 2px;
     box-sizing: border-box;
     transition: all .33s ease;
+    padding-bottom: 54px;
 
     #mono-close{
         top: 10px;
@@ -460,10 +461,10 @@
     }
 
     #mono-title{
-        color: #484848;
+        color: #6f6f6f;
         margin: 0 0 8px;
-        font-size: 15px;
-        font-weight: 500;
+        font-size: 12px;
+        font-weight: 700;
         padding-bottom: 8px;
         text-transform: uppercase;
         border-bottom: 1px solid #d3d3d3;
@@ -473,6 +474,28 @@
         margin: 0;
         font-size: 14px;
         font-weight: 400;
+    }
+
+    .mono-buttons{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+
+        .mono-button{
+            width: 50%;
+            display: inline-block;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 12px;
+            padding: 12px 0;
+            transition: background-color .33s ease;
+
+            &:hover{
+                background-color: rgba(0, 0, 0, .05);
+            }
+        }
     }
 
     &.active{
