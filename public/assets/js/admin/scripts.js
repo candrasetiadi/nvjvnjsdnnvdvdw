@@ -637,3 +637,200 @@ var Matter = {
 
 
 
+
+var aurl = '/system/ajax/';
+
+var Ajax = {
+
+    post: function(method, ajaxIn, doneFunc) {
+
+        Ajax.base(method, ajaxIn, doneFunc, 'POST');
+    },
+
+    destroy: function(targetUrl, token, doneFunc) {
+
+        NProgress.start();
+
+        $.ajax({
+
+            url: aurl + targetUrl,
+
+            type: 'POST',
+
+            dataType: 'json',
+
+            data: token,
+
+            async: true,
+
+            error: function(xhr, status, message){
+
+            if(developement) consoleLog(xhr.responseText);
+
+        }}).done(function(data) {
+
+            doneFunc(data);
+        });
+    },
+
+    get: function(targetUrl, doneFunc) {
+
+        NProgress.start();
+
+        return $.ajax({
+
+            url: aurl + targetUrl,
+
+            type: 'GET',
+
+            dataType: 'json',
+
+            async: true,
+
+            error: function(xhr, status, message){
+
+            if(developement) consoleLog(xhr.responseText);
+
+        }}).done(function(data) {
+
+            if(developement) consoleLog(data);
+
+            doneFunc(data);
+        });
+    },
+
+    base: function(targetUrl, dataIn, doneFunc, ajaxType) {
+
+        NProgress.start();
+
+        $.ajax({
+
+            url: aurl + targetUrl,
+
+            type: ajaxType,
+
+            data: dataIn,
+
+            processData: false,  // tell jQuery not to process the data. IMPORTANT for file upload.
+
+            contentType: false,   // tell jQuery not to set contentType. IMPORTANT for file upload.
+
+            dataType: 'json',
+
+            async: true,
+
+            error: function(xhr, status, message){
+
+            consoleLog(xhr.responseText);
+
+        }}).done(function(data) {
+
+            if(developement) consoleLog(data);
+
+            switch(data.status) {
+
+                case 200:
+
+                    Monolog.notify(data.message.title, data.message.msg, NProgress.done());
+
+                    doneFunc(data);
+
+                    break;
+
+                default:
+
+                    Monolog.notify(data.message.title, data.message.msg, NProgress.done());
+
+                    consoleLog(data);
+            }
+        });
+    }
+}
+
+var Monolog = {
+
+    notify: function(title, msg) {
+
+        Monolog.fill(title, msg, 'active');
+    },
+
+    error: function(title, msg) {
+
+        Monolog.fill(title, msg, 'active error');
+    },
+
+    confirm: function(title, msg, callback) {
+
+        Monolog.fill(title, msg, 'active confirm');
+
+        $('#mono-action').attr('href', callback);
+    },
+
+    close: function() {
+
+        $('#monolog').removeClass('active');
+
+        setTimeout(function() {
+
+            $('#monolog').removeClass('confirm error success');
+
+        }, 500);
+    },
+
+    fill: function(title, msg, classes) {
+
+        if($('#monolog').hasClass('active')) {
+
+            $('#monolog').removeClass('active');
+
+            setTimeout(function() {
+
+                $('#monolog').removeClass('confirm error success');
+
+            }, 500);
+
+            setTimeout(function() {
+
+                $('#mono-title').html(title);
+
+                $('#mono-msg').html(msg);
+
+                $('#monolog').addClass(classes);
+
+            }, 550);
+
+        } else {
+
+            $('#mono-title').html(title);
+
+            $('#mono-msg').html(msg);
+
+            $('#monolog').addClass(classes);
+        }
+    }
+}
+
+var UI = {
+
+    previewImage: function(input) {
+
+        if (input.files && input.files[0]) {
+
+            var reader = new FileReader(),
+                display = $(input).siblings('.m-image-preview');
+
+            reader.onload = function(e) {
+
+                $(display).css({
+
+                    backgroundImage: 'url(' + e.target.result + ')'
+                });
+            }
+            reader.readAsDataURL(input.files[0]);
+
+            return true;
+        }
+    }
+}
+
+//# sourceMappingURL=scripts.js.map
