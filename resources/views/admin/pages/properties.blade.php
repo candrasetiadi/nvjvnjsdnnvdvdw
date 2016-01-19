@@ -38,6 +38,7 @@
             <td>Price</td>
             <td>View</td>
             <td>Action</td>
+            
         </thead>
         <tbody>
             @foreach($properties as $property)
