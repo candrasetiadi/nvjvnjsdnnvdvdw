@@ -25,13 +25,11 @@ var Ajax = {
 
             error: function(xhr, status, message){
 
-            consoleLog(xhr.responseText);
+            if(developement) consoleLog(xhr.responseText);
 
         }}).done(function(data) {
 
             doneFunc(data);
-
-            consoleLog(data);
         });
     },
 
@@ -51,11 +49,11 @@ var Ajax = {
 
             error: function(xhr, status, message){
 
-            consoleLog(xhr.responseText);
+            if(developement) consoleLog(xhr.responseText);
 
         }}).done(function(data) {
 
-            consoleLog(data);
+            if(developement) consoleLog(data);
 
             doneFunc(data);
         });
@@ -86,6 +84,8 @@ var Ajax = {
             consoleLog(xhr.responseText);
 
         }}).done(function(data) {
+
+            if(developement) consoleLog(data);
 
             switch(data.status) {
 

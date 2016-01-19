@@ -3,6 +3,7 @@
 return [
 
     "dashboard" => [
+
         "dashboard" => "dashboard",
         "enquiries" => "enquiries"
     ],
@@ -14,7 +15,7 @@ return [
     ],
 
     "content" => [
-        "categories" => "categories",
+
         "properties" => "properties"
     ],
 

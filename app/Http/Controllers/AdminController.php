@@ -13,17 +13,7 @@ class AdminController extends Controller {
 
     public function dashboard() {
 
-        $ga = new AnalyticsController;
-
-        $analytics = $ga->getA();
-
-        echo '<pre>';
-
-        var_dump($analytics);
-
-        echo '</pre>'; die();
-
-        return view('admin.pages.dashboard', ['analytics' => $analytics]);
+        return view('admin.pages.dashboard');
     }
 
 
@@ -38,14 +28,6 @@ class AdminController extends Controller {
     public function customers() {
 
         return view('admin.pages.customers');
-    }
-
-
-
-    public function categories() {
-
-        return view('admin.pages.categories');
-
     }
 
 

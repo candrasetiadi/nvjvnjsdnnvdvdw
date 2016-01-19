@@ -71,18 +71,11 @@
 
                 </div>
 
-
-                <div class="end-of-scroll-wrapper">
-                    <svg width="1477px" height="177px" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 177 Q 738.5 -96 1477 177Z" stroke="none" fill="rgba(0, 0, 0, .15)"/>
-                    </svg>
-                </div>
             </section>
 
         </div>
 
         <div id="monolog" class="shadow shadow-hover">
-            <a href id="mono-close"><i class="material-icons">close</i></a>
             <p id="mono-title">
                 BlogController notice:
             </p>
@@ -92,8 +85,8 @@
             </p>
 
             <div class="mono-buttons flexbox">
-                <a href="modalClose" class="mono-button">yes</a>
-                <a href="modalClose" class="mono-button">no</a>
+                <a href="modalClose" class="mono-button" id="mono-action">yes</a>
+                <a href="modalClose" class="mono-button" id="mono-close">dismiss</a>
             </div>
         </div>
 
@@ -101,25 +94,6 @@
 
         @include('admin.fragments.footscripts')
 
-        <script>
-            $(window).load(function(){
-                loadScrollLimit();
-            });
-
-            $(window).resize(function() {
-                loadScrollLimit();
-            });
-
-            function loadScrollLimit() {
-                $('svg').attr('width', $(window).outerWidth() + 'px');
-                $('svg').attr('height', (($(window).outerWidth() / 100) * 12) + 'px');
-                path = 'M0 ' + ($(window).outerWidth() / 100) * 12 + ' Q ' + $(window).outerWidth() / 2 + ' ' + '-' + ((($(window).outerWidth() / 100) * 12) / 1.24) + ' ' + $(window).outerWidth() + ' ' + ($(window).outerWidth() / 100) * 12 + 'Z';
-                $('svg > path').attr('d', path);
-            }
-        </script>
-
         @yield('scripts', '')
-
-        @yield('script', '')
     </body>
 </html>

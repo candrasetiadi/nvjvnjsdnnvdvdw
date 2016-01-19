@@ -34,8 +34,8 @@ class AnalyticsController extends Controller {
         return response()->json(array('status' => 200, 'data' => $completeData));
     }
 
-    // Get data for the last two weeks by default
-    public function getA() {
+    // Store analytics data to database daily for faster retrieving
+    public function store() {
 
         $metric = 'pageViews';
 
@@ -45,6 +45,6 @@ class AnalyticsController extends Controller {
 
         $completeData = $this->analytics->getAll($this->id, $metric, $from, $until);
 
-        return response()->json(array('status' => 200, 'data' => $completeData));
+        return $completeData;
     }
 }

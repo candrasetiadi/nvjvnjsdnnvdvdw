@@ -65,7 +65,7 @@ Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
 
 
 // Back-End
-Route::group(['middleware' => 'auth'], function () {
+//Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'admin'], function () {
 
@@ -82,8 +82,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 
         // CMS
-        Route::get('categories', 'AdminController@categories');
-
         Route::get('properties', 'AdminController@properties');
 
 
@@ -111,10 +109,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('io', 'AdminController@io');
 
         Route::get('about', 'AdminController@about');
-
-
     });
-});
+//});
 
 Route::group(['prefix' => 'system/ajax'], function () {
 

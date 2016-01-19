@@ -1,22 +1,22 @@
-Matter 0.5.0
+1.0 Matter 0.5.0
 
 Modular Functions(js)
 - URL input binding
 
 Input:	<input>		class: bind-input-from
-					data-target: {#targetId}
-				
+                    data-target: {#targetId}
+
 Output:	<input>		id: {targetId}
-				
+
 Converts text of input into a valid URL(slug) and by default parses in into the target input
-				
+
 - Modal Open
 Input: 	<a>			class: modal-open
-					data-target: {targetId}
-					
+                    data-target: {targetId}
+
 Output:	<div>		id: {targetId}
-		<div>		class: app-wrapper
-		
+        <div>		class: app-wrapper
+
 Opens a modal of the targetted id and blurs the background
 
 - Modal Close
@@ -25,3 +25,38 @@ Input: <a>			class: modal-close
 Output:	function	func: modalClose()
 
 Closes all open modal windows and removes blur on background
+
+
+2.0 MONOLOG 0.5.0
+Monolog is matter's built in modal/dialog notification system built for human interaction. There are 4 types of Monolog windows:
+- Notify:
+    Monolog.notify(string [title], string [message])
+    [title]: Title to be displayed on the dialog's header
+    [title]: Messaged to be displayed on the dialog's body
+    Example:
+    Monolog.notify('incoming enquiry', 'You have 3 new enquiries', 'deleteProduct(771)');
+
+Plain white notification toast with a dismiss button
+
+- Success:
+    Monolog.success(string [title], string [message])
+    Example:
+    Monolog.success('product deleted', 'Product has been deleted successfully.');
+
+    Pastel blue background colored notification toast with a dismiss button
+
+- Error:
+    Monolog.error(string [title], string [message])
+    Example:
+    Monolog.error('delete product', 'Are you sure to delete this product? This cannot be undone!', 'deleteProduct(771)');
+
+    Pastel red background colored error toast with a dismiss button
+
+- Confirm:
+    Monolog.confirm(string [title], string [message], string [callback])
+    [callback]: function to be called when user confirms.
+    Example:
+    Monolog.confirm('delete product', 'Are you sure to delete this product? This cannot be undone!', 'deleteProduct(771)');
+
+    Plain white notification toast with a dismiss and action button.
+

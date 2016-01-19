@@ -8,4 +8,7 @@
     <link rel="stylesheet" href="{{ asset('bower/medium-editor/dist/css/medium-editor.min.css') }}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Product+Sans' rel='stylesheet' type='text/css'>
+    <script>
+        var development = {{ env('APP_DEBUG', 'false') }};
+    </script>
 </head>

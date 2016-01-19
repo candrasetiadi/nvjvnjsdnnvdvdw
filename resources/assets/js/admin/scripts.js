@@ -147,7 +147,7 @@ $(document).on('click', '#mono-close', function(e) {
 
     e.preventDefault();
 
-    $('#monolog').removeClass('active');
+    Monolog.close();
 });
 
 $(document).on('change', '.m-image-input', function() {
@@ -225,6 +225,15 @@ $(document).on('click', '.direct-delete', function(e) {
 
         return false;
     }
+});
+
+$(document).on('click', '#mono-action', function(e) {
+
+    e.preventDefault();
+
+    var action = $(this).attr('href');
+
+    eval(action);
 });
 
 function modalClose() {
