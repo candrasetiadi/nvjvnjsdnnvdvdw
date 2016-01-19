@@ -18,7 +18,7 @@ class CreatePostlanguagesTable extends Migration
             $table->integer('post_id');
             $table->string('title');
             $table->text('content');
-            $table->integer('language_id');
+            $table->string('locale')->index();
             $table->timeStamps();
         });
     }

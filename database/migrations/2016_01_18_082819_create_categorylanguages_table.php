@@ -16,7 +16,7 @@ class CreateCategorylanguagesTable extends Migration
         Schema::create('CategoryLanguages', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('category_id');
-            $table->integer('language_id');
+            $table->string('locale')->index();
             $table->string('title');
             $table->text('description');
             $table->timeStamps();
