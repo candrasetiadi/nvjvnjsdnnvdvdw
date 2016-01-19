@@ -7,6 +7,7 @@
     <div class="settings-group">
         <h3>Matter</h3>
         <p>Version 0.0.1</p>
+        
     </div>
 </div>
 
