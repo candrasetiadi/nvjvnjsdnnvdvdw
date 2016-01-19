@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         Model::unguard();
 
         //$this->call(BlogsTableSeeder::class);
@@ -20,5 +21,26 @@ class DatabaseSeeder extends Seeder
         //$this->call(CategoriesTableSeeder::class);
 
         Model::reguard();
+
+        factory(App\Branch::class)->create();
+
+        factory(App\PostCategory::class, 2)->create()
+        ->each(function($cat) {
+            $cat->postCategoryLanguages()->save(factory(App\PostCategoryLanguage::class)->make());
+        });
+
+        factory(App\Category::class, 2)->create()
+        ->each(function($cat) {
+            $cat->categoryLanguages()->save(factory(App\CategoryLanguage::class)->make());
+        });
+
+        factory(App\User::class, 10)->create()->each(function($u) {
+
+            $u->posts()->save(factory(App\Post::class)->make());
+
+            $u->properties()->save(factory(App\Property::class)->make());
+
+        });
+
     }
 }

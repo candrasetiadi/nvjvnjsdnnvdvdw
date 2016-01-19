@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('password', 60);
             $table->integer('role_id');
             $table->integer('position_id');
+            $table->integer('branch_id');
             $table->string('firstname');
             $table->string('lastname');
             $table->string('address');

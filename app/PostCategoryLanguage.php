@@ -11,7 +11,7 @@ class PostCategoryLanguage extends Model
 
     public function category() {
 
-        return $this->belongsTo('App\PostCategory');
+        return $this->belongsTo('App\PostCategory', 'category_id');
     }
 
     public static function boot()

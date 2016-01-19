@@ -11,7 +11,7 @@ class Post extends Model
 
     public function category() {
 
-        return $this->hasOne('App\PostCategory');
+        return $this->belongsTo('App\PostCategory');
     }
 
     public function language() {
@@ -19,10 +19,10 @@ class Post extends Model
         return $this->hasMany('App\PostLanguage');
     }
 
-    public function branch() {
+    // public function branch() {
 
-        return $this->belongsTo('App\Branch');
-    }
+    //     return $this->belongsTo('App\Branch');
+    // }
 
     public static function boot()
     {
