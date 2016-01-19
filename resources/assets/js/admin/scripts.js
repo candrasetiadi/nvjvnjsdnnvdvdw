@@ -29,8 +29,8 @@ NProgress.configure({
 // Implement in each view
 $(window).load(function() {
 
-    $('.input-group-caroussel-body').css({
-        'height': $('.input-group-caroussel-slide').outerHeight() + 'px'
+    $('.matter-caroussel-body').css({
+        'height': $('.matter-caroussel-slide').outerHeight() + 'px'
     });
 });
 
@@ -141,6 +141,26 @@ $(document).on('click', '.modal-close', function(e) {
     e.preventDefault();
 
     modalClose();
+});
+
+$('.matter-caroussel-switch').on('click', function(e) {
+
+    e.preventDefault();
+
+    var index = $(this).parent().index(),
+        slideWidth = $('.matter-caroussel-body').outerWidth(),
+        slideHeight = $('.matter-caroussel-slide:nth-child(' + (index + 1) + ')').outerHeight();
+
+    $('.matter-caroussel-switch').removeClass('active');
+    $(this).addClass('active');
+
+    $('.matter-caroussel-slider').css({
+        'transform': 'translate3d(-' + (slideWidth * index) + 'px, 0, 0)'
+    });
+
+    $('.matter-caroussel-body').css({
+        'height': slideHeight + 'px'
+    });
 });
 
 $(document).on('click', '#mono-close', function(e) {

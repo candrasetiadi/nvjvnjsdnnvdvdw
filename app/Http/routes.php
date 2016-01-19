@@ -72,13 +72,11 @@ Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
         // General
         Route::get('dashboard', 'AdminController@dashboard');
 
-
         Route::get('enquiries', 'AdminController@enquiries');
 
 
         // Customer
         Route::get('customers', 'AdminController@customers');
-
 
 
         // CMS
