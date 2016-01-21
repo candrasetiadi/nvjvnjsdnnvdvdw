@@ -6,4 +6,9 @@
 /public/assets/js
 Homestead.yaml
 Homestead.json
+<<<<<<< HEAD
 .env
+=======
+.env
+.gitignore
+>>>>>>> origin/master
