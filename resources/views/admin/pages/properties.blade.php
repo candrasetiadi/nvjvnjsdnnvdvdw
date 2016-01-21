@@ -3,7 +3,7 @@
 
 @section('fab')
 
-<a href class="fab-button fab-button-salmon fab-button-action shadow-hover modal-open" data-target="#properties-add"><i class="material-icons">add</i></a>
+<m-fab salmon class="modal-open" data-target="#properties-add"><i class="material-icons">add</i></m-fab>
 
 <!--
 <div class="small-fab-wrapper sub-fab-wrapper">
