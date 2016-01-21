@@ -60,6 +60,12 @@ Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
     Route::get('/{register}/', 'PagesController@register');
 
     Route::get('/{account}/', 'PagesController@account');
+
+
+
+
+    // PDF Generation Test
+    Route::get('pdf', 'PdfController@test');
 });
 
 

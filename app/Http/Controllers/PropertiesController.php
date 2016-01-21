@@ -64,7 +64,6 @@ class PropertiesController extends Controller
         //
         $property = Property::find($id);
 
-        // return response()->json($property);
         return $property;
     }
 
