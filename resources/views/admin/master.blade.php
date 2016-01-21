@@ -80,7 +80,7 @@
 
         </div>
 
-        <div id="monolog" class="shadow shadow-hover">
+        <monolog>
             <p id="mono-title">
                 BlogController notice:
             </p>
@@ -89,11 +89,11 @@
                 Some message.. This and this has been working correctly..
             </p>
 
-            <div class="mono-buttons flexbox">
-                <button href="modalClose" class="mono-button" id="mono-action">yes</button>
-                <button href="modalClose" class="mono-button" id="mono-close">dismiss</button>
-            </div>
-        </div>
+            <mono-buttons class="flexbox">
+                <m-button mono-button mono-action>yes</m-button>
+                <m-button href="modalClose" mono-button mono-close>dismiss</m-button>
+            </mono-buttons>
+        </monolog>
 
         @yield('modal', '')
     </body>

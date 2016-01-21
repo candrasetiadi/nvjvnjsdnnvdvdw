@@ -8,7 +8,7 @@
         <h3>general</h3>
         <m-card>
 
-            <m-settings-item button>
+            <m-settings-item button data-function="getGeneralInfo">
                 <i class="material-icons">public</i>
                 <m-settings-item-desc>
                     <m-settings-item-header>general website information</m-settings-item-header>
@@ -40,7 +40,7 @@
         <m-card>
 
             <m-settings-item button data-function="fetchConversion">
-                <i class="material-icons">cloud_download</i>
+                <i class="material-icons">attach_money</i>
                 <m-settings-item-desc>
                     <m-settings-item-header>Fetch Rate</m-settings-item-header>
                     <m-settings-item-detail>Fetch the most up-to-date conversion rate from the internet(powered by Google)</m-settings-item-detail>
@@ -55,6 +55,18 @@
                 </m-settings-item-desc>
             </m-settings-item>
 
+            <m-settings-item checkbox data-function="autoExchangeUpdate">
+                <i class="material-icons">schedule</i>
+                <m-settings-item-desc>
+                    <m-settings-item-header>Allow automatic update</m-settings-item-header>
+                    <m-settings-item-detail>Exchange rates will be automatically updated daily</m-settings-item-detail>
+                </m-settings-item-desc>
+                <m-checkbox>
+                    <input type="checkbox" {{ $autoCurrency ? 'checked' : '' }}>
+                    <lever></lever>
+                </m-checkbox>
+            </m-settings-item>
+
         </m-card>
     </m-settings-group>
 
@@ -62,7 +74,7 @@
         <h3>index/cache management</h3>
         <m-card>
 
-            <m-settings-item button data-function="reindexData">
+            <m-settings-item button data-function="reindexData()">
                 <i class="material-icons">data_usage</i>
                 <m-settings-item-desc>
                     <m-settings-item-header>reindex data</m-settings-item-header>
@@ -70,7 +82,7 @@
                 </m-settings-item-desc>
             </m-settings-item>
 
-            <m-settings-item button data-function="flushCache">
+            <m-settings-item button>
                 <i class="material-icons">memory</i>
                 <m-settings-item-desc>
                     <m-settings-item-header>flush cache</m-settings-item-header>
@@ -125,37 +137,36 @@
 
 <m-modal-wrapper id="settings-social-form">
 
-    {!! Form::open(array('class' => 'modal-window', 'id' => 'account-form', 'data-function' => 'modalClose', 'data-url' => 'settings/social/set', 'style' => 'max-width: 480px')) !!}
+    {!! Form::open(array('class' => 'modal-window', 'id' => 'account-form', 'data-function' => 'doNothing', 'data-url' => 'settings/social/set', 'style' => 'max-width: 480px')) !!}
     <h3>social network accounts</h3>
-
     <m-input-group>
         <m-input>
-            <input type="text" id="social-input-facebook" required>
+            <input type="text" id="social-input-facebook" name="social[facebook]">
             <label for="social-input-facebook">facebook</label>
         </m-input>
 
         <m-input>
-            <input type="text" id="social-input-twitter" required>
+            <input type="text" id="social-input-twitter" name="social[twitter]">
             <label for="social-input-twitter">twitter</label>
         </m-input>
 
         <m-input>
-            <input type="text" id="social-input-google" required>
+            <input type="text" id="social-input-google" name="social[google]">
             <label for="social-input-google">google</label>
         </m-input>
 
         <m-input>
-            <input type="text" id="social-input-linkedin" required>
+            <input type="text" id="social-input-linkedin" name="social[linkedin]">
             <label for="social-input-linkedin">linkedin</label>
         </m-input>
 
         <m-input>
-            <input type="text" id="social-input-instagram" required>
+            <input type="text" id="social-input-instagram" name="social[instagram]">
             <label for="social-input-instagram">instagram</label>
         </m-input>
 
         <m-input>
-            <input type="text" id="social-input-pinterest" required>
+            <input type="text" id="social-input-pinterest" name="social[pinterest]">
             <label for="social-input-pinterest">pinterest</label>
         </m-input>
     </m-input-group>
@@ -163,8 +174,8 @@
     <input type="hidden" name="edit" value="0" id="edit-flag">
 
     <div class="button-holder align-right">
-        <m-button plain class="modal-close">cancel</m-button>
-        <m-button save-form plain>save</m-button>
+        <m-button plain modal-close>cancel</m-button>
+        <m-button plain save-form>save</m-button>
     </div>
     {!! Form::close() !!}
 </m-modal-wrapper>
@@ -172,27 +183,26 @@
 
 <m-modal-wrapper id="settings-general-form">
 
-    {!! Form::open(array('class' => 'modal-window', 'id' => 'general-form', 'data-function' => 'modalClose', 'data-url' => 'settings/general/set', 'style' => 'max-width: 480px')) !!}
+    {!! Form::open(array('class' => 'modal-window', 'id' => 'general-form', 'data-function' => 'doNothing', 'data-url' => 'settings/general/set', 'style' => 'max-width: 480px')) !!}
     <h3>general information</h3>
-
     <m-input-group>
         <m-input>
-            <input type="text" id="social-input-email" required>
+            <input type="text" id="social-input-email">
             <label for="social-input-email">email</label>
         </m-input>
 
         <m-input>
-            <input type="text" id="social-input-phone" required>
+            <input type="text" id="social-input-phone">
             <label for="social-input-phone">phone</label>
         </m-input>
 
         <m-input>
-            <input type="text" id="social-input-google" required>
+            <input type="text" id="social-input-google">
             <label for="social-input-google">google</label>
         </m-input>
 
         <m-input>
-            <input type="text" id="social-input-linkedin" required>
+            <input type="text" id="social-input-linkedin">
             <label for="social-input-linkedin">linkedin</label>
         </m-input>
     </m-input-group>
@@ -200,8 +210,8 @@
     <input type="hidden" name="edit" value="0" id="edit-flag">
 
     <div class="button-holder align-right">
-        <m-button plain class="modal-close">cancel</m-button>
-        <m-button save-form plain>save</m-button>
+        <m-button plain modal-close>cancel</m-button>
+        <m-button plain save-form>save</m-button>
     </div>
     {!! Form::close() !!}
 </m-modal-wrapper>
@@ -209,22 +219,21 @@
 
 <m-modal-wrapper id="settings-currency-form">
 
-    {!! Form::open(array('class' => 'modal-window', 'id' => 'currency-form', 'data-function' => 'modalClose', 'data-url' => 'settings/currency/set', 'style' => 'max-width: 480px')) !!}
+    {!! Form::open(array('class' => 'modal-window', 'id' => 'currency-form', 'data-function' => 'doNothing', 'data-url' => 'settings/currency/set', 'style' => 'max-width: 480px')) !!}
     <h3>exchange rate</h3>
-
     <m-input-group>
         <m-input>
-            <input type="text" id="currency-input-idr" name="currencies[idr]" required>
+            <input type="text" id="currency-input-idr" name="currencies[idr]">
             <label for="currency-input-idr">idr</label>
         </m-input>
 
         <m-input>
-            <input type="text" id="currency-input-eur" name="currencies[eur]" required>
+            <input type="text" id="currency-input-eur" name="currencies[eur]">
             <label for="currency-input-eur">eur</label>
         </m-input>
 
         <m-input>
-            <input type="text" id="currency-input-rub" name="currencies[rub]" required>
+            <input type="text" id="currency-input-rub" name="currencies[rub]">
             <label for="currency-input-rub">rub</label>
         </m-input>
         <m-input-desc>
@@ -235,8 +244,8 @@
     <input type="hidden" name="edit" value="0" id="edit-flag">
 
     <div class="button-holder align-right">
-        <m-button plain class="modal-close">cancel</m-button>
-        <m-button save-form plain>save</m-button>
+        <m-button plain modal-close>cancel</m-button>
+        <m-button plain save-form>save</m-button>
     </div>
     {!! Form::close() !!}
 </m-modal-wrapper>

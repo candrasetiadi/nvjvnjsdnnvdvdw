@@ -381,10 +381,10 @@
             max-width: 1080px;
             margin: 0 auto;
 
-            m-action-bar{
+            .action-bar{
                 margin: 16px 0;
 
-                m-input{
+                #action-search-wrapper{
                     padding-left: 40px;
                     margin-bottom: 0;
 
@@ -439,6 +439,53 @@
                 font-weight: 700;
                 letter-spacing: 1px;
             }
+
+            m-pagination{
+                .flexbox();
+                padding-right: 36px;
+                justify-content: flex-end;
+
+                li{
+                    .cursor();
+                    .transition();
+                    margin: 0 4px;
+                    color: #d3d3d3;
+                    border-radius: 50%;
+                    border: 1px solid #d3d3d3;
+
+                    a{
+                        .transition();
+                        width: 32px;
+                        height: 32px;
+                        color: #d3d3d3;
+                        line-height: 32px;
+                        text-align: center;
+                        display: inline-block;
+
+                        i{
+                            width: 32px;
+                            height: 32px;
+                            line-height: 32px;
+                        }
+                    }
+
+                    &.disabled{
+                        cursor: default;
+
+                        a{
+                            pointer-events: none;
+                        }
+                    }
+
+                    &.active, &:hover:not(.disabled){
+                        border-color: #323232;
+
+                        a{
+                            color: #323232;
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -449,7 +496,7 @@
     }
 }
 
-#monolog{
+monolog{
     opacity: 0;
     right: 24px;
     bottom: 16px;
@@ -481,13 +528,13 @@
         color: #323232;
     }
 
-    .mono-buttons{
+    mono-buttons{
         position: absolute;
         bottom: 0;
         left: 0;
         width: 100%;
 
-        .mono-button{
+        m-button{
             letter-spacing: 1px;
             width: 100%;
             display: inline-block;
@@ -498,11 +545,11 @@
             padding: 12px 0;
             transition: background-color .33s ease;
 
-            &#mono-action{
+            &[mono-action]{
                 display: none;
             }
 
-            &#mono-close{
+            &[mono-close]{
                 color: #6f6f6f;
             }
 
@@ -520,12 +567,12 @@
 
     &.confirm{
 
-        .mono-buttons{
+        mono-buttons{
 
-            .mono-button{
+            m-button{
                 width: 50%;
 
-                &#mono-action{
+                &[mono-action]{
                     width: 50%;
                     display: inline-block
                 }

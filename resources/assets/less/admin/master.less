@@ -723,10 +723,6 @@ table{
     cursor: pointer;
 }
 
-.cursorNormal{
-    cursor: default;
-}
-
 .block{
     display: block;
 }
@@ -763,6 +759,7 @@ m-template{
             }
 
             m-settings-item{
+                .cursor();
                 .flexbox();
                 .transition();
                 padding: 8px;
@@ -811,7 +808,6 @@ m-template{
                 }
 
                 &[checkbox]{
-                    .cursorNormal();
 
                     m-settings-item-desc{
                         width: calc(~"100% - 72px");
@@ -819,7 +815,6 @@ m-template{
                 }
 
                 &[button]{
-                    .cursor();
 
                     m-settings-item-desc{
                         width: calc(~"100% - 32px");
@@ -900,12 +895,12 @@ m-template{
 
                 tr{
 
-                    td{
-
+                    &:nth-child(odd){
+                        background-color: rgba(255, 255, 255, .5);
                     }
 
-                    &:nth-child(odd){
-                        background-color: rgba(255, 255, 255, .35);
+                    td{
+
                     }
                 }
             }
@@ -1314,8 +1309,6 @@ m-input-group{
     }
 }
 
-
-
 m-input{
     .block();
     position: relative;
@@ -1446,52 +1439,6 @@ m-input{
         }
     }
 }
-
-/*
-m-input{
-    display: block;
-    position: relative;
-    margin-bottom: 24px;
-
-    label{
-        top: 13px;
-        left: 4px;
-        color: #6d6d6d;
-        font-weight: 500;
-        position: absolute;
-        letter-spacing: 1px;
-        pointer-events: none;
-        transition: all .22s ease;
-        text-transform: uppercase;
-
-        &[neutral]{
-            font-size: 11px;
-            font-weight: 700;
-            .transform(translate3d(0, -22px, 0));
-        }
-    }
-
-    input{
-
-        &:valid, &:focus{
-            border-color: #323232;
-
-            ~ label{
-                font-size: 11px;
-                font-weight: 700;
-                .transform(translate3d(0, -22px, 0));
-            }
-        }
-
-        &:focus{
-
-            ~ label{
-                color: #323232;
-            }
-        }
-    }
-}
-*/
 /* IMAGERY */
 .fill-background{
     background-position: center;

@@ -7,6 +7,8 @@ $first = TRUE;
 
 $link = str_replace('/admin/', '', $_SERVER['REQUEST_URI']);
 
+$link = strtok($link, '?');
+
 function childIsActive($children, $link) {
 
     foreach($children as $child => $c) {

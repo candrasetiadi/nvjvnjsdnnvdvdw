@@ -70,7 +70,7 @@
 
 </div>
 
-@include('admin.pagination.default', ['paginator' => $properties])
+@include('admin.fragments.pagination', ['paginator' => $properties])
 
 @endsection
 
@@ -100,7 +100,7 @@
 
                     <div class="m-input-group fwidth flexbox justify-between">
                         <div class="m-input-wrapper w50-6">
-                            <input type="text" name="title" id="properties-input-title" class="bind-input-from" data-target="#properties-input-url" required>
+                            <input url-format data-target="#properties-input-url" type="text" name="title" id="properties-input-title" required>
                             <label for="title">title</label>
                         </div>
 

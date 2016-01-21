@@ -36,6 +36,7 @@ return [
 
     "settings" => [
 
+        "account" => "my account",
         "accounts" => "admin accounts",
         "settings" => "settings",
         "about" => "about"

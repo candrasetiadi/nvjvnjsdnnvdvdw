@@ -72,4 +72,23 @@ class SystemController extends Controller {
 
         return response()->json(array('status' => 200, 'monolog' => array('title' => 'exchange rates updated', 'message' => 'The conversion rates have been updated successfully')));
     }
+
+
+
+
+    public function setExchangeAuto($state) {
+
+        if($state) {
+
+            File::put(storage_path('config/autocurrency.flag'), '');
+
+            return response()->json(array('status' => 200, 'monolog' => array('title' => 'automatic update on', 'message' => 'Conversion rates will be updated daily')));
+
+        } else {
+
+            File::delete(storage_path('config/autocurrency.flag'));
+
+            return response()->json(array('status' => 200, 'monolog' => array('title' => 'automatic update off', 'message' => 'Conversion rates will not be updated daily')));
+        }
+    }
 }

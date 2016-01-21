@@ -60,12 +60,6 @@ Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
     Route::get('/{register}/', 'PagesController@register');
 
     Route::get('/{account}/', 'PagesController@account');
-
-
-
-
-    // PDF Generation Test
-    Route::get('pdf', 'PdfController@test');
 });
 
 
@@ -73,96 +67,121 @@ Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
 // Back-End
 //Route::group(['middleware' => 'auth'], function () {
 
-    Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin'], function () {
 
-        // General
-        Route::get('dashboard', 'AdminController@dashboard');
+    // General
+    Route::get('dashboard', 'AdminController@dashboard');
 
-        Route::get('enquiries', 'AdminController@enquiries');
-
-
-        // Customer
-        Route::get('customers', 'AdminController@customers');
+    Route::get('enquiries', 'AdminController@enquiries');
 
 
-        // CMS
-        Route::get('properties', 'AdminController@properties');
+    // Customer
+    Route::get('customers', 'AdminController@customers');
 
 
-        // Blog
-        Route::get('blog', 'AdminController@blog');
-
-        Route::get('blog-categories', 'AdminController@blogCategories');
-
-        Route::get('blog-comments', 'AdminController@blogComments');
-
-        Route::get('blog-settings', 'AdminController@blogSettings');
+    // CMS
+    Route::get('properties', 'AdminController@properties');
 
 
-        // Misc
-        Route::get('accounts', 'AdminController@accounts');
+    // Blog
+    Route::get('blog', 'AdminController@blog');
 
-        Route::get('settings', 'AdminController@settings');
+    Route::get('blog-categories', 'AdminController@blogCategories');
 
-        Route::get('about', 'AdminController@about');
-    });
+    Route::get('blog-comments', 'AdminController@blogComments');
+
+    Route::get('blog-settings', 'AdminController@blogSettings');
+
+
+    // Misc
+    Route::get('account', 'AdminController@myAccount');
+
+    Route::get('accounts', 'AdminController@accounts');
+
+    Route::get('settings', 'AdminController@settings');
+
+    Route::get('about', 'AdminController@about');
+});
 //});
 
-Route::group(['prefix' => 'system/ajax'], function () {
+//Route::group(['middleware' => 'auth'], function () {
 
-    Route::group(['prefix' => 'notifications'], function () {
+    Route::group(['prefix' => 'system/ajax'], function () {
 
-        Route::any('insert', 'AnalyticsController@insert');
+        Route::group(['prefix' => 'notifications'], function () {
 
-        Route::any('getall', 'AnalyticsController@index');
+            Route::any('insert', 'AnalyticsController@insert');
 
-        Route::any('getunread', 'AnalyticsController@getUnread');
-    });
+            Route::any('getall', 'AnalyticsController@index');
 
-    Route::group(['prefix' => 'blog'], function () {
+            Route::any('getunread', 'AnalyticsController@getUnread');
+        });
 
-        Route::any('index', 'BlogController@index');
+        Route::group(['prefix' => 'blog'], function () {
 
-        Route::any('create', 'BlogController@create');
+            Route::any('index', 'BlogController@index');
 
-        Route::get('retrieve/{id}', ['as' => 'id', 'uses' => 'BlogController@retrieve']);
+            Route::any('create', 'BlogController@create');
 
-        Route::any('delete/{id}', ['as' => 'id', 'uses' => 'BlogController@destroy']);
-    });
+            Route::get('retrieve/{id}', ['as' => 'id', 'uses' => 'BlogController@retrieve']);
 
-    Route::group(['prefix' => 'analytics'], function () {
+            Route::any('delete/{id}', ['as' => 'id', 'uses' => 'BlogController@destroy']);
+        });
 
-        Route::any('getall', 'AnalyticsController@getData');
-    });
+        Route::group(['prefix' => 'analytics'], function () {
 
-    Route::group(['prefix' => 'customer'], function () {
+            Route::any('getall', 'AnalyticsController@getData');
+        });
 
-        Route::any('login', 'CustomerController@login');
+        Route::group(['prefix' => 'customer'], function () {
 
-        Route::any('register', 'CustomerController@register');
-    });
+            Route::any('login', 'CustomerController@login');
 
-    Route::group(['prefix' => 'property'], function () {
+            Route::any('register', 'CustomerController@register');
+        });
 
-        Route::any('get/{id}', 'PropertiesController@show');
+        Route::group(['prefix' => 'property'], function () {
 
-        Route::any('test/', 'PropertiesController@test');
+            Route::any('get/{id}', 'PropertiesController@show');
 
-        // Route::any('register', 'CustomerController@register');
-    });
+            Route::any('test/', 'PropertiesController@test');
 
-    Route::group(['prefix' => 'settings'], function () {
+            // Route::any('register', 'CustomerController@register');
+        });
 
-        Route::group(['prefix' => 'currency'], function () {
+        Route::group(['prefix' => 'settings'], function () {
 
-            Route::any('get', 'SystemController@getExchange');
+            Route::group(['social' => 'general'], function () {
 
-            Route::any('update', 'SystemController@updateExchange');
+                Route::any('get', 'SystemController@getGeneral');
 
-            Route::any('set', 'SystemController@setExchange');
+                Route::any('set', 'SystemController@setGeneral');
+            });
+
+            Route::group(['prefix' => 'currency'], function () {
+
+                Route::any('get', 'SystemController@getExchange');
+
+                Route::any('update', 'SystemController@updateExchange');
+
+                Route::any('set', 'SystemController@setExchange');
+
+                Route::any('auto/{state}', ['as' => 'state', 'uses' => 'SystemController@setExchangeAuto']);
+            });
+
+            Route::group(['social' => 'social'], function () {
+
+                Route::any('get', 'SystemController@getSocial');
+
+                Route::any('set', 'SystemController@setSocial');
+            });
+
+            Route::any('reindexdata', 'SystemController@reindexData');
+
+            Route::any('clearcache', 'SystemController@clearCache');
         });
     });
-});
+//});
 
 
 Route::controllers([

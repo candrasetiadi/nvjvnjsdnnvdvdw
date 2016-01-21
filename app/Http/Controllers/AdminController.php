@@ -38,12 +38,9 @@ class AdminController extends Controller {
         $search = \Input::get('q');
 
         if ($search) {
-
             $customers = \App\Customer::where('firstname', 'like', $search . '%')->orWhere('lastname', 'like', $search . '%')->paginate($this->limit);
-
         } else {
-
-            $customers = \App\Customer::orderBy('id', 'DESC')->paginate($this->limit);
+            $customers = \App\Customer::paginate($this->limit);
         }
 
         return view('admin.pages.customers', compact('customers'));
@@ -98,6 +95,14 @@ class AdminController extends Controller {
 
 
 
+    public function myAccount() {
+
+        return view('admin.pages.account');
+
+    }
+
+
+
     public function accounts() {
 
         return view('admin.pages.accounts');
@@ -108,8 +113,9 @@ class AdminController extends Controller {
 
     public function settings() {
 
-        return view('admin.pages.settings');
+        $autoCurrency = file_exists(storage_path('config/autocurrency.flag'));
 
+        return view('admin.pages.settings', ['autoCurrency' => $autoCurrency]);
     }
 
 
