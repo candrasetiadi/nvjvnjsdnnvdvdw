@@ -1,7 +1,11 @@
 @if ($BASE_URL = '/') @endif
 <!DOCTYPE html>
 <html lang="en">
-    @include('admin.fragments.head')
+    <head>
+        @include('admin.fragments.head')
+        @include('admin.fragments.footscripts')
+        @yield('scripts', '')
+    </head>
     <body>
         <div class="app-wrapper" id="app-wrapper">
 
@@ -59,6 +63,7 @@
 
                 </div>
 
+                <m-progress></m-progress>
             </div>
 
             <section class="app-content">
@@ -85,15 +90,11 @@
             </p>
 
             <div class="mono-buttons flexbox">
-                <a href="modalClose" class="mono-button" id="mono-action">yes</a>
-                <a href="modalClose" class="mono-button" id="mono-close">dismiss</a>
+                <button href="modalClose" class="mono-button" id="mono-action">yes</button>
+                <button href="modalClose" class="mono-button" id="mono-close">dismiss</button>
             </div>
         </div>
 
         @yield('modal', '')
-
-        @include('admin.fragments.footscripts')
-
-        @yield('scripts', '')
     </body>
 </html>

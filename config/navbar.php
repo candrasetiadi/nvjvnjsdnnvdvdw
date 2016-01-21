@@ -33,10 +33,6 @@ return [
 
         "accounts" => "admin accounts",
         "settings" => "settings",
-        "index" => "index management",
-        "currency" => "currency",
-        "notifications" => "notifications",
-        "io" => "import/export",
         "about" => "about"
     ]
 ];

@@ -47,7 +47,7 @@ Monolog is matter's built in modal/dialog notification system built for human in
     [title]: Title to be displayed on the dialog's header
     [title]: Messaged to be displayed on the dialog's body
     Example:
-    Monolog.notify('incoming enquiry', 'You have 3 new enquiries', 'deleteProduct(771)');
+    Monolog.notify('incoming enquiry', 'You have 3 new enquiries');
 
 Plain white notification toast with a dismiss button
 
@@ -61,7 +61,7 @@ Plain white notification toast with a dismiss button
 - Error:
     Monolog.error(string [title], string [message])
     Example:
-    Monolog.error('delete product', 'Are you sure to delete this product? This cannot be undone!', 'deleteProduct(771)');
+    Monolog.error('delete product', 'Are you sure to delete this product? This cannot be undone!';
 
     Pastel red background colored error toast with a dismiss button
 
@@ -69,6 +69,8 @@ Plain white notification toast with a dismiss button
     Monolog.confirm(string [title], string [message], string [callback])
     [callback]: function to be called when user confirms.
     Example:
-    Monolog.confirm('delete product', 'Are you sure to delete this product? This cannot be undone!', 'deleteProduct(771)');
+    Monolog.confirm('delete product', 'Are you sure to delete this product? This cannot be undone!', function(){
+        alert('Function called when clicked on yes');
+    });
 
     Plain white notification toast with a dismiss and action button.

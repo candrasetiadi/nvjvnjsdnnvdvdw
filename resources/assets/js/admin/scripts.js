@@ -22,28 +22,18 @@ var gred = "#F44336",
 
 //Plugin settings
 NProgress.configure({
-    showSpinner: false
+    showSpinner: false,
+    parent: 'm-progress'
 });
 
 
 // Implement in each view
 $(window).load(function() {
 
-    $('.matter-caroussel-body').css({
-        'height': $('.matter-caroussel-slide').outerHeight() + 'px'
+    $('.input-group-caroussel-body').css({
+        'height': $('.input-group-caroussel-slide').outerHeight() + 'px'
     });
 });
-
-
-// Overriding alert function
-(function(proxied) {
-    window.alert = function() {
-
-        consoleLog('Daemn son');
-
-        return proxied.apply(this, arguments);
-    };
-})(window.alert);
 
 //Navbar
 $(document).on('click', '.navbar-main-link', function(e) {
@@ -106,6 +96,23 @@ $(document).on('click', '.admin-user', function(e) {
     }
 });
 
+$(document).on('click', 'm-settings-item[button]', function() {
+
+    var func = $(this).attr('data-function');
+
+    eval(func + '()');
+});
+
+$(document).on('click', 'm-settings-item[checkbox]', function() {
+
+    if(!!$(this).children('m-checkbox').children('input[type="checkbox"]').attr('checked')) {
+
+        $(this).children('m-checkbox').children('input[type="checkbox"]').removeAttr('checked');
+    }
+
+    $(this).children('m-checkbox').children('input[type="checkbox"]').attr('checked', '');
+});
+
 $(document).mouseup(function(e) {
 
     var container = $(".notification-wrapper");
@@ -126,6 +133,15 @@ $(document).mouseup(function(e) {
     }
 });
 
+$(document).mouseup(function(e) {
+
+    var container = $(".table-item-menu");
+
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+        $('.table-item-menu').removeClass('active');
+    }
+});
+
 //Matter's modular functions ::see matter.txt for docs
 $(document).on('click', '.modal-open', function(e) {
 
@@ -141,26 +157,6 @@ $(document).on('click', '.modal-close', function(e) {
     e.preventDefault();
 
     modalClose();
-});
-
-$('.matter-caroussel-switch').on('click', function(e) {
-
-    e.preventDefault();
-
-    var index = $(this).parent().index(),
-        slideWidth = $('.matter-caroussel-body').outerWidth(),
-        slideHeight = $('.matter-caroussel-slide:nth-child(' + (index + 1) + ')').outerHeight();
-
-    $('.matter-caroussel-switch').removeClass('active');
-    $(this).addClass('active');
-
-    $('.matter-caroussel-slider').css({
-        'transform': 'translate3d(-' + (slideWidth * index) + 'px, 0, 0)'
-    });
-
-    $('.matter-caroussel-body').css({
-        'height': slideHeight + 'px'
-    });
 });
 
 $(document).on('click', '#mono-close', function(e) {
@@ -199,6 +195,15 @@ $(document).on('click', '.m-table-list-item-select-all', function(e) {
     }
 });
 
+$(document).on('click', '.table-item-more', function() {
+
+    $('.table-item-menu').removeClass('active');
+
+    $(this).siblings('.table-item-menu').addClass('active');
+});
+
+// END OF TABLES
+
 $(document).on('keyup', '.bind-input-from', function() {
 
     var text = $(this).val(), target = $(this).attr('data-target');
@@ -222,51 +227,30 @@ $(document).on('keyup', '.input-number-format', function() {
     $(this).siblings('.number-format').html(formattedNumber);
 });
 
-
-// Needs review
-$(document).on('click', '.fab-button', function() {
-
-    $('#edit-flag').attr('data-edit', 0);
-});
-
-
-
-$(document).on('click', '.direct-delete', function(e) {
+$(document).on('click', '.item-delete', function(e) {
 
     e.preventDefault();
 
     var link = $(this).attr('href');
 
-    if(confirm('Are you sure to delete this item? This cannot be undone!')) {
+    Monolog.confirm('Delete this item?', 'Are you sure to delete this item? This cannot be undone!',
+                    function() {
 
         window.location.href = link;
-
-    } else {
-
-        return false;
-    }
-});
-
-$(document).on('click', '#mono-action', function(e) {
-
-    e.preventDefault();
-
-    var action = $(this).attr('href');
-
-    eval(action);
+    });
 });
 
 function modalClose() {
 
-    var target = $(this).attr('data-target');
+    $('m-modal-wrapper').removeClass('active');
 
     $('.modal-wrapper').removeClass('active');
+
+    $('#app-wrapper').removeClass('blur');
 
     $('.drop-hint').show();
 
     $('.m-image-preview').css({backgroundImage: ''});
-
-    $('#app-wrapper').removeClass('blur');
 
     $('form')[0].reset();
 
@@ -300,21 +284,21 @@ function reload() {
     }, 1000);
 }
 
-$('.matter-caroussel-switch').on('click', function(e) {
+$('.m-caroussel-switch').on('click', function(e) {
     e.preventDefault();
 
     var index = $(this).parent().index(),
-        slideWidth = $('.matter-caroussel-body').outerWidth(),
-        slideHeight = $('.matter-caroussel-slide:nth-child(' + (index + 1) + ')').outerHeight();
+        slideWidth = $('.input-group-caroussel-body').outerWidth(),
+        slideHeight = $('.input-group-caroussel-slide:nth-child(' + (index + 1) + ')').outerHeight();
 
-    $('.matter-caroussel-switch').removeClass('active');
+    $('.m-caroussel-switch').removeClass('active');
     $(this).addClass('active');
 
-    $('.matter-caroussel-slider').css({
+    $('.input-group-caroussel-slider').css({
         'transform': 'translate3d(-' + (slideWidth * index) + 'px, 0, 0)'
     });
 
-    $('.matter-caroussel-body').css({
+    $('.input-group-caroussel-body').css({
         'height': slideHeight + 'px'
     });
 });
@@ -406,6 +390,19 @@ function doNothing() {
 
     return false;
 }
+
+/*
+$(document).on('click', 'm-list-item-check', function() {
+
+    if(this.hasAttribute('checked')) {
+
+        this.removeAttribute('checked');
+
+        return false;
+    }
+
+    this.setAttribute('checked', '');
+});*/
 
 var Matter = {
 
@@ -610,56 +607,78 @@ var Matter = {
 
         categories: function() {
 
-            $(document).on('click', '.item-edit', function(e) {
-
-                e.preventDefault();
-
-                var id = $(this).atrr('href');
-
-                Ajax.get('property/get/' + id, populateProductEdit);
-            });
-
-            function populateProductEdit(data) {
-
-                $.each(data, function(k, v) {
-
-                    $('#properties-input-' + k).val(v);
-                });
-            }
         },
 
         properties: function() {
 
-            $(document).on('click', '.item-edit', function(e) {
-
-                e.preventDefault();
-
-                var id = $(this).attr('href');
-
-                Ajax.get('property/get/' + id, populateProductEdit);
-            });
-
-            function populateProductEdit(data) {
-
-                $.each(data, function(k, v) {
-
-                    $('#properties-input-' + k).val(v);
-                });
-
-                modalOpen('#properties-add');
-            }
         },
 
         blog: function() {
 
         },
 
+        account: function() {
+
+        },
+
         settings: function() {
 
+            function reindexData() {
+
+                Monolog.confirm('are you sure?', 'Reindexing data may take up to an hour for large databases. Are you sure to reindex your data now?',
+                                function() {
+
+                    NProgress.start();
+
+                    setTimeout(function() {
+
+                        Monolog.notify('data reindexed', 'Your system has been reindexed successfully!');
+
+                        alert('data reindexed');
+
+                        NProgress.done();
+
+                    }, 2000);
+                });
+            }
+
+            $(document).on('click', '#save-currency', function() {
+
+                alert('clicked');
+
+                var fd = new FormData($('#currency-form')[0]);
+
+                Ajax.post('currency/set', fd, doNothing);
+            });
         }
     }
 }
 
+function getExchangeRate() {
+
+    Ajax.get('currency/get', populateExchangeEdit);
+}
+
+function populateExchangeEdit(data) {
+
+    $.each(data, function(k, v) {
+
+        $('#currency-input-' + k).val(v);
+    });
+
+    modalOpen('#settings-currency-form');
+
+    NProgress.done();
+}
+
+function fetchConversion() {
+
+    Monolog.confirm('fetch conversion rate?', 'Fetching conversion will replace all the conversion rates saved in the database. Proceed?',
+                    function() {
+
+        Ajax.get('currency/update', doNothing);
+    });
+}
 
 
 

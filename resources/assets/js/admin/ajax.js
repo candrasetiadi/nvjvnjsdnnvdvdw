@@ -1,4 +1,4 @@
-var aurl = base_url + '/system/ajax/';
+var aurl = '/system/ajax/';
 
 var Ajax = {
 
@@ -55,6 +55,8 @@ var Ajax = {
 
             if(development) consoleLog(data);
 
+            if(!!data.monolog) Monolog.notify(data.monolog.title, data.monolog.message);
+
             doneFunc(data);
         });
     },
@@ -91,7 +93,7 @@ var Ajax = {
 
                 case 200:
 
-                    Monolog.notify(data.message.title, data.message.msg, NProgress.done());
+                    Monolog.notify(data.monolog.title, data.monolog.message);
 
                     doneFunc(data);
 
@@ -99,7 +101,7 @@ var Ajax = {
 
                 default:
 
-                    Monolog.notify(data.message.title, data.message.msg, NProgress.done());
+                    Monolog.notify(data.monolog.title, data.monolog.message);
 
                     consoleLog(data);
             }

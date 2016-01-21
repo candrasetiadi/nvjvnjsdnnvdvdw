@@ -132,7 +132,7 @@
                 }
             }
 
-            .fab-button{
+            m-fab{
                 right: 0;
                 bottom: -63px;
                 position: absolute;
@@ -337,6 +337,34 @@
                 }
             }
         }
+
+        m-progress{
+            position: absolute;
+            bottom: -43px;
+            z-index: 7;
+            left: 0;
+            right: 0;
+            height: 4px;
+
+            @ncolor: @gsalmon;
+
+            #nprogress{
+
+                .bar{
+                    background: @ncolor;
+                    height: 4px; 
+                }
+
+                .peg {
+                    box-shadow: 0 0 10px @ncolor, 0 0 5px @ncolor;
+                }
+
+                .spinner-icon {
+                    border-top-color: @ncolor;
+                    border-left-color: @ncolor;
+                }
+            }
+        }
     }
 
     .app-content{
@@ -356,32 +384,32 @@
             .action-bar{
                 margin: 16px 0;
 
-                    #action-search-wrapper{
-                        padding-left: 40px;
-                        margin-bottom: 0;
+                #action-search-wrapper{
+                    padding-left: 40px;
+                    margin-bottom: 0;
 
-                        i{
-                            top: 0;
-                            left: 8px;
-                            bottom: 0;
-                            margin: auto;
-                            height: 24px;
-                            color: #d3d3d3;
-                            position: absolute;
-                            .transition();
-                        }
+                    i{
+                        top: 0;
+                        left: 8px;
+                        bottom: 0;
+                        margin: auto;
+                        height: 24px;
+                        color: #d3d3d3;
+                        position: absolute;
+                        .transition();
+                    }
 
-                        input{
-                            background: transparent;
+                    input{
+                        background: transparent;
 
-                            &:valid, &:focus{
+                        &:valid, &:focus{
 
-                                ~ i{
-                                    color: #323232;
-                                }
+                            ~ i{
+                                color: #323232;
                             }
                         }
                     }
+                }
 
                 .action-buttons-wrapper{
 
@@ -425,7 +453,7 @@
     opacity: 0;
     right: 24px;
     bottom: 16px;
-    width: 280px;
+    width: 320px;
     z-index: 1000;
     padding: 16px;
     position: fixed;

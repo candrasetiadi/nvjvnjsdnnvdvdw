@@ -14,12 +14,23 @@ var Monolog = {
 
         Monolog.fill(title, msg, 'active confirm');
 
-        $('#mono-action').attr('href', callback);
+        // Remove event listener previously set by Monolog.confirm()
+        $(document).off('click', '#mono-action');
+
+        // Attach event listener by latest Monolog.confirm() call
+        $(document).on('click', '#mono-action', function() {
+
+            Monolog.close();
+
+            callback();
+        });
     },
 
     close: function() {
 
         $('#monolog').removeClass('active');
+
+        $('#mono-action').attr('href', '');
 
         setTimeout(function() {
 

@@ -3,59 +3,49 @@
 
 @section('fab')
 
-<a href class="fab-button fab-button-salmon fab-button-action shadow-hover modal-open" data-target="#blog-add"><i class="material-icons">add</i></a>
+<button class="fab-button fab-button-salmon fab-button-action shadow-hover modal-open" data-target="#blog-add"><i class="material-icons">add</i></button>
 
 @stop
 
 @section('content')
-<div class="blog-wrapper flexbox flexbox-wrap">
+<div class="blogs-wrapper flexbox flexbox-wrap">
 
-
-    @if(count($blogs) != 0)
-
-    <table class="m-table-list blogs-table">
+    <table class="list blogs-table">
         <thead>
-            <td width="3%"><a href class="m-table-list-item-select m-table-item-select-all"><i class="m-checkbox"></i></a></td>
+            <td width="3%"><button href class="table-item-select table-item-select-all"></button></td>
             <td width="20%">Title</td>
-            <td width="20%">URL</td>
-            <td width="14%">Author</td>
-            <td width="15%">Created</td>
-            <td width="15%">Updated</td>
+            <td width="20%">Code</td>
+            <td width="14%">Price</td>
+            <td width="15%">on since</td>
+            <td width="15%">on until</td>
             <td width="10%">Status</td>
             <td width="3%"></td>
         </thead>
         <tbody>
-            @foreach($blogs as $blog)
-            <tr class="list-item blog-item" data-id="{{ $blog->id }}">
-                <td class="blog-select"><a href class="m-table-list-item-select m-table-item-select-single" data-id="{{ $blog->id }}"><i class="m-checkbox"></i></a></td>
-                <td class="blog-title">{{ $blog->title }}</td>
-                <td class="blog-url">{{ $blog->url }}</td>
-                <td class="blog-created">{{ $blog->author }}kesato</td>
-                <td class="blog-status">{{ $blog->created_at }}</td>
-                <td class="blog-status">{{ $blog->updated_at }}</td>
-                <td class="blog-author{{ $blog->status ? 'ENABLED' : 'DISABLED' }}">{{ $blog->status ? 'ENABLED' : 'DISABLED' }}</td>
-                <td class="m-table-item-options">
-                    <a href class="m-list-item-more"><i class="material-icons">more_horiz</i></a>
-                    <div class="m-list-item-option" data-id="1"><ul>
-                        <li><a href="{{ $blog->id }}" class="item-edit">edit</a></li>
-                        <li><a href="/system/ajax/blog/delete/{{ $blog->id }}" class="item-delete direct-delete">delete</a></li>
-                        </ul>
-                    </div>
+            <?php for($i = 0; $i<5; $i++): ?>
+            <tr class="villa-item" data-id="1">
+                <td width="3%"><button href class="table-item-select table-item-select-single"></button></td>
+                <td class="title">Beautiful Villa</td>
+                <td class="url">VCAN001</td>
+                <td class="created">IDR 9,350,000,000</td>
+                <td class="status">2015-12-21</td>
+                <td class="status">2016-12-20</td>
+                <td class="author">ENABLED</td>
+                <td class="table-item-options">
+                    <button class="table-item-more"><i class="material-icons">more_horiz</i></button>
+                    <ul class="table-item-menu">
+                        <li><button href class="item-edit">edit</button></li>
+                        <li><button href class="item-duplicate">duplicate</button></li>
+                        <li><button href class="item-delete">delete</button></li>
+                    </ul>
                 </td>
             </tr>
-            @endforeach
+            <?php endfor ?>
         </tbody>
     </table>
-
-    @else
-
-    <p class="empty-message">No blog posts found. Create one now</p>
-
-    @endif
-
 </div>
 
-@stop
+@endsection
 
 @section('modal')
 

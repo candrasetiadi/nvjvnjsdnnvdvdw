@@ -98,14 +98,6 @@ Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
 
         Route::get('settings', 'AdminController@settings');
 
-        Route::get('index', 'AdminController@index');
-
-        Route::get('currency', 'AdminController@currency');
-
-        Route::get('notifications', 'AdminController@notifications');
-
-        Route::get('io', 'AdminController@io');
-
         Route::get('about', 'AdminController@about');
     });
 //});
@@ -149,6 +141,15 @@ Route::group(['prefix' => 'system/ajax'], function () {
         Route::any('get/{id}', 'PropertiesController@show');
 
         // Route::any('register', 'CustomerController@register');
+    });
+
+    Route::group(['prefix' => 'currency'], function () {
+
+        Route::any('get', 'SystemController@getExchange');
+
+        Route::any('update', 'SystemController@updateExchange');
+
+        Route::any('set', 'SystemController@setExchange');
     });
 });
 

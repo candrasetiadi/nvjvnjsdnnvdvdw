@@ -3,57 +3,50 @@
 
 @section('fab')
 
-<a href class="fab-button fab-button-salmon fab-button-action shadow-hover modal-open" data-target="#account-add"><i class="material-icons">add</i></a>
+<m-fab salmon class="modal-open" data-target="#account-add"><i class="material-icons">add</i></m-fab>
 
 @stop
 
 @section('content')
-<div class="account-wrapper flexbox flexbox-wrap">
 
+<m-template class="list flexbox flexbox-wrap">
 
-    @if(count($accounts) != 0)
-
-    <table class="m-table-list accounts-table">
+    <table>
         <thead>
-            <td width="3%"><a href class="m-table-list-item-select m-table-item-select-all"><i class="m-checkbox"></i></a></td>
-            <td width="20%">Title</td>
-            <td width="20%">URL</td>
-            <td width="14%">Author</td>
-            <td width="15%">Created</td>
-            <td width="15%">Updated</td>
-            <td width="10%">Status</td>
-            <td width="3%"></td>
+            <tr>
+                <td width="5%">
+                    <m-list-item-check class="all"></m-list-item-check>
+                </td>
+                <td width="20%">name</td>
+                <td width="20%">location</td>
+                <td width="15%" class="align-center">ip address</td>
+                <td width="20%" class="align-center">created</td>
+                <td width="15%" class="align-center">status</td>
+                <td width="5%"></td>
+            </tr>
         </thead>
+
         <tbody>
-            @foreach($accounts as $account)
-            <tr class="list-item account-item" data-id="{{ $account->id }}">
-                <td class="account-select"><a href class="m-table-list-item-select m-table-item-select-single" data-id="{{ $account->id }}"><i class="m-checkbox"></i></a></td>
-                <td class="account-title">{{ $account->title }}</td>
-                <td class="account-url">{{ $account->url }}</td>
-                <td class="account-created">{{ $account->author }}kesato</td>
-                <td class="account-status">{{ $account->created_at }}</td>
-                <td class="account-status">{{ $account->updated_at }}</td>
-                <td class="account-author{{ $account->status ? 'ENABLED' : 'DISABLED' }}">{{ $account->status ? 'ENABLED' : 'DISABLED' }}</td>
-                <td class="m-table-item-options">
-                    <a href class="m-list-item-more"><i class="material-icons">more_horiz</i></a>
-                    <div class="m-list-item-option" data-id="1"><ul>
-                        <li><a href="{{ $account->id }}" class="item-edit">edit</a></li>
-                        <li><a href="/system/ajax/account/delete/{{ $account->id }}" class="item-delete direct-delete">delete</a></li>
-                        </ul>
-                    </div>
+           <?php for($i = 0; $i <= 11; $i++): ?>
+            <tr>
+                <td>
+                    <m-list-item-check class="single" data-id=""></m-list-item-check>
+                </td>
+                <td>Boris Lemke</td>
+                <td>Denpasar, Bali</td>
+                <td class="align-center">192.0.0.1</td>
+                <td class="align-center">Jan 20, 2016</td>
+                <td class="align-center">ENABLED</td>
+                <td>
+                    <m-table-list-more>
+                        
+                    </m-table-list-more>
                 </td>
             </tr>
-            @endforeach
+            @endfor
         </tbody>
     </table>
-
-    @else
-
-    <p class="empty-message">Fatal Error: No accounts connected to the system</p>
-
-    @endif
-
-</div>
+</m-template>
 
 @stop
 
