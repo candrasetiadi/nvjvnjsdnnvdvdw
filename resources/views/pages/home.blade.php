@@ -1,6 +1,7 @@
 @extends('index')
 @section('content')
 
+
 <!-- JUMBO VIDEO -->
 <section id="jumbotron">
 
