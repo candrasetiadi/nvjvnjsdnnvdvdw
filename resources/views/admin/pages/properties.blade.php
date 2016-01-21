@@ -7,15 +7,15 @@
 
 <!--
 <div class="small-fab-wrapper sub-fab-wrapper">
-    <a class="fab-button fab-button-small shadow-hover modal-open" data-target="#properties-add">
-        <i class="material-icons">business</i>
-        <span class="drop-fab-hint">add properties</span>
-    </a>
+<a class="fab-button fab-button-small shadow-hover modal-open" data-target="#properties-add">
+<i class="material-icons">business</i>
+<span class="drop-fab-hint">add properties</span>
+</a>
 
-    <a class="fab-button fab-button-small shadow-hover modal-open" data-target="#land-add">
-        <i class="material-icons">event</i>
-        <span class="drop-fab-hint">add land</span>
-    </a>
+<a class="fab-button fab-button-small shadow-hover modal-open" data-target="#land-add">
+<i class="material-icons">event</i>
+<span class="drop-fab-hint">add land</span>
+</a>
 </div>
 -->
 
