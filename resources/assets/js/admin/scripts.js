@@ -30,8 +30,8 @@ NProgress.configure({
 // Implement in each view
 $(window).load(function() {
 
-    $('.input-group-caroussel-body').css({
-        'height': $('.input-group-caroussel-slide').outerHeight() + 'px'
+    $('m-caroussel-body').css({
+        'height': $('m-caroussel-slide').outerHeight() + 'px'
     });
 });
 
@@ -284,21 +284,22 @@ function reload() {
     }, 1000);
 }
 
-$('.m-caroussel-switch').on('click', function(e) {
+$(document).on('click', 'm-caroussel-switch', function(e) {
+
     e.preventDefault();
 
-    var index = $(this).parent().index(),
-        slideWidth = $('.input-group-caroussel-body').outerWidth(),
-        slideHeight = $('.input-group-caroussel-slide:nth-child(' + (index + 1) + ')').outerHeight();
+    var index = $(this).index(),
+        slideWidth = $('m-caroussel-body').outerWidth(),
+        slideHeight = $('m-caroussel-slide:nth-child(' + (index + 1) + ')').outerHeight();
 
-    $('.m-caroussel-switch').removeClass('active');
+    $('m-caroussel-switch').removeClass('active');
     $(this).addClass('active');
 
-    $('.input-group-caroussel-slider').css({
+    $('m-caroussel-slider').css({
         'transform': 'translate3d(-' + (slideWidth * index) + 'px, 0, 0)'
     });
 
-    $('.input-group-caroussel-body').css({
+    $('m-caroussel-body').css({
         'height': slideHeight + 'px'
     });
 });
@@ -634,8 +635,6 @@ var Matter = {
 
                         Monolog.notify('data reindexed', 'Your system has been reindexed successfully!');
 
-                        alert('data reindexed');
-
                         NProgress.done();
 
                     }, 2000);
@@ -643,8 +642,6 @@ var Matter = {
             }
 
             $(document).on('click', '#save-currency', function() {
-
-                alert('clicked');
 
                 var fd = new FormData($('#currency-form')[0]);
 

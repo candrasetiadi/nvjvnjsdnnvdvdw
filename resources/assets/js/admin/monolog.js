@@ -2,6 +2,8 @@ var Monolog = {
 
     notify: function(title, msg) {
 
+        $('#mono-close').html('dismiss');
+
         Monolog.fill(title, msg, 'active');
     },
 
@@ -11,6 +13,8 @@ var Monolog = {
     },
 
     confirm: function(title, msg, callback) {
+
+        $('#mono-close').html('cancel');
 
         Monolog.fill(title, msg, 'active confirm');
 

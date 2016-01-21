@@ -251,11 +251,18 @@
 }
 .translateHardware(@x,@y) {
     .translate(@x,@y);
-    -webkit-transform: translate3d(@x,@y,0);
-    -moz-transform: translate3d(@x,@y,0);
-    -o-transform: translate3d(@x,@y,0);
-    -ms-transform: translate3d(@x,@y,0);
-    transform: translate3d(@x,@y,0);
+    -webkit-transform: translate3d(@x, @y, 0);
+    -moz-transform: translate3d(@x, @y, 0);
+    -o-transform: translate3d(@x, @y, 0);
+    -ms-transform: translate3d(@x, @y, 0);
+    transform: translate3d(@x, @y, 0);
+}
+.hardwareAccel() {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 
 

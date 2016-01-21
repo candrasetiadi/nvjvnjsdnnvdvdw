@@ -38,13 +38,13 @@
             <td>Price</td>
             <td>View</td>
             <td>Action</td>
-            
+
         </thead>
         <tbody>
             @foreach($properties as $property)
             <?php $images = $property->propertyFiles()->where('type', 'image'); ?>
             <tr class="property-item" data-id="{{ $property->id }}">
-                <td class="select"><a href class="m-table-item-select m-table-item-select-single" data-id="1"><i class="m-checkbox"></i></a></td>                
+                <td class="select"><a href class="m-table-item-select m-table-item-select-single" data-id="1"><i class="m-checkbox"></i></a></td>
                 <td class="image">{!! ($images->count() > 0) ? '<a href="'. asset('uploads/property/' . $images->first()->file) . '"></a>' : '-'; !!}</td>
                 <td class="created_at">{{ $property->created_at }}</td>
                 <td class="code">{{ $property->code }}</td>
@@ -76,27 +76,27 @@
 
 @section('modal')
 
-<div class="modal-wrapper" id="properties-add">
+<m-modal-wrapper id="properties-add">
 
     {!! Form::open(array('class' => 'modal-window', 'id' => 'properties-form')) !!}
     <h3>Add property:properties</h3>
-    <div class="matter-caroussel">
+    <m-caroussel>
 
-        <div class="matter-caroussel-header flexbox justify-end">
-            <ul class="matter-caroussel-switch-wrapper flexbox">
+        <m-caroussel-header class="flexbox justify-end">
+            <m-caroussel-switch-wrapper class="flexbox">
                 <?php $numberOfSlides = 5 ?>
-                <li><a href class="matter-caroussel-switch active">detail</a></li>
-                <li><a href class="matter-caroussel-switch">facilities</a></li>
-                <li><a href class="matter-caroussel-switch">distance</a></li>
-                <li><a href class="matter-caroussel-switch">gallery</a></li>
-                <li><a href class="matter-caroussel-switch">owner</a></li>
-            </ul>
-        </div>
+                <m-caroussel-switch class="active">detail</m-caroussel-switch>
+                <m-caroussel-switch>facilities</m-caroussel-switch>
+                <m-caroussel-switch>distance</m-caroussel-switch>
+                <m-caroussel-switch>gallery</m-caroussel-switch>
+                <m-caroussel-switch>owner</m-caroussel-switch>
+            </m-caroussel-switch-wrapper>
+        </m-caroussel-header>
 
-        <div class="matter-caroussel-body">
-            <div class="matter-caroussel-slider flexbox align-start" style="width: <?= $numberOfSlides ?>00%;">
+        <m-caroussel-body>
+            <m-caroussel-slider class="flexbox align-start" style="width: <?= $numberOfSlides ?>00%;">
 
-                <div class="matter-caroussel-slide flexbox flexbox-wrap" id="caroussel-general" style="width: calc(100% / <?= $numberOfSlides ?>)">
+                <m-caroussel-slide class="flexbox flexbox-wrap" id="caroussel-general" style="width: calc(100% / <?= $numberOfSlides ?>)">
 
                     <div class="m-input-group fwidth flexbox justify-between">
                         <div class="m-input-wrapper w50-6">
@@ -193,9 +193,9 @@
                             <textarea name="description" id="properties-description" rows="10" style="padding-top: 0"></textarea>
                         </div>
                     </div>
-                </div>
+                </m-caroussel-slide>
 
-                <div class="matter-caroussel-slide flexbox flexbox-wrap" id="caroussel-facilities" style="width: calc(100% / <?= $numberOfSlides ?>)">
+                <m-caroussel-slide class="flexbox flexbox-wrap" id="caroussel-facilities" style="width: calc(100% / <?= $numberOfSlides ?>)">
 
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
                         <h3 class="input-group-title">Specification</h3>
@@ -334,17 +334,17 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </m-caroussel-slide>
 
-                <div class="matter-caroussel-slide flexbox flexbox-wrap" id="caroussel-distance" style="width: calc(100% / <?= $numberOfSlides ?>)">
+                <m-caroussel-slide class="flexbox flexbox-wrap" id="caroussel-distance" style="width: calc(100% / <?= $numberOfSlides ?>)">
 
                     <div class="m-input-wrapper">
                         <input type="text" name="chingchong" id="properties-input-title" class="bind-input-from" data-target="#properties-input-url" required>
                         <label for="chingchong">chingchong</label>
                     </div>
-                </div>
+                </m-caroussel-slide>
 
-                <div class="matter-caroussel-slide flexbox flexbox-wrap" id="caroussel-gallery" style="width: calc(100% / <?= $numberOfSlides ?>)">
+                <m-caroussel-slide class="flexbox flexbox-wrap" id="caroussel-gallery" style="width: calc(100% / <?= $numberOfSlides ?>)">
 
                     <div class="m-input-wrapper" id="picture-wrapper">
                         <div class="drop-field">
@@ -367,9 +367,9 @@
                             <a href class="gallery-item-option"><i class="material-icons">more_horiz</i></a>
                         </div>
                     </div>
-                </div>
+                </m-caroussel-slide>
 
-                <div class="matter-caroussel-slide flexbox flexbox-wrap" id="caroussel-owner" style="width: calc(100% / <?= $numberOfSlides ?>)">
+                <m-caroussel-slide class="flexbox flexbox-wrap" id="caroussel-owner" style="width: calc(100% / <?= $numberOfSlides ?>)">
 
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
                         <h3 class="input-group-title">Owner Information</h3>
@@ -471,10 +471,10 @@
                             <textarea name="seller-notes" id="properties-input-seller-notes" rows="5" style="padding-top: 0"></textarea>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                </m-caroussel-slide>
+            </m-caroussel-slider>
+        </m-caroussel-body>
+    </m-caroussel>
     <input type="hidden" name="author" id="properties-input-admin" value="admin">
     <input type="hidden" name="property_type" id="property-input-type" value="properties">
     <input type="hidden" name="edit" value="0" id="edit-flag">
@@ -484,7 +484,7 @@
         <a href class="md-button md-button-plain" id="save-properties">save</a>
     </div>
     {!! Form::close() !!}
-</div>
+</m-modal-wrapper>
 @endsection
 
 @section('scripts')

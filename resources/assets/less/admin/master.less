@@ -175,6 +175,10 @@ button{
     }
 }
 
+table{
+    width: 100%;
+}
+
 /* GLOBAL VALUES */
 
 /* LAYOUT OPTIONS */
@@ -718,6 +722,25 @@ table{
 .cursor{
     cursor: pointer;
 }
+
+.block{
+    display: block;
+}
+
+m-progress-bar{
+    position: absolute;
+    height: 2px;
+    background: @gsalmon;
+    top: 0;
+    left: 0;
+    right: 0%;
+    .hardwareAccel();
+    animation-duration: 1.5s;
+    animation-name: progress-bar;
+    animation-iteration-count: infinite;
+}
+
+
 
 m-template{
     padding-top: 16px;
@@ -1273,7 +1296,7 @@ m-fab{
 m-input-group{
     .flexwrap();
     display: block;
-    
+
     m-input-desc{
         margin-bottom: 12px;
         display: block;
@@ -1297,7 +1320,7 @@ m-input{
         pointer-events: none;
         transition: all .22s ease;
         text-transform: uppercase;
-        
+
         &[neutral]{
             font-size: 11px;
             font-weight: 700;
@@ -1990,9 +2013,10 @@ textarea{
     }
 }
 
-.input-group-caroussel{
+m-caroussel{
+    .block();
 
-    .input-group-caroussel-header{
+    m-caroussel-header{
         padding-bottom: 3px;
 
         h3{
@@ -2000,42 +2024,43 @@ textarea{
             font-weight: 400;
         }
 
-        ul{
+        m-caroussel-switch-wrapper{
             padding-bottom: 4px;
 
-            li{
+            m-caroussel-switch{
+                .cursor();
+                color: grey;
+                padding: 4px 8px;
+                font-weight: 500;
+                letter-spacing: 1px;
+                border-bottom: 3px solid transparent;
+                text-transform: uppercase;
 
-                a{
-                    color: grey;
-                    padding: 4px 8px;
-                    font-weight: 500;
-                    letter-spacing: 1px;
-                    border-bottom: 3px solid transparent;
-                    text-transform: uppercase;
-
-                    &.active{
-                        color: #323232;
-                        font-weight: 700;
-                        border-color: #323232;
-                    }
+                &.active{
+                    color: #323232;
+                    font-weight: 700;
+                    border-color: #323232;
                 }
             }
         }
     }
 
-    .input-group-caroussel-body{
+    m-caroussel-body{
+        .block();
         .transition();
         overflow: hidden;
         position: relative;
 
-        .input-group-caroussel-slider{
+        m-caroussel-slider{
+            .block();
             top: 0;
             left: 0;
             width: 100%;
             .transition();
             position: absolute;
 
-            .input-group-caroussel-slide{
+            m-caroussel-slide{
+                .block();
                 width: calc(~"100% / 1");
                 padding: 8px 0;
             }
@@ -2062,6 +2087,21 @@ textarea{
     }
     100%{
         .transform(rotate(359deg));
+    }
+}
+
+@-webkit-keyframes progress-bar{
+    0%{
+        left: 0%;
+        right: 100%;
+    }
+    50%{
+        left: 25%;
+        right: 25%;
+    }
+    100%{
+        left: 100%;
+        right: 0%;
     }
 }
 

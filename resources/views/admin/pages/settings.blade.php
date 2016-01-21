@@ -40,6 +40,7 @@
         <m-card>
 
             <m-settings-item button data-function="fetchConversion">
+                <m-progress-bar></m-progress-bar>
                 <i class="material-icons">attach_money</i>
                 <m-settings-item-desc>
                     <m-settings-item-header>Fetch Rate</m-settings-item-header>
@@ -54,11 +55,6 @@
                     <m-settings-item-detail>Manually set the conversion rate to available currencies</m-settings-item-detail>
                 </m-settings-item-desc>
             </m-settings-item>
-
-
-
-
-
 
         </m-card>
     </m-settings-group>
