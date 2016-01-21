@@ -39,9 +39,14 @@ class Property extends Model
         return $this->hasMany('App\PropertyFile');
     }
 
-    public function inquiry()
+    public function inquiries()
     {
         return $this->hasMany('App\Inquiry');
+    }
+
+    public function facilities()
+    {
+        return $this->hasMany('App\Facility');
     }
 
     public function lang()

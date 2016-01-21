@@ -99,26 +99,20 @@ $factory->define(App\PostLanguage::class, function (Faker\Generator $faker) {
 $factory->define(App\Property::class, function (Faker\Generator $faker) {
     return [
         'category_id' => 1,
+        'currency' => $faker->randomElement($array = array ('IDR', 'USD', 'EUR')),
         'price' => $faker->randomNumber(7),
         'discount' => $faker->randomNumber(2),
         'type' => $faker->randomElement($array = array ('for sale', 'for rent')),
         'publish' => $faker->randomElement($array = array ('draft', 'moderation', 'publish')),
         'building_size' => $faker->randomNumber(2),
         'land_size' => $faker->randomNumber(3),
-        'floor' => $faker->randomNumber(1),
-        'bedroom' => $faker->randomNumber(1),
-        'bathroom' => $faker->randomNumber(1),
-        'garden' => $faker->randomElement($array = array ('0', '1')),
-        'pool' => $faker->randomElement($array = array ('0', '1')),
-        'ac' => $faker->randomElement($array = array ('0', '1')),
-        'heater' => $faker->randomElement($array = array ('0', '1')),
-        'kitchen' => $faker->randomElement($array = array ('0', '1')),
-        'garage' => $faker->randomElement($array = array ('0', '1')),
-        'car_port' => $faker->randomElement($array = array ('0', '1')),
         'sold' => $faker->randomElement($array = array ('0', '1')),
         'status' => $faker->sentence($nbWords = 6, $variableNbWords = true),
         'year' => $faker->year($max = 'now'),
-        'view' => $faker->randomDigit
+        'view' => $faker->randomDigit,
+        'owner_name' => $faker->firstName,
+        'owner_email' => $faker->email,
+        'owner_phone' => $faker->phoneNumber
     ];
 });
 
