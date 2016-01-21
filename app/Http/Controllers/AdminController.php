@@ -15,7 +15,7 @@ class AdminController extends Controller {
     private $lang = '';
 
     public function __construct()
-    {   
+    {
         $this->lang = \Lang::getLocale();
     }
 
@@ -38,9 +38,12 @@ class AdminController extends Controller {
         $search = \Input::get('q');
 
         if ($search) {
+
             $customers = \App\Customer::where('firstname', 'like', $search . '%')->orWhere('lastname', 'like', $search . '%')->paginate($this->limit);
+
         } else {
-            $customers = \App\Customer::paginate($this->limit);
+
+            $customers = \App\Customer::orderBy('id', 'DESC')->paginate($this->limit);
         }
 
         return view('admin.pages.customers', compact('customers'));

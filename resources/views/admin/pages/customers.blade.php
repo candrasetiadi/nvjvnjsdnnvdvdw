@@ -3,26 +3,27 @@
 
 @section('fab')
 
-<m-fab salmon class="modal-open" data-target="#properties-add"><i class="material-icons">add</i></m-fab>
+<m-fab salmon class="modal-open" data-target="#customer-add"><i class="material-icons">add</i></m-fab>
 
 <!-- <a href class="fab-button fab-button-salmon fab-button-action shadow-hover modal-open" data-target="#customer-add"><i class="material-icons">add</i></a> -->
 
 @stop
 
 @section('content')
-<div class="customers-wrapper flexbox flexbox-wrap">
+<m-template list>
 
-    <div class="action-bar flexbox fwidth">
-        <div class="m-input-wrapper m-input-wrapper w33" id="action-search-wrapper">
-            <input type="text" id="action-search-input" data-table="customer" data-action="populateCustomerSearch" required>
+    <m-action-bar class="flexbox fwidth">
+        <m-input class="w33" id="action-search-wrapper">
+            <input type="text" ajax-search data-source="customers/search" data-function="populateCustomersSearch" required>
             <i class="material-icons">search</i>
-        </div>
-    </div>
+        </m-input>
+    </m-action-bar>
 
     <table class="m-table-list customers-table">
         <thead>
             <td width="3%"><a href class="m-table-item-select m-table-item-select-all"><i class="m-checkbox"></i></a></td>
-            <td width="25%">name</td>
+            <td width="3%">id</td>
+            <td width="22%">name</td>
             <td width="19%">email</td>
             <td width="15%">country</td>
             <td width="15%">registered</td>
@@ -33,62 +34,64 @@
         <tbody>
             @foreach($customers as $customer)
             <tr class="customer-item" data-id="{{ $customer->id }}">
-                <td class="select"><a href class="m-table-item-select m-table-item-select-single" data-id="{{ $customer->id }}"><i class="m-checkbox"></i></a></td>
-                <td class="name">{{ $customer->firstname }}</td>
-                <td class="email">{{ $customer->email }}</td>
-                <td class="country">{{ $customer->country }}</td>
-                <td class="registered">{{ $customer->created_at }}</td>
+                <td class="select">
+                    <m-list-item-check class="single" data-id="{{ $customer->id }}"></m-list-item-check>
+                </td>
+                <td>{{ $customer->id }}</td>
+                <td>{{ $customer->firstname }}</td>
+                <td>{{ $customer->email }}</td>
+                <td>{{ $customer->country }}</td>
+                <td>{{ $customer->created_at }}</td>
                 <td class="status align-center">{{ $customer->status }}</td>
-                <td class="m-table-item-options">
-                    <a href class="m-list-item-more"><i class="material-icons">more_horiz</i></a>
-                    <div class="m-list-item-option" data-id="{{ $customer->id }}"><ul>
-                        <li><a href="{{ $customer->id }}" class="item-edit">edit</a></li>
-                        <li><a href="/system/ajax/customer/delete/{{ $customer->id }}" class="item-delete direct-delete">delete</a></li>
-                        </ul>
-                    </div>
+                <td>
+                    <m-table-list-more>
+                        <m-table-more-button>
+                            <i class="material-icons">more_horiz</i>
+                        </m-table-more-button>
+                    </m-table-list-more>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-</div>
+</m-template>
 
 @endsection
 
 @section('modal')
 
-<div class="modal-wrapper" id="customer-add">
+<m-modal-wrapper id="customer-add">
 
-    {!! Form::open(array('class' => 'modal-window', 'id' => 'customer-form')) !!}
+    {!! Form::open(array('class' => 'modal-window', 'id' => 'customer-form', 'data-function' => 'modalClose', 'data-url' => 'customer/create')) !!}
     <h3>Add customer</h3>
-    <div class="m-input-group fwidth flexbox-wrap justify-between">
+    <m-input-group class="m-input-group fwidth flexbox-wrap justify-between">
 
-        <div class="m-input-wrapper w33-8">
+        <m-input class="w33-8">
             <input type="text" name="name" id="customer-input-name" required>
             <label for="name">name</label>
-        </div>
+        </m-input>
 
-        <div class="m-input-wrapper w33-8">
+        <m-input class="w33-8">
             <input type="text" name="email" id="customer-input-email" required>
             <label for="email">email</label>
-        </div>
+        </m-input>
 
-        <div class="m-input-wrapper w33-8">
+        <m-input class="w33-8">
             <input type="text" name="phone" id="customer-input-phone" required>
             <label for="phone">phone</label>
-        </div>
+        </m-input>
 
-        <div class="m-input-wrapper w33-8">
+        <m-input class="w33-8">
             <input type="text" name="address" id="customer-input-address" required>
             <label for="address">address</label>
-        </div>
+        </m-input>
 
-        <div class="m-input-wrapper w33-8">
+        <m-input class="w33-8">
             <input type="text" name="city" id="customer-input-city" required>
             <label for="city">city</label>
-        </div>
+        </m-input>
 
-        <div class="m-input-wrapper m-input-wrapper-select w33-8">
+        <m-input select class="w33-8">
             <select id="customer-input-country" name="country" required>
                 <option value="" disabled>-- Please Select --</option>
                 <option value="Afganistan">Afghanistan</option>
@@ -340,37 +343,37 @@
                 <option value="Zimbabwe">Zimbabwe</option>
             </select>
             <label for="country">country</label>
-        </div>
+        </m-input>
 
-        <div class="m-input-wrapper w33-8">
+        <m-input class="w33-8">
             <input type="text" name="state" id="customer-input-state" required>
             <label for="state">state</label>
-        </div>
+        </m-input>
 
-        <div class="m-input-wrapper w33-8">
+        <m-input class="w33-8">
             <input type="text" name="postal" id="customer-input-postal" required>
             <label for="postal">postal</label>
-        </div>
+        </m-input>
 
-        <div class="m-input-wrapper w33-8">
+        <m-input class="w33-8">
             <input type="text" name="website" id="customer-input-website" required>
             <label for="website">website</label>
-        </div>
+        </m-input>
 
-        <div class="m-input-wrapper w33-8">
+        <m-input class="w33-8">
             <input type="text" name="password" id="customer-input-password" required>
             <label for="password">password</label>
-        </div>
-    </div>
+        </m-input>
+    </m-input-group>
 
     <input type="hidden" name="edit" value="0" id="edit-flag">
 
     <div class="button-holder align-right">
-        <a href class="md-button md-button-plain modal-close" id="close-customer-form">cancel</a>
-        <a href class="md-button md-button-plain" id="save-customer">save</a>
+        <m-button plain class="modal-close">cancel</m-button>
+        <m-button save-form plain>save</m-button>
     </div>
     {!! Form::close() !!}
-</div>
+</m-modal-wrapper>
 @endsection
 
 @section('scripts')

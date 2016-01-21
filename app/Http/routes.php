@@ -151,13 +151,16 @@ Route::group(['prefix' => 'system/ajax'], function () {
         // Route::any('register', 'CustomerController@register');
     });
 
-    Route::group(['prefix' => 'currency'], function () {
+    Route::group(['prefix' => 'settings'], function () {
 
-        Route::any('get', 'SystemController@getExchange');
+        Route::group(['prefix' => 'currency'], function () {
 
-        Route::any('update', 'SystemController@updateExchange');
+            Route::any('get', 'SystemController@getExchange');
 
-        Route::any('set', 'SystemController@setExchange');
+            Route::any('update', 'SystemController@updateExchange');
+
+            Route::any('set', 'SystemController@setExchange');
+        });
     });
 });
 

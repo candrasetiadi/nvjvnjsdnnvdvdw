@@ -480,7 +480,7 @@
     <input type="hidden" name="edit" value="0" id="edit-flag">
 
     <div class="button-holder align-right">
-        <a href class="md-button md-button-plain modal-close" id="close-properties-form">cancel</a>
+        <m-button plain class="modal-close" id="close-properties-form">cancel</m-button>
         <m-button save-form plain>save</m-button>
     </div>
     {!! Form::close() !!}

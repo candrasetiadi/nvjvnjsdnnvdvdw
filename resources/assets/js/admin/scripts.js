@@ -96,21 +96,15 @@ $(document).on('click', '.admin-user', function(e) {
     }
 });
 
-$(document).on('click', 'm-settings-item[button]', function() {
+$(document).on('click', 'm-button[save-form]', function() {
 
-    var func = $(this).attr('data-function');
+    var form = $(this).closest('form'),
+        formId = form.attr('id'),
+        url = form.attr('data-url'),
+        doneFunc = form.attr('data-function'),
+        fd = new FormData($('#' + formId)[0]);
 
-    eval(func + '()');
-});
-
-$(document).on('click', 'm-settings-item[checkbox]', function() {
-
-    if(!!$(this).children('m-checkbox').children('input[type="checkbox"]').attr('checked')) {
-
-        $(this).children('m-checkbox').children('input[type="checkbox"]').removeAttr('checked');
-    }
-
-    $(this).children('m-checkbox').children('input[type="checkbox"]').attr('checked', '');
+    Ajax.post(url, fd, eval(doneFunc));
 });
 
 $(document).mouseup(function(e) {
@@ -217,6 +211,18 @@ $(document).on('keyup', '.bind-input-from', function() {
     text = text.toLowerCase();
 
     $(target).val(text);
+});
+
+$(document).on('click', 'm-list-item-check', function() {
+
+    if(this.hasAttribute('checked')) {
+
+        this.removeAttribute('checked');
+
+        return false;
+    }
+
+    this.setAttribute('checked', '');
 });
 
 $(document).on('keyup', '.input-number-format', function() {
@@ -392,18 +398,31 @@ function doNothing() {
     return false;
 }
 
-/*
-$(document).on('click', 'm-list-item-check', function() {
 
-    if(this.hasAttribute('checked')) {
 
-        this.removeAttribute('checked');
 
-        return false;
+
+
+var M = {
+
+    search: function() {
+
+        $(document).on('keyup', '[ajax-search]', function(e) {
+
+            if(e.which != 13) return false;
+
+            var source = $(this).attr('data-source'),
+                func = $(this).attr('data-function');
+
+            Ajax.get(source, eval(func));
+        });
     }
+}
 
-    this.setAttribute('checked', '');
-});*/
+
+
+
+
 
 var Matter = {
 
@@ -604,6 +623,20 @@ var Matter = {
 
         customers: function() {
 
+            $(document).on('keyup', '[ajax-search]', function(e) {
+
+                if(e.which != 13) return false;
+
+                var source = $(this).attr('data-source'),
+                    func = $(this).attr('data-function');
+
+                Ajax.get(source, eval(func));
+            });
+
+            function populateCustomersSearch(data) {
+
+                alert('GROWL!');
+            }
         },
 
         categories: function() {
@@ -624,9 +657,16 @@ var Matter = {
 
         settings: function() {
 
+            $(document).on('click', 'm-settings-item[button]', function() {
+
+                var func = $(this).attr('data-function');
+
+                eval(func + '()');
+            });
+
             function reindexData() {
 
-                Monolog.confirm('are you sure?', 'Reindexing data may take up to an hour for large databases. Are you sure to reindex your data now?',
+                Monolog.confirm('are you sure?', 'Reindexing data may take up a while for large databases. Are you sure to reindex your data now?',
                                 function() {
 
                     NProgress.start();
@@ -640,55 +680,47 @@ var Matter = {
                     }, 2000);
                 });
             }
-        }
-    }
-}
 
-            $(document).on('click', 'm-button[save-form]', function() {
+            function flushCache() {
 
-                var form = $(this).closest('form'),
-                formId = form.attr('id'),
-                url = form.attr('data-url'),
-                doneFunc = form.attr('data-function'),
-                fd = new FormData($('#' + formId)[0]);
+                NProgress.start();
 
-                Ajax.post(url, fd, eval(doneFunc));
-            });
+                setTimeout(function() {
 
-            function populatePropetiesEdit(data) {
+                    Monolog.notify('cache flushed', 'The cache has been flushed');
 
-                data = data.data;
+                    NProgress.done();
 
-                $.each(data, function(k,v) {
-
-                    consoleLog(k);
-                });
+                }, 2000);
             }
 
-function getExchangeRate() {
+            function getExchangeRate() {
 
-    Ajax.get('currency/get', populateExchangeEdit);
-}
+                Ajax.get('settings/currency/get', populateExchangeEdit);
+            }
 
-function populateExchangeEdit(data) {
+            function populateExchangeEdit(data) {
 
-    $.each(data, function(k, v) {
+                $.each(data, function(k, v) {
 
-        $('#currency-input-' + k).val(v);
-    });
+                    $('#currency-input-' + k).val(v);
+                });
 
-    modalOpen('#settings-currency-form');
+                modalOpen('#settings-currency-form');
 
-    NProgress.done();
-}
+                NProgress.done();
+            }
 
-function fetchConversion() {
+            function fetchConversion() {
 
-    Monolog.confirm('fetch conversion rate?', 'Fetching conversion will replace all the conversion rates saved in the database. Proceed?',
-                    function() {
+                Monolog.confirm('fetch conversion rate?', 'Fetching conversion will replace all the conversion rates saved in the database. Proceed?',
+                                function() {
 
-        Ajax.get('currency/update', doNothing);
-    });
+                    Ajax.get('settings/currency/update', NProgress.done);
+                });
+            }
+        }
+    }
 }
 
 
