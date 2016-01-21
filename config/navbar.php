@@ -4,14 +4,19 @@ return [
 
     "dashboard" => [
 
-        "dashboard" => "dashboard",
-        "enquiries" => "enquiries"
+        "dashboard" => "dashboard"
     ],
 
     "properties" => [
 
         "properties" => "manage properties",
         "property/categories" => "categories"
+
+    ],
+
+    "enquiries" => [
+
+        "enquiries" => "enquiries"
 
     ],
 
