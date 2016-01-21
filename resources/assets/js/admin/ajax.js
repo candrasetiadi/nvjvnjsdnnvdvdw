@@ -1,4 +1,4 @@
-var aurl = '/system/ajax/';
+var aurl = baseUrl + '/system/ajax/';
 
 var Ajax = {
 

@@ -7,5 +7,6 @@
 <link href='https://fonts.googleapis.com/css?family=Product+Sans' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
 <script>
-    var development = {{ env('APP_DEBUG', 'false') }};
+    var development = {{ env('APP_DEBUG', 'false') }},
+    baseUrl = '{{ url() }}';
 </script>

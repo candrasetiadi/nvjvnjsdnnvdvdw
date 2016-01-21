@@ -640,16 +640,30 @@ var Matter = {
                     }, 2000);
                 });
             }
-
-            $(document).on('click', '#save-currency', function() {
-
-                var fd = new FormData($('#currency-form')[0]);
-
-                Ajax.post('currency/set', fd, doNothing);
-            });
         }
     }
 }
+
+            $(document).on('click', 'm-button[save-form]', function() {
+
+                var form = $(this).closest('form'),
+                formId = form.attr('id'),
+                url = form.attr('data-url'),
+                doneFunc = form.attr('data-function'),
+                fd = new FormData($('#' + formId)[0]);
+
+                Ajax.post(url, fd, eval(doneFunc));
+            });
+
+            function populatePropetiesEdit(data) {
+
+                data = data.data;
+
+                $.each(data, function(k,v) {
+
+                    consoleLog(k);
+                });
+            }
 
 function getExchangeRate() {
 

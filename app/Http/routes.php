@@ -140,6 +140,8 @@ Route::group(['prefix' => 'system/ajax'], function () {
 
         Route::any('get/{id}', 'PropertiesController@show');
 
+        Route::any('test/', 'PropertiesController@test');
+
         // Route::any('register', 'CustomerController@register');
     });
 

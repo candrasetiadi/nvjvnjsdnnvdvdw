@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Response;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -29,6 +30,16 @@ class PropertiesController extends Controller
     public function create()
     {
         //
+    }
+
+
+
+    public function test()
+    {
+        //
+        $prop = Property::find(1);
+
+        return response()->json(array('status' => 200, 'monolog' => array('title' => 'post success', 'message' => 'Post has been received'), 'data' => $prop));
     }
 
     /**

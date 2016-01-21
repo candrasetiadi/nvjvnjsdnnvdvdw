@@ -78,8 +78,8 @@
 
 <m-modal-wrapper id="properties-add">
 
-    {!! Form::open(array('class' => 'modal-window', 'id' => 'properties-form')) !!}
-    <h3>Add property:properties</h3>
+    {!! Form::open(array('class' => 'modal-window', 'id' => 'properties-form', 'data-function' => 'populatePropetiesEdit', 'data-url' => 'property/test')) !!}
+    <h3>Add Property</h3>
     <m-caroussel>
 
         <m-caroussel-header class="flexbox justify-end">
@@ -481,7 +481,7 @@
 
     <div class="button-holder align-right">
         <a href class="md-button md-button-plain modal-close" id="close-properties-form">cancel</a>
-        <a href class="md-button md-button-plain" id="save-properties">save</a>
+        <m-button save-form plain>save</m-button>
     </div>
     {!! Form::close() !!}
 </m-modal-wrapper>
