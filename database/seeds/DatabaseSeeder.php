@@ -45,5 +45,7 @@ class DatabaseSeeder extends Seeder
 
         });
 
+        factory(App\Customer::class, 100)->create();
+
     }
 }

@@ -3,7 +3,9 @@
 
 @section('fab')
 
-<a href class="fab-button fab-button-salmon fab-button-action shadow-hover modal-open" data-target="#customer-add"><i class="material-icons">add</i></a>
+<m-fab salmon class="modal-open" data-target="#properties-add"><i class="material-icons">add</i></m-fab>
+
+<!-- <a href class="fab-button fab-button-salmon fab-button-action shadow-hover modal-open" data-target="#customer-add"><i class="material-icons">add</i></a> -->
 
 @stop
 
@@ -32,7 +34,7 @@
             @foreach($customers as $customer)
             <tr class="customer-item" data-id="{{ $customer->id }}">
                 <td class="select"><a href class="m-table-item-select m-table-item-select-single" data-id="{{ $customer->id }}"><i class="m-checkbox"></i></a></td>
-                <td class="name">{{ $customer->name }}</td>
+                <td class="name">{{ $customer->firstname }}</td>
                 <td class="email">{{ $customer->email }}</td>
                 <td class="country">{{ $customer->country }}</td>
                 <td class="registered">{{ $customer->created_at }}</td>

@@ -35,7 +35,15 @@ class AdminController extends Controller {
 
     public function customers() {
 
-        return view('admin.pages.customers');
+        $search = \Input::get('q');
+
+        if ($search) {
+            $customers = \App\Customer::where('firstname', 'like', $search . '%')->orWhere('lastname', 'like', $search . '%')->paginate($this->limit);
+        } else {
+            $customers = \App\Customer::paginate($this->limit);
+        }
+
+        return view('admin.pages.customers', compact('customers'));
     }
 
 
