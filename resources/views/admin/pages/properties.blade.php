@@ -59,7 +59,7 @@
                     <a href class="m-list-item-more"><i class="material-icons">more_horiz</i></a>
                     <div class="m-list-item-option" data-id="{{ $property->id }}"><ul>
                         <li><a href="{{ $property->id }}" class="item-edit">edit</a></li>
-                        <li><a href="/system/ajax/blog/delete/{{ $property->id }}" class="item-delete direct-delete">delete</a></li>
+                        <li><a href="{{ url('system/ajax/property/delete/' . $property->id) }}" class="item-delete direct-delete">delete</a></li>
                         </ul>
                     </div>
                 </td>

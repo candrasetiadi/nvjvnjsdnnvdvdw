@@ -71,15 +71,20 @@ class Property extends Model
 
     public function categoryName()
     {
-        $categoryLanguages = $this->category->categoryLanguages()->where('locale', \Lang::getLocale());
+        if ($this->category) {
+            $categoryLanguages = $this->category->categoryLanguages()->where('locale', \Lang::getLocale());
 
-        if ($categoryLanguages->count() > 0) {
+            if ($categoryLanguages->count() > 0) {
 
-            return $categoryLanguages->first()->title;
+                return $categoryLanguages->first()->title;
+
+            } else {
+
+                return $this->category->categoryLanguages()->where('locale', 'en')->first()->title;
+            }
 
         } else {
-
-            return $this->category->categoryLanguages()->where('locale', 'en')->first()->title;
+            return '-';
         }
 
     }
@@ -100,6 +105,30 @@ class Property extends Model
 
         static::deleting(function($property)
         {
+            if ($property->propertyLanguages) {
+
+                $property->propertyLanguages()->delete();
+            }
+
+            if ($property->propertyFiles) {
+                
+                $property->propertyFiles()->delete();
+            }
+            
+            if ($property->inquiries) {
+                
+                $property->inquiries()->delete();
+            }
+            
+            if ($property->facilities) {
+                
+                $property->facilities()->delete();
+            }
+            
+            if ($property->documents) {
+                
+                $property->documents()->delete();
+            }
 
         });
 

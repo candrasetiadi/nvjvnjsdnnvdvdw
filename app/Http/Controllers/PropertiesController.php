@@ -166,5 +166,11 @@ class PropertiesController extends Controller
     public function destroy($id)
     {
         //
+        $property = Property::find($id);
+
+        $property->delete();
+
+        // $property->softDeletes();
+        return redirect()->back();
     }
 }
