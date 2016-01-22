@@ -166,6 +166,16 @@ Route::group(['prefix' => 'admin'], function () {
             
         });
 
+        Route::group(['prefix' => 'inquiry'], function () {
+
+            Route::any('get/{id}', 'InquiryController@show');
+
+            Route::any('store', 'InquiryController@store');
+
+            Route::any('delete/{id}', 'InquiryController@destroy');
+            
+        });
+
         Route::group(['prefix' => 'account'], function () {
 
             Route::any('prepare', 'UserController@invite');

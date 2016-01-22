@@ -73,6 +73,17 @@ class AdminController extends Controller {
     }
 
 
+    public function enquiries() {
+
+        $search = \Input::get('q');
+
+        $enquiries = \App\Inquiry::orderBy('created_at', 'desc')->paginate($this->limit);
+
+        return view('admin.pages.enquiries', compact('enquiries'));
+
+    }
+
+
     public function propertyCategories()
     {
 
