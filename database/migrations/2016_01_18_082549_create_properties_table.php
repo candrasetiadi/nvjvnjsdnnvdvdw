@@ -29,9 +29,6 @@ class CreatePropertiesTable extends Migration
             $table->double('building_size')->default(0);
             $table->double('land_size')->default(0); 
 
-            $table->integer('bedroom')->default(0);
-            $table->integer('bathroom')->default(0);
-
             $table->tinyinteger('sold')->default(0);
             $table->string('code')->nullable();
             $table->enum('status', array(1, 0, -1));

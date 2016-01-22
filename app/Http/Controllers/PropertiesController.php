@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
 
 use Response;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Property;
+
+use DB;
 
 class PropertiesController extends Controller
 {
@@ -52,6 +55,9 @@ class PropertiesController extends Controller
     {
         //
         // To do change user_id value with logged in user
+
+        DB::beginTransaction();
+
         $user_id = 1;
 
         $property = new Property;
@@ -59,7 +65,7 @@ class PropertiesController extends Controller
         $property->user_id = $user_id;
 
         // $property->customer_id = $request->customer_id;
-        // $property->category_id = $request->category_id;
+        $property->category_id = $request->category_id;
 
         $property->currency = $request->currency;
         $property->price = $request->price;
@@ -69,9 +75,6 @@ class PropertiesController extends Controller
         // $property->publish = $request->publish;
         $property->building_size = $request->building_size;
         $property->land_size = $request->land_size;
-
-        $property->bedroom = $request->bedroom;
-        $property->bathroom = $request->bathroom;
 
         // $property->sold = $request->sold;
         $property->code = $request->code;
@@ -116,6 +119,90 @@ class PropertiesController extends Controller
         $property->lease_year = $request->lease_year;
 
         $property->save();
+
+
+        Model::unguard();
+
+        // lang
+        $property->propertyLanguages()->save(
+
+            new \App\PropertyLanguage([
+                'locale' => 'en',
+                'title' => $request->title,
+                'description' => $request->description
+            ])
+
+        );
+
+        // distances
+        if ($request->distance_value) {
+            foreach ($request->distance_value as $key => $value) {
+
+                $distance = new \App\Distance;
+
+                $distance->property_id = $property->id;
+                $distance->from = $key;
+                $distance->value = $value;
+                $distance->unit = $request->distance_unit[$key];
+
+                $distance->save();
+            }
+        }
+
+        // documents
+        if ($request->documents) {
+            foreach ($request->documents as $key => $value) {
+
+                $document = new \App\Document;
+
+                $document->property_id = $property->id;
+                $document->name = $key;
+                $document->is_included = $value;
+
+                $document->save();
+            }
+        }
+
+        // facilities
+        if ($request->facilities) {
+            foreach ($request->facilities as $key => $value) {
+
+                $facility = new \App\Facility;
+
+                $facility->property_id = $property->id;
+                $facility->name = $key;
+                $facility->description = $value;
+
+                $facility->save();
+            }
+        }
+
+        // files
+        if ($request->hasFile('files')) {
+
+            foreach ($request->file('files') as $key => $value) {
+
+                $destinationPath = 'uploads/property';
+
+                $extension = $value->getClientOriginalExtension();
+                $fileName = date('YmdHis') . '_' . $key . '_kibarer_property' . '.' . $extension;
+
+                $value->move($destinationPath, $fileName);
+
+                $propertyFile = new \App\PropertyFile;
+
+                $propertyFile->property_id = $property->id;
+                $propertyFile->file = $fileName;
+
+                $propertyFile->save();
+
+            }
+
+        }
+
+        Model::reguard();
+
+        DB::commit();
 
         return response()->json(array('status' => 200, 'monolog' => array('title' => 'post success', 'message' => 'Post has been received')));
     }

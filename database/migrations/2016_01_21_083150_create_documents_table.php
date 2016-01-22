@@ -17,6 +17,7 @@ class CreateDocumentsTable extends Migration
             $table->integer('property_id');
             $table->string('name');
             $table->string('description');
+            $table->tinyinteger('is_included')->default(0);
             $table->timestamps();
         });
     }

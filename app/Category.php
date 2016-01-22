@@ -19,6 +19,16 @@ class Category extends Model
         return $this->hasMany('App\CategoryLanguage');
     }
 
+    public function name()
+    {
+        $categoryLanguages = $this->categoryLanguages()->where('locale', \Lang::getLocale())->first();
+
+        if(!$categoryLanguages) $categoryLanguages = $this->categoryLanguages()->where('locale', 'en')->first();
+
+        return $categoryLanguages->title;
+
+    }
+
     public static function boot()
     {
         parent::boot();

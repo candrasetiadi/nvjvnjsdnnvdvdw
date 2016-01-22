@@ -66,7 +66,9 @@ class AdminController extends Controller {
             $properties = \App\Property::orderBy('created_at', 'desc')->paginate($this->limit);
         }
 
-        return view('admin.pages.properties', compact('properties'));
+        $categories = \App\Category::orderBy('order', 'asc')->get();
+
+        return view('admin.pages.properties', compact('properties', 'categories'));
 
     }
 

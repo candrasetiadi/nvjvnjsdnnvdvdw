@@ -189,12 +189,43 @@
 
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
 
-                        <div class="m-input-wrapper m-input-wrapper-select w25-9">
+                        <div class="m-input-wrapper m-input-wrapper-select w50-6">
                             <select id="blog-input-lang" name="type" required>
                                 <option value="for sell" selected>For Sell</option>
                                 <option value="for rent">For Rent</option>
                             </select>
                             <label for="type">Type</label>
+                        </div>
+
+                        <div class="m-input-wrapper m-input-wrapper-select w50-6">
+                            <select id="blog-input-lang" name="category_id" required>
+
+                                @foreach($categories as $category)
+                                <option value="{{ $category->id }}" selected>{{ ucwords($category->name()) }}</option>
+                                @endforeach
+
+                            </select>
+                            <label for="category_id">Category</label>
+                        </div>
+                        
+                    </div>
+
+                    <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
+
+                        <div class="m-input-wrapper m-input-wrapper-select w50-6">
+                            <select id="blog-input-lang" name="is_price_request" required>
+                                <option value="0" selected>no</option>
+                                <option value="1">yes</option>
+                            </select>
+                            <label for="is_price_request">is Price Request</label>
+                        </div>
+
+                        <div class="m-input-wrapper m-input-wrapper-select w50-6">
+                            <select id="blog-input-lang" name="is_exclusive" required>
+                                <option value="0" selected>no</option>
+                                <option value="1">yes</option>
+                            </select>
+                            <label for="is_exclusive">is Exclusive</label>
                         </div>
                         
                     </div>
@@ -212,13 +243,13 @@
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
                         <h3 class="input-group-title">Specification</h3>
                         <div class="m-input-wrapper w33-8">
-                            <input type="text" name="bedroom" id="properties-input-bedroom" required>
-                            <label for="bedroom">bed</label>
+                            <input type="text" name="facilities[bedroom]" id="properties-input-facilities[bedroom]" required>
+                            <label for="facilities[bedroom]">bed</label>
                         </div>
 
                         <div class="m-input-wrapper w33-8">
-                            <input type="text" name="bathroom" id="properties-input-bathroom" required>
-                            <label for="bathroom">bath</label>
+                            <input type="text" name="facilities[bathroom]" id="properties-input-facilities[bathroom]" required>
+                            <label for="facilities[bathroom]">bath</label>
                         </div>
 
                         <div class="m-input-wrapper m-input-wrapper-select w33-8">
@@ -230,6 +261,7 @@
                         </div>
                     </div>
 
+                    <!-- 
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between" style="max-height: 302px; overflow-y: scroll;">
                         <table id="properties-facilities-table">
                             <thead>
@@ -346,17 +378,18 @@
                             </tbody>
                         </table>
                     </div>
+                     -->
                 </m-caroussel-slide>
 
                 <m-caroussel-slide class="justify-between flexbox flexbox-wrap" id="caroussel-distance" style="width: calc(100% / <?= $numberOfSlides ?>)">
 
                     <div class="m-input-wrapper w50-6">
-                        <input type="text" name="distance_beach" id="properties-input-distance_beach" required>
-                        <label for="distance_beach">Beach</label>
+                        <input type="text" name="distance_value[beach]" id="properties-input-distance_value[beach]" required>
+                        <label for="distance_value[beach]">Beach</label>
                     </div>
 
                     <div class="m-input-wrapper m-input-wrapper-select w50-6">
-                        <select id="properties-input-unit" name="unit" required>
+                        <select id="properties-input-unit" name="distance_unit[beach]" required>
                             <option value="km" selected>KM</option>
                             <option value="m">Meters</option>
                             <option value="minutes">Minutes</option>
@@ -366,12 +399,12 @@
                     </div>
 
                     <div class="m-input-wrapper w50-6">
-                        <input type="text" name="distance_airport" id="properties-input-distance_airport" required>
-                        <label for="distance_airport">Airport</label>
+                        <input type="text" name="distance_value[airport]" id="properties-input-distance_value[airport]" required>
+                        <label for="distance_value[airport]">Airport</label>
                     </div>
 
                     <div class="m-input-wrapper m-input-wrapper-select w50-6">
-                        <select id="properties-input-unit" name="unit" required>
+                        <select id="properties-input-unit" name="distance_unit[airport]" required>
                             <option value="km" selected>KM</option>
                             <option value="m">Meters</option>
                             <option value="minutes">Minutes</option>
@@ -381,12 +414,12 @@
                     </div>
 
                     <div class="m-input-wrapper w50-6">
-                        <input type="text" name="distance_market" id="properties-input-distance_market" required>
-                        <label for="distance_market">Market</label>
+                        <input type="text" name="distance_value[market]" id="properties-input-distance_value[market]" required>
+                        <label for="distance_value[market]">Market</label>
                     </div>
 
                     <div class="m-input-wrapper m-input-wrapper-select w50-6">
-                        <select id="properties-input-unit" name="unit" required>
+                        <select id="properties-input-unit" name="distance_unit[market]" required>
                             <option value="km" selected>KM</option>
                             <option value="m">Meters</option>
                             <option value="minutes">Minutes</option>
@@ -438,7 +471,7 @@
                         </div>
 
                         <div class="m-input-wrapper w33-8">
-                            <input type="text" name="owner-email" id="properties-input-owner_email" required>
+                            <input type="text" name="owner_email" id="properties-input-owner_email" required>
                             <label for="owner_email">email</label>
                         </div>
                     </div>
@@ -464,42 +497,42 @@
                     <div class="m-input-group textarea fwidth flexbox flexbox-wrap" id="documents-received">
                         <h3 class="input-group-title">Documents Received</h3>
                         <div class="m-input-wrapper m-input-wrapper-checkbox neutral w25-9">
-                            <label for="properties-input-doc_agent_agreement">
-                                <input type="checkbox" name="doc_agent_agreement" id="properties-input-doc_agent_agreement">
+                            <label for="properties-input-documents[agent agreement]">
+                                <input type="checkbox" name="documents[agent agreement]" id="properties-input-documents[agent agreement]">
                                 Agent Agreement
                             </label>
-                            <label for="properties-input-doc_pondok">
-                                <input type="checkbox" name="doc_pondok" id="properties-input-doc_pondok">
+                            <label for="properties-input-documents[pondok wisata license]">
+                                <input type="checkbox" name="documents[pondok wisata license]" id="properties-input-documents[pondok wisata license]">
                                 Pondok Wisata License
                             </label>
                         </div>
                         <div class="m-input-wrapper m-input-wrapper-checkbox neutral w25-9">
-                            <label for="properties-input-doc_tax">
-                                <input type="checkbox" name="doc_tax" id="properties-input-doc_tax">
+                            <label for="properties-input-documents[tax construction]">
+                                <input type="checkbox" name="documents[tax construction]" id="properties-input-documents[tax construction]">
                                 Tax Construction
                             </label>
-                            <label for="properties-input-doc_photo">
-                                <input type="checkbox" name="doc_photo" id="properties-input-doc_photo">
+                            <label for="properties-input-documents[photographs]">
+                                <input type="checkbox" name="documents[photographs]" id="properties-input-documents[photographs]">
                                 Photographs
                             </label>
                         </div>
                         <div class="m-input-wrapper m-input-wrapper-checkbox neutral w25-9">
-                            <label for="properties-input-doc_imb">
-                                <input type="checkbox" name="doc_imb" id="properties-input-doc_imb">
+                            <label for="properties-input-documents[imb]">
+                                <input type="checkbox" name="documents[imb]" id="properties-input-documents[imb]">
                                 IMB
                             </label>
-                            <label for="properties-input-doc_land">
-                                <input type="checkbox" name="doc_land" id="properties-input-doc_land">
+                            <label for="properties-input-documents[land certificate">
+                                <input type="checkbox" name="documents[land certificate]" id="properties-input-documents[land certificate]">
                                 Land Certificate
                             </label>
                         </div>
                         <div class="m-input-wrapper m-input-wrapper-checkbox neutral w25-9">
-                            <label for="properties-input-doc_notary">
-                                <input type="checkbox" name="doc_notary" id="properties-input-doc_notary">
+                            <label for="properties-input-documents[notary details]">
+                                <input type="checkbox" name="documents[notary details]" id="properties-input-documents[notary details]">
                                 Notary Details
                             </label>
-                            <label for="properties-input-doc_owner_idcard">
-                                <input type="checkbox" name="doc_owner_idcard" id="properties-input-doc_owner_idcard">
+                            <label for="properties-input-documents[owner idcard]">
+                                <input type="checkbox" name="documents[owner idcard]" id="properties-input-documents[owner idcard]">
                                 Owner ID Card
                             </label>
                         </div>
