@@ -102,6 +102,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('settings', 'AdminController@settings');
 
     Route::get('about', 'AdminController@about');
+
+    Route::any('register', function() {
+
+        return view('admin.pages.register');
+    });
 });
 //});
 
@@ -161,6 +166,11 @@ Route::group(['prefix' => 'admin'], function () {
             
         });
 
+        Route::group(['prefix' => 'account'], function () {
+
+            Route::any('prepare', 'UserController@invite');
+        });
+
         Route::group(['prefix' => 'settings'], function () {
 
             Route::group(['social' => 'general'], function () {
@@ -168,6 +178,13 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::any('get', 'SystemController@getGeneral');
 
                 Route::any('set', 'SystemController@setGeneral');
+            });
+
+            Route::group(['prefix' => 'social'], function () {
+
+                Route::any('get', 'SystemController@getSocial');
+
+                Route::any('set', 'SystemController@setSocial');
             });
 
             Route::group(['prefix' => 'currency'], function () {
@@ -179,13 +196,6 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::any('set', 'SystemController@setExchange');
 
                 Route::any('auto/{state}', ['as' => 'state', 'uses' => 'SystemController@setExchangeAuto']);
-            });
-
-            Route::group(['social' => 'social'], function () {
-
-                Route::any('get', 'SystemController@getSocial');
-
-                Route::any('set', 'SystemController@setSocial');
             });
 
             Route::any('reindexdata', 'SystemController@reindexData');

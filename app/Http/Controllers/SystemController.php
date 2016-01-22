@@ -19,9 +19,48 @@ class SystemController extends Controller {
         //
     }
 
+    public function getGeneral() {
+
+    }
 
 
 
+    public function setGeneral() {
+
+    }
+
+
+
+    // Get social account links
+    public function getSocial() {
+
+        $socialAccounts = File::get(storage_path('json/social_accounts.json'));
+
+        return $socialAccounts;
+    }
+
+
+
+    // Set social account links
+    public function setSocial(Request $request) {
+
+        $accounts = $request->social;
+
+        $socialAccounts = array();
+
+        foreach($accounts as $soc => $acc) {
+
+            $socialAccounts[$soc] = $acc;
+        }
+
+        File::put(storage_path('json/social_accounts.json'), json_encode($socialAccounts));
+
+        return response()->json(array('status' => 200, 'monolog' => array('title' => 'social accounts updated', 'message' => 'The social accounts have been updated successfully')));
+    }
+
+
+
+    // Get exchange rates
     public function getExchange() {
 
         $currencies = File::get(storage_path('json/conversion.json'));

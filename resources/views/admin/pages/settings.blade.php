@@ -16,7 +16,7 @@
                 </m-settings-item-desc>
             </m-settings-item>
 
-            <m-settings-item button data-function="modalOpen('#settings-social-form')">
+            <m-settings-item button data-function="getSocialInfo">
                 <i class="material-icons">people</i>
                 <m-settings-item-desc>
                     <m-settings-item-header>social networking</m-settings-item-header>
@@ -24,7 +24,7 @@
                 </m-settings-item-desc>
             </m-settings-item>
 
-            <m-settings-item button>
+            <m-settings-item button data-function="getPublicInfo">
                 <i class="material-icons">public</i>
                 <m-settings-item-desc>
                     <m-settings-item-header>locale</m-settings-item-header>
@@ -135,39 +135,29 @@
 
 @section('modal')
 
-<m-modal-wrapper id="settings-social-form">
+<m-modal-wrapper id="settings-general-form">
 
-    {!! Form::open(array('class' => 'modal-window', 'id' => 'account-form', 'data-function' => 'doNothing', 'data-url' => 'settings/social/set', 'style' => 'max-width: 480px')) !!}
-    <h3>social network accounts</h3>
+    {!! Form::open(array('class' => 'modal-window', 'id' => 'general-form', 'data-function' => 'doNothing', 'data-url' => 'settings/social/set', 'style' => 'max-width: 480px')) !!}
+    <h3>general information</h3>
     <m-input-group>
-        <m-input>
-            <input type="text" id="social-input-facebook" name="social[facebook]">
-            <label for="social-input-facebook">facebook</label>
+        <m-input fwidth>
+            <input type="text" id="social-input-email" name="social[email]">
+            <label for="social-input-email">email</label>
         </m-input>
 
-        <m-input>
-            <input type="text" id="social-input-twitter" name="social[twitter]">
-            <label for="social-input-twitter">twitter</label>
+        <m-input fwidth>
+            <input type="text" id="social-input-phone" name="social[phone]">
+            <label for="social-input-phone">phone</label>
         </m-input>
 
-        <m-input>
+        <m-input fwidth>
             <input type="text" id="social-input-google" name="social[google]">
             <label for="social-input-google">google</label>
         </m-input>
 
-        <m-input>
+        <m-input fwidth>
             <input type="text" id="social-input-linkedin" name="social[linkedin]">
             <label for="social-input-linkedin">linkedin</label>
-        </m-input>
-
-        <m-input>
-            <input type="text" id="social-input-instagram" name="social[instagram]">
-            <label for="social-input-instagram">instagram</label>
-        </m-input>
-
-        <m-input>
-            <input type="text" id="social-input-pinterest" name="social[pinterest]">
-            <label for="social-input-pinterest">pinterest</label>
         </m-input>
     </m-input-group>
 
@@ -180,30 +170,47 @@
     {!! Form::close() !!}
 </m-modal-wrapper>
 
+<m-modal-wrapper id="settings-social-form">
 
-<m-modal-wrapper id="settings-general-form">
-
-    {!! Form::open(array('class' => 'modal-window', 'id' => 'general-form', 'data-function' => 'doNothing', 'data-url' => 'settings/general/set', 'style' => 'max-width: 480px')) !!}
-    <h3>general information</h3>
+    {!! Form::open(array('class' => 'modal-window', 'id' => 'account-form', 'data-function' => 'doNothing', 'data-url' => 'settings/social/set', 'style' => 'max-width: 480px')) !!}
+    <h3>social network accounts</h3>
     <m-input-group>
-        <m-input>
-            <input type="text" id="social-input-email">
-            <label for="social-input-email">email</label>
+        <m-input fwidth>
+            <input type="text" id="social-input-facebook" name="social[facebook]">
+            <label for="social-input-facebook">facebook</label>
+        </m-input>
+        <m-input-desc>
+            Requires full facebook url e.g: http://www.facebook.com/borislemke
+        </m-input-desc>
+
+        <m-input fwidth>
+            <input type="text" id="social-input-twitter" name="social[twitter]">
+            <label for="social-input-twitter">twitter</label>
         </m-input>
 
-        <m-input>
-            <input type="text" id="social-input-phone">
-            <label for="social-input-phone">phone</label>
-        </m-input>
-
-        <m-input>
-            <input type="text" id="social-input-google">
+        <m-input fwidth>
+            <input type="text" id="social-input-google" name="social[google]">
             <label for="social-input-google">google</label>
         </m-input>
 
-        <m-input>
-            <input type="text" id="social-input-linkedin">
+        <m-input fwidth>
+            <input type="text" id="social-input-youtube" name="social[youtube]">
+            <label for="social-input-youtube">youtube</label>
+        </m-input>
+
+        <m-input fwidth>
+            <input type="text" id="social-input-linkedin" name="social[linkedin]">
             <label for="social-input-linkedin">linkedin</label>
+        </m-input>
+
+        <m-input fwidth>
+            <input type="text" id="social-input-instagram" name="social[instagram]">
+            <label for="social-input-instagram">instagram</label>
+        </m-input>
+
+        <m-input fwidth>
+            <input type="text" id="social-input-pinterest" name="social[pinterest]">
+            <label for="social-input-pinterest">pinterest</label>
         </m-input>
     </m-input-group>
 
@@ -222,17 +229,17 @@
     {!! Form::open(array('class' => 'modal-window', 'id' => 'currency-form', 'data-function' => 'doNothing', 'data-url' => 'settings/currency/set', 'style' => 'max-width: 480px')) !!}
     <h3>exchange rate</h3>
     <m-input-group>
-        <m-input>
+        <m-input fwidth>
             <input type="text" id="currency-input-idr" name="currencies[idr]">
             <label for="currency-input-idr">idr</label>
         </m-input>
 
-        <m-input>
+        <m-input fwidth>
             <input type="text" id="currency-input-eur" name="currencies[eur]">
             <label for="currency-input-eur">eur</label>
         </m-input>
 
-        <m-input>
+        <m-input fwidth>
             <input type="text" id="currency-input-rub" name="currencies[rub]">
             <label for="currency-input-rub">rub</label>
         </m-input>

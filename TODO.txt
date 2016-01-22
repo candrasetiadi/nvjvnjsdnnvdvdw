@@ -1,0 +1,4 @@
+This text file serves as a reminder for todos that needs to be executed prior to launch
+
+UserController:
+    - Check that emailling user works! Connect to smtp server etc.

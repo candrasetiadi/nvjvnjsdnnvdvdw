@@ -62,8 +62,6 @@
                     @yield('fab', '')
 
                 </div>
-
-                <m-progress></m-progress>
             </div>
 
             <section class="app-content">

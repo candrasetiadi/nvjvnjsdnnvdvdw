@@ -54,12 +54,12 @@
 
 <m-modal-wrapper id="account-add">
 
-    {!! Form::open(array('class' => 'modal-window', 'id' => 'account-form')) !!}
+    {!! Form::open(array('class' => 'modal-window', 'id' => 'account-form', 'data-function' => 'doNothing', 'data-url' => 'account/prepare', 'style' => 'max-width: 400px')) !!}
     <h3>Add account</h3>
 
     <m-input-group justify-between>
 
-        <m-input w33-8 select>
+        <m-input fwidth select>
             <input type="text" select id="account-input-role" name="role" required>
             <label for="account-input-role">role</label>
             <m-select>
@@ -69,35 +69,17 @@
             </m-select>
         </m-input>
 
-        <m-input w33-8>
+        <m-input fwidth>
             <input type="text" id="account-input-email" name="email" required>
             <label for="email">email</label>
         </m-input>
 
-        <m-input w33-8>
-            <input type="text" id="account-input-tags" name="tags" required>
-            <label for="tags">tags</label>
-        </m-input>
+        <m-input-desc>
+            The email addressee wil receive an email with a random generated password to create an account. Please be aware that you are giving them access to your content management system.
+        </m-input-desc>
     </m-input-group>
 
-    <m-input>
-        <input type="text" id="account-input-tags" name="tags" required>
-        <label for="tags">tags</label>
-    </m-input>
-
-    <m-input>
-        <input type="text" id="account-input-meta_desc" name="meta_desc" required>
-        <label for="meta_desc">short description</label>
-    </m-input>
-
-    <m-input-group textarea>
-        <h3 class="input-group-title">Content</h3>
-        <div class="input-wrapper fwidth">
-            <textarea name="content" id="account-content" rows="5"></textarea>
-        </div>
-    </m-input-group>
-    <input type="hidden" name="author" id="account-input-admin" value="admin">
-    <input type="hidden" name="edit" value="0" id="edit-flag">
+    <input type="hidden" name="creator" id="account-input-admin" value="admin">
 
     <div class="button-holder align-right">
         <m-button plain modal-close>cancel</m-button>
@@ -108,9 +90,7 @@
 @stop
 
 @section('scripts')
-
 <script type="text/javascript">
     Matter.admin.accounts();
 </script>
-
 @stop

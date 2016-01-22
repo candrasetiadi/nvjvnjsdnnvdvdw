@@ -22,8 +22,7 @@ var gred = "#F44336",
 
 //Plugin settings
 NProgress.configure({
-    showSpinner: false,
-    parent: 'm-progress'
+    showSpinner: false
 });
 
 //Navbar
@@ -300,6 +299,8 @@ function modalClose() {
     $('#edit-flag').val(0);
 
     $('#media-wrapper').html('');
+
+    NProgress.done();
 }
 
 function modalOpen(id) {
@@ -715,6 +716,16 @@ var Matter = {
 
         accounts: function() {
 
+            $(document).on('click', '[save-form]', function() {
+
+                var form = $(this).closest('form'),
+                    formId = form.attr('id'),
+                    url = form.attr('data-url'),
+                    doneFunc = form.attr('data-function'),
+                    fd = new FormData($('#' + formId)[0]);
+
+                Ajax.post(url, fd, doNothing);
+            });
         },
 
         settings: function() {
@@ -744,6 +755,42 @@ var Matter = {
 
                 Ajax.post(url, fd, eval(doneFunc));
             });
+
+
+            function getGeneralInfo() {
+
+                Ajax.get('settings/general/get', populateGeneralEdit);
+            }
+
+            function populateGeneralEdit(data) {
+
+                $.each(data, function(k, v) {
+
+                    $('#general-input-' + k).val(v);
+                });
+
+                modalOpen('#settings-general-form');
+
+                NProgress.done();
+            }
+
+            function getSocialInfo() {
+
+                Ajax.get('settings/social/get', populateSocialEdit);
+            }
+
+            function populateSocialEdit(data) {
+
+                $.each(data, function(k, v) {
+
+                    $('#social-input-' + k).val(v);
+                });
+
+                modalOpen('#settings-social-form');
+
+                NProgress.done();
+            }
+
 
             function autoExchangeUpdate(bool) {
 
