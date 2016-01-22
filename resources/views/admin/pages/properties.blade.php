@@ -78,7 +78,7 @@
 
 <m-modal-wrapper id="properties-add">
 
-    {!! Form::open(array('class' => 'modal-window', 'id' => 'properties-form', 'data-function' => 'populatePropetiesEdit', 'data-url' => 'property/test')) !!}
+    {!! Form::open(array('class' => 'modal-window', 'id' => 'properties-form', 'data-function' => 'modalClose', 'data-url' => 'property/store')) !!}
     <h3>Add Property</h3>
     <m-caroussel>
 
@@ -105,8 +105,8 @@
                         </div>
 
                         <div class="m-input-wrapper w50-6">
-                            <input type="text" name="url" id="properties-input-url" required>
-                            <label for="url">url</label>
+                            <input type="text" name="slug" id="properties-input-url" required>
+                            <label for="slug">url</label>
                         </div>
                     </div>
 
@@ -128,9 +128,9 @@
 
                         <div class="m-input-wrapper m-input-wrapper-select w25-9">
                             <select id="properties-input-currency" name="currency" required>
-                                <option value="idr" selected>idr</option>
-                                <option value="eur">eur</option>
-                                <option value="usd">usd</option>
+                                <option value="IDR" selected>idr</option>
+                                <option value="EUR">eur</option>
+                                <option value="USD">usd</option>
                             </select>
                             <label for="currency">currency</label>
                         </div>
@@ -144,47 +144,59 @@
 
                     <div class="m-input-group fwidth flexbox justify-between">
                         <div class="m-input-wrapper w25-9">
-                            <input type="text" name="period" id="properties-input-period" required>
-                            <label for="period">period</label>
+                            <input type="text" name="lease_period" id="properties-input-lease_year" required>
+                            <label for="lease_period">period</label>
                         </div>
 
                         <div class="m-input-wrapper w25-9">
-                            <input type="text" name="ending" id="properties-input-ending" required>
-                            <label for="ending">end year</label>
+                            <input type="text" name="lease_year" id="properties-input-lease_year" required>
+                            <label for="lease_year">end year</label>
                         </div>
 
                         <div class="m-input-wrapper w25-9">
-                            <input type="text" name="buildsize" id="properties-input-buildsize" required>
-                            <label for="buildsize">building size(sqm)</label>
+                            <input type="text" name="building_size" id="properties-input-building_size" required>
+                            <label for="building_size">building size(sqm)</label>
                         </div>
 
                         <div class="m-input-wrapper w25-9">
-                            <input type="text" name="landsize" id="properties-input-landsize" required>
-                            <label for="landsize">land size(are)</label>
+                            <input type="text" name="land_size" id="properties-input-land_size" required>
+                            <label for="land_size">land size(are)</label>
                         </div>
                     </div>
 
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
                         <h3 class="input-group-title">Views</h3>
                         <div class="m-input-wrapper w25-9">
-                            <input type="text" name="viewn" id="properties-input-viewn" required>
-                            <label for="viewn">north</label>
+                            <input type="text" name="view_north" id="properties-input-view_north" required>
+                            <label for="view_north">north</label>
                         </div>
 
                         <div class="m-input-wrapper w25-9">
-                            <input type="text" name="viewe" id="properties-input-viewe" required>
-                            <label for="viewe">east</label>
+                            <input type="text" name="view_east" id="properties-input-view_east" required>
+                            <label for="view_east">east</label>
                         </div>
 
                         <div class="m-input-wrapper w25-9">
-                            <input type="text" name="vieww" id="properties-input-vieww" required>
-                            <label for="vieww">west</label>
+                            <input type="text" name="view_west" id="properties-input-view_west" required>
+                            <label for="view_west">west</label>
                         </div>
 
                         <div class="m-input-wrapper w25-9">
-                            <input type="text" name="views" id="properties-input-views" required>
-                            <label for="views">south</label>
+                            <input type="text" name="view_south" id="properties-input-view_south" required>
+                            <label for="view_south">south</label>
                         </div>
+                    </div>
+
+                    <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
+
+                        <div class="m-input-wrapper m-input-wrapper-select w25-9">
+                            <select id="blog-input-lang" name="type" required>
+                                <option value="for sell" selected>For Sell</option>
+                                <option value="for rent">For Rent</option>
+                            </select>
+                            <label for="type">Type</label>
+                        </div>
+                        
                     </div>
 
                     <div class="m-input-group textarea fwidth flexbox flexbox-wrap">
@@ -200,21 +212,21 @@
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
                         <h3 class="input-group-title">Specification</h3>
                         <div class="m-input-wrapper w33-8">
-                            <input type="text" name="bed" id="properties-input-bed" required>
-                            <label for="bed">bed</label>
+                            <input type="text" name="bedroom" id="properties-input-bedroom" required>
+                            <label for="bedroom">bed</label>
                         </div>
 
                         <div class="m-input-wrapper w33-8">
-                            <input type="text" name="bath" id="properties-input-bath" required>
-                            <label for="bath">bath</label>
+                            <input type="text" name="bathroom" id="properties-input-bathroom" required>
+                            <label for="bathroom">bath</label>
                         </div>
 
                         <div class="m-input-wrapper m-input-wrapper-select w33-8">
-                            <select id="properties-input-furnished" name="furnished" required>
+                            <select id="properties-input-sell_in_furnish" name="sell_in_furnish" required>
                                 <option value="0" selected>no</option>
                                 <option value="1">yes</option>
                             </select>
-                            <label for="furnished">furnished</label>
+                            <label for="sell_in_furnish">furnished</label>
                         </div>
                     </div>
 
@@ -336,12 +348,53 @@
                     </div>
                 </m-caroussel-slide>
 
-                <m-caroussel-slide class="flexbox flexbox-wrap" id="caroussel-distance" style="width: calc(100% / <?= $numberOfSlides ?>)">
+                <m-caroussel-slide class="justify-between flexbox flexbox-wrap" id="caroussel-distance" style="width: calc(100% / <?= $numberOfSlides ?>)">
 
-                    <div class="m-input-wrapper">
-                        <input type="text" name="chingchong" id="properties-input-title" class="bind-input-from" data-target="#properties-input-url" required>
-                        <label for="chingchong">chingchong</label>
+                    <div class="m-input-wrapper w50-6">
+                        <input type="text" name="distance_beach" id="properties-input-distance_beach" required>
+                        <label for="distance_beach">Beach</label>
                     </div>
+
+                    <div class="m-input-wrapper m-input-wrapper-select w50-6">
+                        <select id="properties-input-unit" name="unit" required>
+                            <option value="km" selected>KM</option>
+                            <option value="m">Meters</option>
+                            <option value="minutes">Minutes</option>
+                            <option value="hours">Hours</option>
+                        </select>
+                        <label for="unit">unit</label>
+                    </div>
+
+                    <div class="m-input-wrapper w50-6">
+                        <input type="text" name="distance_airport" id="properties-input-distance_airport" required>
+                        <label for="distance_airport">Airport</label>
+                    </div>
+
+                    <div class="m-input-wrapper m-input-wrapper-select w50-6">
+                        <select id="properties-input-unit" name="unit" required>
+                            <option value="km" selected>KM</option>
+                            <option value="m">Meters</option>
+                            <option value="minutes">Minutes</option>
+                            <option value="hours">Hours</option>
+                        </select>
+                        <label for="unit">unit</label>
+                    </div>
+
+                    <div class="m-input-wrapper w50-6">
+                        <input type="text" name="distance_market" id="properties-input-distance_market" required>
+                        <label for="distance_market">Market</label>
+                    </div>
+
+                    <div class="m-input-wrapper m-input-wrapper-select w50-6">
+                        <select id="properties-input-unit" name="unit" required>
+                            <option value="km" selected>KM</option>
+                            <option value="m">Meters</option>
+                            <option value="minutes">Minutes</option>
+                            <option value="hours">Hours</option>
+                        </select>
+                        <label for="unit">unit</label>
+                    </div>
+
                 </m-caroussel-slide>
 
                 <m-caroussel-slide class="flexbox flexbox-wrap" id="caroussel-gallery" style="width: calc(100% / <?= $numberOfSlides ?>)">
@@ -353,7 +406,7 @@
                         <input class="m-image-input" type="file" name="files[]" id="properties-input-image" multiple>
                     </div>
 
-                    <div class="gallery-wrapper flexbox flexbox-wrap justify-between">
+                    <!-- <div class="gallery-wrapper flexbox flexbox-wrap justify-between">
                         <div class="gallery-item">
                             <a href class="gallery-item-option"><i class="material-icons">more_horiz</i></a>
                         </div>
@@ -366,7 +419,8 @@
                         <div class="gallery-item">
                             <a href class="gallery-item-option"><i class="material-icons">more_horiz</i></a>
                         </div>
-                    </div>
+                    </div> -->
+
                 </m-caroussel-slide>
 
                 <m-caroussel-slide class="flexbox flexbox-wrap" id="caroussel-owner" style="width: calc(100% / <?= $numberOfSlides ?>)">
@@ -374,79 +428,79 @@
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
                         <h3 class="input-group-title">Owner Information</h3>
                         <div class="m-input-wrapper w33-8">
-                            <input type="text" name="owner-name" id="properties-input-owner-name" required>
-                            <label for="owner-name">name</label>
+                            <input type="text" name="owner_name" id="properties-input-owner_name" required>
+                            <label for="owner_name">name</label>
                         </div>
 
                         <div class="m-input-wrapper w33-8">
-                            <input type="text" name="owner-phone" id="properties-input-owner-phone" required>
-                            <label for="owner-phone">phone</label>
+                            <input type="text" name="owner_phone" id="properties-input-owner_phone" required>
+                            <label for="owner_phone">phone</label>
                         </div>
 
                         <div class="m-input-wrapper w33-8">
-                            <input type="text" name="owner-email" id="properties-input-owner-email" required>
-                            <label for="owner-email">email</label>
+                            <input type="text" name="owner-email" id="properties-input-owner_email" required>
+                            <label for="owner_email">email</label>
                         </div>
                     </div>
 
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
                         <h3 class="input-group-title">Agency Information</h3>
                         <div class="m-input-wrapper w33-8">
-                            <input type="text" name="commission" id="properties-input-commission" required>
-                            <label for="commission">Commission</label>
+                            <input type="text" name="agent_commission" id="properties-input-agent_commission" required>
+                            <label for="agent_commission">Commission</label>
                         </div>
 
                         <div class="m-input-wrapper w33-8">
-                            <input type="text" name="agent-contact" id="properties-input-agent-contact" required>
-                            <label for="agent-contact">contact for viewing</label>
+                            <input type="text" name="agent_contact" id="properties-input-agent_contact" required>
+                            <label for="agent_contact">contact for viewing</label>
                         </div>
 
                         <div class="m-input-wrapper w33-8">
-                            <input type="text" name="inspector" id="properties-input-inspector" required>
-                            <label for="inspector">inspected by</label>
+                            <input type="text" name="agent_inspector" id="properties-input-agent_inspector" required>
+                            <label for="agent_inspector">inspected by</label>
                         </div>
                     </div>
 
                     <div class="m-input-group textarea fwidth flexbox flexbox-wrap" id="documents-received">
                         <h3 class="input-group-title">Documents Received</h3>
                         <div class="m-input-wrapper m-input-wrapper-checkbox neutral w25-9">
-                            <label for="properties-input-doc-agent-agreement">
-                                <input type="checkbox" name="doc-agent-agreement" id="properties-input-doc-agent-agreement">
+                            <label for="properties-input-doc_agent_agreement">
+                                <input type="checkbox" name="doc_agent_agreement" id="properties-input-doc_agent_agreement">
                                 Agent Agreement
                             </label>
-                            <label for="properties-input-doc-pondok">
-                                <input type="checkbox" name="doc-pondok" id="properties-input-doc-pondok">
+                            <label for="properties-input-doc_pondok">
+                                <input type="checkbox" name="doc_pondok" id="properties-input-doc_pondok">
                                 Pondok Wisata License
                             </label>
                         </div>
                         <div class="m-input-wrapper m-input-wrapper-checkbox neutral w25-9">
-                            <label for="properties-input-doc-tax">
-                                <input type="checkbox" name="doc-tax" id="properties-input-doc-tax">
+                            <label for="properties-input-doc_tax">
+                                <input type="checkbox" name="doc_tax" id="properties-input-doc_tax">
                                 Tax Construction
                             </label>
-                            <label for="properties-input-doc-photo">
-                                <input type="checkbox" name="doc-photo" id="properties-input-doc-photo">
+                            <label for="properties-input-doc_photo">
+                                <input type="checkbox" name="doc_photo" id="properties-input-doc_photo">
                                 Photographs
                             </label>
                         </div>
                         <div class="m-input-wrapper m-input-wrapper-checkbox neutral w25-9">
-                            <label for="properties-input-doc-imb">
-                                <input type="checkbox" name="doc-imb" id="properties-input-doc-imb">
+                            <label for="properties-input-doc_imb">
+                                <input type="checkbox" name="doc_imb" id="properties-input-doc_imb">
                                 IMB
                             </label>
-                            <label for="properties-input-doc-land">
-                                <input type="checkbox" name="doc-land" id="properties-input-doc-land">
+                            <label for="properties-input-doc_land">
+                                <input type="checkbox" name="doc_land" id="properties-input-doc_land">
                                 Land Certificate
                             </label>
                         </div>
                         <div class="m-input-wrapper m-input-wrapper-checkbox neutral w25-9">
-                            <label for="properties-input-doc-notary">
-                                <input type="checkbox" name="doc-notary" id="properties-input-doc-notary">
+                            <label for="properties-input-doc_notary">
+                                <input type="checkbox" name="doc_notary" id="properties-input-doc_notary">
                                 Notary Details
                             </label>
-                            <label for="properties-input-doc-ownerid">
-                                <input type="checkbox" name="doc-ownerid" id="properties-input-doc-ownerid">
-                                Owner ID
+                            <label for="properties-input-doc_owner_idcard">
+                                <input type="checkbox" name="doc_owner_idcard" id="properties-input-doc_owner_idcard">
+                                Owner ID Card
                             </label>
                         </div>
                     </div>
@@ -454,21 +508,21 @@
                     <div class="m-input-group textarea fwidth flexbox flexbox-wrap">
                         <h3 class="input-group-title">Reason for Selling</h3>
                         <div class="input-wrapper fwidth">
-                            <textarea name="selling-reason" id="properties-input-selling-reason" rows="3" style="padding-top: 0"></textarea>
+                            <textarea name="sell_reason" id="properties-input-sell_reason" rows="3" style="padding-top: 0"></textarea>
                         </div>
                     </div>
 
                     <div class="m-input-group textarea fwidth flexbox flexbox-wrap">
                         <h3 class="input-group-title">Other Listing Agents</h3>
                         <div class="input-wrapper fwidth">
-                            <textarea name="other-agents" id="properties-input-other-agents" rows="3" style="padding-top: 0"></textarea>
+                            <textarea name="other_agent" id="properties-input-other_agent" rows="3" style="padding-top: 0"></textarea>
                         </div>
                     </div>
 
                     <div class="m-input-group textarea fwidth flexbox flexbox-wrap">
                         <h3 class="input-group-title">Notes</h3>
                         <div class="input-wrapper fwidth">
-                            <textarea name="seller-notes" id="properties-input-seller-notes" rows="5" style="padding-top: 0"></textarea>
+                            <textarea name="sell_note" id="properties-input-sell_note" rows="5" style="padding-top: 0"></textarea>
                         </div>
                     </div>
                 </m-caroussel-slide>

@@ -16,56 +16,64 @@ class CreatePropertiesTable extends Migration
         Schema::create('Properties', function (Blueprint $table) {
             // index
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('customer_id');
-            $table->integer('category_id');
+            $table->integer('user_id')->default(0);
+            $table->integer('customer_id')->default(0);
+            $table->integer('category_id')->default(0);
 
             $table->enum('currency', array('IDR', 'USD', 'EUR'));
-            $table->double('price');
-            $table->double('discount');
+            $table->double('price')->default(0);
+            $table->double('discount')->default(0);
             $table->enum('type', array('for sale', 'for rent'));
+
             $table->enum('publish', array('draft', 'moderation', 'publish'));
-            $table->double('building_size');
-            $table->double('land_size');            
+            $table->double('building_size')->default(0);
+            $table->double('land_size')->default(0); 
 
-            $table->tinyinteger('sold');
-            $table->string('code');
-            $table->string('status');
-            $table->string('year');
+            $table->integer('bedroom')->default(0);
+            $table->integer('bathroom')->default(0);
 
-            $table->double('map_latitude');
-            $table->double('map_longitude');
+            $table->tinyinteger('sold')->default(0);
+            $table->string('code')->nullable();
+            $table->enum('status', array(1, 0, -1));
+            $table->string('year')->nullable();
 
-            $table->string('city');
-            $table->string('province');
-            $table->string('country');
+            $table->double('map_latitude')->nullable();
+            $table->double('map_longitude')->nullable();
+
+            $table->string('city')->nullable();
+            $table->string('province')->nullable();
+            $table->string('country')->nullable();
 
             $table->string('slug');
-            $table->integer('view');
+            $table->integer('view')->default(0);
 
-            $table->string('view_north');
-            $table->string('view_east');
-            $table->string('view_west');
-            $table->string('view_south');
+            $table->string('view_north')->nullable();
+            $table->string('view_east')->nullable();
+            $table->string('view_west')->nullable();
+            $table->string('view_south')->nullable();
 
-            $table->tinyinteger('is_price_request');
-            $table->tinyinteger('is_exclusive');
+            $table->tinyinteger('is_price_request')->default(0)->nullable();
+            $table->tinyinteger('is_exclusive')->default(0)->nullable();
 
-            $table->string('owner_name');
-            $table->string('owner_email');
-            $table->string('owner_phone');
+            $table->string('owner_name')->nullable();
+            $table->string('owner_email')->nullable();
+            $table->string('owner_phone')->nullable();
 
-            $table->string('detail_commission');
-            $table->string('detail_contact');
-            $table->string('detail_date');
-            $table->string('detail_visited');
-            $table->string('detail_sell_reason');
-            $table->string('detail_note');
-            $table->string('detail_other_agent');
+            $table->string('agent_commission')->nullable();
+            $table->string('agent_contact')->nullable();
+            $table->string('agent_meet_date')->nullable();
+            $table->string('agent_inspector')->nullable();
 
-            $table->tinyinteger('display');
-            $table->string('orientation');
-            $table->string('sell_in_furnish');
+            $table->string('sell_reason')->nullable();
+            $table->string('sell_note')->nullable();
+            $table->string('other_agent')->nullable();
+
+            $table->tinyinteger('display')->default(0);
+            $table->string('orientation')->nullable();
+            $table->string('sell_in_furnish')->nullable();
+
+            $table->double('lease_period')->default(0);
+            $table->string('lease_year')->nullable();
 
             $table->timeStamps();
             $table->softDeletes();

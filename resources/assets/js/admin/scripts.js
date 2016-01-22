@@ -665,6 +665,27 @@ var Matter = {
 
         properties: function() {
 
+            $(document).on('click', '[save-form]', function() {
+
+                var form = $(this).closest('form'),
+                    formId = form.attr('id'),
+                    url = form.attr('data-url'),
+                    doneFunc = form.attr('data-function'),
+                    fd = new FormData($('#' + formId)[0]);
+
+                Ajax.post(url, fd, eval(doneFunc));
+            });
+
+            function populatePropertiesEdit(data) {
+
+                data = data.data;
+
+                $.each(data, function(k,v) {
+
+                    consoleLog(k);
+                });
+            }
+
         },
 
         blog: function() {
@@ -702,16 +723,6 @@ var Matter = {
 
                 Ajax.post(url, fd, eval(doneFunc));
             });
-
-            function populatePropetiesEdit(data) {
-
-                data = data.data;
-
-                $.each(data, function(k,v) {
-
-                    consoleLog(k);
-                });
-            }
 
             function autoExchangeUpdate(bool) {
 

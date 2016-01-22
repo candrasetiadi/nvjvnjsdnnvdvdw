@@ -49,6 +49,11 @@ class Property extends Model
         return $this->hasMany('App\Facility');
     }
 
+    public function documents()
+    {
+        return $this->hasMany('App\Document');
+    }
+
     public function lang()
     {
 
@@ -100,10 +105,39 @@ class Property extends Model
 
         static::created(function($property)
         {
+            Model::unguard();
+
             if ($property->propertyLanguages()->count() == 0) {
 
                 $property->propertyLanguages()->save(factory(\App\PropertyLanguage::class)->make());
             }
+
+            if ($property->documents()->count() == 0) {
+
+                $property->documents()->saveMany([
+                    new \App\Document(['name' => 'Agent Agreement']),
+                    new \App\Document(['name' => 'Pondok Wisata Lcs']),
+                    new \App\Document(['name' => 'Tax Construction']),
+                    new \App\Document(['name' => 'Photographs']),
+                    new \App\Document(['name' => 'IMB']),
+                    new \App\Document(['name' => 'Land Certf.']),
+                    new \App\Document(['name' => 'Notary Details']),
+                    new \App\Document(['name' => 'Owner KTP'])
+                ]);
+
+            }
+
+            if ($property->facilities()->count() == 0) {
+
+                $property->facilities()->saveMany([
+                    new \App\Facility(['name' => 'Bedroom']),
+                    new \App\Facility(['name' => 'Bathroom']),
+                    new \App\Facility(['name' => 'Sale in Furnish'])
+                ]);
+                
+            }
+
+            Model::reguard();
 
         });
 

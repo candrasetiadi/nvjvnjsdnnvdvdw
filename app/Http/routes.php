@@ -144,7 +144,7 @@ Route::group(['prefix' => 'admin'], function () {
 
             Route::any('get/{id}', 'PropertiesController@show');
 
-            Route::any('test/', 'PropertiesController@test');
+            Route::any('store', 'PropertiesController@store');
 
             // Route::any('register', 'CustomerController@register');
         });

@@ -31,6 +31,8 @@ class CreateUsersTable extends Migration
             $table->string('image');
             $table->boolean('active');
 
+            $table->integer('author_id');
+
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
