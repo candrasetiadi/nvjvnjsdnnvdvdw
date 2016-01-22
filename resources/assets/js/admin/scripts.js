@@ -89,6 +89,15 @@ $(document).mouseup(function(e) {
     }
 });
 
+$(document).mouseup(function(e) {
+
+    var container = $("m-select");
+
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+        $('m-select').removeClass('active');
+    }
+});
+
 $(document).mouseup(function (e) {
 
     var container = $(".m-list-item-option");
@@ -339,6 +348,27 @@ $(document).on('click', 'm-caroussel-switch', function(e) {
         'height': slideHeight + 'px'
     });
 });
+
+
+
+// Matter Select
+$(document).on('click', 'm-input[select] input', function() {
+
+    $(this).siblings('m-select').addClass('active');
+});
+
+$(document).on('click', 'm-option', function() {
+
+    var value = $(this).attr('value'),
+        text = $(this).html();
+
+    $(this).parent().siblings('input').val(value);
+
+    $(this).parent().siblings('label').html(text);
+
+    $(this).parent('m-select').removeClass('active');
+});
+//
 
 function sortList(list, id) {
 
@@ -641,7 +671,7 @@ var Matter = {
 
         },
 
-        account: function() {
+        accounts: function() {
 
         },
 

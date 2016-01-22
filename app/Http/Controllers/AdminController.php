@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
 use Response;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -105,7 +106,9 @@ class AdminController extends Controller {
 
     public function accounts() {
 
-        return view('admin.pages.accounts');
+        $accounts = User::all();
+
+        return view('admin.pages.accounts', ['accounts' => $accounts]);
 
     }
 

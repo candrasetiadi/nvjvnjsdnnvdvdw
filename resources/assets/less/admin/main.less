@@ -497,6 +497,7 @@
 }
 
 monolog{
+    .card();
     opacity: 0;
     right: 24px;
     bottom: 16px;
@@ -504,7 +505,7 @@ monolog{
     z-index: 1000;
     padding: 16px;
     position: fixed;
-    background: white;
+    background: rgba(0, 0, 0, .75);
     visibility: hidden;
     border-radius: 2px;
     box-sizing: border-box;
@@ -512,20 +513,20 @@ monolog{
     padding-bottom: 54px;
 
     #mono-title{
-        color: #6f6f6f;
+        color: white;
         margin: 0 0 8px;
         font-size: 14px;
-        font-weight: 700;
+        font-weight: 400;
         padding-bottom: 8px;
         text-transform: uppercase;
-        border-bottom: 1px solid #d3d3d3;
+        border-bottom: 1px solid #484848;
     }
 
     #mono-msg{
         margin: 0;
         font-size: 14px;
-        font-weight: 500;
-        color: #323232;
+        font-weight: 300;
+        color: white;
     }
 
     mono-buttons{
@@ -535,12 +536,13 @@ monolog{
         width: 100%;
 
         m-button{
-            letter-spacing: 1px;
+            color: white;
+            letter-spacing: 2px;
             width: 100%;
             display: inline-block;
             text-align: center;
             text-transform: uppercase;
-            font-weight: 700;
+            font-weight: 500;
             font-size: 12px;
             padding: 12px 0;
             transition: background-color .33s ease;
@@ -549,12 +551,8 @@ monolog{
                 display: none;
             }
 
-            &[mono-close]{
-                color: #6f6f6f;
-            }
-
             &:hover{
-                background-color: rgba(0, 0, 0, .05);
+                background-color: rgba(0, 0, 0, .2);
             }
         }
     }

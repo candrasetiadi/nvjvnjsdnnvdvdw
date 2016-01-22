@@ -181,6 +181,8 @@ table{
 
 /* GLOBAL VALUES */
 
+
+// OLD
 /* LAYOUT OPTIONS */
 .flexbox{
     .flex-block();
@@ -701,6 +703,190 @@ table{
     letter-spacing: 1px;
     text-transform: uppercase;
 }
+// END OF OLD
+
+
+
+
+// GRID
+[row]{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+[fwidth]{
+    width: 100%;
+}
+//////////
+
+[w20]{
+    width: 20%;
+}
+
+[w20-8]{
+    width: calc(~"20% - 8px");
+}
+
+[w20-6]{
+    width: calc(~"20% - 6px");
+}
+
+[w20-12]{
+    width: calc(~"20% - 12px");
+}
+//////////
+
+[w25]{
+    width: 25%;
+}
+
+[w25-8]{
+    width: calc(~"25% - 8px");
+}
+
+[w25-6]{
+    width: calc(~"25% - 6px");
+}
+
+[w25-9]{
+    width: calc(~"25% - 9px");
+}
+
+[w25-12]{
+    width: calc(~"25% - 12px");
+}
+
+[w25-24]{
+    width: calc(~"25% - 24px");
+}
+//////////
+
+[w33]{
+    width: calc(~"100% / 3");
+}
+
+[w33-8]{
+    width: calc(~"(100% / 3) - 8px");
+}
+
+[w33-6]{
+    width: calc(~"(100% / 3) - 6px");
+}
+
+[w33-12]{
+    width: calc(~"(100% / 3) - 12px");
+}
+//////////
+
+[w50]{
+    width: 50%;
+}
+
+[w50-8]{
+    width: calc(~"50% - 8px");
+}
+
+[w50-6]{
+    width: calc(~"50% - 6px");
+}
+
+[w50-12]{
+    width: calc(~"50% - 12px");
+}
+//////////
+
+[w66]{
+    width: calc(~"(100% / 3) * 2");
+}
+
+[w66-8]{
+    width: calc(~"((100% / 3) * 2) - 8px");
+}
+
+[w66-6]{
+    width: calc(~"((100% / 3) * 2) - 6px");
+}
+
+[w66-12]{
+    width: calc(~"((100% / 3) * 2) - 12px");
+}
+//////////
+
+[w75]{
+    width: 75%;
+}
+
+[w75-8]{
+    width: calc(~"75% - 8px");
+}
+
+[w75-6]{
+    width: calc(~"75% - 6px");
+}
+
+[w75-12]{
+    width: calc(~"75% - 12px");
+}
+//////////
+
+[w80]{
+    width: 80%;
+}
+
+[w80-8]{
+    width: calc(~"80% - 8px");
+}
+
+[w80-6]{
+    width: calc(~"80% - 6px");
+}
+
+[w80-12]{
+    width: calc(~"80% - 12px");
+}
+//////////
+// END OF GRID
+
+
+
+
+
+// LAYOUT
+[align-left]{
+    text-align: left
+}
+
+[align-center]{
+    text-align: center;
+}
+
+[align-right]{
+    text-align: right;
+}
+
+[justify-center]{
+    .justify-content(center);
+}
+
+[justify-around]{
+    .justify-content(space-around);
+}
+
+[justify-between]{
+    .justify-content(space-between);
+}
+
+[justify-start]{
+    .justify-content(flex-start);
+}
+
+[justify-end]{
+    .justify-content(flex-end);
+}
+// END OF LAYOUT
+
+
+
 
 .after{
     content: '+';
@@ -759,7 +945,6 @@ m-template{
             }
 
             m-settings-item{
-                .cursor();
                 .flexbox();
                 .transition();
                 padding: 8px;
@@ -808,6 +993,7 @@ m-template{
                 }
 
                 &[checkbox]{
+                    cursor: default;
 
                     m-settings-item-desc{
                         width: calc(~"100% - 72px");
@@ -815,6 +1001,7 @@ m-template{
                 }
 
                 &[button]{
+                    .cursor();
 
                     m-settings-item-desc{
                         width: calc(~"100% - 32px");
@@ -1299,7 +1486,16 @@ m-fab{
 
 m-input-group{
     .flexwrap();
-    display: block;
+
+    h3{
+        width: 100%;
+        color: #323232;
+        margin: 10px 0 20px;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
 
     m-input-desc{
         margin-bottom: 12px;
@@ -1331,7 +1527,18 @@ m-input{
 
     input{
 
-        &:valid, &:focus{
+        &[select]{
+            .cursor();
+            color: transparent;
+            border-color: #323232 !important;
+
+            ~ label{
+                color: #323232;
+                font-weight: 700;
+            }
+        }
+
+        &:valid:not([select]), &:focus:not([select]){
             border-color: #323232;
 
             ~ label{
@@ -1341,7 +1548,7 @@ m-input{
             }
         }
 
-        &:focus{
+        &:focus:not([select]){
 
             ~ label{
                 color: #323232;
@@ -1409,6 +1616,39 @@ m-input{
             border-top: 5px solid #323232;
             border-left: 5px solid transparent;
             border-right: 5px solid transparent;
+        }
+
+        m-select{
+            width: 100%;
+            z-index: 1000;
+            position: absolute;
+            top: 0;
+            left: 0;
+            .card();
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            .block();
+            .transition(all .22s ease);
+
+            m-option{
+                .cursor();
+                padding: 12px 16px;
+                display: block;
+                text-transform: uppercase;
+                font-weight: 500;
+                letter-spacing: 1px;
+
+                &:hover{
+                    background-color: #fafafa;
+                }
+            }
+
+            &.active{
+                .transform(translate3d(0, -4px, 0));
+                max-height: 200px;
+                overflow: scroll;
+            }
         }
     }
 
