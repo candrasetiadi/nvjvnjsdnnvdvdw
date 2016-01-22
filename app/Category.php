@@ -19,6 +19,16 @@ class Category extends Model
         return $this->hasMany('App\CategoryLanguage');
     }
 
+    public function lang()
+    {
+        $categoryLanguages = $this->categoryLanguages()->where('locale', \Lang::getLocale())->first();
+
+        if(!$categoryLanguages) $categoryLanguages = $this->categoryLanguages()->where('locale', 'en')->first();
+
+        return $categoryLanguages;
+
+    }
+
     public function name()
     {
         $categoryLanguages = $this->categoryLanguages()->where('locale', \Lang::getLocale())->first();
@@ -45,6 +55,10 @@ class Category extends Model
 
         static::deleting(function($category)
         {
+            if ($category->categoryLanguages) {
+
+                $category->categoryLanguages()->delete();
+            }
 
         });
 

@@ -73,6 +73,29 @@ class AdminController extends Controller {
     }
 
 
+    public function propertyCategories()
+    {
+
+        $search = \Input::get('q');
+
+        if ($search) {
+
+            $categories = \App\Category::select('Categories.*')
+                ->join('CategoryLanguages', 'CategoryLanguages.property_id', '=', 'Categories.id')
+                ->where('CategoryLanguages.locale', $this->lang)
+                ->where('CategoryLanguages.title', 'like', $search . '%')
+                ->orderBy('Categories.created_at', 'desc')->paginate($this->limit);
+
+        } else {
+
+            $categories = \App\Category::orderBy('order', 'asc')->paginate($this->limit);
+        }
+
+        return view('admin.pages.categories', compact('categories'));
+
+    }
+
+
 
     public function blogCategories() {
 

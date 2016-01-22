@@ -81,6 +81,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     // CMS
     Route::get('properties', 'AdminController@properties');
+    Route::get('property/categories', 'AdminController@propertyCategories');
 
 
     // Blog
@@ -148,7 +149,16 @@ Route::group(['prefix' => 'admin'], function () {
 
             Route::any('delete/{id}', 'PropertiesController@destroy');
 
-            // Route::any('register', 'CustomerController@register');
+        });
+
+        Route::group(['prefix' => 'category'], function () {
+
+            Route::any('get/{id}', 'CategoryController@show');
+
+            Route::any('store', 'CategoryController@store');
+
+            Route::any('delete/{id}', 'CategoryController@destroy');
+            
         });
 
         Route::group(['prefix' => 'settings'], function () {
