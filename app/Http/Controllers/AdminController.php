@@ -39,9 +39,9 @@ class AdminController extends Controller {
         $search = \Input::get('q');
 
         if ($search) {
-            $customers = \App\Customer::where('firstname', 'like', $search . '%')->orWhere('lastname', 'like', $search . '%')->paginate($this->limit);
+            $customers = \App\Customer::where('firstname', 'like', $search . '%')->orWhere('lastname', 'like', $search . '%')->orderBy('created_at', 'desc')->paginate($this->limit);
         } else {
-            $customers = \App\Customer::paginate($this->limit);
+            $customers = \App\Customer::orderBy('created_at', 'desc')->paginate($this->limit);
         }
 
         return view('admin.pages.customers', compact('customers'));

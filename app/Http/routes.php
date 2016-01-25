@@ -151,6 +151,13 @@ Route::group(['prefix' => 'admin'], function () {
             Route::any('login', 'CustomerController@login');
 
             Route::any('register', 'CustomerController@register');
+
+            Route::any('get/{id}', 'CustomerController@show');
+
+            Route::any('store', 'CustomerController@store');
+
+            Route::any('delete/{id}', 'CustomerController@destroy');
+            
         });
 
         Route::group(['prefix' => 'property'], function () {

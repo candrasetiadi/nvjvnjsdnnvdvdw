@@ -679,6 +679,27 @@ var Matter = {
 
         customers: function() {
 
+            $(document).on('click', '[save-form]', function() {
+
+                var form = $(this).closest('form'),
+                    formId = form.attr('id'),
+                    url = form.attr('data-url'),
+                    doneFunc = form.attr('data-function'),
+                    fd = new FormData($('#' + formId)[0]);
+
+                Ajax.post(url, fd, eval(doneFunc));
+            });
+
+            function populateCustomersEdit(data) {
+
+                data = data.data;
+
+                $.each(data, function(k,v) {
+
+                    consoleLog(k);
+                });
+            }
+
         },
 
         categories: function() {
