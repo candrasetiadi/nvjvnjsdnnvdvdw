@@ -103,6 +103,13 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('about', 'AdminController@about');
 
+    Route::get('pdfD', 'PdfController@test');
+
+    Route::get('pdf', function() {
+
+        return view('pdf.property');
+    });
+
     Route::any('register', function() {
 
         return view('admin.pages.register');
@@ -163,7 +170,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::any('store', 'CategoryController@store');
 
             Route::any('delete/{id}', 'CategoryController@destroy');
-            
+
         });
 
         Route::group(['prefix' => 'inquiry'], function () {
@@ -173,7 +180,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::any('store', 'InquiryController@store');
 
             Route::any('delete/{id}', 'InquiryController@destroy');
-            
+
         });
 
         Route::group(['prefix' => 'account'], function () {

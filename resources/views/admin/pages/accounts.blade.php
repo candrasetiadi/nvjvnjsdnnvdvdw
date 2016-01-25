@@ -20,8 +20,9 @@
                 <td width="20%">name</td>
                 <td width="20%">email</td>
                 <td width="15%">location</td>
-                <td width="20%" class="align-center">created</td>
+                <td width="15%" class="align-center">created</td>
                 <td width="15%" class="align-center">role</td>
+                <td width="5%" class="align-center">status</td>
                 <td width="5%"></td>
             </tr>
         </thead>
@@ -37,9 +38,10 @@
                 <td>{{ $account->city }}</td>
                 <td class="align-center">{{ $account->created_at }}</td>
                 <td class="align-center">{{ $account->role_id }}</td>
-                <td>
+                <td class="align-center">{{ $account->active ? 'ACTIVE' : 'UNREGISTERED' }}</td>
+                <td button>
                     <m-table-list-more>
-
+                        <i class="material-icons">more_horiz</i>
                     </m-table-list-more>
                 </td>
             </tr>
@@ -57,15 +59,19 @@
     {!! Form::open(array('class' => 'modal-window', 'id' => 'account-form', 'data-function' => 'doNothing', 'data-url' => 'account/prepare', 'style' => 'max-width: 400px')) !!}
     <h3>Add account</h3>
 
+    <m-error-dialog hidden>
+        <m-error-message>Warning! Super Admin access gives full permission to the system including deletion action of any removable data which may be valuable.</m-error-message>
+    </m-error-dialog>
+
     <m-input-group justify-between>
 
         <m-input fwidth select>
             <input type="text" select id="account-input-role" name="role" required>
             <label for="account-input-role">role</label>
             <m-select>
-                <m-option value="1">super admin</m-option>
-                <m-option value="2">manager</m-option>
-                <m-option value="3">agent</m-option>
+                <m-option class="role-option" id="super-role" value="1">super admin</m-option>
+                <m-option class="role-option" value="2">manager</m-option>
+                <m-option class="role-option" value="3">agent</m-option>
             </m-select>
         </m-input>
 
