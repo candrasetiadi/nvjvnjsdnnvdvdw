@@ -111,123 +111,130 @@
                     </div>
 
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
-                        <h3 class="input-group-title">General Information</h3>
-                        <div class="m-input-wrapper m-input-wrapper-select w25-9">
-                            <select id="blog-input-lang" name="status" required>
-                                <option value="1" selected>available</option>
-                                <option value="0">unavailable</option>
-                                <option value="-1">hidden</option>
-                            </select>
-                            <label for="status">status</label>
-                        </div>
 
-                        <div class="m-input-wrapper w25-9">
+                        <h3 class="input-group-title">General Information</h3>
+
+                        <m-input fwidth select w25-9>
+                            <input type="text" select id="blog-input-lang" name="status" value="available" required>
+                            <label for="blog-input-lang">status</label>
+                            <m-select>
+                                <m-option value="1">available</m-option>
+                                <m-option value="0">unavailable</m-option>
+                                <m-option value="-1">hidden</m-option>
+                            </m-select>
+                        </m-input>
+
+                        <m-input w25-9>
                             <input type="text" name="code" id="properties-input-code" required>
                             <label for="code">properties code</label>
-                        </div>
+                        </m-input>
 
-                        <div class="m-input-wrapper m-input-wrapper-select w25-9">
-                            <select id="properties-input-currency" name="currency" required>
-                                <option value="IDR" selected>idr</option>
-                                <option value="EUR">eur</option>
-                                <option value="USD">usd</option>
-                            </select>
-                            <label for="currency">currency</label>
-                        </div>
+                        <m-input fwidth select w25-9>
+                            <input type="text" select id="properties-input-currency" name="currency" value="IDR" required>
+                            <label for="properties-input-currency">currency</label>
+                            <m-select>
+                                <m-option value="IDR">idr</m-option>
+                                <m-option value="EUR">eur</m-option>
+                                <m-option value="USD">usd</m-option>
+                            </m-select>
+                        </m-input>
 
-                        <div class="m-input-wrapper m-input-wrapper-number w25-9">
+                        <m-input number w25-9>
                             <input type="text" name="price" id="properties-input-price" class="input-number-format" style="color: transparent;" required>
                             <label for="price">price</label>
                             <p class="number-format"></p>
-                        </div>
+                        </m-input>
                     </div>
 
                     <div class="m-input-group fwidth flexbox justify-between">
-                        <div class="m-input-wrapper w25-9">
+                        <m-input w25-9>
                             <input type="text" name="lease_period" id="properties-input-lease_year" required>
                             <label for="lease_period">period</label>
-                        </div>
+                        </m-input>
 
-                        <div class="m-input-wrapper w25-9">
+                        <m-input w25-9>
                             <input type="text" name="lease_year" id="properties-input-lease_year" required>
                             <label for="lease_year">end year</label>
-                        </div>
+                        </m-input>
 
-                        <div class="m-input-wrapper w25-9">
+                        <m-input w25-9>
                             <input type="text" name="building_size" id="properties-input-building_size" required>
                             <label for="building_size">building size(sqm)</label>
-                        </div>
+                        </m-input>
 
-                        <div class="m-input-wrapper w25-9">
+                        <m-input w25-9>
                             <input type="text" name="land_size" id="properties-input-land_size" required>
                             <label for="land_size">land size(are)</label>
-                        </div>
+                        </m-input>
                     </div>
 
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
                         <h3 class="input-group-title">Views</h3>
-                        <div class="m-input-wrapper w25-9">
+                        <m-input w25-9>
                             <input type="text" name="view_north" id="properties-input-view_north" required>
                             <label for="view_north">north</label>
-                        </div>
+                        </m-input>
 
-                        <div class="m-input-wrapper w25-9">
+                        <m-input w25-9>
                             <input type="text" name="view_east" id="properties-input-view_east" required>
                             <label for="view_east">east</label>
-                        </div>
+                        </m-input>
 
-                        <div class="m-input-wrapper w25-9">
+                        <m-input w25-9>
                             <input type="text" name="view_west" id="properties-input-view_west" required>
                             <label for="view_west">west</label>
-                        </div>
+                        </m-input>
 
-                        <div class="m-input-wrapper w25-9">
+                        <m-input w25-9>
                             <input type="text" name="view_south" id="properties-input-view_south" required>
                             <label for="view_south">south</label>
-                        </div>
+                        </m-input>
                     </div>
 
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
 
-                        <div class="m-input-wrapper m-input-wrapper-select w50-6">
-                            <select id="blog-input-lang" name="type" required>
-                                <option value="for sell" selected>For Sell</option>
-                                <option value="for rent">For Rent</option>
-                            </select>
-                            <label for="type">Type</label>
-                        </div>
+                        <m-input fwidth select w50-6>
+                            <input type="text" select id="property-input-type" name="type" value="for sell" required>
+                            <label for="property-input-type">type</label>
+                            <m-select>
+                                <m-option value="for sell">for sell</m-option>
+                                <m-option value="for rent">for rent</m-option>
+                            </m-select>
+                        </m-input>
 
-                        <div class="m-input-wrapper m-input-wrapper-select w50-6">
-                            <select id="blog-input-lang" name="category_id" required>
+                        <m-input fwidth select w50-6>
+                            <input type="text" select id="property-input-category_id" name="category_id" required>
+                            <label for="property-input-category_id">category</label>
+                            <m-select>
 
                                 @foreach($categories as $category)
-                                <option value="{{ $category->id }}" selected>{{ ucwords($category->name()) }}</option>
+                                <m-option value="{{ $category->id }}">{{ ucwords($category->name()) }}</m-option>
                                 @endforeach
 
-                            </select>
-                            <label for="category_id">Category</label>
-                        </div>
-                        
+                            </m-select>
+                        </m-input>
+
                     </div>
 
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
 
-                        <div class="m-input-wrapper m-input-wrapper-select w50-6">
-                            <select id="blog-input-lang" name="is_price_request" required>
-                                <option value="0" selected>no</option>
-                                <option value="1">yes</option>
-                            </select>
-                            <label for="is_price_request">is Price Request</label>
-                        </div>
+                        <m-input fwidth select w50-6>
+                            <input type="text" select id="property-input-is_price_request" name="is_price_request" value="0" required>
+                            <label for="property-input-is_price_request">is price request</label>
+                            <m-select>
+                                <m-option value="0">no</m-option>
+                                <m-option value="1">yes</m-option>
+                            </m-select>
+                        </m-input>
 
-                        <div class="m-input-wrapper m-input-wrapper-select w50-6">
-                            <select id="blog-input-lang" name="is_exclusive" required>
-                                <option value="0" selected>no</option>
-                                <option value="1">yes</option>
-                            </select>
-                            <label for="is_exclusive">is Exclusive</label>
-                        </div>
-                        
+                        <m-input fwidth select w50-6>
+                            <input type="text" select id="property-input-is_exclusive" name="is_exclusive" value="0" required>
+                            <label for="property-input-is_exclusive">is Exclusive</label>
+                            <m-select>
+                                <m-option value="0">no</m-option>
+                                <m-option value="1">yes</m-option>
+                            </m-select>
+                        </m-input>
                     </div>
 
                     <div class="m-input-group textarea fwidth flexbox flexbox-wrap">
@@ -242,26 +249,29 @@
 
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
                         <h3 class="input-group-title">Specification</h3>
-                        <div class="m-input-wrapper w33-8">
+
+                        <m-input w33-8>
                             <input type="text" name="facilities[bedroom]" id="properties-input-facilities[bedroom]" required>
                             <label for="facilities[bedroom]">bed</label>
-                        </div>
+                        </m-input>
 
-                        <div class="m-input-wrapper w33-8">
+                        <m-input w33-8>
                             <input type="text" name="facilities[bathroom]" id="properties-input-facilities[bathroom]" required>
                             <label for="facilities[bathroom]">bath</label>
-                        </div>
+                        </m-input>
 
-                        <div class="m-input-wrapper m-input-wrapper-select w33-8">
-                            <select id="properties-input-sell_in_furnish" name="sell_in_furnish" required>
-                                <option value="0" selected>no</option>
-                                <option value="1">yes</option>
-                            </select>
-                            <label for="sell_in_furnish">furnished</label>
-                        </div>
+                        <m-input select w33-8>
+                            <input type="text" select id="property-input-sell_in_furnish" name="sell_in_furnish" value="0" required>
+                            <label for="property-input-sell_in_furnish">furnished</label>
+                            <m-select>
+                                <m-option value="0">no</m-option>
+                                <m-option value="1">yes</m-option>
+                            </m-select>
+                        </m-input>
+                        <div class="push-bottom"></div>
                     </div>
 
-                    <!-- 
+                    <!--
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between" style="max-height: 302px; overflow-y: scroll;">
                         <table id="properties-facilities-table">
                             <thead>
@@ -388,56 +398,60 @@
                         <label for="distance_value[beach]">Beach</label>
                     </div>
 
-                    <div class="m-input-wrapper m-input-wrapper-select w50-6">
-                        <select id="properties-input-unit" name="distance_unit[beach]" required>
-                            <option value="km" selected>KM</option>
-                            <option value="m">Meters</option>
-                            <option value="minutes">Minutes</option>
-                            <option value="hours">Hours</option>
-                        </select>
-                        <label for="unit">unit</label>
-                    </div>
+                    <m-input select w50-6>
+                        <input type="text" select id="property-input-distance_unit_beach" name="distance_unit[beach]" required>
+                        <label for="property-input-distance_unit_beach">unit</label>
+                        <m-select>
+                            <m-option value="km" selected>KM</m-option>
+                            <m-option value="m">Meters</m-option>
+                            <m-option value="minutes">Minutes</m-option>
+                            <m-option value="hours">Hours</m-option>
+                        </m-select>
+                    </m-input>
 
-                    <div class="m-input-wrapper w50-6">
+                    <m-input w50-6>
                         <input type="text" name="distance_value[airport]" id="properties-input-distance_value[airport]" required>
                         <label for="distance_value[airport]">Airport</label>
-                    </div>
+                    </m-input>
 
-                    <div class="m-input-wrapper m-input-wrapper-select w50-6">
-                        <select id="properties-input-unit" name="distance_unit[airport]" required>
-                            <option value="km" selected>KM</option>
-                            <option value="m">Meters</option>
-                            <option value="minutes">Minutes</option>
-                            <option value="hours">Hours</option>
-                        </select>
-                        <label for="unit">unit</label>
-                    </div>
+                    <m-input select w50-6>
+                        <input type="text" select id="property-input-distance_unit_airport" name="distance_unit[airport]" required>
+                        <label for="property-input-distance_unit_airport">unit</label>
+                        <m-select>
+                            <m-option value="km" selected>KM</m-option>
+                            <m-option value="m">Meters</m-option>
+                            <m-option value="minutes">Minutes</m-option>
+                            <m-option value="hours">Hours</m-option>
+                        </m-select>
+                    </m-input>
 
-                    <div class="m-input-wrapper w50-6">
+                    <m-input w50-6>
                         <input type="text" name="distance_value[market]" id="properties-input-distance_value[market]" required>
                         <label for="distance_value[market]">Market</label>
-                    </div>
+                    </m-input>
 
-                    <div class="m-input-wrapper m-input-wrapper-select w50-6">
-                        <select id="properties-input-unit" name="distance_unit[market]" required>
-                            <option value="km" selected>KM</option>
-                            <option value="m">Meters</option>
-                            <option value="minutes">Minutes</option>
-                            <option value="hours">Hours</option>
-                        </select>
-                        <label for="unit">unit</label>
-                    </div>
+                    <m-input select w50-6>
+                        <input type="text" select id="property-input-distance_unit_market" name="distance_unit[market]" required>
+                        <label for="property-input-distance_unit_market">unit</label>
+                        <m-select>
+                            <m-option value="km" selected>KM</m-option>
+                            <m-option value="m">Meters</m-option>
+                            <m-option value="minutes">Minutes</m-option>
+                            <m-option value="hours">Hours</m-option>
+                        </m-select>
+                    </m-input>
+                    <div class="push-bottom"></div>
 
                 </m-caroussel-slide>
 
                 <m-caroussel-slide class="flexbox flexbox-wrap" id="caroussel-gallery" style="width: calc(100% / <?= $numberOfSlides ?>)">
 
-                    <div class="m-input-wrapper" id="picture-wrapper">
+                    <m-input id="picture-wrapper">
                         <div class="drop-field">
                             <p class="drop-hint">drop files here</p>
                         </div>
                         <input class="m-image-input" type="file" name="files[]" id="properties-input-image" multiple>
-                    </div>
+                    </m-input>
 
                     <!-- <div class="gallery-wrapper flexbox flexbox-wrap justify-between">
                         <div class="gallery-item">
@@ -460,43 +474,44 @@
 
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
                         <h3 class="input-group-title">Owner Information</h3>
-                        <div class="m-input-wrapper w33-8">
+                        <m-input w33-8>
                             <input type="text" name="owner_name" id="properties-input-owner_name" required>
                             <label for="owner_name">name</label>
-                        </div>
+                        </m-input>
 
-                        <div class="m-input-wrapper w33-8">
+                        <m-input w33-8>
                             <input type="text" name="owner_phone" id="properties-input-owner_phone" required>
                             <label for="owner_phone">phone</label>
-                        </div>
+                        </m-input>
 
-                        <div class="m-input-wrapper w33-8">
+                        <m-input w33-8>
                             <input type="text" name="owner_email" id="properties-input-owner_email" required>
                             <label for="owner_email">email</label>
-                        </div>
+                        </m-input>
                     </div>
 
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
                         <h3 class="input-group-title">Agency Information</h3>
-                        <div class="m-input-wrapper w33-8">
+                        <m-input w33-8>
                             <input type="text" name="agent_commission" id="properties-input-agent_commission" required>
                             <label for="agent_commission">Commission</label>
-                        </div>
+                        </m-input>
 
-                        <div class="m-input-wrapper w33-8">
+                        <m-input w33-8>
                             <input type="text" name="agent_contact" id="properties-input-agent_contact" required>
                             <label for="agent_contact">contact for viewing</label>
-                        </div>
+                        </m-input>
 
-                        <div class="m-input-wrapper w33-8">
+                        <m-input w33-8>
                             <input type="text" name="agent_inspector" id="properties-input-agent_inspector" required>
                             <label for="agent_inspector">inspected by</label>
-                        </div>
+                        </m-input>
                     </div>
 
                     <div class="m-input-group textarea fwidth flexbox flexbox-wrap" id="documents-received">
                         <h3 class="input-group-title">Documents Received</h3>
-                        <div class="m-input-wrapper m-input-wrapper-checkbox neutral w25-9">
+
+                        <m-input checkbox neutral w25-9>
                             <label for="properties-input-documents[agent agreement]">
                                 <input type="checkbox" name="documents[agent agreement]" id="properties-input-documents[agent agreement]">
                                 Agent Agreement
@@ -505,8 +520,8 @@
                                 <input type="checkbox" name="documents[pondok wisata license]" id="properties-input-documents[pondok wisata license]">
                                 Pondok Wisata License
                             </label>
-                        </div>
-                        <div class="m-input-wrapper m-input-wrapper-checkbox neutral w25-9">
+                        </m-input>
+                        <m-input checkbox neutral w25-9>
                             <label for="properties-input-documents[tax construction]">
                                 <input type="checkbox" name="documents[tax construction]" id="properties-input-documents[tax construction]">
                                 Tax Construction
@@ -515,8 +530,8 @@
                                 <input type="checkbox" name="documents[photographs]" id="properties-input-documents[photographs]">
                                 Photographs
                             </label>
-                        </div>
-                        <div class="m-input-wrapper m-input-wrapper-checkbox neutral w25-9">
+                        </m-input>
+                        <m-input checkbox neutral w25-9>
                             <label for="properties-input-documents[imb]">
                                 <input type="checkbox" name="documents[imb]" id="properties-input-documents[imb]">
                                 IMB
@@ -525,8 +540,8 @@
                                 <input type="checkbox" name="documents[land certificate]" id="properties-input-documents[land certificate]">
                                 Land Certificate
                             </label>
-                        </div>
-                        <div class="m-input-wrapper m-input-wrapper-checkbox neutral w25-9">
+                        </m-input>
+                        <m-input checkbox neutral w25-9>
                             <label for="properties-input-documents[notary details]">
                                 <input type="checkbox" name="documents[notary details]" id="properties-input-documents[notary details]">
                                 Notary Details
@@ -535,28 +550,28 @@
                                 <input type="checkbox" name="documents[owner idcard]" id="properties-input-documents[owner idcard]">
                                 Owner ID Card
                             </label>
-                        </div>
+                        </m-input>
                     </div>
 
                     <div class="m-input-group textarea fwidth flexbox flexbox-wrap">
                         <h3 class="input-group-title">Reason for Selling</h3>
-                        <div class="input-wrapper fwidth">
+                        <m-input fwidth>
                             <textarea name="sell_reason" id="properties-input-sell_reason" rows="3" style="padding-top: 0"></textarea>
-                        </div>
+                        </m-input>
                     </div>
 
                     <div class="m-input-group textarea fwidth flexbox flexbox-wrap">
                         <h3 class="input-group-title">Other Listing Agents</h3>
-                        <div class="input-wrapper fwidth">
+                        <m-input fwidth>
                             <textarea name="other_agent" id="properties-input-other_agent" rows="3" style="padding-top: 0"></textarea>
-                        </div>
+                        </m-input>
                     </div>
 
                     <div class="m-input-group textarea fwidth flexbox flexbox-wrap">
                         <h3 class="input-group-title">Notes</h3>
-                        <div class="input-wrapper fwidth">
+                        <m-input fwidth>
                             <textarea name="sell_note" id="properties-input-sell_note" rows="5" style="padding-top: 0"></textarea>
-                        </div>
+                        </m-input>
                     </div>
                 </m-caroussel-slide>
             </m-caroussel-slider>
@@ -566,10 +581,10 @@
     <input type="hidden" name="property_type" id="property-input-type" value="properties">
     <input type="hidden" name="edit" value="0" id="edit-flag">
 
-    <div class="button-holder align-right">
+    <m-buttons class="align-right">
         <m-button plain class="modal-close" id="close-properties-form">cancel</m-button>
         <m-button save-form plain>save</m-button>
-    </div>
+    </m-buttons>
     {!! Form::close() !!}
 </m-modal-wrapper>
 @endsection

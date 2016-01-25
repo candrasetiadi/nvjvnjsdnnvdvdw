@@ -74,7 +74,7 @@
         <h3>index/cache management</h3>
         <m-card>
 
-            <m-settings-item button data-function="reindexData()">
+            <m-settings-item button data-function="reindexData">
                 <i class="material-icons">data_usage</i>
                 <m-settings-item-desc>
                     <m-settings-item-header>reindex data</m-settings-item-header>

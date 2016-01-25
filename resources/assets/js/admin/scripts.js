@@ -756,7 +756,6 @@ var Matter = {
                 Ajax.post(url, fd, eval(doneFunc));
             });
 
-
             function getGeneralInfo() {
 
                 Ajax.get('settings/general/get', populateGeneralEdit);
