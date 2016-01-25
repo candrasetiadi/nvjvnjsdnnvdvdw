@@ -45,7 +45,7 @@
             <?php $images = $property->propertyFiles()->where('type', 'image'); ?>
             <tr class="property-item" data-id="{{ $property->id }}">
                 <td class="select"><a href class="m-table-item-select m-table-item-select-single" data-id="1"><i class="m-checkbox"></i></a></td>
-                <td class="image">{!! ($images->count() > 0) ? '<a href="'. asset('uploads/property/' . $images->first()->file) . '"></a>' : '-'; !!}</td>
+                <td class="image">{!! ($images->count() > 0) ? '<img width="100" src="'. asset('uploads/property/' . $images->first()->file) . '">' : '-'; !!}</td>
                 <td class="created_at">{{ $property->created_at }}</td>
                 <td class="code">{{ $property->code }}</td>
                 <td class="title">{{ $property->lang()->title }}</td>
