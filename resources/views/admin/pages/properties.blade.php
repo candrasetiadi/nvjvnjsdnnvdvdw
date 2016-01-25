@@ -22,53 +22,57 @@
 @stop
 
 @section('content')
-<div class="property-wrapper flexbox flexbox-wrap">
+<m-template list class="property-wrapper">
 
-    <table class="m-table-list property-table">
+    <table>
         <thead>
-            <td><a href class="m-table-item-select m-table-item-select-all"><i class="m-checkbox"></i></a></td>
+            <td width="5%">
+                <m-list-item-check all></m-list-item-check>
+            </td>
             <td>Image</td>
+            <td>Title</td>
             <td>Created</td>
             <td>Code</td>
-            <td>Title</td>
             <td>Type</td>
-            <td>Category</td>
             <td>Publish</td>
             <td>Agent</td>
             <td>Price</td>
             <td>View</td>
-            <td>Action</td>
-
+            <td></td>
         </thead>
         <tbody>
             @foreach($properties as $property)
             <?php $images = $property->propertyFiles()->where('type', 'image'); ?>
-            <tr class="property-item" data-id="{{ $property->id }}">
-                <td class="select"><a href class="m-table-item-select m-table-item-select-single" data-id="1"><i class="m-checkbox"></i></a></td>
-                <td class="image">{!! ($images->count() > 0) ? '<img width="100" src="'. asset('uploads/property/' . $images->first()->file) . '">' : '-'; !!}</td>
+            <tr class="property-item">
+                <td width="5%">
+                    <m-list-item-check single data-id="{{ $property->id }}"></m-list-item-check>
+                </td>
+                <td class="image">
+                    {!! ($images->count() > 0) ? '<a href="'. asset('uploads/property/' . $images->first()->file) . '"></a>' : '-'; !!}
+                </td>
+                <td class="title">{{ $property->lang()->title }}</td>
                 <td class="created_at">{{ $property->created_at }}</td>
                 <td class="code">{{ $property->code }}</td>
-                <td class="title">{{ $property->lang()->title }}</td>
                 <td class="type">{{ ucwords($property->type) }}</td>
-                <td class="type">{{ ucwords($property->categoryName()) }}</td>
                 <td class="publish">{{ ucfirst($property->publish) }}</td>
                 <td class="view">{{ $property->user->firstname }}</td>
-                <td class="price align-right">{{ number_format($property->price, 2) }}</td>
-                <td class="view align-right">{{ $property->view }}</td>
-                <td class="m-table-item-options">
-                    <a href class="m-list-item-more"><i class="material-icons">more_horiz</i></a>
-                    <div class="m-list-item-option" data-id="{{ $property->id }}"><ul>
-                        <li><a href="{{ $property->id }}" class="item-edit">edit</a></li>
-                        <li><a href="{{ url('system/ajax/property/delete/' . $property->id) }}" class="item-delete direct-delete">delete</a></li>
-                        </ul>
-                    </div>
+                <td class="price align-center">{{ number_format($property->price, 2) }}</td>
+                <td class="view align-center">{{ humanize($property->view) }}</td>
+                <td button>
+                    <m-table-list-more>
+                        <i class="material-icons">more_horiz</i>
+                        <m-list-menu data-id="{{ $property->id }}">
+                            <m-list-menu-item edit data-source="property/get" data-function="populatePropertyEdit">EDIT</m-list-menu-item>
+                            <m-list-menu-item delete data-url="property/destroy">DELETE</m-list-menu-item>
+                        </m-list-menu>
+                    </m-table-list-more>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
 
-</div>
+</m-template>
 
 @include('admin.fragments.pagination', ['paginator' => $properties])
 
@@ -272,123 +276,123 @@
                     </div>
 
                     <!--
-                    <div class="m-input-group fwidth flexbox flexbox-wrap justify-between" style="max-height: 302px; overflow-y: scroll;">
-                        <table id="properties-facilities-table">
-                            <thead>
-                                <tr>
-                                    <td width="50%">Facility</td>
-                                    <td width="50%">Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Garage</td>
-                                    <td>
-                                        <div class="m-input-wrapper">
-                                            <input type="text" name="facility-garage" id="properties-input-facility-garage" required>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Air Conditioning</td>
-                                    <td>
-                                        <div class="m-input-wrapper">
-                                            <input type="text" name="facility-ac" id="properties-input-facility-ac" required>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Water Resource</td>
-                                    <td>
-                                        <div class="m-input-wrapper">
-                                            <input type="text" name="facility-water" id="properties-input-facility-water" required>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Electricity</td>
-                                    <td>
-                                        <div class="m-input-wrapper">
-                                            <input type="text" name="facility-electricity" id="properties-input-facility-electricity" required>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Security</td>
-                                    <td>
-                                        <div class="m-input-wrapper">
-                                            <input type="text" name="facility-security" id="properties-input-facility-security" required>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Kitchen</td>
-                                    <td>
-                                        <div class="m-input-wrapper">
-                                            <input type="text" name="facility-kitchen" id="properties-input-facility-kitchen" required>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Dining Area</td>
-                                    <td>
-                                        <div class="m-input-wrapper">
-                                            <input type="text" name="facility-dining" id="properties-input-facility-dining" required>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Pool</td>
-                                    <td>
-                                        <div class="m-input-wrapper">
-                                            <input type="text" name="facility-pool" id="properties-input-facility-pool" required>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Jaccuzi</td>
-                                    <td>
-                                        <div class="m-input-wrapper">
-                                            <input type="text" name="facility-jaccuzi" id="properties-input-facility-jaccuzi" required>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Gazebo</td>
-                                    <td>
-                                        <div class="m-input-wrapper">
-                                            <input type="text" name="facility-gazebo" id="properties-input-facility-gazebo" required>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Storage</td>
-                                    <td>
-                                        <div class="m-input-wrapper">
-                                            <input type="text" name="facility-storage" id="properties-input-facility-storage" required>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Maid Room</td>
-                                    <td>
-                                        <div class="m-input-wrapper">
-                                            <input type="text" name="facility-maid" id="properties-input-facility-maid" required>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>WiFi</td>
-                                    <td>
-                                        <div class="m-input-wrapper">
-                                            <input type="text" name="facility-wifi" id="properties-input-facility-wifi" required>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                     -->
+<div class="m-input-group fwidth flexbox flexbox-wrap justify-between" style="max-height: 302px; overflow-y: scroll;">
+<table id="properties-facilities-table">
+<thead>
+<tr>
+<td width="50%">Facility</td>
+<td width="50%">Description</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Garage</td>
+<td>
+<div class="m-input-wrapper">
+<input type="text" name="facility-garage" id="properties-input-facility-garage" required>
+</div>
+</td>
+</tr>
+<tr>
+<td>Air Conditioning</td>
+<td>
+<div class="m-input-wrapper">
+<input type="text" name="facility-ac" id="properties-input-facility-ac" required>
+</div>
+</td>
+</tr>
+<tr>
+<td>Water Resource</td>
+<td>
+<div class="m-input-wrapper">
+<input type="text" name="facility-water" id="properties-input-facility-water" required>
+</div>
+</td>
+</tr>
+<tr>
+<td>Electricity</td>
+<td>
+<div class="m-input-wrapper">
+<input type="text" name="facility-electricity" id="properties-input-facility-electricity" required>
+</div>
+</td>
+</tr>
+<tr>
+<td>Security</td>
+<td>
+<div class="m-input-wrapper">
+<input type="text" name="facility-security" id="properties-input-facility-security" required>
+</div>
+</td>
+</tr>
+<tr>
+<td>Kitchen</td>
+<td>
+<div class="m-input-wrapper">
+<input type="text" name="facility-kitchen" id="properties-input-facility-kitchen" required>
+</div>
+</td>
+</tr>
+<tr>
+<td>Dining Area</td>
+<td>
+<div class="m-input-wrapper">
+<input type="text" name="facility-dining" id="properties-input-facility-dining" required>
+</div>
+</td>
+</tr>
+<tr>
+<td>Pool</td>
+<td>
+<div class="m-input-wrapper">
+<input type="text" name="facility-pool" id="properties-input-facility-pool" required>
+</div>
+</td>
+</tr>
+<tr>
+<td>Jaccuzi</td>
+<td>
+<div class="m-input-wrapper">
+<input type="text" name="facility-jaccuzi" id="properties-input-facility-jaccuzi" required>
+</div>
+</td>
+</tr>
+<tr>
+<td>Gazebo</td>
+<td>
+<div class="m-input-wrapper">
+<input type="text" name="facility-gazebo" id="properties-input-facility-gazebo" required>
+</div>
+</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>
+<div class="m-input-wrapper">
+<input type="text" name="facility-storage" id="properties-input-facility-storage" required>
+</div>
+</td>
+</tr>
+<tr>
+<td>Maid Room</td>
+<td>
+<div class="m-input-wrapper">
+<input type="text" name="facility-maid" id="properties-input-facility-maid" required>
+</div>
+</td>
+</tr>
+<tr>
+<td>WiFi</td>
+<td>
+<div class="m-input-wrapper">
+<input type="text" name="facility-wifi" id="properties-input-facility-wifi" required>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+-->
                 </m-caroussel-slide>
 
                 <m-caroussel-slide class="justify-between flexbox flexbox-wrap" id="caroussel-distance" style="width: calc(100% / <?= $numberOfSlides ?>)">
@@ -454,19 +458,19 @@
                     </m-input>
 
                     <!-- <div class="gallery-wrapper flexbox flexbox-wrap justify-between">
-                        <div class="gallery-item">
-                            <a href class="gallery-item-option"><i class="material-icons">more_horiz</i></a>
-                        </div>
-                        <div class="gallery-item">
-                            <a href class="gallery-item-option"><i class="material-icons">more_horiz</i></a>
-                        </div>
-                        <div class="gallery-item">
-                            <a href class="gallery-item-option"><i class="material-icons">more_horiz</i></a>
-                        </div>
-                        <div class="gallery-item">
-                            <a href class="gallery-item-option"><i class="material-icons">more_horiz</i></a>
-                        </div>
-                    </div> -->
+<div class="gallery-item">
+<a href class="gallery-item-option"><i class="material-icons">more_horiz</i></a>
+</div>
+<div class="gallery-item">
+<a href class="gallery-item-option"><i class="material-icons">more_horiz</i></a>
+</div>
+<div class="gallery-item">
+<a href class="gallery-item-option"><i class="material-icons">more_horiz</i></a>
+</div>
+<div class="gallery-item">
+<a href class="gallery-item-option"><i class="material-icons">more_horiz</i></a>
+</div>
+</div> -->
 
                 </m-caroussel-slide>
 
@@ -581,7 +585,7 @@
     <input type="hidden" name="property_type" id="property-input-type" value="properties">
     <input type="hidden" name="edit" value="0" id="edit-flag">
 
-    <m-buttons class="align-right">
+    <m-buttons align-right>
         <m-button plain class="modal-close" id="close-properties-form">cancel</m-button>
         <m-button save-form plain>save</m-button>
     </m-buttons>
