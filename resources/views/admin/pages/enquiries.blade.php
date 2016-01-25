@@ -18,7 +18,6 @@
             <td>Buyer Name</td>
             <td>Buyer Phone</td>
             <td>Buyer Email</td>
-            <td>Date</td>
             <td>Action</td>
 
         </thead>
@@ -31,7 +30,6 @@
                 <td class="name">{{ $enquiry->firstname . ' ' . $enquiry->lastname }}</td>
                 <td class="phone">{{ $enquiry->phone }}</td>
                 <td class="email">{{ $enquiry->email }}</td>
-                <td class="email">{{ $enquiry->created_at }}</td>
                 <td class="m-table-item-options">
                     <a href class="m-list-item-more"><i class="material-icons">more_horiz</i></a>
                     <div class="m-list-item-option" data-id="{{ $enquiry->id }}"><ul>

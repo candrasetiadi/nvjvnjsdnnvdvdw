@@ -15,37 +15,59 @@ class DatabaseSeeder extends Seeder
 
         Model::unguard();
 
-        //$this->call(BlogsTableSeeder::class);
-        //$this->call(EventsTableSeeder::class);
-        //$this->call(GroupsTableSeeder::class);
-        //$this->call(CategoriesTableSeeder::class);
+        $this->call(BranchesTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
+        
+        $this->call(CountriesTableSeeder::class);
+        $this->call(ProvincesTableSeeder::class);
+        $this->call(CitiesTableSeeder::class);  
+
+        $this->call(LanguagesTableSeeder::class);        
+
+        factory(App\User::class, 10)->create()->each(function ($u) {
+
+            factory(App\Property::class, 10)->create(['user_id' => $u->id])->each(function($p) {
+
+                $p->propertyLanguages()->save(factory(App\PropertyLanguage::class)->make());
+
+                $p->documents()->saveMany([
+                    new \App\Document(['name' => 'Agent Agreement', 'description' => 'ready']),
+                    new \App\Document(['name' => 'Pondok Wisata Lcs', 'description' => 'ready']),
+                    new \App\Document(['name' => 'Tax Construction', 'description' => 'ready']),
+                    new \App\Document(['name' => 'Photographs', 'description' => 'ready']),
+                    new \App\Document(['name' => 'IMB', 'description' => 'ready']),
+                    new \App\Document(['name' => 'Land Certf.', 'description' => 'ready']),
+                    new \App\Document(['name' => 'Notary Details', 'description' => 'ready']),
+                    new \App\Document(['name' => 'Owner KTP', 'description' => 'ready'])
+                ]);
+
+                $p->facilities()->saveMany([
+                    new \App\Facility(['name' => 'Bedroom', 'description' => '2 room']),
+                    new \App\Facility(['name' => 'Bathroom', 'description' => '1 room']),
+                    new \App\Facility(['name' => 'Sale in Furnish', 'description' => 'include furnish'])
+                ]);
+
+                $p->distances()->saveMany([
+                    new \App\Distance(['from' => 'Beach', 'value' => 1, 'unit' => 'km']),
+                    new \App\Distance(['from' => 'Airport', 'value' => 2, 'unit' => 'minutes']),
+                    new \App\Distance(['from' => 'Market', 'value' => 3, 'unit' => 'hours'])
+                ]);
+
+            });
+
+        });
+
+        factory(App\Customer::class, 100)->create()->each(function ($c) {
+
+            $c->inquiries()->save(factory(App\Inquiry::class)->make());
+
+        });
+
+
 
         Model::reguard();
 
-        factory(App\Branch::class)->create();
-
-        factory(App\PostCategory::class, 2)->create()
-        ->each(function($cat) {
-            $cat->postCategoryLanguages()->save(factory(App\PostCategoryLanguage::class)->make());
-        });
-
-        factory(App\Category::class, 2)->create()
-        ->each(function($cat) {
-            $cat->categoryLanguages()->save(factory(App\CategoryLanguage::class)->make());
-        });
-
-        factory(App\User::class, 10)->create()->each(function($u) {
-
-            for($i = 0; $i < 10; $i++) {
-
-                $u->posts()->save(factory(App\Post::class)->make());
-
-                $u->properties()->save(factory(App\Property::class)->make());
-            }
-
-        });
-
-        factory(App\Customer::class, 100)->create();
 
     }
+
 }
