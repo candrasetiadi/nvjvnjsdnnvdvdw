@@ -823,6 +823,23 @@ table{
     margin-bottom: 120px;
 }
 
+.hidden{
+    display: none;
+}
+
+.ghost{
+    visibility: hidden;
+    opacity: 0;
+}
+
+[hidden]{
+    .hidden();
+}
+
+[ghost]{
+    .ghost();
+}
+
 m-progress-bar{
     position: absolute;
     height: 4px;
@@ -996,6 +1013,28 @@ m-template{
 
                     td{
 
+                        &[button]{
+                            padding: 0 12px;
+
+                            m-table-list-more{
+                                .cursor();
+                                display: inline-block;
+                                width: 32px;
+                                height: 32px;
+                                border-radius: 50%;
+                                text-align: center;
+                                .transition();
+
+                                i{
+                                    line-height: 32px;
+                                }
+
+                                &:hover{
+                                    background-color: white;
+                                    .shadow();
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -1588,6 +1627,24 @@ m-input{
         }
     }
 }
+
+m-error-dialog{
+    display: block;
+    padding: 16px;
+    box-sizing: border-box;
+    background: #FFCDD2;
+    border: 2px dashed @gred;
+    text-align: center;
+    margin-bottom: 12px;
+
+    m-error-message{
+        font-size: 12px;
+        font-weight: 500;
+        color: #323232;
+    }
+}
+
+
 /* IMAGERY */
 .fill-background{
     background-position: center;

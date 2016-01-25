@@ -726,6 +726,13 @@ var Matter = {
 
                 Ajax.post(url, fd, doNothing);
             });
+
+            $(document).on('click', '.role-option', function() {
+
+                $('m-error-dialog').hide();
+
+                if($(this).is('#super-role')) $('m-error-dialog').show();
+            });
         },
 
         settings: function() {
