@@ -57,17 +57,43 @@
     {!! Form::open(array('class' => 'modal-window', 'id' => 'enquiry-form', 'data-function' => 'modalClose', 'data-url' => 'enquiry/store')) !!}
     <h3>Add enquiry</h3>
 
+
+    <m-input select>
+        <input type="text" select id="blog-input-lang" name="status" value="available" required>
+        <label for="blog-input-lang">Customers</label>
+        <m-select>
+
+            @foreach(\App\Customer::orderBy('firstname', 'asc')->get() as $customer)
+            <m-option value="{{ $customer->id }}">{{ $customer->firstname }}</m-option>
+            @endforeach
+
+        </m-select>
+    </m-input>
+
+    <m-input select>
+        <input type="text" select id="blog-input-lang" name="status" value="available" required>
+        <label for="blog-input-lang">Properties</label>
+        <m-select>
+
+            @foreach(\App\Property::orderBy('created_at', 'desc')->get() as $property)
+            <m-option value="{{ $property->id }}">{{ $property->firstname }}</m-option>
+            @endforeach
+
+        </m-select>
+    </m-input>
+
     <m-input>
         <input type="text" id="enquiry-title" name="title" required>
-        <label for="title">Title</label>
+        <label for="title">Subject</label>
     </m-input>
 
     <m-input-group textarea>
-        <h3 class="input-group-title">Description</h3>
+        <h3 class="input-group-title">Content</h3>
         <div class="input-wrapper fwidth">
             <textarea name="description" id="enquiry-description" rows="5"></textarea>
         </div>
     </m-input-group>
+
     <input type="hidden" name="author" id="account-input-admin" value="admin">
     <input type="hidden" name="edit" value="0" id="edit-flag">
 
