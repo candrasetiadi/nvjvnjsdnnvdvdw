@@ -16,7 +16,7 @@ return [
 
     "enquiries" => [
 
-        "enquiries" => "enquiries"
+        "enquiries" => "manage enquiries"
 
     ],
 
