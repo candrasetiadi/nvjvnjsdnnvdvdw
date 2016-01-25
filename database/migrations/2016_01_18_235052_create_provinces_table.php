@@ -13,11 +13,31 @@ class CreateProvincesTable extends Migration
     public function up()
     {
         Schema::create('Provinces', function (Blueprint $table) {
+
             $table->increments('id');
-            $table->string('name');
-            $table->string('code');
+            $table->string('province_name', 50);
+            $table->string('province_name_abbr', 50);
+            $table->string('province_name_id', 50);
+            $table->string('province_name_en', 50);
+            $table->smallInteger('province_capital_city_id')->unsigned()->index();
+            $table->string('iso_code', 5)->index();
+            $table->string('iso_name', 50);
+            $table->enum('iso_type',
+            [
+                'province',
+                'autonomous province',
+                'special district',
+                'special region'
+            ]);
+            $table->string('iso_geounit', 2)->index();
+            $table->string('country_iso', 5);
+            $table->tinyInteger('timezone');
+            $table->float('province_lat', 10, 6)->nullable()->index();
+            $table->float('province_lon', 10, 6)->nullable()->index();
+
             $table->timestamps();
         });
+
     }
 
     /**

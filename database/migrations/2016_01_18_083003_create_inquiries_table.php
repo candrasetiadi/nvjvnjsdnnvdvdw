@@ -17,12 +17,12 @@ class CreateInquiriesTable extends Migration
             $table->increments('id');
             $table->integer('property_id');
             $table->integer('customer_id');
-            $table->string('subject');
-            $table->text('content');
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->string('phone');
-            $table->string('email');
+            $table->string('subject')->nullable();
+            $table->text('content')->nullable();
+            $table->string('firstname')->nullable();
+            $table->string('lastname')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
             $table->timeStamps();
             $table->softDeletes();
         });

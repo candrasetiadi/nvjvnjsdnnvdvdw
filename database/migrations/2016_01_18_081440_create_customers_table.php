@@ -15,26 +15,26 @@ class CreateCustomersTable extends Migration
         //
         Schema::create('Customers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username');
+            $table->string('username')->nullable();
             $table->string('email')->unique();
-            $table->string('password');
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->string('address');
-            $table->string('phone');
-            $table->string('city');
-            $table->string('province');
-            $table->string('country');
-            $table->string('zipcode');
-            $table->string('facebook');
-            $table->string('twitter');
-            $table->string('image_profile');
-            $table->boolean('newsletter');
-            $table->boolean('active');
+            $table->string('password')->nullable();
+            $table->rememberToken();
+            $table->string('firstname')->nullable();
+            $table->string('lastname')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('city')->nullable();
+            $table->string('province')->nullable();
+            $table->string('country')->nullable();
+            $table->string('zipcode')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('image_profile')->nullable();
+            $table->boolean('newsletter')->nullable();
+            $table->boolean('active')->default(0);
 
             $table->timeStamps();
             $table->softDeletes();
-            $table->rememberToken();
         });
     }
 

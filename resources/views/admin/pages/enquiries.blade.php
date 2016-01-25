@@ -27,7 +27,7 @@
             <tr class="enquiry-item" data-id="{{ $enquiry->id }}">
                 <td class="select"><a href class="m-table-item-select m-table-item-select-single" data-id="1"><i class="m-checkbox"></i></a></td>
                 <td class="subject">{{ $enquiry->subject }}</td>
-                <td class="property">{{ $enquiry->property->lang()->title }}</td>
+                <td class="property">{{ $enquiry->property ? $enquiry->property->lang()->title : '-' }}</td>
                 <td class="name">{{ $enquiry->firstname . ' ' . $enquiry->lastname }}</td>
                 <td class="phone">{{ $enquiry->phone }}</td>
                 <td class="email">{{ $enquiry->email }}</td>
@@ -36,7 +36,7 @@
                     <a href class="m-list-item-more"><i class="material-icons">more_horiz</i></a>
                     <div class="m-list-item-option" data-id="{{ $enquiry->id }}"><ul>
                         <li><a href="{{ $enquiry->id }}" class="item-edit">edit</a></li>
-                        <li><a href="{{ url('system/ajax/enquiry/delete/' . $enquiry->id) }}" class="item-delete direct-delete">delete</a></li>
+                        <li><a href="{{ url('system/ajax/inquiry/delete/' . $enquiry->id) }}" class="item-delete direct-delete">delete</a></li>
                         </ul>
                     </div>
                 </td>
@@ -56,20 +56,66 @@
 
 <m-modal-wrapper id="enquiry-add">
 
-    {!! Form::open(array('class' => 'modal-window', 'id' => 'enquiry-form', 'data-function' => 'modalClose', 'data-url' => 'enquiry/store')) !!}
+    {!! Form::open(array('class' => 'modal-window', 'id' => 'enquiry-form', 'data-function' => 'modalClose', 'data-url' => 'inquiry/store')) !!}
     <h3>Add enquiry</h3>
 
+
+    <m-input select>
+        <input type="text" select id="blog-input-lang" name="customer_id" value="available" required>
+        <label for="blog-input-lang">Customers</label>
+        <m-select>
+
+            @foreach(\App\Customer::orderBy('firstname', 'asc')->get() as $customer)
+            <m-option value="{{ $customer->id }}">{{ $customer->firstname }}</m-option>
+            @endforeach
+
+        </m-select>
+    </m-input>
+
+    <m-input select>
+        <input type="text" select id="blog-input-lang" name="property_id" value="available" required>
+        <label for="blog-input-lang">Properties</label>
+        <m-select>
+
+            @foreach(\App\Property::orderBy('created_at', 'desc')->get() as $property)
+            <m-option value="{{ $property->id }}">{{ $property->lang()->title }}</m-option>
+            @endforeach
+
+        </m-select>
+    </m-input>
+
     <m-input>
-        <input type="text" id="enquiry-title" name="title" required>
-        <label for="title">Title</label>
+        <input type="text" id="enquiry-subject" name="subject" required>
+        <label for="subject">Subject</label>
     </m-input>
 
     <m-input-group textarea>
-        <h3 class="input-group-title">Description</h3>
+        <h3 class="input-group-title">Content</h3>
         <div class="input-wrapper fwidth">
-            <textarea name="description" id="enquiry-description" rows="5"></textarea>
+            <textarea name="content" id="enquiry-content" rows="5"></textarea>
         </div>
     </m-input-group>
+
+    <m-input>
+        <input type="text" id="enquiry-firstname" name="firstname" required>
+        <label for="firstname">Firstname</label>
+    </m-input>
+
+    <m-input>
+        <input type="text" id="enquiry-lastname" name="lastname" required>
+        <label for="lastname">Lastname</label>
+    </m-input>
+
+    <m-input>
+        <input type="text" id="enquiry-phone" name="phone" required>
+        <label for="phone">Phone</label>
+    </m-input>
+
+    <m-input>
+        <input type="text" id="enquiry-email" name="email" required>
+        <label for="email">Email</label>
+    </m-input>
+
     <input type="hidden" name="author" id="account-input-admin" value="admin">
     <input type="hidden" name="edit" value="0" id="edit-flag">
 
@@ -84,7 +130,7 @@
 @section('scripts')
 
 <script>
-    Matter.admin.enquiries();
+    Matter.admin.inquiries();
 </script>
 
 @endsection

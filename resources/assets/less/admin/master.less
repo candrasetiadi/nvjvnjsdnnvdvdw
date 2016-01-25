@@ -1017,6 +1017,7 @@ m-template{
                             padding: 0 12px;
 
                             m-table-list-more{
+                                position: relative;
                                 .cursor();
                                 display: inline-block;
                                 width: 32px;
@@ -1032,6 +1033,33 @@ m-template{
                                 &:hover{
                                     background-color: white;
                                     .shadow();
+                                }
+
+                                m-list-menu{
+                                    .card();
+                                    position: absolute;
+                                    top: 24px;
+                                    right: 24px;
+                                    max-height: 0;
+                                    width: 0;
+                                    padding: 0;
+                                    z-index: 10;
+                                    .transition(all .11s ease);
+
+                                    m-list-menu-item{
+                                        .block();
+                                        padding: 8px 12px;
+                                        text-align: left;
+
+                                        &:hover{
+                                            background-color: #fafafa;
+                                        }
+                                    }
+
+                                    &.active{
+                                        max-height: 96px;
+                                        width: 128px;
+                                    }
                                 }
                             }
                         }

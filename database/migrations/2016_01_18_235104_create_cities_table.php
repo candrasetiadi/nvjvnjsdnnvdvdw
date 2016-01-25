@@ -14,10 +14,14 @@ class CreateCitiesTable extends Migration
     {
         Schema::create('Cities', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('code');
-            $table->double('latitude');
-            $table->double('longitude');
+
+            $table->tinyInteger('province_id')->unsigned()->index();
+            $table->string('city_name', 50)->index();
+            $table->string('city_name_full', 100)->index();
+            $table->enum('city_type', ['kabupaten', 'kota'])->nullable();
+            $table->float('city_lat', 10, 6)->nullable()->index();
+            $table->float('city_lon', 10, 6)->nullable()->index();
+
             $table->timestamps();
         });
     }

@@ -34,4 +34,36 @@ function convertToInches($data) {
     return $n[0] . ' x ' . $n[1] . ' x ' . $n[2];
 }
 
+function humanize($value) {
+
+    if($value > 1000000000) {
+
+        $head = $value / 1000000000;
+
+        $head = number_format((float)$head, 1, '.', '');
+
+        return $head . 'b';
+
+    } elseif($value > 1000000) {
+
+        $head = $value / 1000000;
+
+        $head = number_format((float)$head, 1, '.', '');
+
+        return $head . 'm';
+
+    } elseif($value > 1000) {
+
+        $head = $value / 1000;
+
+        $head = number_format((float)$head, 1, '.', '');
+
+        return $head . 'k';
+
+    } else {
+
+        return $value;
+    }
+}
+
 

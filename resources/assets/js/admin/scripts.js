@@ -126,6 +126,15 @@ $(document).mouseup(function(e) {
     }
 });
 
+$(document).mouseup(function(e) {
+
+    var container = $("m-list-menu");
+
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+        $('m-list-menu').removeClass('active');
+    }
+});
+
 //Matter's modular functions ::see matter.txt for docs
 $(document).on('click', '.modal-open', function(e) {
 
@@ -371,6 +380,19 @@ $(document).on('click', 'm-option', function() {
 });
 //
 
+
+
+// Matter List Item More Button
+$(document).on('click', 'm-table-list-more', function() {
+
+    $('m-list-menu').removeClass('active');
+
+    $(this).children('m-list-menu').addClass('active');
+});
+// End of list item more button
+
+
+
 function sortList(list, id) {
 
     var items = $(list + ' > li').get();
@@ -457,6 +479,35 @@ function doNothing() {
     NProgress.done();
 
     return false;
+}
+
+var Module = {
+
+    system:{
+
+        clicker: function() {
+
+            $(document).on('click', 'm-list-menu-item', function() {
+
+                var id = $(this).parents('m-list-menu').attr('data-id'),
+                    func = $(this).attr('data-function'),
+                    source = $(this).attr('data-source');
+
+                // Below statement will run when button is a delete button
+                if(!!$(this).attr('data-url')) {
+
+                    Monolog.confirm('delete property', 'are you sure to delete this property? this cannot be undone', function() {
+
+                        Ajax.get($(this).attr('data-url') + '/' + id, doNothing);
+                    });
+
+                    return false;
+                }
+                // Else we will run the target function
+                Ajax.get(source + '/' + id, eval(func));
+            });
+        }
+    }
 }
 
 var Matter = {
@@ -654,10 +705,50 @@ var Matter = {
 
         inquiries: function() {
 
+            $(document).on('click', '[save-form]', function() {
+
+                var form = $(this).closest('form'),
+                    formId = form.attr('id'),
+                    url = form.attr('data-url'),
+                    doneFunc = form.attr('data-function'),
+                    fd = new FormData($('#' + formId)[0]);
+
+                Ajax.post(url, fd, eval(doneFunc));
+            });
+
+            function populateInquiriesEdit(data) {
+
+                data = data.data;
+
+                $.each(data, function(k,v) {
+
+                    consoleLog(k);
+                });
+            }
         },
 
         customers: function() {
 
+            $(document).on('click', '[save-form]', function() {
+
+                var form = $(this).closest('form'),
+                    formId = form.attr('id'),
+                    url = form.attr('data-url'),
+                    doneFunc = form.attr('data-function'),
+                    fd = new FormData($('#' + formId)[0]);
+
+                Ajax.post(url, fd, eval(doneFunc));
+            });
+
+            function populateCustomersEdit(data) {
+
+                data = data.data;
+
+                $.each(data, function(k,v) {
+
+                    consoleLog(k);
+                });
+            }
         },
 
         categories: function() {
@@ -672,20 +763,29 @@ var Matter = {
 
                 Ajax.post(url, fd, eval(doneFunc));
             });
-
-            function populateCategoriesEdit(data) {
-
-                data = data.data;
-
-                $.each(data, function(k,v) {
-
-                    consoleLog(k);
-                });
-            }
-
         },
 
         properties: function() {
+
+            $(document).on('click', 'm-list-menu-item', function() {
+
+                var id = $(this).parents('m-list-menu').attr('data-id'),
+                    func = $(this).attr('data-function'),
+                    source = $(this).attr('data-source');
+
+                // Below statement will run when button is a delete button
+                if(!!$(this).attr('data-url')) {
+
+                    Monolog.confirm('delete property', 'are you sure to delete this property? this cannot be undone', function() {
+
+                        Ajax.get($(this).attr('data-url') + '/' + id, doNothing);
+                    });
+
+                    return false;
+                }
+                // Else we will run the target function
+                Ajax.get(source + '/' + id, eval(func));
+            });
 
             $(document).on('click', '[save-form]', function() {
 
@@ -698,23 +798,63 @@ var Matter = {
                 Ajax.post(url, fd, eval(doneFunc));
             });
 
-            function populatePropertiesEdit(data) {
+            function populatePropertyEdit(data) {
 
-                data = data.data;
+                consoleLog(data);
 
-                $.each(data, function(k,v) {
-
-                    consoleLog(k);
-                });
+                NProgress.done();
             }
 
+            function populatePropertyDuplicate(data) {
+
+                consoleLog(data);
+
+                NProgress.done();
+            }
         },
 
         blog: function() {
 
+            $(document).on('click', 'm-list-menu-item', function() {
+
+                var id = $(this).parents('m-list-menu').attr('data-id'),
+                    func = $(this).attr('data-function');
+
+                // Below statement will run when button is a delete button
+                if(!!$(this).attr('data-url')) {
+
+                    Monolog.confirm('delete property', 'are you sure to delete this property? this cannot be undone', function() {
+
+                        Ajax.get($(this).attr('data-url') + '/' + id, doNothing);
+                    });
+
+                    return false;
+                }
+                // Else we will run the target function
+                eval(func + '(' + id + ')');
+            });
         },
 
         accounts: function() {
+
+            $(document).on('click', 'm-list-menu-item', function() {
+
+                var id = $(this).parents('m-list-menu').attr('data-id'),
+                    func = $(this).attr('data-function');
+
+                // Below statement will run when button is a delete button
+                if(!!$(this).attr('data-url')) {
+
+                    Monolog.confirm('delete property', 'are you sure to delete this property? this cannot be undone', function() {
+
+                        Ajax.get($(this).attr('data-url') + '/' + id, doNothing);
+                    });
+
+                    return false;
+                }
+                // Else we will run the target function
+                eval(func + '(' + id + ')');
+            });
 
             $(document).on('click', '[save-form]', function() {
 

@@ -24,9 +24,9 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'lastname' => $faker->lastName,
         'address' => $faker->address,
         'phone' => $faker->phoneNumber,
-        'city' => 'denpasar',
-        'province' => 'bali',
-        'country' => 'indonesia',
+        'city' => 'Denpasar',
+        'province' => 'Bali',
+        'country' => 'Indonesia',
         'zipcode' => $faker->postcode,
         'image' => 'user.jpg',
         'active' => 1
@@ -50,9 +50,9 @@ $factory->define(App\Customer::class, function (Faker\Generator $faker) {
         'lastname' => $faker->lastName,
         'address' => $faker->address,
         'phone' => $faker->phoneNumber,
-        'city' => 'denpasar',
-        'province' => 'bali',
-        'country' => 'indonesia',
+        'city' => 'Denpasar',
+        'province' => 'Bali',
+        'country' => 'Indonesia',
         'zipcode' => $faker->postcode,
         'image_profile' => 'customer.jpg',
         'newsletter' => 1,
@@ -60,9 +60,21 @@ $factory->define(App\Customer::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Inquiry::class, function (Faker\Generator $faker) {
+    return [    
+        'property_id' => rand(1, 100),
+        'subject' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'content' => $faker->paragraph($nbSentences = 6, $variableNbSentences = true),
+        'firstname' => $faker->firstName,
+        'lastname' => $faker->lastName,
+        'phone' => $faker->phoneNumber,
+        'email' => $faker->email
+    ];
+});
+
 $factory->define(App\Branch::class, function (Faker\Generator $faker) {
     return [
-        'name' => 'denpasar'
+        'name' => 'Denpasar'
     ];
 });
 

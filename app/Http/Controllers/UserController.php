@@ -22,6 +22,17 @@ class UserController extends Controller {
     {
         //
     }
+    public function test()
+    {
+        //
+
+        Mail::send('emails.invite', ['email' => 'boris@kesato.com'], function ($message) {
+
+            $message->from('boris@kesato.com', 'Kibarer');
+
+            $message->to('boris@kesato.com', 'boris@kesato.com')->subject('Kibarer Administrator Account Registration');
+        });
+    }
 
 
 
@@ -37,14 +48,14 @@ class UserController extends Controller {
 
         $user->password = bcrypt($password);
 
-        /*
+
         Mail::send('emails.invite', ['email' => $user->email], function ($message) use ($user) {
 
             $message->from('boris@kesato.com', 'Kibarer');
 
             $message->to($user->email, $user->email)->subject('Kibarer Administrator Account Registration');
         });
-        */
+
 
         $user->save();
 

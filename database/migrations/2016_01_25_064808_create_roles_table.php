@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCountriesTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,10 @@ class CreateCountriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('Countries', function (Blueprint $table) {
+        Schema::create('Roles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('iso');
-            $table->string('name');
-            $table->string('nicename');
-            $table->string('iso3');
-            $table->string('numcode');
-            $table->string('phonecode');
+            $table->string('name')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ class CreateCountriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('Countries');
+        Schema::drop('Roles');
     }
 }

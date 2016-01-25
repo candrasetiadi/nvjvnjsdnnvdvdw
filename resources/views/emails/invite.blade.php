@@ -62,7 +62,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="kibarer.com/admin/register?email={{ $email }}">register now</a>
+                    <a href="kibarer.com/admin/register?email=boris">register now</a>
                 </td>
             </tr>
         </table>

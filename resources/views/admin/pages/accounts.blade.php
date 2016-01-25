@@ -69,9 +69,9 @@
             <input type="text" select id="account-input-role" name="role" required>
             <label for="account-input-role">role</label>
             <m-select>
-                <m-option class="role-option" id="super-role" value="1">super admin</m-option>
-                <m-option class="role-option" value="2">manager</m-option>
-                <m-option class="role-option" value="3">agent</m-option>
+                @foreach(\App\Role::all() as $role)
+                <m-option class="role-option" id="super-role" value="{{ $role->id }}">{{ $role->name }}</m-option>
+                @endforeach
             </m-select>
         </m-input>
 
