@@ -168,7 +168,7 @@ Route::group(['prefix' => 'admin'], function () {
 
             Route::any('store', 'PropertiesController@store');
 
-            Route::any('delete/{id}', 'PropertiesController@destroy');
+            Route::any('destroy/{id}', 'PropertiesController@destroy');
 
         });
 

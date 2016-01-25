@@ -258,6 +258,7 @@ class PropertiesController extends Controller
         $property->delete();
 
         // $property->softDeletes();
-        return redirect()->back();
+        // return redirect()->back();
+        return response()->json(array('status' => 200, 'monolog' => array('title' => 'delete success', 'message' => 'Property has been deleted'), 'id' => $id));
     }
 }

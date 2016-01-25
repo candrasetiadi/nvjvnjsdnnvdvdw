@@ -43,7 +43,7 @@
         <tbody>
             @foreach($properties as $property)
             <?php $images = $property->propertyFiles()->where('type', 'image'); ?>
-            <tr class="property-item">
+            <tr class="property-item" id="property-item-{{ $property->id }}">
                 <td width="5%">
                     <m-list-item-check single data-id="{{ $property->id }}"></m-list-item-check>
                 </td>
