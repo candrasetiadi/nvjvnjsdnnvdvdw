@@ -158,7 +158,7 @@ Route::group(['prefix' => 'admin'], function () {
 
             Route::any('store', 'CustomerController@store');
 
-            Route::any('delete/{id}', 'CustomerController@destroy');
+            Route::any('destroy/{id}', 'CustomerController@destroy');
 
         });
 

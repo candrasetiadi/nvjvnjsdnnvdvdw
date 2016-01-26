@@ -127,6 +127,7 @@ class CustomerController extends Controller
 
         $customer->delete();
 
-        return redirect()->back();
+        // return redirect()->back();
+        return response()->json(array('status' => 200, 'monolog' => array('title' => 'delete success', 'message' => 'Customer has been deleted'), 'id' => $id));
     }
 }

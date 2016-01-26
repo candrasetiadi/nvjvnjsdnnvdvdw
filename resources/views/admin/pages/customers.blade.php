@@ -10,7 +10,7 @@
 @stop
 
 @section('content')
-<m-template list>
+<m-template list class="customer-wrapper">
 
     <m-action-bar class="flexbox fwidth">
         <m-input class="w33" id="action-search-wrapper">
@@ -34,7 +34,7 @@
 
         <tbody>
             @foreach($customers as $customer)
-            <tr class="customer-item" data-id="{{ $customer->id }}">
+            <tr class="customer-item" id="customer-item-{{ $customer->id }}">
                 <td class="select">
                     <m-list-item-check class="single" data-id="{{ $customer->id }}"></m-list-item-check>
                 </td>
@@ -44,14 +44,16 @@
                 <td>{{ $customer->city }}</td>
                 <td>{{ $customer->country }}</td>
                 <td>{{ $customer->created_at->format('Y-m-d') }}</td>
-                <td class="status align-center">{{ $customer->active ? 'active' : 'not yet'}}</td>                
-                <td class="m-table-item-options">
-                    <a href class="m-list-item-more"><i class="material-icons">more_horiz</i></a>
-                    <div class="m-list-item-option" data-id="{{ $customer->id }}"><ul>
-                        <li><a href="{{ $customer->id }}" class="item-edit">edit</a></li>
-                        <li><a href="{{ url('system/ajax/customer/delete/' . $customer->id) }}" class="item-delete direct-delete">delete</a></li>
-                        </ul>
-                    </div>
+                <td class="status align-center">{{ $customer->active ? 'active' : 'not yet'}}</td>  
+
+                <td button>
+                    <m-table-list-more>
+                        <i class="material-icons">more_horiz</i>
+                        <m-list-menu data-id="{{ $customer->id }}">
+                            <m-list-menu-item edit data-source="customer/get" data-function="populateCustomerEdit">EDIT</m-list-menu-item>
+                            <m-list-menu-item delete data-url="customer/destroy">DELETE</m-list-menu-item>
+                        </m-list-menu>
+                    </m-table-list-more>
                 </td>
             </tr>
             @endforeach
