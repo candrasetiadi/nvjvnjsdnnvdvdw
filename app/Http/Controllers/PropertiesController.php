@@ -218,6 +218,8 @@ class PropertiesController extends Controller
         //
         $property = Property::find($id);
 
+        $property->propertyLanguages = $property->propertyLanguages()->where('locale', 'en')->first();
+
         return $property;
     }
 

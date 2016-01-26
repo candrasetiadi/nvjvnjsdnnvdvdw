@@ -118,13 +118,33 @@ $factory->define(App\Property::class, function (Faker\Generator $faker) {
         'publish' => $faker->randomElement($array = array ('draft', 'moderation', 'publish')),
         'building_size' => $faker->randomNumber(2),
         'land_size' => $faker->randomNumber(3),
-        'sold' => $faker->randomElement($array = array ('0', '1')),
-        'status' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'sold' => $faker->randomElement([0, 1]),
+        'status' => $faker->randomElement([-1, 0, 1]),
         'year' => $faker->year($max = 'now'),
         'view' => $faker->randomDigit,
-        'owner_name' => $faker->firstName,
+
+        'view_north' => $faker->sentence($nbWords = 3, $variableNbWords = true),
+        'view_east' => $faker->sentence($nbWords = 3, $variableNbWords = true),
+        'view_west' => $faker->sentence($nbWords = 3, $variableNbWords = true),
+        'view_south' => $faker->sentence($nbWords = 3, $variableNbWords = true),
+
+        'is_price_request' => $faker->randomElement([0, 1]),
+        'is_exclusive' => $faker->randomElement([0, 1]),
+
+        'owner_name' => $faker->name,
         'owner_email' => $faker->email,
-        'owner_phone' => $faker->phoneNumber
+        'owner_phone' => $faker->phoneNumber,
+
+        'agent_commission' => $faker->randomNumber(7),
+        'agent_contact' => $faker->name,
+        'agent_meet_date' => $faker->date($format = 'Y-m-d', $min = 'now'),
+        'agent_inspector' => $faker->name,
+
+        'sell_reason' => $faker->sentence($nbWords = 10, $variableNbWords = true),
+        'sell_note' => $faker->sentence($nbWords = 10, $variableNbWords = true),
+        'other_agent' => $faker->name,
+
+        'slug' => $faker->slug
     ];
 });
 

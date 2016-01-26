@@ -867,20 +867,47 @@ var Matter = {
 
             function populatePropertyEdit(data) {
 
+                $('#property-input-title').val(data.propertyLanguages.title);
+
+                $('#property-input-description').val(data.propertyLanguages.description);
+
                 $.each(data, function(k, v) {
 
-                    $('#property-input-' + k).val(v);
+                   $('#property-input-' + k).val(v);
+
                 });
 
-                galleryHtml = '';
+                galleryHtml = ''
+                        + '<m-gallery-item data-source="media/catalog/somegile.jpg" data-id="23">'
+                            + '<m-gallery-item-menu>'
+                                + '<m-button class="make-thumbnail" data-function="makeThumbnail">'
+                                    + '<i class="material-icons">close</i>'
+                                + '</m-button>'
+                                + '<m-button delete data-url="propertyimage/destroy">'
+                                    + '<i class="material-icons">close</i>'
+                                + '</m-button>'
+                            + '</m-gallery-item-menu>'
+                        + '</m-gallery-item>';
 
-                $.each(data.gallery, function(k, v) {
+                        // <m-gallery-item style="background-image: url('{{ urltofile }}')" data-id="{{ prop_id }}">
+                        //     <m-gallery-item-menu>
+                        //         <m-button class="make-thumbnail" data-function="makeThumbnail">
+                        //             if(isThumbnail) <i class="material-icons" gold>star</i>
+                        //             else <i class="material-icons">star_border</i>
+                        //         </m-button>
+                        //         <m-button delete data-url="propertyimage/destroy">
+                        //             <i class="material-icons">close</i>
+                        //         </m-button>
+                        //     </m-gallery-item-menu>
+                        // </m-gallery-item>
 
-                    galleryHtml += '<img src="media/catalog/' + v.file + '"/>';
-                });
+                // $.each(data.gallery, function(k, v) {
+
+                //     galleryHtml += '<img src="media/catalog/' + v.file + '"/>';
+                // });
 
 
-                $('#gallery-wrapper').html(galleryHtml);
+                // $('#gallery-wrapper').html(galleryHtml);
 
                 modalOpen('#property-add');
 
