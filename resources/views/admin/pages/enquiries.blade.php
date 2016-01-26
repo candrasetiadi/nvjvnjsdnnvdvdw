@@ -8,44 +8,52 @@
 @stop
 
 @section('content')
-<div class="enquiry-wrapper flexbox flexbox-wrap">
+<m-template list class="inquiry-wrapper">
 
     <table class="m-table-list enquiry-table">
         <thead>
             <td><a href class="m-table-item-select m-table-item-select-all"><i class="m-checkbox"></i></a></td>
-            <td>Subject</td>
             <td>Property</td>
-            <td>Buyer Name</td>
-            <td>Buyer Phone</td>
-            <td>Buyer Email</td>
-            <td>Date</td>
+            <td>Subject</td>
+            <td>Name</td>
+            <td>Phone</td>
+            <td>Email</td>
             <td>Action</td>
 
         </thead>
         <tbody>
-            @foreach($enquiries as $enquiry)            
-            <tr class="enquiry-item" data-id="{{ $enquiry->id }}">
+            @foreach($enquiries as $inquiry)            
+            <tr class="inquiry-item" data-id="{{ $inquiry->id }}" id="inquiry-item-{{ $inquiry->id }}">
                 <td class="select"><a href class="m-table-item-select m-table-item-select-single" data-id="1"><i class="m-checkbox"></i></a></td>
-                <td class="subject">{{ $enquiry->subject }}</td>
-                <td class="property">{{ $enquiry->property ? $enquiry->property->lang()->title : '-' }}</td>
-                <td class="name">{{ $enquiry->firstname . ' ' . $enquiry->lastname }}</td>
-                <td class="phone">{{ $enquiry->phone }}</td>
-                <td class="email">{{ $enquiry->email }}</td>
-                <td class="email">{{ $enquiry->created_at }}</td>
-                <td class="m-table-item-options">
+                <td class="property">{{ $inquiry->property ? $inquiry->property->lang()->title : '-' }}</td>
+                <td class="subject">{{ $inquiry->subject }}</td>
+                <td class="name">{{ $inquiry->firstname . ' ' . $inquiry->lastname }}</td>
+                <td class="phone">{{ $inquiry->phone }}</td>
+                <td class="email">{{ $inquiry->email }}</td>
+                <!-- <td class="m-table-item-options">
                     <a href class="m-list-item-more"><i class="material-icons">more_horiz</i></a>
-                    <div class="m-list-item-option" data-id="{{ $enquiry->id }}"><ul>
-                        <li><a href="{{ $enquiry->id }}" class="item-edit">edit</a></li>
-                        <li><a href="{{ url('system/ajax/inquiry/delete/' . $enquiry->id) }}" class="item-delete direct-delete">delete</a></li>
+                    <div class="m-list-item-option" data-id="{{ $inquiry->id }}"><ul>
+                        <li><a href="{{ $inquiry->id }}" class="item-edit">edit</a></li>
+                        <li><a href="{{ url('system/ajax/inquiry/delete/' . $inquiry->id) }}" class="item-delete direct-delete">delete</a></li>
                         </ul>
                     </div>
+                </td> -->
+
+                <td button>
+                    <m-table-list-more>
+                        <i class="material-icons">more_horiz</i>
+                        <m-list-menu data-id="{{ $inquiry->id }}">
+                            <m-list-menu-item edit data-source="inquiry/get" data-function="populateInquiryEdit">EDIT</m-list-menu-item>
+                            <m-list-menu-item delete data-url="inquiry/destroy">DELETE</m-list-menu-item>
+                        </m-list-menu>
+                    </m-table-list-more>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
 
-</div>
+</m-template>
 
 @include('admin.fragments.pagination', ['paginator' => $enquiries])
 

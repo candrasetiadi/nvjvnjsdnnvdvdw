@@ -705,6 +705,36 @@ var Matter = {
 
         inquiries: function() {
 
+            $(document).on('click', 'm-list-menu-item', function() {
+
+                var id = $(this).parents('m-list-menu').attr('data-id'),
+                    func = $(this).attr('data-function'),
+                    source = $(this).attr('data-source'),
+                    url_delete = $(this).attr('data-url');
+
+                // Below statement will run when button is a delete button
+                if(!!url_delete) {
+
+                    Monolog.confirm('delete inquiry', 'are you sure to delete this inquiry? this cannot be undone', function() {
+
+                        Ajax.get(url_delete + '/' + id, removeItem);
+                    });
+
+                    return false;
+                }
+                // Else we will run the target function
+                Ajax.get(source + '/' + id, eval(func));
+            });
+
+            function removeItem(data) {
+
+                var id = data.id;
+
+                $('#inquiry-item-' + id).remove();
+
+                NProgress.done();
+            }
+
             $(document).on('click', '[save-form]', function() {
 
                 var form = $(this).closest('form'),
@@ -716,14 +746,11 @@ var Matter = {
                 Ajax.post(url, fd, eval(doneFunc));
             });
 
-            function populateInquiriesEdit(data) {
+            function populateInquiryEdit(data) {
 
-                data = data.data;
+                consoleLog(data);
 
-                $.each(data, function(k,v) {
-
-                    consoleLog(k);
-                });
+                NProgress.done();
             }
         },
 
@@ -785,7 +812,7 @@ var Matter = {
                     return false;
                 }
                 // Else we will run the target function
-                // Ajax.get(source + '/' + id, eval(func));
+                Ajax.get(source + '/' + id, eval(func));
             });
 
             function removeItem(data) {
