@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Auth;
 
-class Authenticate
+class CustomerAuthenticate
 {
     /**
      * The Guard implementation.
@@ -35,11 +35,11 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->guest()) {
+        if (Auth::customer()->guest()) {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('auth/login');
+                return redirect()->guest('login');
             }
         }
 

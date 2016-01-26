@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+use Illuminate\Http\Request;
+use Auth;
+
 class AuthController extends Controller
 {
     /*
@@ -62,4 +65,56 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    public function getLogin()
+    {
+        if (Auth::user()->check()) return redirect('admin/dashboard');
+
+        return view('auth.login');
+    }
+
+
+    public function postLogin(Request $request)
+    {
+
+        $auth = $this->authenticate($request->email, $request->password, $request->remember);
+
+        if ($auth == 'user') return response()->json(array('log' => 1, 'redirect' => '/admin/dashboard'));
+
+        if ($auth == 'customer') return redirect('account');
+
+        return redirect()->back();
+    }
+
+
+    public function authenticate($email, $password, $remember)
+    {
+        if (Auth::user()->attempt(['email' => $email, 'password' => $password], $remember)) {
+
+            return 'user';
+        }
+
+        if (Auth::customer()->attempt(['email' => $email, 'password' => $password], $remember)) {
+
+            return 'customer';
+        }
+    }
+
+
+    public function getLogout()
+    {
+        if (Auth::user()->check()) {
+            Auth::user()->logout();
+            return redirect('auth/login');
+        }
+
+        if (Auth::customer()->check()) {
+            Auth::customer()->logout();
+            return redirect('login');
+        }
+
+        return redirect()->back();
+
+    }
+
 }

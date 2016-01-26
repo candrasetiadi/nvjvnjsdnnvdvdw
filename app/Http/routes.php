@@ -39,6 +39,18 @@ Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
     Route::get('/{about}/', 'PagesController@about');
 
 
+    // Customer
+    Route::get('/{login}/', 'PagesController@login');
+    Route::post('/{login}/', 'Auth\AuthController@postLogin');
+    Route::get('/{logout}/', 'Auth\AuthController@getLogout');
+
+    Route::get('/{register}/', 'PagesController@register');
+
+    Route::group(['middleware' => 'auth.customer'], function () {
+
+        Route::get('/{account}/', 'PagesController@account');
+    });
+
 
     // Properties
     Route::get('/{properties}/', 'PagesController@propertyListing');
@@ -53,73 +65,66 @@ Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
     Route::get('blog/{url}', ['as' => 'url','uses' => 'PagesController@blogView']);
 
 
-
-    // Customer
-    Route::get('/{login}/', 'PagesController@login');
-
-    Route::get('/{register}/', 'PagesController@register');
-
-    Route::get('/{account}/', 'PagesController@account');
 });
 
 
 
 // Back-End
-//Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
 
-Route::group(['prefix' => 'admin'], function () {
+    Route::group(['prefix' => 'admin'], function () {
 
-    // General
-    Route::get('dashboard', 'AdminController@dashboard');
+        // General
+        Route::get('dashboard', 'AdminController@dashboard');
 
-    Route::get('enquiries', 'AdminController@enquiries');
-
-
-    // Customer
-    Route::get('customers', 'AdminController@customers');
+        Route::get('enquiries', 'AdminController@enquiries');
 
 
-    // CMS
-    Route::get('properties', 'AdminController@properties');
-    Route::get('property/categories', 'AdminController@propertyCategories');
+        // Customer
+        Route::get('customers', 'AdminController@customers');
 
 
-    // Blog
-    Route::get('blog', 'AdminController@blog');
-
-    Route::get('blog-categories', 'AdminController@blogCategories');
-
-    Route::get('blog-comments', 'AdminController@blogComments');
-
-    Route::get('blog-settings', 'AdminController@blogSettings');
+        // CMS
+        Route::get('properties', 'AdminController@properties');
+        Route::get('property/categories', 'AdminController@propertyCategories');
 
 
-    // Misc
-    Route::get('account', 'AdminController@myAccount');
+        // Blog
+        Route::get('blog', 'AdminController@blog');
 
-    Route::get('accounts', 'AdminController@accounts');
+        Route::get('blog-categories', 'AdminController@blogCategories');
 
-    Route::get('settings', 'AdminController@settings');
+        Route::get('blog-comments', 'AdminController@blogComments');
 
-    Route::get('about', 'AdminController@about');
+        Route::get('blog-settings', 'AdminController@blogSettings');
 
-    Route::get('pdfD', 'PdfController@test');
 
-    Route::get('email', 'UserController@test');
+        // Misc
+        Route::get('account', 'AdminController@myAccount');
 
-    Route::get('pdf', function() {
+        Route::get('accounts', 'AdminController@accounts');
 
-        return view('pdf.property');
-    });
+        Route::get('settings', 'AdminController@settings');
 
-    Route::any('register', function() {
+        Route::get('about', 'AdminController@about');
 
-        return view('admin.pages.register');
+        Route::get('pdfD', 'PdfController@test');
+
+        Route::get('email', 'UserController@test');
+
+        Route::get('pdf', function() {
+
+            return view('pdf.property');
+        });
+
+        Route::any('register', function() {
+
+            return view('admin.pages.register');
+        });
     });
 });
-//});
 
-//Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'system/ajax'], function () {
 
@@ -229,7 +234,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::any('clearcache', 'SystemController@clearCache');
         });
     });
-//});
+});
 
 
 Route::controllers([

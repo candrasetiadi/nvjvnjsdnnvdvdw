@@ -22,6 +22,25 @@ class PagesController extends Controller
         return view('pages.home');
     }
 
+    public function about() {
+        //
+
+        return view('pages.about');
+    }
+
+    public function login() {
+        //
+        if (\Auth::customer()->check()) return redirect('account');
+
+        return view('pages.login');
+    }
+
+    public function account() {
+        //
+
+        return view('pages.account');
+    }
+
 
     public function propertyListing() {
 

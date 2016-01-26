@@ -50,7 +50,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <a href="/auth/logout">log out</a>
+                                        <a href="{{ url('logout') }}">log out</a>
                                     </li>
                                 </ul>
                             </div>

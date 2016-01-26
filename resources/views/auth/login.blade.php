@@ -140,6 +140,8 @@
                         console.log(xhr);
                         console.log(status);
                         console.log(message);
+                        
+                        NProgress.done();
                     }
                 });
             }
