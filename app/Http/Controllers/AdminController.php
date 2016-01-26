@@ -108,6 +108,14 @@ class AdminController extends Controller {
 
 
 
+    public function blog() {
+
+        return view('admin.pages.blog');
+
+    }
+
+
+
     public function blogCategories() {
 
         return view('admin.pages.blog-categories');

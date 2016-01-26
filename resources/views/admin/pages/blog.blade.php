@@ -3,16 +3,19 @@
 
 @section('fab')
 
-<button class="fab-button fab-button-salmon fab-button-action shadow-hover modal-open" data-target="#blog-add"><i class="material-icons">add</i></button>
+<m-fab salmon class="modal-open" data-target="#blog-add"><i class="material-icons">add</i></m-fab>
 
 @stop
 
 @section('content')
-<div class="blogs-wrapper flexbox flexbox-wrap">
+<m-template list class="blogs-wrapper">
 
-    <table class="list blogs-table">
+    @if(isset($blogs) AND count($blogs) > 0)
+    <table>
         <thead>
-            <td width="3%"><button href class="table-item-select table-item-select-all"></button></td>
+            <td width="5%">
+                <m-list-item-check all></m-list-item-check>
+            </td>
             <td width="20%">Title</td>
             <td width="20%">Code</td>
             <td width="14%">Price</td>
@@ -21,29 +24,38 @@
             <td width="10%">Status</td>
             <td width="3%"></td>
         </thead>
+
         <tbody>
-            <?php for($i = 0; $i<5; $i++): ?>
-            <tr class="villa-item" data-id="1">
-                <td width="3%"><button href class="table-item-select table-item-select-single"></button></td>
-                <td class="title">Beautiful Villa</td>
-                <td class="url">VCAN001</td>
-                <td class="created">IDR 9,350,000,000</td>
-                <td class="status">2015-12-21</td>
-                <td class="status">2016-12-20</td>
-                <td class="author">ENABLED</td>
+            @foreach($blogs as $blog)
+            <tr class="property-item" id="property-item-{{ $blog->id }}">
+                <td width="5%">
+                    <m-list-item-check single data-id="{{ $blog->id }}"></m-list-item-check>
+                </td>
+                <td class="title">{{ $blog->title }}</td>
+                <td class="url">{{ $blog->url }}</td>
+                <td class="created">{{ $blog->author }}</td>
+                <td class="status">{{ $blog->views }}</td>
+                <td class="status">{{ $blog->created_at }}</td>
+                <td class="author">{{ $blog->status }}</td>
                 <td class="table-item-options">
                     <button class="table-item-more"><i class="material-icons">more_horiz</i></button>
                     <ul class="table-item-menu">
                         <li><button href class="item-edit">edit</button></li>
-                        <li><button href class="item-duplicate">duplicate</button></li>
                         <li><button href class="item-delete">delete</button></li>
                     </ul>
                 </td>
             </tr>
-            <?php endfor ?>
+            @endforeach
         </tbody>
     </table>
-</div>
+
+    @else
+
+    <p class="empty-content">No blogs posted yet. Create one now</p>
+
+    @endif
+
+</m-template>
 
 @endsection
 
@@ -76,33 +88,36 @@
                 </div>
             </div>
 
-            <div class="m-input-group m-input-group-third justify-between">
+            <m-input-group class="m-input-group m-input-group-third" justify-between>
 
-                <div class="m-input-wrapper m-input-wrapper-select">
-                    <select id="blog-input-lang" name="lang" required>
-                        <option value="en" selected>english</option>
-                        <option value="fr">french</option>
-                    </select>
-                    <label for="lang">lang</label>
-                </div>
+                <m-input fwidth select w33-8>
+                    <input type="text" select id="blog-input-lang" name="lang" value="en" required>
+                    <label for="blog-input-lang">lang</label>
+                    <m-select>
+                        <m-option value="en">english</m-option>
+                        <m-option value="fr">french</m-option>
+                    </m-select>
+                </m-input>
 
-                <div class="m-input-wrapper m-input-wrapper-select">
-                    <select id="blog-input-status" name="status" required>
-                        <option value="1" selected>enable</option>
-                        <option value="0">disable</option>
-                    </select>
-                    <label for="status">status</label>
-                </div>
+                <m-input fwidth select w33-8>
+                    <input type="text" select id="blog-input-status" name="status" value="en" required>
+                    <label for="blog-input-status">status</label>
+                    <m-select>
+                        <m-option value="1">enable</m-option>
+                        <m-option value="0">disable</m-option>
+                    </m-select>
+                </m-input>
 
-                <div class="m-input-wrapper m-input-wrapper-select">
-                    <select id="blog-input-category" name="category" required>
-                        <option value="1" selected>diving</option>
-                        <option value="2">trips</option>
-                        <option value="3">bali belly</option>
-                    </select>
-                    <label for="category">category</label>
-                </div>
-            </div>
+                <m-input fwidth select w33-8>
+                    <input type="text" select id="blog-input-category" name="category" value="1" required>
+                    <label for="blog-input-category">category</label>
+                    <m-select>
+                        <m-option value="1">diving</m-option>
+                        <m-option value="2">trips</m-option>
+                        <m-option value="3">bali belly</m-option>
+                    </m-select>
+                </m-input>
+            </m-input-group>
 
             <div class="m-input-wrapper">
                 <input type="text" id="blog-input-tags" name="tags" required>

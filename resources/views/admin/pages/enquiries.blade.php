@@ -10,6 +10,8 @@
 @section('content')
 <m-template list class="inquiry-wrapper">
 
+    @if(isset($enquiries) AND count($enquiries) > 0)
+
     <table class="m-table-list enquiry-table">
         <thead>
             <td><a href class="m-table-item-select m-table-item-select-all"><i class="m-checkbox"></i></a></td>
@@ -22,7 +24,7 @@
 
         </thead>
         <tbody>
-            @foreach($enquiries as $inquiry)            
+            @foreach($enquiries as $inquiry)
             <tr class="inquiry-item" data-id="{{ $inquiry->id }}" id="inquiry-item-{{ $inquiry->id }}">
                 <td class="select"><a href class="m-table-item-select m-table-item-select-single" data-id="1"><i class="m-checkbox"></i></a></td>
                 <td class="property">{{ $inquiry->property ? $inquiry->property->lang()->title : '-' }}</td>
@@ -52,6 +54,12 @@
             @endforeach
         </tbody>
     </table>
+
+    @else
+
+    <p class="empty-content">No inquiries created yet. Create one now</p>
+
+    @endif
 
 </m-template>
 

@@ -24,6 +24,7 @@
 @section('content')
 <m-template list class="property-wrapper">
 
+    @if(isset($properties) AND count($properties) > 0)
     <table>
         <thead>
             <td width="5%">
@@ -71,6 +72,12 @@
             @endforeach
         </tbody>
     </table>
+
+    @else
+
+    <p class="empty-content">No properties created yet. Create one now</p>
+
+    @endif
 
 </m-template>
 
@@ -339,19 +346,18 @@
                     </m-input>
 
                     <div id="gallery-wrapper" flexwrap style="width: 100%">
-<!--
-                        <m-gallery-item style="background-image: url('urltofile')" data-id="property_id">
+                        <?php for($i = 0; $i < 11; $i++): ?>
+                        <m-gallery-item style="background-image: url('http://loremflickr.com/320/240?t={{ microtime() }}')" data-id="23">
                             <m-gallery-item-menu>
                                 <m-button class="make-thumbnail" data-function="makeThumbnail">
-                                    if(isThumbnail) <i class="material-icons" gold>star</i>
-                                    else <i class="material-icons">star_border</i>
+                                    <i class="material-icons">star_border</i>
                                 </m-button>
                                 <m-button delete data-url="propertyimage/destroy">
                                     <i class="material-icons">close</i>
                                 </m-button>
                             </m-gallery-item-menu>
                         </m-gallery-item>
--->
+                        @endfor
                     </div>
 
                 </m-caroussel-slide>
@@ -467,8 +473,8 @@
     <input type="hidden" name="property_type" id="property-input-type" value="property">
     <input type="hidden" name="edit" value="0" id="edit-flag">
 
-    <m-buttons align-right>
-        <m-button plain class="modal-close" id="close-property-form">cancel</m-button>
+    <m-buttons flexbox justify-end>
+        <m-button plain class="modal-close" id="close-properties-form">cancel</m-button>
         <m-button save-form plain>save</m-button>
     </m-buttons>
     {!! Form::close() !!}

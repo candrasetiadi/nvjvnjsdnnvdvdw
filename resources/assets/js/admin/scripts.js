@@ -941,12 +941,14 @@ var Matter = {
                 NProgress.done();
             }
 
-            $(document).on('click', 'm-gallery-item m-button[delete]', function() {
+            $(document).on('click', 'm-gallery-item-menu m-button[delete]', function() {
+
+                alert('alkkk');
 
                 var url = $(this).attr('data-url'),
                     id = $(this).closest('m-gallery-item').attr('data-id');
 
-                Monolog.confirm('delete image', 'Are you sure to delete this property\'s image? this cannot be undone!', function() {
+                Monolog.confirm('delete image', 'Are you sure to delete this property\'s image? This cannot be undone!', function() {
 
                    Ajax.get(url + '/' + id, removePropertyImage, id);
                 });

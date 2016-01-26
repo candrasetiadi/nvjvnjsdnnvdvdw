@@ -11,6 +11,8 @@
 
 <m-template list class="flexbox flexbox-wrap">
 
+    @if(isset($accounts) AND count($accounts) > 0)
+
     <table>
         <thead>
             <tr>
@@ -48,6 +50,13 @@
             @endforeach
         </tbody>
     </table>
+
+    @else
+
+    <p class="empty-content">No accounts created yet. Create one now</p>
+
+    @endif
+
 </m-template>
 
 @stop

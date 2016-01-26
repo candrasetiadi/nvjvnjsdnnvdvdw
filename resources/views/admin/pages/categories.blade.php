@@ -10,6 +10,8 @@
 @section('content')
 <div class="category-wrapper flexbox flexbox-wrap">
 
+    @if(isset($categories) AND count($categories) > 0)
+
     <table class="m-table-list category-table">
         <thead>
             <td><a href class="m-table-item-select m-table-item-select-all"><i class="m-checkbox"></i></a></td>
@@ -20,7 +22,7 @@
 
         </thead>
         <tbody>
-            @foreach($categories as $category)            
+            @foreach($categories as $category)
             <tr class="category-item" data-id="{{ $category->id }}">
                 <td class="select"><a href class="m-table-item-select m-table-item-select-single" data-id="1"><i class="m-checkbox"></i></a></td>
                 <td class="created_at">{{ $category->lang()->title }}</td>
@@ -38,6 +40,12 @@
             @endforeach
         </tbody>
     </table>
+
+    @else
+
+    <p class="empty-content">No categories defined yet. Create one now</p>
+
+    @endif
 
 </div>
 

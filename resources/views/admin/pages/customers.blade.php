@@ -12,6 +12,8 @@
 @section('content')
 <m-template list class="customer-wrapper">
 
+    @if(isset($customers) AND count($customers) > 0)
+
     <m-action-bar class="flexbox fwidth">
         <m-input class="w33" id="action-search-wrapper">
             <input type="text" ajax-search data-source="customers/search" data-function="populateCustomersSearch" required>
@@ -44,7 +46,7 @@
                 <td>{{ $customer->city }}</td>
                 <td>{{ $customer->country }}</td>
                 <td>{{ $customer->created_at->format('Y-m-d') }}</td>
-                <td class="status align-center">{{ $customer->active ? 'active' : 'not yet'}}</td>  
+                <td class="status align-center">{{ $customer->active ? 'active' : 'not yet'}}</td>
 
                 <td button>
                     <m-table-list-more>
@@ -59,6 +61,12 @@
             @endforeach
         </tbody>
     </table>
+
+    @else
+
+    <p class="empty-content">No customers registered yet. Create one manually now</p>
+
+    @endif
 </m-template>
 
 @include('admin.fragments.pagination', ['paginator' => $customers])
