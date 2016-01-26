@@ -18,18 +18,20 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesTableSeeder::class);
         $this->call(BranchesTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
-        
+
         $this->call(CountriesTableSeeder::class);
         $this->call(ProvincesTableSeeder::class);
-        $this->call(CitiesTableSeeder::class);  
+        $this->call(CitiesTableSeeder::class);
 
-        $this->call(LanguagesTableSeeder::class);        
+        $this->call(LanguagesTableSeeder::class);
 
         factory(App\User::class, 10)->create()->each(function ($u) {
 
             factory(App\Property::class, 10)->create(['user_id' => $u->id])->each(function($p) {
 
                 $p->propertyLanguages()->save(factory(App\PropertyLanguage::class)->make());
+
+                Model::unguard();
 
                 $p->documents()->saveMany([
                     new \App\Document(['name' => 'Agent Agreement', 'description' => 'ready']),
@@ -54,6 +56,8 @@ class DatabaseSeeder extends Seeder
                     new \App\Distance(['from' => 'Market', 'value' => 3, 'unit' => 'hours'])
                 ]);
 
+                Model::reguard();
+
             });
 
         });
@@ -64,11 +68,6 @@ class DatabaseSeeder extends Seeder
 
         });
 
-
-
         Model::reguard();
-
-
     }
-
 }
