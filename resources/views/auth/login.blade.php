@@ -80,7 +80,7 @@
                 <a href class="forgot-password" style="display: block; margin-bottom: 12px;">Forgot your username or password?</a>
 
                 <div class="button-holder flexbox justify-between">
-                    <a href="http://{{ env('BASE_URL') }}" class="md-button md-button-icon" id="back-button"><i class="material-icons">arrow_back</i>home</a>
+                    <a href="{{ url('/') }}" class="md-button md-button-icon" id="back-button"><i class="material-icons">arrow_back</i>home</a>
                     <a href class="md-button md-button-right" id="login-button">sign in</a>
                 </div>
                 {!! Form::close() !!}

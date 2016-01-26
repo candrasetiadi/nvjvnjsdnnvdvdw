@@ -31,50 +31,14 @@ foreach(Lang::get('url') as $k => $v) {
 }
 
 
-Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
-
-    // Home
-    Route::get('/', 'PagesController@home');
-
-    Route::get('/{about}/', 'PagesController@about');
-
-
-    // Customer
-    Route::get('/{login}/', 'PagesController@login');
-    Route::post('/{login}/', 'Auth\AuthController@postLogin');
-    Route::get('/{logout}/', 'Auth\AuthController@getLogout');
-
-    Route::get('/{register}/', 'PagesController@register');
-
-    Route::group(['middleware' => 'auth.customer'], function () {
-
-        Route::get('/{account}/', 'PagesController@account');
-    });
-
-
-    // Properties
-    Route::get('/{properties}/', 'PagesController@propertyListing');
-
-    Route::get('property/{url}', ['as' => 'url','uses' => 'PagesController@propertyView']);
-
-
-
-    // Blogs
-    Route::get('blogs', 'PagesController@blogListing');
-
-    Route::get('blog/{url}', ['as' => 'url','uses' => 'PagesController@blogView']);
-
-
-});
-
-
-
 // Back-End
 Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'admin'], function () {
 
         // General
+        Route::get('/', 'AdminController@dashboard');
+        
         Route::get('dashboard', 'AdminController@dashboard');
 
         Route::get('enquiries', 'AdminController@enquiries');
@@ -123,6 +87,44 @@ Route::group(['middleware' => 'auth'], function () {
         });
     });
 });
+
+Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
+
+    // Home
+    Route::get('/', 'PagesController@home');
+
+    Route::get('/{about}/', 'PagesController@about');
+
+
+    // Customer
+    Route::get('/{login}/', 'PagesController@login');
+    Route::post('/{login}/', 'Auth\AuthController@postLogin');
+    Route::get('/{logout}/', 'Auth\AuthController@getLogout');
+
+    Route::get('/{register}/', 'PagesController@register');
+
+    Route::group(['middleware' => 'auth.customer'], function () {
+
+        Route::get('/{account}/', 'PagesController@account');
+    });
+
+
+    // Properties
+    Route::get('/{properties}/', 'PagesController@propertyListing');
+
+    Route::get('property/{url}', ['as' => 'url','uses' => 'PagesController@propertyView']);
+
+
+
+    // Blogs
+    Route::get('blogs', 'PagesController@blogListing');
+
+    Route::get('blog/{url}', ['as' => 'url','uses' => 'PagesController@blogView']);
+
+
+});
+
+
 
 Route::group(['middleware' => 'auth'], function () {
 
