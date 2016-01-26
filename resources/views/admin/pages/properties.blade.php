@@ -450,27 +450,28 @@
 
                 <m-caroussel-slide class="flexbox flexbox-wrap" id="caroussel-gallery" style="width: calc(100% / <?= $numberOfSlides ?>)">
 
-                    <m-input id="picture-wrapper">
+                    <m-input picture>
                         <div class="drop-field">
                             <p class="drop-hint">drop files here</p>
                         </div>
                         <input class="m-image-input" type="file" name="files[]" id="properties-input-image" multiple>
                     </m-input>
 
-                    <!-- <div class="gallery-wrapper flexbox flexbox-wrap justify-between">
-<div class="gallery-item">
-<a href class="gallery-item-option"><i class="material-icons">more_horiz</i></a>
-</div>
-<div class="gallery-item">
-<a href class="gallery-item-option"><i class="material-icons">more_horiz</i></a>
-</div>
-<div class="gallery-item">
-<a href class="gallery-item-option"><i class="material-icons">more_horiz</i></a>
-</div>
-<div class="gallery-item">
-<a href class="gallery-item-option"><i class="material-icons">more_horiz</i></a>
-</div>
-</div> -->
+                    <div id="gallery-wrapper" flexwrap style="width: 100%">
+<!--
+                        <m-gallery-item style="background-image: url('urltofile')" data-id="property_id">
+                            <m-gallery-item-menu>
+                                <m-button class="make-thumbnail" data-function="makeThumbnail">
+                                    if(isThumbnail) <i class="material-icons" gold>star</i>
+                                    else <i class="material-icons">star_border</i>
+                                </m-button>
+                                <m-button delete data-url="propertyimage/destroy">
+                                    <i class="material-icons">close</i>
+                                </m-button>
+                            </m-gallery-item-menu>
+                        </m-gallery-item>
+-->
+                    </div>
 
                 </m-caroussel-slide>
 

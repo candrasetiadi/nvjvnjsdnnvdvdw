@@ -869,7 +869,7 @@ var Matter = {
 
                 $.each(data, function(k, v) {
 
-                   $('#property-input-' + k).val(v);
+                    $('#property-input-' + k).val(v);
                 });
 
                 galleryHtml = '';
@@ -892,6 +892,22 @@ var Matter = {
                 consoleLog(data);
 
                 NProgress.done();
+            }
+
+            $(document).on('click', 'm-gallery-item m-button[delete]', function() {
+
+                var url = $(this).attr('data-url'),
+                    id = $(this).closest('m-gallery-item').attr('data-id');
+
+                Monolog.confirm('delete image', 'Are you sure to delete this property\'s image? this cannot be undone!', function() {
+
+                   Ajax.get(url + '/' + id, removePropertyImage, id);
+                });
+            });
+
+            function removePropertyImage(id) {
+
+                $('m-gallery-item[data-id=' + id + ']').remove();
             }
         },
 

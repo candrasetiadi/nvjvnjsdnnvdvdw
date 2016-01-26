@@ -33,7 +33,7 @@ var Ajax = {
         });
     },
 
-    get: function(targetUrl, doneFunc) {
+    get: function(targetUrl, doneFunc, doneParam) {
 
         NProgress.start();
 
@@ -56,6 +56,13 @@ var Ajax = {
             if(development) consoleLog(data);
 
             if(!!data.monolog) Monolog.notify(data.monolog.title, data.monolog.message);
+
+            if(!!doneParam) {
+
+                doneFunc(doneParam);
+
+                return true;
+            }
 
             doneFunc(data);
         });
