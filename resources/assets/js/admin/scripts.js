@@ -867,7 +867,22 @@ var Matter = {
 
             function populatePropertyEdit(data) {
 
-                consoleLog(data);
+                $.each(data, function(k, v) {
+
+                   $('#property-input-' + k).val(v);
+                });
+
+                galleryHtml = '';
+
+                $.each(data.gallery, function(k, v) {
+
+                    galleryHtml += '<img src="media/catalog/' + v.file + '"/>';
+                });
+
+
+                $('#gallery-wrapper').html(galleryHtml);
+
+                modalOpen('#property-add');
 
                 NProgress.done();
             }

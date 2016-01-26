@@ -111,7 +111,7 @@ class PropertiesController extends Controller
         $property->sell_reason = $request->sell_reason;
         $property->sell_note = $request->sell_note;
         $property->other_agent = $request->other_agent;
-        
+
         // $property->display = $request->display;
         $property->orientation = $request->orientation;
         $property->sell_in_furnish = $request->sell_in_furnish;
