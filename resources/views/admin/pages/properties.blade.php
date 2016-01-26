@@ -151,7 +151,7 @@
 
                     <div class="m-input-group fwidth flexbox justify-between">
                         <m-input w25-9>
-                            <input type="text" name="lease_period" id="property-input-lease_year" required>
+                            <input type="text" name="lease_period" id="property-input-lease_period" required>
                             <label for="lease_period">period</label>
                         </m-input>
 

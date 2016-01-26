@@ -862,8 +862,17 @@ var Matter = {
                     doneFunc = form.attr('data-function'),
                     fd = new FormData($('#' + formId)[0]);
 
-                Ajax.post(url, fd, eval(doneFunc));
+                Ajax.post(url, fd, populatePropertyNew);
             });
+
+            function populatePropertyNew(data) {
+
+                NProgress.done();
+
+                // window.location.href = baseUrl + '/admin/properties';
+
+                reload();
+            }
 
             function populatePropertyEdit(data) {
 
@@ -877,17 +886,26 @@ var Matter = {
 
                 });
 
-                galleryHtml = ''
-                        + '<m-gallery-item data-source="media/catalog/somegile.jpg" data-id="23">'
+                galleryHtml = '';
+
+
+                $.each(data.gallery, function(k, v) {
+
+                         galleryHtml += '<m-gallery-item style="background-image: url(\'' + baseUrl + '/uploads/property/' + v.file + '\')" data-id="' + v.id + '">'
                             + '<m-gallery-item-menu>'
                                 + '<m-button class="make-thumbnail" data-function="makeThumbnail">'
-                                    + '<i class="material-icons">close</i>'
+                                +'<i class="material-icons">star_border</i>'
                                 + '</m-button>'
-                                + '<m-button delete data-url="propertyimage/destroy">'
+                                + '<m-button delete data-url="property/image/destroy">'
                                     + '<i class="material-icons">close</i>'
                                 + '</m-button>'
                             + '</m-gallery-item-menu>'
                         + '</m-gallery-item>';
+
+                });
+
+
+                $('#gallery-wrapper').html(galleryHtml);
 
                         // <m-gallery-item style="background-image: url('{{ urltofile }}')" data-id="{{ prop_id }}">
                         //     <m-gallery-item-menu>
@@ -908,6 +926,8 @@ var Matter = {
 
 
                 // $('#gallery-wrapper').html(galleryHtml);
+
+                $('#edit-flag').val(data.id);
 
                 modalOpen('#property-add');
 
@@ -935,6 +955,8 @@ var Matter = {
             function removePropertyImage(id) {
 
                 $('m-gallery-item[data-id=' + id + ']').remove();
+
+                NProgress.done();
             }
         },
 

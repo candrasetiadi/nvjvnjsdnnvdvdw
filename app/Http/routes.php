@@ -177,6 +177,8 @@ Route::group(['middleware' => 'auth'], function () {
 
             Route::any('destroy/{id}', 'PropertiesController@destroy');
 
+            Route::any('image/destroy/{id}', 'PropertiesController@destroyImage');
+
         });
 
         Route::group(['prefix' => 'category'], function () {
