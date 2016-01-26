@@ -222,6 +222,8 @@ class PropertiesController extends Controller
 
         $property->propertyLanguages = $property->propertyLanguages()->where('locale', 'en')->first();
 
+        $property->distance = $property->distances()->get();
+
         $property->gallery = $property->propertyFiles()->where('type', 'image')->get();
 
         return $property;
@@ -317,16 +319,6 @@ class PropertiesController extends Controller
         Model::unguard();
 
         // lang
-        $property->propertyLanguages()->save(
-
-            new \App\PropertyLanguage([
-                'locale' => 'en',
-                'title' => $request->title,
-                'description' => $request->description
-            ])
-
-        );
-
         $language = $property->propertyLanguages()->where('locale', 'en')->first();
 
         $language->title = $request->title;
@@ -335,19 +327,20 @@ class PropertiesController extends Controller
         $language->save();
 
         // distances
-        // if ($request->distance_value) {
-        //     foreach ($request->distance_value as $key => $value) {
+        if ($request->distance_value) {
+            
+            foreach ($request->distance_value as $key => $value) {
 
-        //         $distance = new \App\Distance;
+                $distance = \App\Distance::find($request->distance_id[$key]);
 
-        //         $distance->property_id = $property->id;
-        //         $distance->from = $key;
-        //         $distance->value = $value;
-        //         $distance->unit = $request->distance_unit[$key];
+                $distance->property_id = $property->id;
+                $distance->from = $key;
+                $distance->value = $value;
+                $distance->unit = $request->distance_unit[$key];
 
-        //         $distance->save();
-        //     }
-        // }
+                $distance->save();
+            }
+        }
 
         // documents
         // if ($request->documents) {
@@ -364,18 +357,18 @@ class PropertiesController extends Controller
         // }
 
         // facilities
-        // if ($request->facilities) {
-        //     foreach ($request->facilities as $key => $value) {
+        if ($request->facilities) {
+            foreach ($request->facilities as $key => $value) {
 
-        //         $facility = new \App\Facility;
+                $facility = new \App\Facility;
 
-        //         $facility->property_id = $property->id;
-        //         $facility->name = $key;
-        //         $facility->description = $value;
+                $facility->property_id = $property->id;
+                $facility->name = $key;
+                $facility->description = $value;
 
-        //         $facility->save();
-        //     }
-        // }
+                $facility->save();
+            }
+        }
 
         // files
         if ($request->hasFile('files')) {
@@ -437,6 +430,6 @@ class PropertiesController extends Controller
 
         return response()->json(array('status' => 200, 'monolog' => array('title' => 'delete success', 'message' => 'Property has been deleted'), 'id' => $id));
     }
-    
+
 
 }

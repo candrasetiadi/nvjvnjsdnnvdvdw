@@ -260,17 +260,19 @@
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
                         <h3 class="input-group-title">Specification</h3>
 
-                        <m-input w33-8>
-                            <input type="text" name="facilities[bedroom]" id="property-input-facilities[bedroom]" required>
-                            <label for="facilities[bedroom]">bed</label>
-                        </m-input>
+                        <div class="m-input-group fwidth flexbox flexbox-wrap justify-between" id="facility-wrapper">
+                            <m-input w50-6>
+                                <input type="text" name="facilities[bedroom]" id="property-input-facilities[bedroom]" required>
+                                <label for="facilities[bedroom]">bed</label>
+                            </m-input>
 
-                        <m-input w33-8>
-                            <input type="text" name="facilities[bathroom]" id="property-input-facilities[bathroom]" required>
-                            <label for="facilities[bathroom]">bath</label>
-                        </m-input>
+                            <m-input w50-6>
+                                <input type="text" name="facilities[bathroom]" id="property-input-facilities[bathroom]" required>
+                                <label for="facilities[bathroom]">bath</label>
+                            </m-input>
+                        </div>
 
-                        <m-input select w33-8>
+                        <m-input select w50-6>
                             <input type="text" select id="property-input-sell_in_furnish" name="sell_in_furnish" value="0" required>
                             <label for="property-input-sell_in_furnish">furnished</label>
                             <m-select>

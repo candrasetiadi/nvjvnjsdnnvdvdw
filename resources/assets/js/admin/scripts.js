@@ -309,6 +309,8 @@ function modalClose() {
 
     $('#media-wrapper').html('');
 
+    $('#gallery-wrapper').html('');
+
     NProgress.done();
 }
 
@@ -886,8 +888,55 @@ var Matter = {
 
                 });
 
-                galleryHtml = '';
+                // Facility
+                var facilityHtml = '';
 
+                $.each(data.facility, function(k, v) {
+
+                    facilityHtml += ''
+
+                        + '<m-input w33-8>'
+                            + '<input type="text" name="facilities['+ v.name +']" id="property-input-facilities['+ v.name +']" required>'
+                            + '<label for="facilities['+ v.name +']">bed</label>'
+                        + '</m-input>'
+
+                        + '<input type="hidden" name="facility_id[' + v.name + ']" value="' + v.id + '">';
+
+                });
+
+                $('#facility-wrapper').html(facilityHtml);
+                // End
+
+                // Distance
+                var distanceHtml = '';
+
+                $.each(data.distance, function(k, v) {
+
+                    distanceHtml += '<div class="m-input-wrapper w50-6">'
+                        + '<input type="text" value="' + v.value + '" name="distance_value[' + v.from + ']" id="distance_value_' + k + '" required>'
+                        + '<label for="distance_value_' + k + '">' + v.from + '</label>'
+                    + '</div>'
+
+                    + '<m-input select w50-6>'
+                        + '<input type="text" value="' + v.unit + '" select name="distance_unit[' + v.from + ']" required>'
+                        + '<label for="property-input-distance_unit_beach">unit</label>'
+                        + '<m-select>'
+                            + '<m-option value="km" selected>KM</m-option>'
+                            + '<m-option value="m">Meters</m-option>'
+                            + '<m-option value="minutes">Minutes</m-option>'
+                            + '<m-option value="hours">Hours</m-option>'
+                        + '</m-select>'
+                    + '</m-input>'
+
+                    + '<input type="hidden" name="distance_id[' + v.from + ']" value="' + v.id + '">';
+
+                });    
+                
+                $('#caroussel-distance').html(distanceHtml);
+                // End
+
+                // Gallery
+                var galleryHtml = '';
 
                 $.each(data.gallery, function(k, v) {
 
@@ -904,28 +953,8 @@ var Matter = {
 
                 });
 
-
                 $('#gallery-wrapper').html(galleryHtml);
-
-                        // <m-gallery-item style="background-image: url('{{ urltofile }}')" data-id="{{ prop_id }}">
-                        //     <m-gallery-item-menu>
-                        //         <m-button class="make-thumbnail" data-function="makeThumbnail">
-                        //             if(isThumbnail) <i class="material-icons" gold>star</i>
-                        //             else <i class="material-icons">star_border</i>
-                        //         </m-button>
-                        //         <m-button delete data-url="propertyimage/destroy">
-                        //             <i class="material-icons">close</i>
-                        //         </m-button>
-                        //     </m-gallery-item-menu>
-                        // </m-gallery-item>
-
-                // $.each(data.gallery, function(k, v) {
-
-                //     galleryHtml += '<img src="media/catalog/' + v.file + '"/>';
-                // });
-
-
-                // $('#gallery-wrapper').html(galleryHtml);
+                // End
 
                 $('#edit-flag').val(data.id);
 
