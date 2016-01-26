@@ -1,4 +1,5 @@
 @if ($BASE_URL = '/') @endif
+<?php $admin = Auth::user()->get(); ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -41,12 +42,12 @@
                             </div>
                         </li>
                         <li style="display: none;"><a href id="mini-link-messsages" class="notif"><i class="material-icons">send</i><span class="notif-count">1</span></a>
-                        <li><a href class="admin-user">Warisan Admin<i class="material-icons">expand_more</i></a>
+                        <li><a href class="admin-user">{{ $admin->firstname . ' ' . $admin->lastname }}<i class="material-icons">expand_more</i></a>
                             <div class="mini-menu-expand admin-profile-wrapper">
                                 <ul>
                                     <li>
                                         <div id="notif-header">
-                                            <p>Warisan Admin</p>
+                                            <p>Kibarer Admin</p>
                                         </div>
                                     </li>
                                     <li>

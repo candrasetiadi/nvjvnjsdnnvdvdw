@@ -134,7 +134,7 @@ class AdminController extends Controller {
 
     public function myAccount() {
 
-        return view('admin.pages.account');
+        return view('admin.pages.my-account');
 
     }
 

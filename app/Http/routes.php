@@ -64,7 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
         // Misc
-        Route::get('account', 'AdminController@myAccount');
+        Route::get('my-account', 'AdminController@myAccount');
 
         Route::get('accounts', 'AdminController@accounts');
 
