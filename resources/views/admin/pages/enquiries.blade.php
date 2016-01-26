@@ -77,8 +77,8 @@
 
 
     <m-input select>
-        <input type="text" select id="blog-input-lang" name="customer_id" value="available" required>
-        <label for="blog-input-lang">Customers</label>
+        <input type="text" select id="inquiry-input-customer_id" name="customer_id" required>
+        <label for="inquiry-input-customer_id">Customers</label>
         <m-select>
 
             @foreach(\App\Customer::orderBy('firstname', 'asc')->get() as $customer)
@@ -89,8 +89,8 @@
     </m-input>
 
     <m-input select>
-        <input type="text" select id="blog-input-lang" name="property_id" value="available" required>
-        <label for="blog-input-lang">Properties</label>
+        <input type="text" select id="inquiry-input-property_id" name="property_id" required>
+        <label for="inquiry-input-property_id">Properties</label>
         <m-select>
 
             @foreach(\App\Property::orderBy('created_at', 'desc')->get() as $property)
@@ -101,35 +101,35 @@
     </m-input>
 
     <m-input>
-        <input type="text" id="enquiry-subject" name="subject" required>
-        <label for="subject">Subject</label>
+        <input type="text" id="inquiry-input-subject" name="subject" required>
+        <label for="inquiry-input-subject">Subject</label>
     </m-input>
 
     <m-input-group textarea>
         <h3 class="input-group-title">Content</h3>
         <div class="input-wrapper fwidth">
-            <textarea name="content" id="enquiry-content" rows="5"></textarea>
+            <textarea name="content" id="inquiry-input-content" rows="5"></textarea>
         </div>
     </m-input-group>
 
     <m-input>
-        <input type="text" id="enquiry-firstname" name="firstname" required>
-        <label for="firstname">Firstname</label>
+        <input type="text" id="inquiry-input-firstname" name="firstname" required>
+        <label for="inquiry-input-firstname">Firstname</label>
     </m-input>
 
     <m-input>
-        <input type="text" id="enquiry-lastname" name="lastname" required>
-        <label for="lastname">Lastname</label>
+        <input type="text" id="inquiry-input-lastname" name="lastname" required>
+        <label for="inquiry-input-lastname">Lastname</label>
     </m-input>
 
     <m-input>
-        <input type="text" id="enquiry-phone" name="phone" required>
-        <label for="phone">Phone</label>
+        <input type="text" id="inquiry-input-phone" name="phone" required>
+        <label for="inquiry-input-phone">Phone</label>
     </m-input>
 
     <m-input>
-        <input type="text" id="enquiry-email" name="email" required>
-        <label for="email">Email</label>
+        <input type="text" id="inquiry-input-email" name="email" required>
+        <label for="inquiry-input-email">Email</label>
     </m-input>
 
     <input type="hidden" name="author" id="account-input-admin" value="admin">

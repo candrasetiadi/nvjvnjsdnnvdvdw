@@ -451,21 +451,6 @@ function populateBlogForm(data) {
 }
 
 
-
-function populateCustomerEdit(data) {
-
-    $.each(data, function(k, v) {
-
-        if(k != 'password') $('#customer-input-' + k).val(v);
-    });
-
-    modalOpen('#customer-add');
-
-    $('#edit-flag').val(data.id);
-
-    NProgress.done();
-}
-
 function formatNumber(input) {
 
     return Number(input).toLocaleString('en');
@@ -745,15 +730,30 @@ var Matter = {
                     doneFunc = form.attr('data-function'),
                     fd = new FormData($('#' + formId)[0]);
 
-                Ajax.post(url, fd, eval(doneFunc));
+                Ajax.post(url, fd, populateInquiryNew);
             });
 
             function populateInquiryEdit(data) {
 
-                consoleLog(data);
+                $.each(data, function(k, v) {
+
+                    $('#inquiry-input-' + k).val(v);
+                });
+
+                modalOpen('#enquiry-add');
+
+                $('#edit-flag').val(data.id);
 
                 NProgress.done();
             }
+
+            function populateInquiryNew(data) {
+
+                NProgress.done();
+
+                reload();
+            }
+
         },
 
         customers: function() {
@@ -796,18 +796,30 @@ var Matter = {
                     doneFunc = form.attr('data-function'),
                     fd = new FormData($('#' + formId)[0]);
 
-                Ajax.post(url, fd, eval(doneFunc));
+                Ajax.post(url, fd, populateCustomerNew);
             });
 
-            function populateCustomersEdit(data) {
+            function populateCustomerEdit(data) {
 
-                data = data.data;
+                $.each(data, function(k, v) {
 
-                $.each(data, function(k,v) {
-
-                    consoleLog(k);
+                    if(k != 'password') $('#customer-input-' + k).val(v);
                 });
+
+                modalOpen('#customer-add');
+
+                $('#edit-flag').val(data.id);
+
+                NProgress.done();
             }
+
+            function populateCustomerNew(data) {
+
+                NProgress.done();
+
+                reload();
+            }
+
         },
 
         categories: function() {

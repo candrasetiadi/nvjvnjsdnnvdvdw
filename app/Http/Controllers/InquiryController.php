@@ -44,6 +44,7 @@ class InquiryController extends Controller
     public function store(Request $request)
     {
         //
+        if ($request->edit != 0) return $this->update($request, $request->edit);
 
         DB::beginTransaction();
 
@@ -100,6 +101,25 @@ class InquiryController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        DB::beginTransaction();
+
+        $inquiry = Inquiry::find($id);
+
+        $inquiry->property_id = $request->property_id;
+        $inquiry->customer_id = $request->customer_id;
+        $inquiry->subject = $request->subject;
+        $inquiry->content = $request->content;
+        $inquiry->firstname = $request->firstname;
+        $inquiry->lastname = $request->lastname;
+        $inquiry->phone = $request->phone;
+        $inquiry->email = $request->email;
+
+        $inquiry->save();
+
+        DB::commit();
+
+        return response()->json(array('status' => 200, 'monolog' => array('title' => 'update success', 'message' => 'Inquiry has been updated')));
     }
 
     /**

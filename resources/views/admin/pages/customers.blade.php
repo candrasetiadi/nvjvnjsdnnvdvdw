@@ -127,7 +127,7 @@
         </m-input>
 
         <m-input select class="w33-8">
-            <input type="text" select id="blog-input-country" name="country" value="available" required>
+            <input type="text" select id="customer-input-country" name="country" value="" required>
             <label for="country">country</label>
             <m-select>
                 @foreach(\App\Country::all() as $country)
