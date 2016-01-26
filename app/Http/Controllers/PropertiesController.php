@@ -222,6 +222,8 @@ class PropertiesController extends Controller
 
         $property->propertyLanguages = $property->propertyLanguages()->where('locale', 'en')->first();
 
+        $property->facility = $property->facilities()->get();
+
         $property->distance = $property->distances()->get();
 
         $property->gallery = $property->propertyFiles()->where('type', 'image')->get();
@@ -333,7 +335,6 @@ class PropertiesController extends Controller
 
                 $distance = \App\Distance::find($request->distance_id[$key]);
 
-                $distance->property_id = $property->id;
                 $distance->from = $key;
                 $distance->value = $value;
                 $distance->unit = $request->distance_unit[$key];
@@ -360,9 +361,8 @@ class PropertiesController extends Controller
         if ($request->facilities) {
             foreach ($request->facilities as $key => $value) {
 
-                $facility = new \App\Facility;
+                $facility = \App\Facility::find($request->facility_id[$key]);
 
-                $facility->property_id = $property->id;
                 $facility->name = $key;
                 $facility->description = $value;
 

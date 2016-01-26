@@ -261,17 +261,22 @@
                         <h3 class="input-group-title">Specification</h3>
 
                         <div class="m-input-group fwidth flexbox flexbox-wrap justify-between" id="facility-wrapper">
-                            <m-input w50-6>
+                            <m-input w33-8>
                                 <input type="text" name="facilities[bedroom]" id="property-input-facilities[bedroom]" required>
                                 <label for="facilities[bedroom]">bed</label>
                             </m-input>
 
-                            <m-input w50-6>
+                            <m-input w33-8>
                                 <input type="text" name="facilities[bathroom]" id="property-input-facilities[bathroom]" required>
                                 <label for="facilities[bathroom]">bath</label>
                             </m-input>
-                        </div>
 
+                            <m-input w33-8>
+                                <input type="text" name="facilities[sale in furnish]" id="property-input-facilities[sale in furnish]" required>
+                                <label for="facilities[sale in furnish]">Sale in Furnish</label>
+                            </m-input>
+                        </div>
+<!-- 
                         <m-input select w50-6>
                             <input type="text" select id="property-input-sell_in_furnish" name="sell_in_furnish" value="0" required>
                             <label for="property-input-sell_in_furnish">furnished</label>
@@ -279,7 +284,7 @@
                                 <m-option value="0">no</m-option>
                                 <m-option value="1">yes</m-option>
                             </m-select>
-                        </m-input>
+                        </m-input> -->
                         <div class="push-bottom"></div>
                     </div>
 

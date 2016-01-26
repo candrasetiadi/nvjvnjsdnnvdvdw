@@ -896,8 +896,8 @@ var Matter = {
                     facilityHtml += ''
 
                         + '<m-input w33-8>'
-                            + '<input type="text" name="facilities['+ v.name +']" id="property-input-facilities['+ v.name +']" required>'
-                            + '<label for="facilities['+ v.name +']">bed</label>'
+                            + '<input type="text" value="'+ v.description +'" name="facilities['+ v.name +']" id="property-input-facilities['+ v.name +']" required>'
+                            + '<label for="facilities['+ v.name +']">'+ v.name +'</label>'
                         + '</m-input>'
 
                         + '<input type="hidden" name="facility_id[' + v.name + ']" value="' + v.id + '">';
