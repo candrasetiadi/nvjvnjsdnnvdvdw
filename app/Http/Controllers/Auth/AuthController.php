@@ -76,8 +76,11 @@ class AuthController extends Controller
 
     public function postLogin(Request $request)
     {
+        $field = filter_var($request->input('email'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
-        $auth = $this->authenticate($request->email, $request->password, $request->remember);
+        $request->merge([$field => $request->input('email')]);
+
+        $auth = $this->authenticate($request, $request->remember, $field);
 
         if ($auth == 'user') return response()->json(array('log' => 1, 'redirect' => '/admin/dashboard'));
 
@@ -87,14 +90,14 @@ class AuthController extends Controller
     }
 
 
-    public function authenticate($email, $password, $remember)
+    public function authenticate(Request $request, $remember, $field)
     {
-        if (Auth::user()->attempt(['email' => $email, 'password' => $password], $remember)) {
+        if (Auth::user()->attempt($request->only($field, 'password'), $remember)) {
 
             return 'user';
         }
 
-        if (Auth::customer()->attempt(['email' => $email, 'password' => $password], $remember)) {
+        if (Auth::customer()->attempt($request->only($field, 'password'), $remember)) {
 
             return 'customer';
         }

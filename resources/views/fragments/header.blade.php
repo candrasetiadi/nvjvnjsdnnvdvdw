@@ -2,7 +2,7 @@
 <header>
     <section class="row flexbox justify-between">
 
-        <h1 class="logo"><a href="#"><img src="{{ asset('assets/img/logo.png') }}" alt="Kibarer Property"></a>Kibarer Property</h1>
+        <h1 class="logo"><a href="{{ url('/') }}"><img src="{{ asset('assets/img/logo.png') }}" alt="Kibarer Property"></a>Kibarer Property</h1>
 
         <div class="fullscreen-nav flexbox flex-wrap justify-between">
             <section class="bottom-nav">
@@ -23,7 +23,7 @@
                     <ul>
                         <li><a href=""><i class="material-icons">business</i> Sell my Property</a></li>
                         <li><a href=""><i class="material-icons">chat</i> Blog</a></li>
-                        <li><a href=""><i class="material-icons">person</i> Account</a></li>
+                        <li><a href="{{ url('account') }}"><i class="material-icons">person</i> Account</a></li>
                     </ul>
                 </section>
 
