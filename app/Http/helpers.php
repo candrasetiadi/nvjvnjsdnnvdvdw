@@ -66,4 +66,8 @@ function humanize($value) {
     }
 }
 
+function social() {
+
+    return json_decode(File::get(storage_path('json/social_accounts.json')));
+}
 

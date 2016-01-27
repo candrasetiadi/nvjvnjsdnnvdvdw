@@ -34,15 +34,31 @@
         </div>
         <div class="gicontact">
             <div class="flexbox flexbox-wrap justify-between">
-                <a href=""><span class="icon-facebook"></span></a>
-                <a href=""><span class="icon-google-plus"></span></a>
-                <a href=""><span class="icon-twitter"></span></a>
-                <a href=""><span class="icon-linkedin"></span></a>
-                <a href=""><span class="icon-youtube"></span></a>
-                <a href=""><span class="icon-skype"></span></a>
+                <?php $social = social(); ?>
+                @if(isset($social->facebook))
+                <a href="{{ $social->facebook }}" target="_blank"><span class="icon-facebook"></span></a>
+                @endif
+                @if(isset($social->google))
+                <a href="{{ $social->google }}" target="_blank"><span class="icon-google-plus"></span></a>
+                @endif
+                @if(isset($social->twitter))
+                <a href="{{ $social->twitter }}" target="_blank"><span class="icon-twitter"></span></a>
+                @endif
+                @if(isset($social->linkedin))
+                <a href="{{ $social->linkedin }}" target="_blank"><span class="icon-linkedin"></span></a>
+                @endif
+                @if(isset($social->youtube))
+                <a href="{{ $social->youtube }}" target="_blank"><span class="icon-youtube"></span></a>
+                @endif
+                @if(isset($social->skype))
+                <a href="{{ $social->skype }}" target="_blank"><span class="icon-skype"></span></a>
+                @endif
             </div>
             <div class="input">
-                <input type="text" placeholder="Subscribe to our newsletter"><div class="fab-button fab-button-small  fab-button-transparent"><a href=""><i class="material-icons">done</i></a></div>
+                <input type="text" placeholder="Subscribe to our newsletter">
+                <div class="fab-button fab-button-small  fab-button-transparent">
+                    <a href=""><i class="material-icons">done</i></a>
+                </div>
             </div>
             <div class="copyright">&copy; Copyright 2016 - Kibarer Development</div>
         </div>

@@ -179,9 +179,6 @@
             <input type="text" id="social-input-facebook" name="social[facebook]">
             <label for="social-input-facebook">facebook</label>
         </m-input>
-        <m-input-desc>
-            Requires full facebook url e.g: http://www.facebook.com/borislemke
-        </m-input-desc>
 
         <m-input fwidth>
             <input type="text" id="social-input-twitter" name="social[twitter]">
@@ -211,6 +208,11 @@
         <m-input fwidth>
             <input type="text" id="social-input-pinterest" name="social[pinterest]">
             <label for="social-input-pinterest">pinterest</label>
+        </m-input>
+
+        <m-input fwidth>
+            <input type="text" id="social-input-skype" name="social[skype]">
+            <label for="social-input-skype">skype</label>
         </m-input>
     </m-input-group>
 
