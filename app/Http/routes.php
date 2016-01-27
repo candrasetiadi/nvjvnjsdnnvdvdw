@@ -171,6 +171,10 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::group(['prefix' => 'property'], function () {
 
+            Route::any('translate/get/{id}', 'PropertiesController@getTranslate');
+
+            Route::any('translate/store', 'PropertiesController@storeTranslate');
+
             Route::any('get/{id}', 'PropertiesController@show');
 
             Route::any('store', 'PropertiesController@store');

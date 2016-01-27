@@ -432,4 +432,54 @@ class PropertiesController extends Controller
     }
 
 
+    public function getTranslate($id)
+    {
+
+        $enLang = \App\PropertyLanguage::where('property_id', $id)->where('locale', 'en')->first();
+
+        $idLang = \App\PropertyLanguage::where('property_id', $id)->where('locale', 'id')->first();
+
+        $frLang = \App\PropertyLanguage::where('property_id', $id)->where('locale', 'fr')->first();
+
+        $ruLang = \App\PropertyLanguage::where('property_id', $id)->where('locale', 'ru')->first();
+
+        return response()->json(['en' => $enLang, 'id' => $idLang, 'fr' => $frLang, 'ru' => $ruLang]);
+    }
+
+
+    public function storeTranslate(Request $request)
+    {
+        DB::beginTransaction();
+
+        foreach ($request->title as $key => $title) {
+
+            $propertyLang = \App\PropertyLanguage::where('property_id', $request->edit_translate)->where('locale', $key)->first();
+
+            if ($propertyLang) {
+
+                $propertyLang->title = $title ? $title : '' ;
+                $propertyLang->description = $request->description[$key] ? $request->description[$key] : '' ;
+
+                $propertyLang->save();
+
+            } else {
+
+                $propertyLang = new \App\PropertyLanguage;
+
+                $propertyLang->title = $title ? $title : '' ;
+                $propertyLang->description = $request->description[$key] ? $request->description[$key] : '' ;
+                $propertyLang->locale = $key;
+                $propertyLang->property_id = $request->edit_translate;
+
+                $propertyLang->save();
+            }
+
+        }
+
+        DB::commit();
+
+        return response()->json(array('status' => 200, 'monolog' => array('title' => 'update translation success', 'message' => 'Translation has been updated')));
+    }
+
+
 }

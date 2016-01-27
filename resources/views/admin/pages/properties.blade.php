@@ -49,7 +49,7 @@
                     <m-list-item-check single data-id="{{ $property->id }}"></m-list-item-check>
                 </td>
                 <td class="image">
-                    {!! ($images->count() > 0) ? '<a href="'. asset('uploads/property/' . $images->first()->file) . '"></a>' : '-'; !!}
+                    {!! ($images->count() > 0) ? '<img width="100" src="'. asset('uploads/property/' . $images->first()->file) . '">' : '-'; !!}
                 </td>
                 <td class="title">{{ $property->lang()->title }}</td>
                 <td class="created_at">{{ $property->created_at }}</td>
@@ -64,6 +64,7 @@
                         <i class="material-icons">more_horiz</i>
                         <m-list-menu data-id="{{ $property->id }}">
                             <m-list-menu-item edit data-source="property/get" data-function="populatePropertyEdit">EDIT</m-list-menu-item>
+                            <m-list-menu-item translate data-function="populatePropertyTranslate">TRANSLATION</m-list-menu-item>
                             <m-list-menu-item delete data-url="property/destroy">DELETE</m-list-menu-item>
                         </m-list-menu>
                     </m-table-list-more>
@@ -482,6 +483,80 @@
 
     <m-buttons flexbox justify-end>
         <m-button plain class="modal-close" id="close-properties-form">cancel</m-button>
+        <m-button save-form plain>save</m-button>
+    </m-buttons>
+    {!! Form::close() !!}
+</m-modal-wrapper>
+
+
+<!-- MODAL TRANSLATE -->
+
+<m-modal-wrapper id="property-translate">
+    {!! Form::open(array('class' => 'modal-window', 'id' => 'property-translate-form', 'data-function' => 'modalClose', 'data-url' => 'property/translate/store')) !!}
+    
+    <!-- en -->
+    <h3 class="input-group-title">English</h3>
+    <div class="m-input-wrapper fwidth">
+        <input type="text" name="title[en]" id="property-input-en-title" required>
+        <label for="title">title</label>
+    </div>
+
+    <div class="m-input-group textarea fwidth flexbox flexbox-wrap">
+        <h3 class="input-group-title">Description</h3>
+        <div class="input-wrapper fwidth">
+            <textarea name="description[en]" id="property-input-en-description" rows="10" style="padding-top: 0"></textarea>
+        </div>
+    </div>
+    <br><br><br>
+
+    <!-- id -->
+    <h3 class="input-group-title">Indonesian</h3>
+    <div class="m-input-wrapper fwidth">
+        <input type="text" name="title[id]" id="property-input-id-title" required>
+        <label for="title">title</label>
+    </div>
+
+    <div class="m-input-group textarea fwidth flexbox flexbox-wrap">
+        <h3 class="input-group-title">Description</h3>
+        <div class="input-wrapper fwidth">
+            <textarea name="description[id]" id="property-input-id-description" rows="10" style="padding-top: 0"></textarea>
+        </div>
+    </div>
+    <br><br><br>
+
+    <!-- fr -->
+    <h3 class="input-group-title">French</h3>
+    <div class="m-input-wrapper fwidth">
+        <input type="text" name="title[fr]" id="property-input-fr-title" required>
+        <label for="title">title</label>
+    </div>
+
+    <div class="m-input-group textarea fwidth flexbox flexbox-wrap">
+        <h3 class="input-group-title">Description</h3>
+        <div class="input-wrapper fwidth">
+            <textarea name="description[fr]" id="property-input-fr-description" rows="10" style="padding-top: 0"></textarea>
+        </div>
+    </div>
+    <br><br><br>
+
+    <!-- ru -->
+    <h3 class="input-group-title">Rusian</h3>
+    <div class="m-input-wrapper fwidth">
+        <input type="text" name="title[ru]" id="property-input-ru-title" required>
+        <label for="title">title</label>
+    </div>
+
+    <div class="m-input-group textarea fwidth flexbox flexbox-wrap">
+        <h3 class="input-group-title">Description</h3>
+        <div class="input-wrapper fwidth">
+            <textarea name="description[ru]" id="property-input-ru-description" rows="10" style="padding-top: 0"></textarea>
+        </div>
+    </div>
+    <br><br><br>
+    <input type="hidden" name="edit_translate" value="0" id="edit-translate-flag">
+
+    <m-buttons flexbox justify-end>
+        <m-button plain class="modal-close" id="close-property-translate-form">cancel</m-button>
         <m-button save-form plain>save</m-button>
     </m-buttons>
     {!! Form::close() !!}

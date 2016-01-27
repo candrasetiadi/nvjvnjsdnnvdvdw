@@ -311,6 +311,8 @@ function modalClose() {
 
     $('#gallery-wrapper').html('');
 
+    $('[id^=property-input-]');
+
     NProgress.done();
 }
 
@@ -838,7 +840,7 @@ var Matter = {
 
         properties: function() {
 
-            $(document).on('click', 'm-list-menu-item', function() {
+            $(document).on('click', '[edit]', function() {
 
                 var id = $(this).parents('m-list-menu').attr('data-id'),
                     func = $(this).attr('data-function'),
@@ -1001,6 +1003,37 @@ var Matter = {
 
                 NProgress.done();
             }
+
+            $(document).on('click', '[translate]', function() {
+
+                var id = $(this).closest('m-list-menu').attr('data-id');
+
+                Ajax.get('property/translate/get/' + id, populatePropertyTranslate);
+            });
+
+            function populatePropertyTranslate(data) {
+
+                $('[id^=property-input-]').val('');
+
+                $.each(data, function(key, val) {
+
+                    if (val) {
+
+                        $.each(val, function(k, v) {
+
+                            $('#property-input-' + key + '-' + k).val(v);
+                        });
+                    }
+
+                });
+
+                $('#edit-translate-flag').val(data.en.property_id);
+
+                modalOpen('#property-translate');
+            }
+
+
+
         },
 
         blog: function() {
