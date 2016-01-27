@@ -69,8 +69,8 @@ class CustomerController extends Controller
         $customer->twitter = $request->twitter;
 
         // $customer->image_profile = $request->image_profile;
-        // $customer->newsletter = $request->newsletter;
-        // $customer->active = $request->active;
+        $customer->newsletter = $request->newsletter;
+        $customer->active = $request->active;
 
         $customer->save();
 
@@ -134,8 +134,8 @@ class CustomerController extends Controller
         $customer->twitter = $request->twitter;
 
         // $customer->image_profile = $request->image_profile;
-        // $customer->newsletter = $request->newsletter;
-        // $customer->active = $request->active;
+        $customer->newsletter = $request->newsletter;
+        $customer->active = $request->active;
 
         if ($request->password) $customer->password = Hash::make($request->password);
 

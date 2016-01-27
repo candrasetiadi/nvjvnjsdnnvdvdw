@@ -13,6 +13,7 @@ class CountriesTableSeeder extends Seeder
     {
         //
 
+
             \App\Country::create(['iso' => 'AF', 'name' => 'AFGHANISTAN', 'nicename' => 'Afghanistan', 'iso3' => 'AFG', 'numcode' => 4, 'phonecode' => 93]);
             \App\Country::create(['iso' => 'AL', 'name' => 'ALBANIA', 'nicename' => 'Albania', 'iso3' => 'ALB', 'numcode' => 8, 'phonecode' => 355]);
             \App\Country::create(['iso' => 'DZ', 'name' => 'ALGERIA', 'nicename' => 'Algeria', 'iso3' => 'DZA', 'numcode' => 12, 'phonecode' => 213]);
@@ -124,7 +125,8 @@ class CountriesTableSeeder extends Seeder
             \App\Country::create(['iso' => 'KZ', 'name' => 'KAZAKHSTAN', 'nicename' => 'Kazakhstan', 'iso3' => 'KAZ', 'numcode' => 398, 'phonecode' => 7]);
             \App\Country::create(['iso' => 'KE', 'name' => 'KENYA', 'nicename' => 'Kenya', 'iso3' => 'KEN', 'numcode' => 404, 'phonecode' => 254]);
             \App\Country::create(['iso' => 'KI', 'name' => 'KIRIBATI', 'nicename' => 'Kiribati', 'iso3' => 'KIR', 'numcode' => 296, 'phonecode' => 686]);
-            \App\Country::create(['iso' => 'KR', 'name' => 'KOREA', 'nicename' => 'Korea', 'iso3' => 'KOR', 'numcode' => 410, 'phonecode' => 82]);
+            \App\Country::create(['iso' => 'KP', 'name' => 'KOREA DEMOCRATIC PEOPLES REPUBLIC OF', 'nicename' => 'Korea Democratic Peoples Republic of', 'iso3' => 'PRK', 'numcode' => 408, 'phonecode' => 850]);
+            \App\Country::create(['iso' => 'KR', 'name' => 'KOREA REPUBLIC OF', 'nicename' => 'Korea Republic of', 'iso3' => 'KOR', 'numcode' => 410, 'phonecode' => 82]);
             \App\Country::create(['iso' => 'KW', 'name' => 'KUWAIT', 'nicename' => 'Kuwait', 'iso3' => 'KWT', 'numcode' => 414, 'phonecode' => 965]);
             \App\Country::create(['iso' => 'KG', 'name' => 'KYRGYZSTAN', 'nicename' => 'Kyrgyzstan', 'iso3' => 'KGZ', 'numcode' => 417, 'phonecode' => 996]);
             \App\Country::create(['iso' => 'LA', 'name' => 'LAOS', 'nicename' => 'Laos', 'iso3' => 'LAO', 'numcode' => 418, 'phonecode' => 856]);
@@ -175,6 +177,7 @@ class CountriesTableSeeder extends Seeder
             \App\Country::create(['iso' => 'OM', 'name' => 'OMAN', 'nicename' => 'Oman', 'iso3' => 'OMN', 'numcode' => 512, 'phonecode' => 968]);
             \App\Country::create(['iso' => 'PK', 'name' => 'PAKISTAN', 'nicename' => 'Pakistan', 'iso3' => 'PAK', 'numcode' => 586, 'phonecode' => 92]);
             \App\Country::create(['iso' => 'PW', 'name' => 'PALAU', 'nicename' => 'Palau', 'iso3' => 'PLW', 'numcode' => 585, 'phonecode' => 680]);
+            \App\Country::create(['iso' => 'PS', 'name' => 'PALESTINIAN TERRITORY, OCCUPIED', 'nicename' => 'Palestinian Territory, Occupied', 'phonecode' => 970]);
             \App\Country::create(['iso' => 'PA', 'name' => 'PANAMA', 'nicename' => 'Panama', 'iso3' => 'PAN', 'numcode' => 591, 'phonecode' => 507]);
             \App\Country::create(['iso' => 'PG', 'name' => 'PAPUA NEW GUINEA', 'nicename' => 'Papua New Guinea', 'iso3' => 'PNG', 'numcode' => 598, 'phonecode' => 675]);
             \App\Country::create(['iso' => 'PY', 'name' => 'PARAGUAY', 'nicename' => 'Paraguay', 'iso3' => 'PRY', 'numcode' => 600, 'phonecode' => 595]);
@@ -193,6 +196,7 @@ class CountriesTableSeeder extends Seeder
             \App\Country::create(['iso' => 'KN', 'name' => 'SAINT KITTS AND NEVIS', 'nicename' => 'Saint Kitts and Nevis', 'iso3' => 'KNA', 'numcode' => 659, 'phonecode' => 1869]);
             \App\Country::create(['iso' => 'LC', 'name' => 'SAINT LUCIA', 'nicename' => 'Saint Lucia', 'iso3' => 'LCA', 'numcode' => 662, 'phonecode' => 1758]);
             \App\Country::create(['iso' => 'PM', 'name' => 'SAINT PIERRE AND MIQUELON', 'nicename' => 'Saint Pierre and Miquelon', 'iso3' => 'SPM', 'numcode' => 666, 'phonecode' => 508]);
+            \App\Country::create(['iso' => 'VC', 'name' => 'SAINT VINCENT AND THE GRENADINES', 'nicename' => 'Saint Vincent and the Grenadines', 'iso3' => 'VCT', 'numcode' => 670, 'phonecode' => 1784]);
             \App\Country::create(['iso' => 'WS', 'name' => 'SAMOA', 'nicename' => 'Samoa', 'iso3' => 'WSM', 'numcode' => 882, 'phonecode' => 684]);
             \App\Country::create(['iso' => 'SM', 'name' => 'SAN MARINO', 'nicename' => 'San Marino', 'iso3' => 'SMR', 'numcode' => 674, 'phonecode' => 378]);
             \App\Country::create(['iso' => 'ST', 'name' => 'SAO TOME AND PRINCIPE', 'nicename' => 'Sao Tome and Principe', 'iso3' => 'STP', 'numcode' => 678, 'phonecode' => 239]);
@@ -207,7 +211,7 @@ class CountriesTableSeeder extends Seeder
             \App\Country::create(['iso' => 'SB', 'name' => 'SOLOMON ISLANDS', 'nicename' => 'Solomon Islands', 'iso3' => 'SLB', 'numcode' => 90, 'phonecode' => 677]);
             \App\Country::create(['iso' => 'SO', 'name' => 'SOMALIA', 'nicename' => 'Somalia', 'iso3' => 'SOM', 'numcode' => 706, 'phonecode' => 252]);
             \App\Country::create(['iso' => 'ZA', 'name' => 'SOUTH AFRICA', 'nicename' => 'South Africa', 'iso3' => 'ZAF', 'numcode' => 710, 'phonecode' => 27]);
-            \App\Country::create(['iso' => 'GS', 'name' => 'SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS', 'iso3' => 'South Gnumcodeeorgia and the South Sandwich Islands', 'phonecode' => 0]);
+            \App\Country::create(['iso' => 'GS', 'name' => 'SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS', 'nicename' => 'South Georgia and the South Sandwich Islands', 'phonecode' => 0]);
             \App\Country::create(['iso' => 'ES', 'name' => 'SPAIN', 'nicename' => 'Spain', 'iso3' => 'ESP', 'numcode' => 724, 'phonecode' => 34]);
             \App\Country::create(['iso' => 'LK', 'name' => 'SRI LANKA', 'nicename' => 'Sri Lanka', 'iso3' => 'LKA', 'numcode' => 144, 'phonecode' => 94]);
             \App\Country::create(['iso' => 'SD', 'name' => 'SUDAN', 'nicename' => 'Sudan', 'iso3' => 'SDN', 'numcode' => 736, 'phonecode' => 249]);
@@ -229,7 +233,7 @@ class CountriesTableSeeder extends Seeder
             \App\Country::create(['iso' => 'TN', 'name' => 'TUNISIA', 'nicename' => 'Tunisia', 'iso3' => 'TUN', 'numcode' => 788, 'phonecode' => 216]);
             \App\Country::create(['iso' => 'TR', 'name' => 'TURKEY', 'nicename' => 'Turkey', 'iso3' => 'TUR', 'numcode' => 792, 'phonecode' => 90]);
             \App\Country::create(['iso' => 'TM', 'name' => 'TURKMENISTAN', 'nicename' => 'Turkmenistan', 'iso3' => 'TKM', 'numcode' => 795, 'phonecode' => 7370]);
-            \App\Country::create(['iso' => 'TC', 'name' => 'TURKS AND CAICOS ISLANDS', 'iso3' => 'Turks anumcodend Caicos Islands', 'iso3' => 'TCA', 'numcode' => 796, 'phonecode' => 1649]);
+            \App\Country::create(['iso' => 'TC', 'name' => 'TURKS AND CAICOS ISLANDS', 'nicename' => 'Turks anumcodend Caicos Islands', 'iso3' => 'TCA', 'numcode' => 796, 'phonecode' => 1649]);
             \App\Country::create(['iso' => 'TV', 'name' => 'TUVALU', 'nicename' => 'Tuvalu', 'iso3' => 'TUV', 'numcode' => 798, 'phonecode' => 688]);
             \App\Country::create(['iso' => 'UG', 'name' => 'UGANDA', 'nicename' => 'Uganda', 'iso3' => 'UGA', 'numcode' => 800, 'phonecode' => 256]);
             \App\Country::create(['iso' => 'UA', 'name' => 'UKRAINE', 'nicename' => 'Ukraine', 'iso3' => 'UKR', 'numcode' => 804, 'phonecode' => 380]);
@@ -242,7 +246,8 @@ class CountriesTableSeeder extends Seeder
             \App\Country::create(['iso' => 'VU', 'name' => 'VANUATU', 'nicename' => 'Vanuatu', 'iso3' => 'VUT', 'numcode' => 548, 'phonecode' => 678]);
             \App\Country::create(['iso' => 'VE', 'name' => 'VENEZUELA', 'nicename' => 'Venezuela', 'iso3' => 'VEN', 'numcode' => 862, 'phonecode' => 58]);
             \App\Country::create(['iso' => 'VN', 'name' => 'VIET NAM', 'nicename' => 'Viet Nam', 'iso3' => 'VNM', 'numcode' => 704, 'phonecode' => 84]);
-            \App\Country::create(['iso' => 'VG', 'name' => 'VIRGIN ISLANDS BRITISH', 'nicename' => 'Virgin Islands', 'iso3' => 'VGB', 'numcode' => 92, 'phonecode' => 1284]);
+            \App\Country::create(['iso' => 'VG', 'name' => 'VIRGIN ISLANDS, BRITISH', 'nicename' => 'Virgin Islands, British', 'iso3' => 'VGB', 'numcode' => 92, 'phonecode' => 1284]);
+            \App\Country::create(['iso' => 'VI', 'name' => 'VIRGIN ISLANDS, U.S.', 'nicename' => 'Virgin Islands, U.s.', 'iso3' => 'VIR', 'numcode' => 850, 'phonecode' => 1340]);
             \App\Country::create(['iso' => 'WF', 'name' => 'WALLIS AND FUTUNA', 'nicename' => 'Wallis and Futuna', 'iso3' => 'WLF', 'numcode' => 876, 'phonecode' => 681]);
             \App\Country::create(['iso' => 'EH', 'name' => 'WESTERN SAHARA', 'nicename' => 'Western Sahara', 'iso3' => 'ESH', 'numcode' => 732, 'phonecode' => 212]);
             \App\Country::create(['iso' => 'YE', 'name' => 'YEMEN', 'nicename' => 'Yemen', 'iso3' => 'YEM', 'numcode' => 887, 'phonecode' => 967]);

@@ -97,7 +97,7 @@
         </m-input>
 
         <m-input class="w50-6">
-            <input type="text" name="password" id="customer-input-password" required>
+            <input type="password" name="password" id="customer-input-password" required>
             <label for="password">password</label>
         </m-input>
 
@@ -106,7 +106,7 @@
             <label for="phone">phone</label>
         </m-input>
 
-        <m-input class="w33-8">
+        <m-input class="w66-8">
             <input type="text" name="address" id="customer-input-address" required>
             <label for="address">address</label>
         </m-input>
@@ -128,11 +128,29 @@
 
         <m-input select class="w33-8">
             <input type="text" select id="customer-input-country" name="country" value="" required>
-            <label for="country">country</label>
+            <label for="customer-input-country">country</label>
             <m-select>
                 @foreach(\App\Country::all() as $country)
                 <m-option value="{{ $country->nicename }}">{{ $country->nicename }}</m-option>
                 @endforeach
+            </m-select>
+        </m-input>
+
+        <m-input select class="w33-8">
+            <input type="text" select id="customer-input-newsletter" name="newsletter" value="1" required>
+            <label for="customer-input-newsletter">newsletter</label>
+            <m-select>
+                <m-option value="1">yes</m-option>
+                <m-option value="0">no</m-option>
+            </m-select>
+        </m-input>
+
+        <m-input select class="w33-8">
+            <input type="text" select id="customer-input-active" name="active" value="1" required>
+            <label for="customer-input-active">active</label>
+            <m-select>
+                <m-option value="1">yes</m-option>
+                <m-option value="0">no</m-option>
             </m-select>
         </m-input>
 
