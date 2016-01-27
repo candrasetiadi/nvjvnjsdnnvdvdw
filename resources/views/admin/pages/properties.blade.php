@@ -35,6 +35,7 @@
             <td>Created</td>
             <td>Code</td>
             <td>Type</td>
+            <td>Category</td>
             <td>Publish</td>
             <td>Agent</td>
             <td>Price</td>
@@ -55,6 +56,7 @@
                 <td class="created_at">{{ $property->created_at }}</td>
                 <td class="code">{{ $property->code }}</td>
                 <td class="type">{{ ucwords($property->type) }}</td>
+                <td class="type">{{ ucwords($property->category->lang()->title) }}</td>
                 <td class="publish">{{ ucfirst($property->publish) }}</td>
                 <td class="view">{{ $property->user->firstname }}</td>
                 <td class="price align-center">{{ number_format($property->price, 2) }}</td>
