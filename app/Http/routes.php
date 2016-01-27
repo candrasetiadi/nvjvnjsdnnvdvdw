@@ -187,11 +187,15 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::group(['prefix' => 'category'], function () {
 
+            Route::any('translate/get/{id}', 'CategoryController@getTranslate');
+
+            Route::any('translate/store', 'CategoryController@storeTranslate');
+
             Route::any('get/{id}', 'CategoryController@show');
 
             Route::any('store', 'CategoryController@store');
 
-            Route::any('delete/{id}', 'CategoryController@destroy');
+            Route::any('destroy/{id}', 'CategoryController@destroy');
 
         });
 

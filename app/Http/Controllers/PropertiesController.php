@@ -464,14 +464,19 @@ class PropertiesController extends Controller
 
             } else {
 
-                $propertyLang = new \App\PropertyLanguage;
+                $propertyLang = new \App\propertyLanguage;
 
-                $propertyLang->title = $title ? $title : '' ;
-                $propertyLang->description = $request->description[$key] ? $request->description[$key] : '' ;
-                $propertyLang->locale = $key;
-                $propertyLang->property_id = $request->edit_translate;
+                if ($title) $propertyLang->title = $title;
+                if ($request->description[$key]) $propertyLang->description = $request->description[$key];
 
-                $propertyLang->save();
+                if ($title || $request->description[$key]) {
+
+                    $propertyLang->locale = $key;
+                    $propertyLang->property_id = $request->edit_translate;
+
+                    $propertyLang->save();
+                }
+                
             }
 
         }

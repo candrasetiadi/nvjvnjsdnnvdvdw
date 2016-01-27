@@ -834,8 +834,95 @@ var Matter = {
                     doneFunc = form.attr('data-function'),
                     fd = new FormData($('#' + formId)[0]);
 
-                Ajax.post(url, fd, eval(doneFunc));
+                Ajax.post(url, fd, populateCategoryNew);
             });
+
+            $(document).on('click', '[edit]', function() {
+
+                var id = $(this).parents('m-list-menu').attr('data-id'),
+                    func = $(this).attr('data-function'),
+                    source = $(this).attr('data-source');
+
+                Ajax.get(source + '/' + id, eval(func));
+            });
+
+            $(document).on('click', '[delete]', function() {
+
+                var id = $(this).parents('m-list-menu').attr('data-id'),
+                    url_delete = $(this).attr('data-url');
+
+                if(!!url_delete) {
+
+                    Monolog.confirm('delete category', 'are you sure to delete this category? this cannot be undone', function() {
+
+                        Ajax.get(url_delete + '/' + id, removeItem);
+                    });
+
+                    return false;
+                }
+
+            });
+
+            function removeItem(data) {
+
+                var id = data.id;
+
+                $('#category-item-' + id).remove();
+
+                NProgress.done();
+            }
+
+            function populateCategoryEdit(data) {
+
+                $('#category-input-title').val(data.lang.title);
+
+                $('#category-input-description').val(data.lang.description);
+
+                $('#category-input-parent').val(data.parent);
+
+                $('#edit-flag').val(data.id);
+
+                modalOpen('#category-add');
+
+                NProgress.done();
+            }
+
+
+            function populateCategoryNew(data) {
+
+                NProgress.done();
+
+                reload();
+            }
+
+            $(document).on('click', '[translate]', function() {
+
+                var id = $(this).closest('m-list-menu').attr('data-id');
+
+                Ajax.get('category/translate/get/' + id, populateCategoryTranslate);
+            });
+
+            function populateCategoryTranslate(data) {
+
+                $('[id^=category-input-]').val('');
+
+                $.each(data, function(key, val) {
+
+                    if (val) {
+
+                        $.each(val, function(k, v) {
+
+                            $('#category-input-' + key + '-' + k).val(v);
+                        });
+                    }
+
+                });
+
+                $('#edit-translate-flag').val(data.en.category_id);
+
+                modalOpen('#category-translate');
+            }
+
         },
 
         properties: function() {
@@ -844,10 +931,16 @@ var Matter = {
 
                 var id = $(this).parents('m-list-menu').attr('data-id'),
                     func = $(this).attr('data-function'),
-                    source = $(this).attr('data-source'),
+                    source = $(this).attr('data-source');
+
+                Ajax.get(source + '/' + id, eval(func));
+            });
+
+            $(document).on('click', '[delete]', function() {
+
+                var id = $(this).parents('m-list-menu').attr('data-id'),
                     url_delete = $(this).attr('data-url');
 
-                // Below statement will run when button is a delete button
                 if(!!url_delete) {
 
                     Monolog.confirm('delete property', 'are you sure to delete this property? this cannot be undone', function() {
@@ -857,8 +950,6 @@ var Matter = {
 
                     return false;
                 }
-                // Else we will run the target function
-                Ajax.get(source + '/' + id, eval(func));
             });
 
             function removeItem(data) {

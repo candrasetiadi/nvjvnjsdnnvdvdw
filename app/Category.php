@@ -39,6 +39,16 @@ class Category extends Model
 
     }
 
+    public function parentName()
+    {
+        $categoryLanguages = \App\CategoryLanguage::where('locale', \Lang::getLocale())->where('category_id', $this->parent)->first();
+
+        if(!$categoryLanguages) $categoryLanguages = \App\CategoryLanguage::where('locale', 'en')->where('category_id', $this->parent)->first();
+
+        return $categoryLanguages ? $categoryLanguages->title : '-' ;
+
+    }
+
     public static function boot()
     {
         parent::boot();

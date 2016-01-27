@@ -44,12 +44,13 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        if ($request->edit != 0) return $this->update($request, $request->edit);
 
         DB::beginTransaction();
 
         $category = new Category;
 
-        $category->parent = 0;
+        $category->parent = $request->parent;
         $category->order = 0;
 
         $category->save();
@@ -65,7 +66,7 @@ class CategoryController extends Controller
 
         DB::commit();
 
-        return response()->json(array('status' => 200, 'monolog' => array('title' => 'post success', 'message' => 'Post has been received')));
+        return response()->json(array('status' => 200, 'monolog' => array('title' => 'save success', 'message' => 'Category has been saved.')));
     }
 
     /**
@@ -78,6 +79,8 @@ class CategoryController extends Controller
     {
         //
         $category = Category::find($id);
+
+        $category->lang = $category->categoryLanguages()->where('locale', 'en')->first();
 
         return $category;
     }
@@ -103,6 +106,26 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        DB::beginTransaction();
+
+        $category = Category::find($id);
+
+        $category->parent = $request->parent;
+        // $category->order = 0;
+
+        $category->save();
+
+        $categoryLanguage = \App\CategoryLanguage::where('category_id', $id)->where('locale', 'en')->first();
+
+        $categoryLanguage->title = $request->title;
+        $categoryLanguage->description = $request->description;
+
+        $categoryLanguage->save();
+
+        DB::commit();
+
+        return response()->json(array('status' => 200, 'monolog' => array('title' => 'update success', 'message' => 'Category has been updated.')));
     }
 
     /**
@@ -118,6 +141,63 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return redirect()->back();
+        return response()->json(array('status' => 200, 'monolog' => array('title' => 'delete success', 'message' => 'Category has been deleted.'), 'id' => $id));
     }
+
+
+    public function getTranslate($id)
+    {
+
+        $enLang = \App\CategoryLanguage::where('category_id', $id)->where('locale', 'en')->first();
+
+        $idLang = \App\CategoryLanguage::where('category_id', $id)->where('locale', 'id')->first();
+
+        $frLang = \App\CategoryLanguage::where('category_id', $id)->where('locale', 'fr')->first();
+
+        $ruLang = \App\CategoryLanguage::where('category_id', $id)->where('locale', 'ru')->first();
+
+        return response()->json(['en' => $enLang, 'id' => $idLang, 'fr' => $frLang, 'ru' => $ruLang]);
+    }
+
+
+    public function storeTranslate(Request $request)
+    {
+        DB::beginTransaction();
+
+        foreach ($request->title as $key => $title) {
+
+            $categoryLang = \App\CategoryLanguage::where('category_id', $request->edit_translate)->where('locale', $key)->first();
+
+            if ($categoryLang) {
+
+                $categoryLang->title = $title ? $title : '' ;
+                $categoryLang->description = $request->description[$key] ? $request->description[$key] : '' ;
+
+                $categoryLang->save();
+
+            } else {
+
+                $categoryLang = new \App\CategoryLanguage;
+
+                if ($title) $categoryLang->title = $title;
+                if ($request->description[$key]) $categoryLang->description = $request->description[$key];
+
+                if ($title || $request->description[$key]) {
+
+                    $categoryLang->locale = $key;
+                    $categoryLang->category_id = $request->edit_translate;
+
+                    $categoryLang->save();
+                }
+
+            }
+
+        }
+
+        DB::commit();
+
+        return response()->json(array('status' => 200, 'monolog' => array('title' => 'update translation success', 'message' => 'Translation has been updated')));
+    }
+
+
 }
