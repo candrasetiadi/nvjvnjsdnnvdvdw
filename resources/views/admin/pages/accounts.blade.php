@@ -20,12 +20,12 @@
                     <m-list-item-check all></m-list-item-check>
                 </td>
                 <td width="20%">name</td>
+                <td width="20%">username</td>
                 <td width="20%">email</td>
                 <td width="15%">location</td>
-                <td width="15%" class="align-center">created</td>
                 <td width="15%" class="align-center">role</td>
                 <td width="5%" class="align-center">status</td>
-                <td width="5%"></td>
+                <td width="5%">action</td>
             </tr>
         </thead>
 
@@ -35,10 +35,10 @@
                 <td>
                     <m-list-item-check single data-id="{{ $account->id }}"></m-list-item-check>
                 </td>
+                <td>{{ $account->firstname . ' ' . $account->lastname }}</td>
                 <td>{{ $account->username }}</td>
                 <td>{{ $account->email }}</td>
                 <td>{{ $account->city }}</td>
-                <td class="align-center">{{ $account->created_at }}</td>
                 <td class="align-center">{{ strtoupper($account->role->name) }}</td>
                 <td class="align-center">{{ $account->active ? 'ACTIVE' : 'NONE' }}</td>                
                 <td button>

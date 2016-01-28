@@ -14,10 +14,13 @@ class AdminController extends Controller {
 
     private $limit = 20;
     private $lang = '';
+    private $admin;
 
     public function __construct()
     {
         $this->lang = \Lang::getLocale();
+
+        $this->admin = \Auth::user()->get();
     }
 
     public function dashboard() {
@@ -53,17 +56,44 @@ class AdminController extends Controller {
 
         $search = \Input::get('q');
 
-        if ($search) {
+        // AGENT
+        if ($this->admin->role_id == 3) {
 
-            $properties = \App\Property::select('Properties.*')
-                ->join('PropertyLanguages', 'PropertyLanguages.property_id', '=', 'Properties.id')
-                ->where('PropertyLanguages.locale', $this->lang)
-                ->where('PropertyLanguages.title', 'like', $search . '%')
-                ->orderBy('Properties.created_at', 'desc')->paginate($this->limit);
 
+            if ($search) {
+
+                $properties = \App\Property::select('Properties.*')
+                    ->join('PropertyLanguages', 'PropertyLanguages.property_id', '=', 'Properties.id')
+                    ->where('PropertyLanguages.locale', $this->lang)
+                    ->where('PropertyLanguages.title', 'like', $search . '%')
+                    ->where('Properties.user_id', $this->admin->id)
+                    ->orderBy('Properties.created_at', 'desc')->paginate($this->limit);
+
+            } else {
+
+                $properties = \App\Property::where('user_id', $this->admin->id)
+                    ->orderBy('created_at', 'desc')
+                    ->paginate($this->limit);
+            }
+
+        // SUPER ADMIN
         } else {
 
-            $properties = \App\Property::orderBy('created_at', 'desc')->paginate($this->limit);
+
+            if ($search) {
+
+                $properties = \App\Property::select('Properties.*')
+                    ->join('PropertyLanguages', 'PropertyLanguages.property_id', '=', 'Properties.id')
+                    ->where('PropertyLanguages.locale', $this->lang)
+                    ->where('PropertyLanguages.title', 'like', $search . '%')
+                    ->orderBy('Properties.created_at', 'desc')->paginate($this->limit);
+
+            } else {
+
+                $properties = \App\Property::orderBy('created_at', 'desc')->paginate($this->limit);
+            }
+
+
         }
 
         $categories = \App\Category::orderBy('order', 'asc')->get();
@@ -77,7 +107,19 @@ class AdminController extends Controller {
 
         $search = \Input::get('q');
 
-        $enquiries = \App\Inquiry::orderBy('created_at', 'desc')->paginate($this->limit);
+        // AGENT
+        if ($this->admin->role_id == 3) {
+
+            $enquiries = \App\Inquiry::select('Inquiries.*')
+                ->join('Properties', 'Properties.id', '=', 'Inquiries.property_id')
+                ->where('Properties.user_id', $this->admin->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate($this->limit);
+
+        } else {
+
+            $enquiries = \App\Inquiry::orderBy('created_at', 'desc')->paginate($this->limit);
+        }
 
         return view('admin.pages.enquiries', compact('enquiries'));
 
