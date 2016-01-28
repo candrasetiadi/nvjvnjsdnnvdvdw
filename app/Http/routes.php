@@ -213,7 +213,13 @@ Route::group(['middleware' => 'auth'], function () {
 
             Route::any('prepare', 'UserController@invite');
 
+            Route::any('store', 'UserController@store');
+
+            Route::any('update', 'UserController@update');
+
             Route::any('profile/store', 'UserController@storeProfile');
+
+            Route::any('get/{id}', 'UserController@show');
 
             Route::any('destroy/{id}', 'UserController@destroy');
 

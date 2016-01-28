@@ -2,3 +2,22 @@ This text file serves as a reminder for todos that needs to be executed prior to
 
 UserController:
     - Check that emailling user works! Connect to smtp server etc.
+
+BACKEND:
+    - all listing:
+        - should have search input field
+        - activate left side checklist circle 
+
+    - admin/properties:
+
+        - modal/ pop up form:
+            - tab OWNER, documents should be clicked
+            - tab FACILITIES and DISTANCE, admin have to add row item
+
+        - translate:
+            - give google translate button to each translation field
+
+    - admin/my-account: styling the layout
+
+    - admin/accounts: activate edit button
+

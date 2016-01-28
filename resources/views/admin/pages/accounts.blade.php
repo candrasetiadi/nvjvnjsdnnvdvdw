@@ -40,7 +40,7 @@
                 <td>{{ $account->city }}</td>
                 <td class="align-center">{{ $account->created_at }}</td>
                 <td class="align-center">{{ strtoupper($account->role->name) }}</td>
-                <td class="align-center">{{ $account->active ? 'ACTIVE' : 'UNREGISTERED' }}</td>                
+                <td class="align-center">{{ $account->active ? 'ACTIVE' : 'NONE' }}</td>                
                 <td button>
                     <m-table-list-more>
                         <i class="material-icons">more_horiz</i>
@@ -105,6 +105,114 @@
     <div class="button-holder align-right">
         <m-button plain modal-close>cancel</m-button>
         <m-button plain save-form>save</m-button>
+    </div>
+    {!! Form::close() !!}
+</m-modal-wrapper>
+
+
+<!-- EDIT -->
+<m-modal-wrapper id="account-edit">
+
+    {!! Form::open(array('class' => 'modal-window', 'id' => 'account-update-form', 'data-function' => 'modalClose', 'data-url' => 'account/update')) !!}
+    <h3>Edit account</h3>
+    <m-input-group class="m-input-group fwidth flexbox-wrap justify-between">
+
+        <m-input class="w50-6">
+            <input type="text" name="username" id="accounts-input-username" required>
+            <label for="username">username</label>
+        </m-input>
+
+        <m-input class="w50-6">
+            <input type="text" name="password" id="accounts-input-password" required>
+            <label for="password">password</label>
+        </m-input>
+
+        <m-input class="w50-6">
+            <input type="text" name="firstname" id="accounts-input-firstname" required>
+            <label for="firstname">firstname</label>
+        </m-input>
+
+        <m-input class="w50-6">
+            <input type="text" name="lastname" id="accounts-input-lastname" required>
+            <label for="lastname">lastname</label>
+        </m-input>
+
+        <m-input class="w50-6">
+            <input type="text" name="email" id="accounts-input-email" required>
+            <label for="email">email</label>
+        </m-input>
+
+        <m-input class="w50-6">
+            <input type="text" name="phone" id="accounts-input-phone" required>
+            <label for="phone">phone</label>
+        </m-input>
+
+        <m-input class="w66-8">
+            <input type="text" name="address" id="accounts-input-address" required>
+            <label for="address">address</label>
+        </m-input>
+
+        <m-input class="w33-8">
+            <input type="text" name="city" id="accounts-input-city" required>
+            <label for="city">city</label>
+        </m-input>
+
+        <m-input class="w33-8">
+            <input type="text" name="province" id="accounts-input-province" required>
+            <label for="province">state</label>
+        </m-input>
+
+        <m-input class="w33-8">
+            <input type="text" name="zipcode" id="accounts-input-zipcode" required>
+            <label for="zipcode">postal</label>
+        </m-input>
+
+        <m-input data-label="country" select data-label="country" class="w33-8">
+            <input type="text" select id="accounts-input-country" name="country" value="" required>
+            <label for="accounts-input-country">country</label>
+            <m-select>
+                @foreach(\App\Country::all() as $country)
+                <m-option value="{{ $country->nicename }}">{{ $country->nicename }}</m-option>
+                @endforeach
+            </m-select>
+        </m-input>
+
+        <m-input data-label="branch" select data-label="branch" class="w33-8">
+            <input type="text" select id="accounts-input-branch_id" name="branch_id" value="" required>
+            <label for="accounts-input-branch_id">branch</label>
+            <m-select>
+                @foreach(\App\Branch::all() as $branch)
+                <m-option value="{{ $branch->id }}">{{ $branch->name }}</m-option>
+                @endforeach
+            </m-select>
+        </m-input>
+
+        <m-input data-label="role" select data-label="role" class="w33-8">
+            <input type="text" select id="accounts-input-role_id" name="role_id" value="" required>
+            <label for="accounts-input-role_id">role</label>
+            <m-select>
+                @foreach(\App\Role::all() as $role)
+                <m-option value="{{ $role->id }}">{{ $role->name }}</m-option>
+                @endforeach
+            </m-select>
+        </m-input>
+
+        <m-input data-label="active" select class="w33-8">
+            <input type="text" select id="accounts-input-active" name="active" value="1" required>
+            <label for="accounts-input-active">active</label>
+            <m-select>
+                <m-option value="1">yes</m-option>
+                <m-option value="0">no</m-option>
+            </m-select>
+        </m-input>
+
+    </m-input-group>
+
+    <input type="hidden" name="user_id" id="accounts-input-id">
+
+    <div class="button-holder align-right">
+        <m-button plain class="modal-close">cancel</m-button>
+        <m-button update-form plain>save</m-button>
     </div>
     {!! Form::close() !!}
 </m-modal-wrapper>

@@ -1171,6 +1171,16 @@ var Matter = {
             // });
 
 
+            $(document).on('click', '[edit]', function() {
+
+                var id = $(this).parents('m-list-menu').attr('data-id'),
+                    func = $(this).attr('data-function'),
+                    source = $(this).attr('data-source');
+
+                Ajax.get(source + '/' + id, eval(func));
+
+            });
+
 
             $(document).on('click', '[delete]', function() {
 
@@ -1208,6 +1218,17 @@ var Matter = {
                 Ajax.post(url, fd, afterAccountStore);
             });
 
+            $(document).on('click', '[update-form]', function() {
+
+                var form = $(this).closest('form'),
+                    formId = form.attr('id'),
+                    url = form.attr('data-url'),
+                    doneFunc = form.attr('data-function'),
+                    fd = new FormData($('#' + formId)[0]);
+
+                Ajax.post(url, fd, afterAccountStore);
+            });
+
             $(document).on('click', '.role-option', function() {
 
                 $('m-error-dialog').hide();
@@ -1217,6 +1238,19 @@ var Matter = {
 
             function afterAccountStore(data) {
                 reload();
+            }
+
+            function populateAccountEdit(data) {
+
+                $.each(data, function(k, v) {
+
+                   $('#accounts-input-' + k).val(v);
+
+                });
+
+                modalOpen('#account-edit');
+
+                NProgress.done();
             }
 
         },
