@@ -1151,24 +1151,51 @@ var Matter = {
 
         accounts: function() {
 
-            $(document).on('click', 'm-list-menu-item', function() {
+            // $(document).on('click', 'm-list-menu-item', function() {
+
+            //     var id = $(this).parents('m-list-menu').attr('data-id'),
+            //         func = $(this).attr('data-function');
+
+            //     // Below statement will run when button is a delete button
+            //     if(!!$(this).attr('data-url')) {
+
+            //         Monolog.confirm('delete property', 'are you sure to delete this property? this cannot be undone', function() {
+
+            //             Ajax.get($(this).attr('data-url') + '/' + id, doNothing);
+            //         });
+
+            //         return false;
+            //     }
+            //     // Else we will run the target function
+            //     eval(func + '(' + id + ')');
+            // });
+
+
+
+            $(document).on('click', '[delete]', function() {
 
                 var id = $(this).parents('m-list-menu').attr('data-id'),
-                    func = $(this).attr('data-function');
+                    url_delete = $(this).attr('data-url');
 
-                // Below statement will run when button is a delete button
-                if(!!$(this).attr('data-url')) {
+                if(!!url_delete) {
 
-                    Monolog.confirm('delete property', 'are you sure to delete this property? this cannot be undone', function() {
+                    Monolog.confirm('delete account', 'are you sure to delete this account? this cannot be undone', function() {
 
-                        Ajax.get($(this).attr('data-url') + '/' + id, doNothing);
+                        Ajax.get(url_delete + '/' + id, removeItem);
                     });
 
                     return false;
                 }
-                // Else we will run the target function
-                eval(func + '(' + id + ')');
             });
+
+            function removeItem(data) {
+
+                var id = data.id;
+
+                $('#account-item-' + id).remove();
+
+                NProgress.done();
+            }
 
             $(document).on('click', '[save-form]', function() {
 

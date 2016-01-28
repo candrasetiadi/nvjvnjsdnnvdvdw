@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(LanguagesTableSeeder::class);
 
-        factory(App\User::class, 10)->create()->each(function ($u) {
+        factory(App\User::class, 100)->create()->each(function ($u) {
 
             factory(App\Property::class, 10)->create(['user_id' => $u->id])->each(function($p) {
 

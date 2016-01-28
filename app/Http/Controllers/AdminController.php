@@ -152,7 +152,17 @@ class AdminController extends Controller {
 
     public function accounts() {
 
-        $accounts = User::all();
+
+        $search = \Input::get('q');
+
+        if ($search) {
+
+            $accounts = \App\User::where('firstname', 'like', $search . '%')->orWhere('lastname', 'like', $search . '%')->orderBy('firstname', 'asc')->paginate($this->limit);
+
+        } else {
+
+            $accounts = \App\User::orderBy('firstname', 'asc')->paginate($this->limit);
+        }
 
         return view('admin.pages.accounts', ['accounts' => $accounts]);
 

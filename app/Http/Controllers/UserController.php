@@ -129,6 +129,12 @@ class UserController extends Controller {
     public function destroy($id)
     {
         //
+
+        $user = User::find($id);
+
+        $user->delete();
+        
+        return response()->json(array('status' => 200, 'monolog' => array('title' => 'account updated', 'message' => 'Account has been updated.'), 'id' => $id));
     }
 
     public function storeProfile(Request $request)

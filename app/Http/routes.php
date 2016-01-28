@@ -215,6 +215,8 @@ Route::group(['middleware' => 'auth'], function () {
 
             Route::any('profile/store', 'UserController@storeProfile');
 
+            Route::any('destroy/{id}', 'UserController@destroy');
+
         });
 
         Route::group(['prefix' => 'settings'], function () {

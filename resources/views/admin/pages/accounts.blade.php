@@ -31,7 +31,7 @@
 
         <tbody>
             @foreach($accounts as $account)
-            <tr>
+            <tr class="account-item" id="account-item-{{ $account->id }}">
                 <td>
                     <m-list-item-check single data-id="{{ $account->id }}"></m-list-item-check>
                 </td>
@@ -39,11 +39,15 @@
                 <td>{{ $account->email }}</td>
                 <td>{{ $account->city }}</td>
                 <td class="align-center">{{ $account->created_at }}</td>
-                <td class="align-center">{{ $account->role_id }}</td>
-                <td class="align-center">{{ $account->active ? 'ACTIVE' : 'UNREGISTERED' }}</td>
+                <td class="align-center">{{ strtoupper($account->role->name) }}</td>
+                <td class="align-center">{{ $account->active ? 'ACTIVE' : 'UNREGISTERED' }}</td>                
                 <td button>
                     <m-table-list-more>
                         <i class="material-icons">more_horiz</i>
+                        <m-list-menu data-id="{{ $account->id }}">
+                            <m-list-menu-item edit data-source="account/get" data-function="populateAccountEdit">EDIT</m-list-menu-item>
+                            <m-list-menu-item delete data-url="account/destroy">DELETE</m-list-menu-item>
+                        </m-list-menu>
                     </m-table-list-more>
                 </td>
             </tr>
@@ -58,6 +62,8 @@
     @endif
 
 </m-template>
+
+@include('admin.fragments.pagination', ['paginator' => $accounts])
 
 @stop
 

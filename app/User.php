@@ -62,6 +62,11 @@ CanResetPasswordContract
         return $this->belongsTo('App\Branch');
     }
 
+    public function role() {
+
+        return $this->belongsTo('App\Role');
+    }
+
     public static function boot()
     {
         parent::boot();
