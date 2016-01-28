@@ -142,7 +142,9 @@ class AdminController extends Controller {
 
     public function myAccount() {
 
-        return view('admin.pages.my-account');
+        $user = \Auth::user()->get();
+
+        return view('admin.pages.my-account', compact('user'));
 
     }
 

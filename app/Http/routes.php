@@ -212,6 +212,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::group(['prefix' => 'account'], function () {
 
             Route::any('prepare', 'UserController@invite');
+
+            Route::any('profile/store', 'UserController@storeProfile');
+
         });
 
         Route::group(['prefix' => 'settings'], function () {

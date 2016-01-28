@@ -1178,7 +1178,7 @@ var Matter = {
                     doneFunc = form.attr('data-function'),
                     fd = new FormData($('#' + formId)[0]);
 
-                Ajax.post(url, fd, doNothing);
+                Ajax.post(url, fd, afterAccountStore);
             });
 
             $(document).on('click', '.role-option', function() {
@@ -1187,6 +1187,11 @@ var Matter = {
 
                 if($(this).is('#super-role')) $('m-error-dialog').show();
             });
+
+            function afterAccountStore(data) {
+                reload();
+            }
+
         },
 
         settings: function() {

@@ -130,4 +130,61 @@ class UserController extends Controller {
     {
         //
     }
+
+    public function storeProfile(Request $request)
+    {
+
+        $user = User::find($request->edit);
+
+        $validator = \Validator::make($request->all(), [
+            'username' => 'required|unique:users,username,'. $user->id,
+            'email' => 'required|unique:users,email,'. $user->id,
+            'firstname' => 'required'
+        ]);
+
+
+        if ($validator->fails()) {
+            return response()->json(array('status' => 500, 'monolog' => array('title' => 'errors', 'message' => implode($validator->errors()->all(), '<br>') )));
+        }
+
+        $user->username = $request->username;
+        $user->email = $request->email;
+        // $user->position_id = $request->position_id;
+        $user->branch_id = $request->branch_id;
+
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
+        $user->address = $request->address;
+        $user->phone = $request->phone;
+        $user->city = $request->city;
+        $user->province = $request->province;
+        $user->country = $request->country;
+        $user->zipcode = $request->zipcode;
+
+        if ($request->password) $user->password = Hash::make($request->password);
+
+        if ($request->hasFile('file')) {
+
+            if ($user->image) {
+                \File::delete('uploads/user/' . $user->image);
+            }
+
+            $destinationPath = 'uploads/user';
+            $extension = $request->file('file')->getClientOriginalExtension();
+            $fileName = date('YmdHis') . '_' . strtolower($request->firstname) . '_user' . '.' . $extension;
+
+            $request->file('file')->move($destinationPath, $fileName);
+
+            $user->image = $fileName;
+
+        }
+
+        $user->save();
+
+        return response()->json(array('status' => 200, 'monolog' => array('title' => 'account updated', 'message' => 'Account has been updated.')));
+
+        // return response()->json(array('status' => 500, 'monolog' => array('title' => 'ERROR', 'message' => $error)));
+
+    }
+
 }
