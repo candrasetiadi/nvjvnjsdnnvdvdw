@@ -131,8 +131,8 @@ class UserController extends Controller {
         $user = User::find($request->user_id);
 
         $validator = \Validator::make($request->all(), [
-            'username' => 'required|unique:users,username,'. $user->id,
-            'email' => 'required|unique:users,email,'. $user->id,
+            'username' => 'required|unique:Users,username,'. $user->id,
+            'email' => 'required|unique:Users,email,'. $user->id,
             'firstname' => 'required'
         ]);
 
@@ -203,8 +203,8 @@ class UserController extends Controller {
         $user = User::find($request->edit);
 
         $validator = \Validator::make($request->all(), [
-            'username' => 'required|unique:users,username,'. $user->id,
-            'email' => 'required|unique:users,email,'. $user->id,
+            'username' => 'required|unique:Users,username,'. $user->id,
+            'email' => 'required|unique:Users,email,'. $user->id,
             'firstname' => 'required'
         ]);
 
