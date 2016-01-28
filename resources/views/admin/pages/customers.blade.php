@@ -126,7 +126,7 @@
             <label for="zipcode">postal</label>
         </m-input>
 
-        <m-input select class="w33-8">
+        <m-input data-label="country" select data-label="country" class="w33-8">
             <input type="text" select id="customer-input-country" name="country" value="" required>
             <label for="customer-input-country">country</label>
             <m-select>
@@ -136,7 +136,7 @@
             </m-select>
         </m-input>
 
-        <m-input select class="w33-8">
+        <m-input data-label="newsletter" select class="w33-8">
             <input type="text" select id="customer-input-newsletter" name="newsletter" value="1" required>
             <label for="customer-input-newsletter">newsletter</label>
             <m-select>
@@ -145,7 +145,7 @@
             </m-select>
         </m-input>
 
-        <m-input select class="w33-8">
+        <m-input data-label="active" select class="w33-8">
             <input type="text" select id="customer-input-active" name="active" value="1" required>
             <label for="customer-input-active">active</label>
             <m-select>

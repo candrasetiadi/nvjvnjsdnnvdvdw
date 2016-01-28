@@ -48,6 +48,16 @@ class CustomerController extends Controller
 
         if ($request->edit != 0) return $this->update($request, $request->edit);
 
+
+        $validator = \Validator::make($request->all(), [
+            'firstname' => 'required'
+        ]);
+
+
+        if ($validator->fails()) {
+            return response()->json(array('status' => 500, 'monolog' => array('title' => 'errors', 'message' => implode($validator->errors()->all(), '<br>') )));
+        }
+
         DB::beginTransaction();
 
         $customer = new Customer;
@@ -114,6 +124,16 @@ class CustomerController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $validator = \Validator::make($request->all(), [
+            'firstname' => 'required'
+        ]);
+
+
+        if ($validator->fails()) {
+            return response()->json(array('status' => 500, 'monolog' => array('title' => 'errors', 'message' => implode($validator->errors()->all(), '<br>') )));
+        }
+
         DB::beginTransaction();
 
         $customer = Customer::find($id);

@@ -75,7 +75,7 @@
         </div>
     </m-input-group>
 
-    <m-input select w50-6>
+    <m-input data-label="parent category" select w50-6>
         <input type="text" select id="category-input-parent" name="parent" required>
         <label for="category-input-parent">parent category</label>
         <m-select>

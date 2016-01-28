@@ -41,6 +41,8 @@ var Monolog = {
             $('monolog').removeClass('confirm error success');
 
         }, 500);
+
+        NProgress.done();
     },
 
     fill: function(title, msg, classes) {

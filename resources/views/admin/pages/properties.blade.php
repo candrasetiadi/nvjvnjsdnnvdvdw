@@ -206,7 +206,7 @@
 
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
 
-                        <m-input fwidth select w50-6>
+                        <m-input data-label="type" fwidth select w50-6>
                             <input type="text" select id="property-input-type" name="type" value="for sell" required>
                             <label for="property-input-type">type</label>
                             <m-select>
@@ -215,13 +215,13 @@
                             </m-select>
                         </m-input>
 
-                        <m-input fwidth select w50-6>
-                            <input type="text" select id="property-input-category_id" name="category_id" required>
-                            <label for="property-input-category_id">category</label>
+                        <m-input data-label="category" fwidth select w50-6>
+                            <input type="text" value="{{ $categories[0]->id }}" select id="property-input- gory_id" name="category_id" required>
+                            <label for="property-input-category_id">{{ $categories[0]->name() }}</label>
                             <m-select>
 
                                 @foreach($categories as $category)
-                                <m-option value="{{ $category->id }}">{{ ucwords($category->name()) }}</m-option>
+                                <m-option value="{{ $category->id }}">{{ $category->name() }}</m-option>
                                 @endforeach
 
                             </m-select>
@@ -231,7 +231,7 @@
 
                     <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
 
-                        <m-input fwidth select w50-6>
+                        <m-input data-label="is price request" fwidth select w50-6>
                             <input type="text" select id="property-input-is_price_request" name="is_price_request" value="0" required>
                             <label for="property-input-is_price_request">is price request</label>
                             <m-select>
@@ -240,7 +240,7 @@
                             </m-select>
                         </m-input>
 
-                        <m-input fwidth select w50-6>
+                        <m-input data-label="is exclusive" fwidth select w50-6>
                             <input type="text" select id="property-input-is_exclusive" name="is_exclusive" value="0" required>
                             <label for="property-input-is_exclusive">is Exclusive</label>
                             <m-select>
@@ -300,7 +300,7 @@
                         <label for="distance_value[beach]">Beach</label>
                     </div>
 
-                    <m-input select w50-6>
+                    <m-input data-label="unit" select w50-6>
                         <input type="text" select id="property-input-distance_unit_beach" name="distance_unit[beach]" required>
                         <label for="property-input-distance_unit_beach">unit</label>
                         <m-select>
@@ -316,7 +316,7 @@
                         <label for="distance_value[airport]">Airport</label>
                     </m-input>
 
-                    <m-input select w50-6>
+                    <m-input data-label="unit" select w50-6>
                         <input type="text" select id="property-input-distance_unit_airport" name="distance_unit[airport]" required>
                         <label for="property-input-distance_unit_airport">unit</label>
                         <m-select>
@@ -332,7 +332,7 @@
                         <label for="distance_value[market]">Market</label>
                     </m-input>
 
-                    <m-input select w50-6>
+                    <m-input data-label="unit" select w50-6>
                         <input type="text" select id="property-input-distance_unit_market" name="distance_unit[market]" required>
                         <label for="property-input-distance_unit_market">unit</label>
                         <m-select>
@@ -356,7 +356,7 @@
                     </m-input>
 
                     <div id="gallery-wrapper" flexwrap style="width: 100%">
-                        <?php for($i = 0; $i < 11; $i++): ?>
+<!-- 
                         <m-gallery-item style="background-image: url('http://loremflickr.com/320/240?t={{ microtime() }}')" data-id="23">
                             <m-gallery-item-menu>
                                 <m-button class="make-thumbnail" data-function="makeThumbnail">
@@ -367,7 +367,7 @@
                                 </m-button>
                             </m-gallery-item-menu>
                         </m-gallery-item>
-                        @endfor
+ -->
                     </div>
 
                 </m-caroussel-slide>

@@ -46,6 +46,16 @@ class InquiryController extends Controller
         //
         if ($request->edit != 0) return $this->update($request, $request->edit);
 
+
+        $validator = \Validator::make($request->all(), [
+            'subject' => 'required'
+        ]);
+
+
+        if ($validator->fails()) {
+            return response()->json(array('status' => 500, 'monolog' => array('title' => 'errors', 'message' => implode($validator->errors()->all(), '<br>') )));
+        }
+
         DB::beginTransaction();
 
         $inquiry = new Inquiry;
@@ -101,6 +111,16 @@ class InquiryController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+
+        $validator = \Validator::make($request->all(), [
+            'subject' => 'required'
+        ]);
+
+
+        if ($validator->fails()) {
+            return response()->json(array('status' => 500, 'monolog' => array('title' => 'errors', 'message' => implode($validator->errors()->all(), '<br>') )));
+        }
 
         DB::beginTransaction();
 

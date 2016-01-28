@@ -58,6 +58,16 @@ class PropertiesController extends Controller
 
         if ($request->edit != 0) return $this->update($request, $request->edit);
 
+
+        $validator = \Validator::make($request->all(), [
+            'title' => 'required'
+        ]);
+
+
+        if ($validator->fails()) {
+            return response()->json(array('status' => 500, 'monolog' => array('title' => 'errors', 'message' => implode($validator->errors()->all(), '<br>') )));
+        }
+
         DB::beginTransaction();
 
         $user_id = \Auth::user()->get()->id;
@@ -252,6 +262,16 @@ class PropertiesController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+
+        $validator = \Validator::make($request->all(), [
+            'title' => 'required'
+        ]);
+
+
+        if ($validator->fails()) {
+            return response()->json(array('status' => 500, 'monolog' => array('title' => 'errors', 'message' => implode($validator->errors()->all(), '<br>') )));
+        }
 
         DB::beginTransaction();
 
