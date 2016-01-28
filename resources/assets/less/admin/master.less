@@ -1099,6 +1099,8 @@ m-template{
                                     .transition(all .11s ease);
 
                                     m-list-menu-item{
+                                        font-weight: 500;
+                                        letter-spacing: .5px;
                                         .block();
                                         padding: 8px 12px;
                                         text-align: left;
@@ -1382,6 +1384,69 @@ m-button{
     }
 }
 
+m-burger-button{
+    width: 28px;
+    height: 20px;
+    display: block;
+    position: absolute;
+    left: 16px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    .cursor();
+
+    span{
+        .absolute();
+        width: 100%;
+        height: 2px;
+        display: block;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background: white;
+        border-radius: 2px;
+        .transition(all .11s ease);
+    }
+
+    &:after, &:before{
+        display: block;
+        content: '+';
+        text-indent: -99999px;
+        width: 100%;
+        height: 2px;
+        background: white;
+        position: absolute;
+        left: 0;
+        border-radius: 2px;
+        .transition(all .11s ease);
+    }
+
+    &:after{
+        bottom: 0;
+    }
+
+    &:before{
+        top: 0;
+    }
+
+    &.active{
+
+        span{
+            width: 80%;
+        }
+
+        &:after{
+            transform: rotate(45deg) translate3d(-6px, 0, 0);
+            width: 50%;
+        }
+
+        &:before{
+            transform: rotate(-45deg) translate3d(-6px, 0, 0);
+            width: 50%;
+        }
+    }
+}
+
 m-checkbox{
     width: 30px;
     height: 32px;
@@ -1632,6 +1697,20 @@ m-input{
 
     &[select]{
 
+        &:before{
+            content: attr(data-label);
+            font-size: 11px;
+            top: -7px;
+            left: 4px;
+            color: #6d6d6d;
+            font-weight: 700;
+            position: absolute;
+            letter-spacing: 1px;
+            pointer-events: none;
+            transition: all .22s ease;
+            text-transform: uppercase;
+        }
+
         &:after{
             top: 0;
             height: 0;
@@ -1737,6 +1816,30 @@ m-error-dialog{
         color: #323232;
     }
 }
+
+
+
+
+
+// Mobile wizardry
+[mobile-only]{
+
+}
+
+[tablet-only]{
+
+}
+
+[desktop-only]{
+
+}
+
+[tablet-and-smaller]{
+
+}
+
+
+
 
 
 /* IMAGERY */

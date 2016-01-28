@@ -63,6 +63,10 @@
                     @yield('fab', '')
 
                 </div>
+
+                <div class="mobile-navbar" flexbox>
+                    <m-burger-button><span></span></m-burger-button>
+                </div>
             </div>
 
             <section class="app-content">
@@ -95,5 +99,14 @@
         </monolog>
 
         @yield('modal', '')
+
+
+        <script>
+            $(document).on('click', 'm-burger-button', function() {
+
+                $(this).toggleClass('active');
+
+            });
+        </script>
     </body>
 </html>

@@ -337,6 +337,10 @@
                 }
             }
         }
+
+        .mobile-navbar{
+            display: none;
+        }
     }
 
     .app-content{
@@ -546,6 +550,37 @@ monolog{
                     width: 50%;
                     display: inline-block
                 }
+            }
+        }
+    }
+}
+
+@media all and(max-width: 1080px) {
+
+    body{
+        overflow: auto;
+
+        .app-wrapper{
+
+            .navbar-container{
+                height: 54px;
+                overflow: hidden;
+                position: fixed;
+                border-bottom: 0;
+
+                .navbar{
+                    display: none;
+                }
+
+                .mobile-navbar{
+                    display: block;
+                    height: 54px;
+                }
+            }
+
+            .app-content{
+                height: auto;
+                padding-top: 54px;
             }
         }
     }
