@@ -1,7 +1,12 @@
 @extends('index')
 @section('content')
 <style type="text/css">
-    
+    body header {
+        background: #fff none repeat scroll 0 0;
+        position: relative;
+        width: 100%;
+        z-index: 9999;
+    }
 
     @media only screen and (max-width: 980px) {
         #map{
@@ -158,10 +163,10 @@
 </style>
 <!-- MAIN CONTAINER -->
 <br>
-<div class="atas"></div>
-<section id="container">
-    <div class="flexbox justify-between">
-        <div style="width:60%; min-height:1000px; margin:10px;" class=" panel-header pre-scrollable">
+<div class="">
+    <div class="atas"></div>
+    <div class="">
+        <div style="width:60%; min-height:1000px; margin:10px;" class="panel-header pre-scrollable">
             <form class="form-horizontal panel-body">
                 <div class="form-group ">
                     <label class="col-sm-2 control-label">Type</label>
@@ -309,7 +314,8 @@
         </div>
         <div id="map"></div>
     </div>
-</section>
+</div>
+    
 
 @endsection
 
