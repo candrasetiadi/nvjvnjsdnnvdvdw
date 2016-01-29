@@ -95,6 +95,8 @@ Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
 
     Route::get('/{about}/', 'PagesController@about');
 
+    Route::get('/{about}/', 'PagesController@about');
+
 
     // Customer
     Route::get('/{login}/', 'PagesController@login');

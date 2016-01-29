@@ -50,6 +50,7 @@ class CustomerController extends Controller
 
 
         $validator = \Validator::make($request->all(), [
+            'email' => 'required|unique:Customers,email',
             'firstname' => 'required'
         ]);
 
@@ -126,6 +127,7 @@ class CustomerController extends Controller
         //
 
         $validator = \Validator::make($request->all(), [
+            'email' => 'required|unique:Customers,email,'. $id,
             'firstname' => 'required'
         ]);
 
