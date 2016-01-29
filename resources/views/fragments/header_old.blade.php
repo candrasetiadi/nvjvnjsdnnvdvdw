@@ -1,13 +1,13 @@
 
 <header>
-    <section id="header" class="page-header" >
-        <nav class="navbar navbar-default navbar-fixed-top" id="custom-bootstrap-menu" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header"><a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('assets/img/logo.png') }}" alt="Kibarer Property"></a>
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                </div>
-                <div class="collapse navbar-collapse navbar-menubuilder">
-                    <ul class="nav navbar-nav navbar-right">
+    <section id="main" class=" flexbox justify-between">
+
+        <h1 class="logo"><a href="{{ url('/') }}"><img src="{{ asset('assets/img/logo.png') }}" alt="Kibarer Property"></a>Kibarer Property</h1>
+
+        <div class="fullscreen-nav flexbox flex-wrap justify-between">
+            <section class="bottom-nav">
+                <nav>
+                    <ul>
                         <li class="current"><a href="">Villas</a></li>
                         <li><a href="">Lands</a></li>
                         <li><a href="">Lawyer &amp; Notary</a></li>
@@ -15,19 +15,20 @@
                         <li><a href="">Contact</a></li>
                         <li><a href=""><i class="material-icons">search</i></a></li>
                     </ul>
-                </div>
-            </div>
-            <span class="title-border"></span>
+                </nav>
 
-            <section class="top-nav">
-                <ul>
-                    <li><a href=""><i class="material-icons">business</i> Sell my Property</a></li>
-                    <li><a href=""><i class="material-icons">chat</i> Blog</a></li>
-                    <li><a href="{{ url('account') }}"><i class="material-icons">person</i> Account</a></li>
-                </ul>
+                <span class="title-border"></span>
+
+                <section class="top-nav">
+                    <ul>
+                        <li><a href=""><i class="material-icons">business</i> Sell my Property</a></li>
+                        <li><a href=""><i class="material-icons">chat</i> Blog</a></li>
+                        <li><a href="{{ url('account') }}"><i class="material-icons">person</i> Account</a></li>
+                    </ul>
+                </section>
+
+                <span class="title-border"></span>
             </section>
-
-            <span class="title-border"></span>
 
             <section class="lang-cur">
                 <div class="flexbox justify-between">
@@ -58,13 +59,13 @@
                     </ul>
                 </div>
             </section>
+        </div>
 
-            <section id="burger-nav">
-                <a id="burger" href>
-                    <span></span>
-                    <span></span>
-                </a>
-            </section>
-        </nav>
+        <section id="burger-nav">
+            <a id="burger" href>
+                <span></span>
+                <span></span>
+            </a>
+        </section>
     </section>
 </header>
