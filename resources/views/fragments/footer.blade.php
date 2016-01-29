@@ -1,8 +1,8 @@
 
-
-<footer>
-    <section class="app-footer">
-        <div>
+<br>
+<footer >
+    <div class = "footer-new">
+        <div class="col-lg-2">
             <h2>Blog</h2>
             <ul>
                 <li><a href="">Investissement villa Bali</a></li>
@@ -10,7 +10,7 @@
                 <li><a href="">Uncategorized</a></li>
             </ul>
         </div>
-        <div>
+        <div class="col-lg-2">
             <h2>Links</h2>
             <ul>
                 <li><a href="">Resource</a></li>
@@ -18,22 +18,22 @@
                 <li><a href="">Sold Villas</a></li>
             </ul>
         </div>
-        <div>
+        <div class="col-lg-2">
             <h2>Accounts</h2>
             <ul>
                 <li><a href="">My Account</a></li>
                 <li><a href="">Favorites</a></li>
             </ul>
         </div>
-        <div>
+        <div class="col-lg-2">
             <h2>Partners</h2>
             <ul>
                 <li><a href="">Bali Je t’aime</a></li>
                 <li><a href="">Atlantis International</a></li>
             </ul>
         </div>
-        <div class="gicontact">
-            <div class="flexbox flexbox-wrap justify-between">
+        <div class="col-lg-2">
+            <div class="">
                 <?php $social = social(); ?>
                 @if(isset($social->facebook))
                 <a href="{{ $social->facebook }}" target="_blank"><span class="icon-facebook"></span></a>
@@ -54,7 +54,7 @@
                 <a href="{{ $social->skype }}" target="_blank"><span class="icon-skype"></span></a>
                 @endif
             </div>
-            <div class="input">
+            <div class="">
                 <input type="text" placeholder="Subscribe to our newsletter">
                 <div class="fab-button fab-button-small  fab-button-transparent">
                     <a href=""><i class="material-icons">done</i></a>
@@ -62,5 +62,5 @@
             </div>
             <div class="copyright">&copy; Copyright 2016 - Kibarer Development</div>
         </div>
-    </section>
+    </div>
 </footer>

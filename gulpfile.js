@@ -14,6 +14,7 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
     mix.less('admin.less', 'public/assets/css/admin.css')
         .less('styles.less', 'public/assets/css/styles.css')
+        .less('styles_old.less', 'public/assets/css/styles_old.css')
         .scripts('website/bootstrap.js', 'public/assets/js/bootstrap.js')
         .scripts('website/theme.js', 'public/assets/js/theme.js')
         .scripts('website/scripts.js', 'public/assets/js/scripts.js')

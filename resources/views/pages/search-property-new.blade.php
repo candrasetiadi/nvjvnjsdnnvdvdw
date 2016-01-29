@@ -17,39 +17,6 @@
         color:#000;
     }
 
-    .labelsmarker {
-        mirgin-top:-3px;
-        padding: 5px;
-        position: absolute;
-        visibility: visible;
-        z-index: 1030;
-    }
-
-    .labelsmarker .arrow {
-        border-top-color: #000000;
-        border-right-color: rgba(0,0,0,0);
-        border-bottom-color: rgba(0,0,0,0);
-        border-left-color: rgba(0,0,0,0);
-        border-width: 5px 5px 0;
-        bottom: 0;
-        left: 50%;
-        margin-left: -5px;
-        border-style: solid;
-        height: 0;
-        position: absolute;
-        width: 0;
-    }
-
-    .labelsmarker .inner {
-        background-color: #000000;
-        border-radius: 4px;
-        color: #FFFFFF;
-        max-width: 200px;
-        padding: 3px 8px;
-        text-align: center;
-        text-decoration: none;  
-    }
-
     .atas{
         height: 50px;
         background-color: #ee5b2c;
@@ -63,96 +30,7 @@
         border: 1px solid #aaa;
     }
 
-    .hovereffect {
-        width: 100%;
-        height: 100%;
-        float: left;
-        overflow: hidden;
-        position: relative;
-        text-align: center;
-        cursor: default;
-        font-size: 12pt;
-    }
-
-    .hovereffect .overlay {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        overflow: hidden;
-        left: 0;
-        background-color: rgba(255, 255, 255, 0.7);
-        top: -200px;
-        opacity: 0;
-        filter: alpha(opacity=0);
-        -webkit-transition: all 0.1s ease-out 0.5s;
-        transition: all 0.1s ease-out 0.5s;
-    }
-
-    .hovereffect:hover .overlay {
-        opacity: 1;
-        filter: alpha(opacity=100);
-        top: 0px;
-        -webkit-transition-delay: 0s;
-        transition-delay: 0s;
-    }
-
-    .hovereffect img {
-        display: block;
-        position: relative;
-    }
-
-    .hovereffect h2 {
-        text-transform: uppercase;
-        color: #fff;
-        text-align: center;
-        position: relative;
-        font-size: 17px;
-        padding: 20px;
-        background: #ee5b2c;
-        -webkit-transform: translateY(-200px);
-        -ms-transform: translateY(-200px);
-        transform: translateY(-200px);
-        -webkit-transition: all ease-in-out 0.3s;
-        transition: all ease-in-out 0.3s;
-        -webkit-transition-delay: 0.3s;
-        transition-delay: 0.3s;
-    }
-
-    .hovereffect p {
-        text-transform: uppercase;
-        color: #fff;
-        text-align: center;
-        position: absolute;
-        font-size: 17px;
-        padding: 20px;
-        background: #ee5b2c;
-        width: 30%;
-        -webkit-transform: translateY(-200px);
-        -ms-transform: translateY(-200px);
-        transform: translateY(-200px);
-        -webkit-transition: all ease-in-out 0.3s;
-        transition: all ease-in-out 0.3s;
-        -webkit-transition-delay: 0.3s;
-        transition-delay: 0.3s;
-    }
-
-    .hovereffect:hover p {
-        display: none;
-    }
-
-    .hovereffect:hover h2 {
-        -webkit-transform: translateY(0px);
-        -ms-transform: translateY(0px);
-        transform: translateY(0px);
-        -webkit-transition-delay: 0.3s;
-        transition-delay: 0.3s;
-    }
-
-    .spanhover {
-        display:inline-block; 
-        min-width:150px; 
-        text-align:left;
-    }
+    
 </style>
 <!-- MAIN CONTAINER -->
 <section class="search-container">
@@ -203,7 +81,7 @@
             </form>
 
             <div class="row panel panel-body" >
-                @for( $i = 0; $i <= 10; $i++ )
+                @for( $i = 0; $i <= 6; $i++ )
                     <div class="col-lg-6 col-sm-6 col-xs-12" style="margin-bottom:30px;">
                         <a href="#">
                             <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -304,7 +182,7 @@
                 @endfor
             </div>
         </div>
-        <div id="map" class="col-lg-4"></div>
+        <div id="map" class="panel panel-default col-lg-4"></div>
 </section>
     
 

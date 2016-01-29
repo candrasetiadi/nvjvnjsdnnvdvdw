@@ -1,4 +1,4 @@
-@extends('index')
+@extends('index_old')
 @section('content')
 
 <!-- JUMBO VIDEO -->
