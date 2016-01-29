@@ -67,6 +67,7 @@ NNhhhdmNNNmhmNNNdoooohddhodysooooooooso///::///:://o+s++ssosyyshhhyyyhhhhdmmhs+/
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-slider.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive-slider.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/normalize.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/styles_old.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
     <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
 

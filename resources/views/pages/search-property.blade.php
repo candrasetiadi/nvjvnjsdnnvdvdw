@@ -1,22 +1,14 @@
 @extends('index')
 @section('content')
 <style type="text/css">
-    body header {
-        background: #fff none repeat scroll 0 0;
-        position: relative;
-        width: 100%;
-        z-index: 9999;
-    }
 
     @media only screen and (max-width: 980px) {
         #map{
             visibility: hidden;
-
         }
     }
 
-    #map{
-        width: 40%; 
+    #map {
         height: 1000px;
         display: inline-block;
 
@@ -25,135 +17,174 @@
         color:#000;
     }
 
-    .labelsmarker {
-        mirgin-top:-3px;
-        padding: 5px;
-        position: absolute;
-        visibility: visible;
-        z-index: 1030;
+    .atas{
+        height: 50px;
+        background-color: #ee5b2c;
     }
-    .labelsmarker .arrow{
-        border-top-color: #000000;
-        border-right-color: rgba(0,0,0,0);
-        border-bottom-color: rgba(0,0,0,0);
-        border-left-color: rgba(0,0,0,0);
-        border-width: 5px 5px 0;
-        bottom: 0;
-        left: 50%;
-        margin-left: -5px;
-        border-style: solid;
-        height: 0;
-        position: absolute;
-        width: 0;
+
+    .type{
+        display:inline-block; 
+        margin-right:10px; 
+        background-color:#ddd; 
+        padding:10px;
+        border: 1px solid #aaa;
     }
-    .labelsmarker .inner{
-        background-color: #000000;
-        border-radius: 4px;
-        color: #FFFFFF;
-        max-width: 200px;
-        padding: 3px 8px;
-        text-align: center;
-        text-decoration: none;  
-    }
+
+    
 </style>
 <!-- MAIN CONTAINER -->
-<section id="container">
-    <div class="flexbox justify-between">
-
-        <div style="width:60%; height:500px; margin:10px;">
-            <div>
-                <label>&nbsp;</label>
-                <input id="searchTextField" type="text" value="" placeholder="SEARCH" onChange="searching()"> 
-            </div>
-            <br>
-            <div id="tabs">
-                <ul>
-                    <li><a href="#tabs-villa">Villa For Sale</a></li>
-                    <li><a href="#tabs-land">Land For Sale</a></li>
-                </ul>
-                <div id="tabs-villa">
-                    <!-- <h3 class="input-group-title">Villa For Sale</h3> -->
-                    <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
-                        <div class="m-input-wrapper m-input-wrapper-select w25-9">
-                        <label>Status</label>
-                            <select id="search-input-status-villa" class="villa-input" name="status" onChange="searching()">
-                                <option value="0" selected>--any--</option>
-                                <option value="1" >Freehold</option>
-                                <option value="2">Leasehold</option>
-                            </select>
-                        </div>
-                        
-                        <div class="m-input-wrapper m-input-wrapper-select w25-9">
-                        <label>Category</label>
-                            <select id="search-input-category" class="villa-input" name="category" onChange="searching()">
-                                <option value="0" selected>--any--</option>
-                                <option value="1" >Beachfront Property</option>
-                                <option value="2" >Home And Retirement</option>
-                                <option value="3" >Hot Deals</option>
-                                <option value="4" >Investment More Than $ 500000</option>
-                                <option value="5" >Investment Until $ 500000</option>
-                            </select>
-                        </div>
-                        
-                        <div class="m-input-wrapper m-input-wrapper-select w25-9">
-                        <label>Bedroom From</label>
-                            <select id="search-input-bedroomfrom" class="villa-input" name="bedroomfrom" onChange="searching()">
-                                @for($i = 1; $i <= 15; $i++)
-                                    <option value="{{ $i }}" {{ ($i == 1) ? 'selected' : '' }}>{{ $i }}</option>
-                                @endfor
-                            </select>
-                        </div>
-                        
-                        <div class="m-input-wrapper m-input-wrapper-select w25-9">
-                        <label>Bedroom To</label>
-                            <select id="search-input-bedroomto" class="villa-input" name="bedroomto" onChange="searching()">
-                                @for($i = 1; $i <= 15; $i++)
-                                    <option value="{{ $i }}" {{ ($i == 15) ? 'selected' : '' }}>{{ $i }}</option>
-                                @endfor
-                            </select>
-                        </div>
-                    </div>
-                    <br/>
-                    <div class="m-input-wrapper w50-6">
-                        <label>Villa Code</label>
-                        <input id="villa-code" type="text" value="" onChange="searching()"> 
-                    </div>
-
+<section class="search-container">
+    <div class="atas"></div>
+        <!-- <div style="width:60%; min-height:1000px; margin:10px;" class="panel-header pre-scrollable"> -->
+        <div class="panel panel-default pre-scrollable col-lg-8" style="min-height:1000px;">
+            <form class="form-horizontal panel-body">
+                <div class="form-group ">
+                    <label class="col-sm-2 control-label">Type</label>
+                    <label class="type">
+                        >$500.000
+                        <input type="radio" name="type" id="radio1">
+                    </label>
+                    <label class="type">
+                        <$500.000
+                        <input type="radio" name="type" id="radio2">
+                    </label>
+                    <label class="type">
+                        Home & Retir.
+                        <input type="radio" name="type" id="radio3">
+                    </label>
+                    <label class="type">
+                        Beachfront
+                        <input type="radio" name="type" id="radio4">
+                    </label>
                 </div>
-                <div id="tabs-land">
-                    <!-- <h3 class="input-group-title">Land For Sale</h3> -->
-                    <div class="m-input-wrapper m-input-wrapper-select w25-9">
-                        <label>Status</label>
-                        <select id="search-input-status-land" class="land-input" name="status" onChange="searching()">
-                            <option value="0" selected>--any--</option>
-                            <option value="1" >Freehold</option>
-                            <option value="2">Leasehold</option>
-                        </select>
-                    </div>
-                    <br/>
-                    <div class="m-input-wrapper w50-6">
-                        <label>Land Code</label>
-                        <input id="land-code" type="text" value="" onChange="searching()"> 
-                    </div>
+                <br>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Location</label>
+                    <span style="display:inline-block;" >
+                        <input id="searchTextField" type="text" value="" placeholder="Location" onChange="searching()">
+                    </span>
                 </div>
-                <div class="m-input-wrapper w50-6" style="margin:20px;">
-                    <label >Price range</label>
-                    <input type="text" id="amount" readonly style="border:0;">
+                <br>
+                <div class="form-group" >
+                    <label class="col-sm-2 control-label">Price range</label>
+                    <span style="display:inline-block;" class="col-lg-8">
+                        <div id="slider-range"></div>
+                        <label id="amount"></label>
+                        <!-- <input type="text" id="amount" readonly style="border:0;"> -->
+                        
+                    </span>
                     <input type="hidden" name="amount_start" id="amount_start">
                     <input type="hidden" name="amount_end" id="amount_end">
-                    <div id="slider-range"></div>
+                    
                     <br/>
                 </div>
+            </form>
+
+            <div class="row panel panel-body" >
+                @for( $i = 0; $i <= 6; $i++ )
+                    <div class="col-lg-6 col-sm-6 col-xs-12" style="margin-bottom:30px;">
+                        <a href="#">
+                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                                </ol>
+
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active hovereffect">
+                                        <img src="http://placehold.it/800x600" alt="Chania" height="345">
+                                        <p>USD 150,000</p>
+                                        <div class="overlay">
+                                            <div class="panel panel-header">
+                                                <h2>USD 150,000</h2>
+                                                <p> Brand new 2 bedroom villa for sale in balangan</p>
+                                            </div>
+                                            <div class="pabel-body" style="min-height:220px;">
+                                                <ul>
+                                                    <li>
+                                                        <i class="fa fa-barcode block m-b-xs"></i>
+                                                        <span class="spanhover">Code</span><span class="spanhover">VL 123</span>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-map-marker block m-b-xs"></i>
+                                                        <span class="spanhover">Location</span><span class="spanhover">Balangan</span>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-clock-o block m-b-xs"></i>
+                                                        <span class="spanhover">Status</span><span class="spanhover">Leasehold / 19 Years</span>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-arrows-alt block m-b-xs"></i>
+                                                        <span class="spanhover">Land Size</span><span class="spanhover">3.08 are</span>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-home block m-b-xs"></i>
+                                                        <span class="spanhover">Building Size</span><span class="spanhover">105 sqm</span>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-bed block m-b-xs">&#xf236;</i>
+                                                        <span class="spanhover">Bedrooms</span><span class="spanhover">2</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="hbox text-center text-sm panel-footer">
+                                                <a href="" class="col-md-4">
+                                                    <i class="fa fa-book block m-b-xs fa-2x"></i>
+                                                    <span>Enquire</span>
+                                                </a>
+                                                <a href="" class="col-md-4">
+                                                    <i class="fa fa-star block m-b-xs fa-2x"></i>
+                                                    <span>Favorite</span>
+                                                </a>
+                                                <a href="" class="col-md-4">
+                                                    <i class="fa fa-list block m-b-xs fa-2x"></i>
+                                                    <span>Detail</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item hovereffect">
+                                        <img src="http://placehold.it/800x600" alt="Chania" height="345">
+                                        <div class="overlay">
+                                           <h2>USD 150,000</h2>
+                                        </div>
+                                    </div>
+                                    <div class="item hovereffect">
+                                        <img src="http://placehold.it/800x600" alt="Chania" height="345">
+                                        <div class="overlay">
+                                           <h2>USD 150,000</h2>
+                                        </div>
+                                    </div>
+                                    <div class="item hovereffect">
+                                        <img src="http://placehold.it/800x600" alt="Chania" height="345">
+                                        <div class="overlay">
+                                           <h2>USD 150,000</h2>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Left and right controls -->
+                                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </a>
+                    </div>
+                @endfor
             </div>
         </div>
-        <div id="map"></div>
-    </div>
-    <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
-        
-    </div>
-
-
+        <div id="map" class="panel panel-default col-lg-4"></div>
 </section>
+    
 
 @endsection
 
@@ -164,8 +195,15 @@
 
     $(document).ready(function(){
 
+        
+
         $(function() {
             $( "#tabs" ).tabs();
+            $('.carousel').each(function(){
+                $(this).carousel({
+                    interval: false
+                });
+            });
         });
 
         var json = [
@@ -358,10 +396,10 @@
         $( "#slider-range" ).slider({
             range: true,
             min: 0,
-            max: 15000000,
-            values: [ 1500000, 7000000 ],
+            max: 5000,
+            values: [ 500, 3000 ],
             slide: function( event, ui ) {
-                $( "#amount" ).val( "Rp. " + number_format( ui.values[ 0 ], 0, ',', '.' ) + " - Rp. " + number_format( ui.values[ 1 ], 0, ',', '.' ) );
+                $( "#amount" ).html( ui.values[ 0 ] + " $ - " + ui.values[ 1 ] + " $" );
                 $("#amount_start").val( ui.values[ 0 ] );
                 $("#amount_end").val( ui.values[ 1 ] );
             }
@@ -371,7 +409,7 @@
             searching();
         });
 
-        $( "#amount" ).val( "Rp. " + number_format( ($( "#slider-range" ).slider( "values", 0 )), 0, ',', '.') + " - Rp. " + number_format( ($( "#slider-range" ).slider( "values", 1 ) ), 0, ',', '.'));
+        $( "#amount" ).html( $( "#slider-range" ).slider( "values", 0 ) + " $  - " + $( "#slider-range" ).slider( "values", 1 ) +  " $" );
 
         $("#amount_start").val( $( "#slider-range" ).slider( "values", 0 ) );
         $("#amount_end").val( $( "#slider-range" ).slider( "values", 1 ) );
@@ -386,32 +424,6 @@
         for(var i = 0; i < markersToRemove.length; i++) {
             markersToRemove[i].setMap(null);
         }
-    }
-
-    function number_format(number, decimals, dec_point, thousands_sep) {
-        number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
-
-        var n = !isFinite(+number) ? 0 : +number,
-            prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-            sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-            dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-            s = '',
-            toFixedFix = function(n, prec) {
-                var k = Math.pow(10, prec);
-                return '' + (Math.round(n * k) / k)
-                .toFixed(prec);
-            };
-        // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-        s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-        
-        if (s[0].length > 3) {
-            s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-        }
-        if ((s[1] || '').length < prec) {
-            s[1] = s[1] || '';
-            s[1] += new Array(prec - s[1].length + 1).join('0');
-        }
-        return s.join(dec);
     }
 
     function searching() {
