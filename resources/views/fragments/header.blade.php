@@ -1,6 +1,6 @@
 
 <header>
-    <section class="row flexbox justify-between">
+    <section id="main" class=" flexbox justify-between">
 
         <h1 class="logo"><a href="{{ url('/') }}"><img src="{{ asset('assets/img/logo.png') }}" alt="Kibarer Property"></a>Kibarer Property</h1>
 

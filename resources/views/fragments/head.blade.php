@@ -60,8 +60,15 @@ NNhhhdmNNNmhmNNNdoooohddhodysooooooooso///::///:://o+s++ssosyyshhhyyyhhhhdmmhs+/
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     <link rel="apple-touch-icon" href="{{ asset('assets/img/common/apple-touch-icon.png') }}">
 
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/simple-line-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-slider.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive-slider.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/normalize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
 
     <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -77,4 +84,5 @@ NNhhhdmNNNmhmNNNdoooohddhodysooooooooso///::///:://o+s++ssosyyshhhyyyhhhhdmmhs+/
     </script>
     <!--End of Zopim Live Chat Script-->
     
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 </head>

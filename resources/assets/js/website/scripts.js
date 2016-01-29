@@ -19,7 +19,7 @@ var Kibarer = {
 
         function updateOrientation() {
             if(window.innerWidth > window.innerHeight ){
-                $("#warning").addClass('active');
+                $("#warning").addClass('active'); 
                 $('body').css({
                     'height' : '100vh',
                     'overflow' : 'hidden',
@@ -33,6 +33,7 @@ var Kibarer = {
                     'position': 'relative'
                 });
             }
+            
         }
 
         // Hover effect for touch devices
