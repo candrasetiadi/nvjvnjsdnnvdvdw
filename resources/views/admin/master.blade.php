@@ -67,7 +67,7 @@
                 <div class="mobile-navbar" flexbox>
                     <h1>matter</h1>
                     <m-burger-button><span></span></m-burger-button>
-                    <a href="" id="mobile-notifications"><i class="material-icons"><span class="badge">2</span>notifications_none</i></a>
+                    <a href="/logout" id="mobile-notifications"><i class="material-icons"><span class="badge">2</span>notifications_none</i></a>
                 </div>
             </div>
 
