@@ -55,13 +55,20 @@ class PagesController extends Controller
     }
 
 
-    public function propertyView($id) {
+    public function propertyView($url) {
 
         // Improvement required for infinity scrolling
 
+        $slug = explode('-', $url);
+
+        $id = end($slug);
+
         $property = Property::find($id);
 
-        return view('pages.property-view', ['properties' => $properties]);
+
+        // return $property;
+
+        return view('pages.property-view', compact('property'));
     }
 
 
