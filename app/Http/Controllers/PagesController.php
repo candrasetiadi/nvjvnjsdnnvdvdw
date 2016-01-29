@@ -80,6 +80,12 @@ class PagesController extends Controller
     }
 
 
+    public function propertySearch()
+    {
+        return view('pages.search-property');
+    }
+
+
     public function blogListing() {
         //
         $blogs = Blog::orderBy('id', 'DESC')->get();

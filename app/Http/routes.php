@@ -99,6 +99,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
 
+    Route::get('search', 'PagesController@propertySearch');
+
     // Home
     Route::get('/', 'PagesController@home');
 
