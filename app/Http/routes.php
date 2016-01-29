@@ -30,6 +30,15 @@ foreach(Lang::get('url') as $k => $v) {
     Route::pattern($k, $v);
 }
 
+/*
+ * show frontend theme elements
+ */
+Route::get('theme', function () {
+
+    return view('pages.theme');
+
+});
+
 
 // Back-End
 Route::group(['middleware' => 'auth'], function () {
