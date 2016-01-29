@@ -16,6 +16,14 @@ class PagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    public function __construct(Request $request) {
+
+        $currency = $request->session()->get('currency', 'usd');
+
+        \Config::set('currency', $currency);
+    }
+
     public function home() {
         //
 
