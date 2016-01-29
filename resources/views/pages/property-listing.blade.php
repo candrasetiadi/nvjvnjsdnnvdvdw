@@ -2,20 +2,20 @@
 @section('content')
 
 <div class="container">
-    <div class="row">
+    <div class="row property-list">
 
         @foreach($properties as $property)
-        <div class="col-md-3">
+        <div class="col-md-4 list-item">
 
             <div class="thumbnail">
                 @if(count($property->propertyFiles) > 0)
                 <img src="{{ asset('uploads/property/' . $property->propertyFiles[0]->file) }}">
                 @else
-                <img src="http://placehold.it/400x300">
+                <img src="{{ asset('no-image.png') }}">
                 @endif
 
                 <div class="caption">
-                    <h3>{{ $property->lang()->title }}</h3>
+                    <h3 class="list-item-title">{{ $property->lang()->title }}</h3>
                 </div>
             </div>
 
@@ -25,6 +25,8 @@
     </div>
 </div>
 
-@include('admin.fragments.pagination', ['paginator' => $properties])
+<div class="text-center">
+    {!! $properties->render() !!}
+</div>
 
 @stop
