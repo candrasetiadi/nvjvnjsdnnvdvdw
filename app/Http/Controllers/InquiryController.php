@@ -46,11 +46,9 @@ class InquiryController extends Controller
         //
         if ($request->edit != 0) return $this->update($request, $request->edit);
 
-
         $validator = \Validator::make($request->all(), [
             'subject' => 'required'
         ]);
-
 
         if ($validator->fails()) {
             return response()->json(array('status' => 500, 'monolog' => array('title' => 'errors', 'message' => implode($validator->errors()->all(), '<br>') )));

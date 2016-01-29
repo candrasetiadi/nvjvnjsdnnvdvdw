@@ -88,9 +88,9 @@
                 </m-input>
 
 
-                <m-input fwidth select w25>
+                <m-input fwidth select data-label="branch" w25>
                     <input type="text" select id="account-input-branch_id" name="branch_id" value="{{ $user->branch_id }}" required>
-                    <label for="account-input-branch_id">Branch</label>
+                    <label for="account-input-branch_id">select branch</label>
                     <m-select>
                         @foreach(\App\Branch::all() as $branch)
                         <m-option value="{{ $branch->id }}">{{ $branch->name }}</m-option>

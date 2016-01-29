@@ -128,7 +128,7 @@
 
                         <h3 class="input-group-title">General Information</h3>
 
-                        <m-input fwidth select w25-9>
+                        <m-input fwidth select data-label="status" w25-9>
                             <input type="text" select id="property-input-status" name="status" value="available" required>
                             <label for="property-input-status">status</label>
                             <m-select>
@@ -143,7 +143,7 @@
                             <label for="code">property code</label>
                         </m-input>
 
-                        <m-input fwidth select w25-9>
+                        <m-input fwidth select data-label="currency" w25-9>
                             <input type="text" select id="property-input-currency" name="currency" value="IDR" required>
                             <label for="property-input-currency">currency</label>
                             <m-select>
@@ -279,7 +279,7 @@
                                 <label for="facilities[sale in furnish]">Sale in Furnish</label>
                             </m-input>
                         </div>
-<!-- 
+<!--
                         <m-input select w50-6>
                             <input type="text" select id="property-input-sell_in_furnish" name="sell_in_furnish" value="0" required>
                             <label for="property-input-sell_in_furnish">furnished</label>
@@ -356,7 +356,7 @@
                     </m-input>
 
                     <div id="gallery-wrapper" flexwrap style="width: 100%">
-<!-- 
+<!--
                         <m-gallery-item style="background-image: url('http://loremflickr.com/320/240?t={{ microtime() }}')" data-id="23">
                             <m-gallery-item-menu>
                                 <m-button class="make-thumbnail" data-function="makeThumbnail">
@@ -495,7 +495,7 @@
 
 <m-modal-wrapper id="property-translate">
     {!! Form::open(array('class' => 'modal-window', 'id' => 'property-translate-form', 'data-function' => 'modalClose', 'data-url' => 'property/translate/store')) !!}
-    
+
     <!-- en -->
     <h3 class="input-group-title">English</h3>
     <div class="m-input-wrapper fwidth">

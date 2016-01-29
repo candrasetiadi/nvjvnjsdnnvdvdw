@@ -40,7 +40,7 @@
                 <td>{{ $account->email }}</td>
                 <td>{{ $account->city }}</td>
                 <td class="align-center">{{ strtoupper($account->role->name) }}</td>
-                <td class="align-center">{{ $account->active ? 'ACTIVE' : 'NONE' }}</td>                
+                <td class="align-center">{{ $account->active ? 'ACTIVE' : 'NONE' }}</td>
                 <td button>
                     <m-table-list-more>
                         <i class="material-icons">more_horiz</i>
@@ -80,9 +80,9 @@
 
     <m-input-group justify-between>
 
-        <m-input fwidth select>
+        <m-input fwidth select data-label="role">
             <input type="text" select id="account-input-role" name="role" required>
-            <label for="account-input-role">role</label>
+            <label for="account-input-role">select a role</label>
             <m-select>
                 @foreach(\App\Role::all() as $role)
                 <m-option class="role-option" id="super-role" value="{{ $role->id }}">{{ $role->name }}</m-option>

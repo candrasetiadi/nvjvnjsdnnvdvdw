@@ -90,16 +90,16 @@
 
             <m-input-group class="m-input-group m-input-group-third" justify-between>
 
-                <m-input fwidth select w33-8>
+                <m-input fwidth select data-label="language" w33-8>
                     <input type="text" select id="blog-input-lang" name="lang" value="en" required>
-                    <label for="blog-input-lang">lang</label>
+                    <label for="blog-input-lang">language</label>
                     <m-select>
                         <m-option value="en">english</m-option>
                         <m-option value="fr">french</m-option>
                     </m-select>
                 </m-input>
 
-                <m-input fwidth select w33-8>
+                <m-input fwidth select data-label="status" w33-8>
                     <input type="text" select id="blog-input-status" name="status" value="en" required>
                     <label for="blog-input-status">status</label>
                     <m-select>
@@ -108,7 +108,7 @@
                     </m-select>
                 </m-input>
 
-                <m-input fwidth select w33-8>
+                <m-input fwidth select data-label="category" w33-8>
                     <input type="text" select id="blog-input-category" name="category" value="1" required>
                     <label for="blog-input-category">category</label>
                     <m-select>
