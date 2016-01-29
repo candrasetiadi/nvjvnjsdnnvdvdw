@@ -46,7 +46,10 @@ class PagesController extends Controller
 
         // Improvement required for infinity scrolling
 
-        $properties = \App\Property::orderBy('updated_at', 'DESC')->paginate(24);
+        $properties = \App\Property::with(array('propertyFiles' => function($query) {
+                $query->where('type', 'image');
+            }))
+            ->orderBy('updated_at', 'DESC')->paginate(24);
 
         return view('pages.property-listing', compact('properties'));
     }
