@@ -1,7 +1,7 @@
 
 
 <footer>
-    <section class="">
+    <section class="app-footer">
         <div>
             <h2>Blog</h2>
             <ul>

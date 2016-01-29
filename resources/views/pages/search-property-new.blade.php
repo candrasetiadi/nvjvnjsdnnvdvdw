@@ -155,7 +155,7 @@
     }
 </style>
 <!-- MAIN CONTAINER -->
-<section class="main-container">
+<section class="search-container">
     <div class="atas"></div>
         <!-- <div style="width:60%; min-height:1000px; margin:10px;" class="panel-header pre-scrollable"> -->
         <div class="panel panel-default pre-scrollable col-lg-8" style="min-height:1000px;">

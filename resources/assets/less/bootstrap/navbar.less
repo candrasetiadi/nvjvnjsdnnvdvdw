@@ -103,7 +103,21 @@
 //
 // When a container is present, change the behavior of the header and collapse.
 
-.container,
+.container {
+  max-width: 1400px;
+  margin-top: 200px;
+  padding: 0 16px;
+  > .navbar-header,
+  > .navbar-collapse {
+    margin-right: -@navbar-padding-horizontal;
+    margin-left:  -@navbar-padding-horizontal;
+
+    @media (min-width: @grid-float-breakpoint) {
+      margin-right: 0;
+      margin-left:  0;
+    }
+  }
+}
 .container-fluid {
   max-width: 1400px;
   margin: 0 auto;
