@@ -1,12 +1,6 @@
 @extends('index')
 @section('content')
 <style type="text/css">
-    body header {
-        background: #fff none repeat scroll 0 0;
-        position: relative;
-        width: 100%;
-        z-index: 9999;
-    }
 
     @media only screen and (max-width: 980px) {
         #map{
@@ -15,7 +9,6 @@
     }
 
     #map {
-        width: 40%; 
         height: 1000px;
         display: inline-block;
 
@@ -162,11 +155,10 @@
     }
 </style>
 <!-- MAIN CONTAINER -->
-<br>
-<div class="">
+<section class="main-container">
     <div class="atas"></div>
-    <div class="">
-        <div style="width:60%; min-height:1000px; margin:10px;" class="panel-header pre-scrollable">
+        <!-- <div style="width:60%; min-height:1000px; margin:10px;" class="panel-header pre-scrollable"> -->
+        <div class="panel panel-default pre-scrollable col-lg-8" style="min-height:1000px;">
             <form class="form-horizontal panel-body">
                 <div class="form-group ">
                     <label class="col-sm-2 control-label">Type</label>
@@ -312,9 +304,8 @@
                 @endfor
             </div>
         </div>
-        <div id="map"></div>
-    </div>
-</div>
+        <div id="map" class="col-lg-4"></div>
+</section>
     
 
 @endsection

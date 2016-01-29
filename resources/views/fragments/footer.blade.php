@@ -1,7 +1,7 @@
 
 
 <footer>
-    <section class="row flexbox flexbox-wrap justify-between">
+    <section class="">
         <div>
             <h2>Blog</h2>
             <ul>
