@@ -63,6 +63,22 @@ class PagesController extends Controller
     }
 
 
+    public function propertyCategoryListing($url) {
+
+        $slug = str_replace('-', ' ', $url);
+
+        $category = \App\CategoryLanguage::where('locale', 'en')->where('title', $slug)->first();
+
+        $properties = \App\Property::with(array('propertyFiles' => function($query) {
+                $query->where('type', 'image');
+            }))
+            ->where('category_id', $category->id)
+            ->orderBy('updated_at', 'DESC')->paginate(24);
+
+        return view('pages.property-listing', compact('properties'));
+    }
+
+
     public function propertyView($url) {
 
         // Improvement required for infinity scrolling

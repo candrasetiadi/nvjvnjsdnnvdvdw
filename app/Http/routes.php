@@ -125,6 +125,8 @@ Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
     // Properties
     Route::get('/{properties}/', 'PagesController@propertyListing');
 
+    Route::get('property/category/{url}', ['as' => 'url','uses' => 'PagesController@propertyCategoryListing']);
+
     Route::get('property/{url}', ['as' => 'url','uses' => 'PagesController@propertyView']);
 
 

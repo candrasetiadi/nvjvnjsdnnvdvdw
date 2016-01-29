@@ -20,7 +20,7 @@ class CategoriesTableSeeder extends Seeder
         \App\CategoryLanguage::create([
             'category_id' => $category->id,
             'locale' => 'en',
-            'title' => 'villas'
+            'title' => 'villa'
         ]);
 
         $category = \App\Category::create([
@@ -31,7 +31,7 @@ class CategoriesTableSeeder extends Seeder
         \App\CategoryLanguage::create([
             'category_id' => $category->id,
             'locale' => 'en',
-            'title' => 'lands'
+            'title' => 'land'
         ]);
 
     }

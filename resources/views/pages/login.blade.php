@@ -1,35 +1,32 @@
 @extends('index')
 @section('content')
 
+<div class="container">
+    <h3>Login</h3>
 
-<!-- MAIN CONTAINER -->
-<section id="main">
+    <div class="row">
+    <div class="col-md-6">
 
-        <br><br><br><br><br><br><br>
-        <h3>LOGIN</h3>
+    {!! Form::open(array('url' => url('login'))) !!}
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input class="form-control" type="text" name="email" value="{{ old('email') }}">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input class="form-control" type="password" name="password" id="password">
+      </div>
+      <div class="checkbox">
+        <label>
+          <input name="remember" type="checkbox"> Remember Me
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+    {!! Form::close() !!}
+    </div>
+    </div>
 
-        <form method="post">
-            {!! csrf_field() !!}
-            <div>
-                Email
-                <input type="text" name="email" value="{{ old('email') }}">
-            </div>
-
-            <div>
-                Password
-                <input type="password" name="password" id="password">
-            </div>
-
-            <div>
-                <input type="checkbox" name="remember"> Remember Me
-            </div>
-
-            <div>
-                <button type="submit">Login</button>
-            </div>
-        </form>
-
-</section>
+</div>
 
 @endsection
 
