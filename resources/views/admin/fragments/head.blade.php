@@ -1,5 +1,8 @@
 <meta charset="UTF-8">
 <title>{{ ucfirst(env('APP_NAME', 'matter')) }} Admin</title>
+
+<meta name="viewport" content="initial-scale=1.0">
+
 <link rel="stylesheet" href="{{ asset('bower/normalize-css/normalize.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
 <link rel="stylesheet" href="{{ asset('bower/nprogress/nprogress.css') }}">

@@ -65,11 +65,15 @@
                 </div>
 
                 <div class="mobile-navbar" flexbox>
+                    <h1>matter</h1>
                     <m-burger-button><span></span></m-burger-button>
+                    <a href="" id="mobile-notifications"><i class="material-icons"><span class="badge">2</span>notifications_none</i></a>
                 </div>
             </div>
 
             <section class="app-content">
+
+                @include('admin.fragments.mobile-navbar')
 
                 @yield('header', '')
 
@@ -104,8 +108,18 @@
         <script>
             $(document).on('click', 'm-burger-button', function() {
 
-                $(this).toggleClass('active');
+                if($(this).hasClass('active')) {
 
+                    $(this).removeClass('active');
+
+                    $('m-mobile-nav').removeClass('active');
+
+                } else {
+
+                    $(this).addClass('active');
+
+                    $('m-mobile-nav').addClass('active');
+                }
             });
         </script>
     </body>

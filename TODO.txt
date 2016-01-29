@@ -6,7 +6,7 @@ UserController:
 BACKEND:
     - all listing:
         - should have search input field
-        - activate left side checklist circle 
+        - activate left side checklist circle
 
     - admin/properties:
 
@@ -20,4 +20,12 @@ BACKEND:
     - admin/my-account: styling the layout
 
     - admin/accounts: activate edit button
+
+
+    User/Role:
+
+        - LISTING:
+            - SuperAdmin: Can view, delete, edit properties posted by anyone
+            - Manager: Can view, delete, edit properties posted by agents from the same agency/branch
+            - Agent: Can view listings posted by agents from same agency, but only edit and delete posted by himself
 
