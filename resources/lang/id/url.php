@@ -14,6 +14,7 @@ return [
     */
 
     'home' => 'beranda',
+    'search' => 'cari',
     'products' => 'produk',
     'overstock' => 'overstock',
     'bestseller' => 'bestseller',

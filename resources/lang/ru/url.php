@@ -15,7 +15,6 @@ return [
 
     'home' => 'home',
     'search' => 'search',
-    'properties' => 'properties',
     'products' => 'products',
     'product_detail' => 'product-detail',
     'overstock' => 'overstock',

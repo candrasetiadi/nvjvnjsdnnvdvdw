@@ -14,6 +14,7 @@ return [
     */
 
     'home' => 'home-it',
+    'search' => 'cari-it',
     'products' => 'products-it',
     'overstock' => 'overstock-it',
     'bestseller' => 'bestseller-it',
