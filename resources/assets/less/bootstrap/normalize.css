@@ -400,3 +400,7 @@ footer .footer-new {
   padding: 10px;
   border: 1px solid #aaa;
 }
+.line-top {
+  height: 50px;
+  background-color: #ee5b2c;
+}

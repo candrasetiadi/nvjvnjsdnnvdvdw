@@ -13,16 +13,11 @@
         display: inline-block;
 
     }
-
-    .atas{
-        height: 50px;
-        background-color: #ee5b2c;
-    }
     
 </style>
 <!-- MAIN CONTAINER -->
 <section class="">
-    <div class="atas"></div>
+    <div class="line-top"></div>
         <!-- <div style="width:60%; min-height:1000px; margin:10px;" class="panel-header pre-scrollable"> -->
         <div class="panel panel-default pre-scrollable col-lg-8" style="min-height:1000px;">
             <form class="form-horizontal panel-body">
