@@ -36,6 +36,30 @@ class PagesController extends Controller
         return view('pages.about');
     }
 
+    public function contact() {
+        //
+
+        return view('pages.contact');
+    }
+
+    public function testimony() {
+        //
+
+        return view('pages.testimony');
+    }
+
+    public function sellProperty() {
+        //
+
+        return view('pages.sell-property');
+    }
+
+    public function lawyerNotary() {
+        //
+
+        return view('pages.lawyer-notary');
+    }
+
     public function login() {
         //
         if (\Auth::customer()->check()) return redirect('account');
