@@ -15,8 +15,13 @@ elixir(function(mix) {
     mix.less('admin.less', 'public/assets/css/admin.css')
         .less('styles.less', 'public/assets/css/styles.css')
         .less('styles_old.less', 'public/assets/css/styles_old.css')
+        .scripts('website/jquery.js', 'public/assets/js/jquery.js')
+        .scripts('website/jquery.event.move.js', 'public/assets/js/jquery.event.move.js')
         .scripts('website/bootstrap.js', 'public/assets/js/bootstrap.js')
-        .scripts('website/theme.js', 'public/assets/js/theme.js')
+        .scripts('website/theme.js', 'public/assets/js/theme.js')        
+        .scripts('website/markerwithlabel.js', 'public/assets/js/markerwithlabel.js')
+        .scripts('website/responsive-slider.js', 'public/assets/js/responsive-slider.js')
+        .scripts('website/bootstrap-slider.js', 'public/assets/js/bootstrap-slider.js')
         .scripts('website/scripts.js', 'public/assets/js/scripts.js')
         .scripts([
         'admin/scripts.js',
