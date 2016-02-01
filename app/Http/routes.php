@@ -128,6 +128,10 @@ Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
     Route::group(['middleware' => 'auth.customer'], function () {
 
         Route::get('/{account}/', ['as' => 'account', 'uses' => 'PagesController@account']);
+
+        Route::get('/{account}/wishlist', ['as' => 'account.wishlist', 'uses' => 'PagesController@accountWishlist']);
+
+        Route::get('/{account}/setting', ['as' => 'account.setting', 'uses' => 'PagesController@accountSetting']);
     }); 
 
 

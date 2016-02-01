@@ -73,6 +73,18 @@ class PagesController extends Controller
         return view('pages.account');
     }
 
+    public function accountWishlist() {
+        //
+
+        return view('pages.account-wishlist');
+    }
+
+    public function accountSetting() {
+        //
+
+        return view('pages.account-setting');
+    }
+
 
     public function propertyListing($cat) {
 
