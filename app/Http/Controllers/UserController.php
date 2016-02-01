@@ -157,7 +157,7 @@ class UserController extends Controller {
 
         $user->active = $request->active;
 
-        if ($request->password) $user->password = Hash::make($request->password);
+        if ($request->password) $user->password = \Hash::make($request->password);
 
         // if ($request->hasFile('file')) {
 
@@ -227,7 +227,7 @@ class UserController extends Controller {
         $user->country = $request->country;
         $user->zipcode = $request->zipcode;
 
-        if ($request->password) $user->password = Hash::make($request->password);
+        if ($request->password) $user->password = \Hash::make($request->password);
 
         if ($request->hasFile('file')) {
 
