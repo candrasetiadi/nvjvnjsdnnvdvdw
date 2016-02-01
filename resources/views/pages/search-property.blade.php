@@ -13,23 +13,19 @@
         display: inline-block;
 
     }
-    label{
-        color:#000;
-    }
 
     .atas{
         height: 50px;
         background-color: #ee5b2c;
     }
 
-    .type{
+    .types{
         display:inline-block; 
         margin-right:10px; 
         background-color:#ddd; 
         padding:10px;
         border: 1px solid #aaa;
     }
-
     
 </style>
 <!-- MAIN CONTAINER -->
@@ -40,19 +36,19 @@
             <form class="form-horizontal panel-body">
                 <div class="form-group ">
                     <label class="col-sm-2 control-label">Type</label>
-                    <label class="type">
+                    <label class="types">
                         >$500.000
                         <input type="radio" name="type" id="radio1">
                     </label>
-                    <label class="type">
+                    <label class="types">
                         <$500.000
                         <input type="radio" name="type" id="radio2">
                     </label>
-                    <label class="type">
+                    <label class="types">
                         Home & Retir.
                         <input type="radio" name="type" id="radio3">
                     </label>
-                    <label class="type">
+                    <label class="types">
                         Beachfront
                         <input type="radio" name="type" id="radio4">
                     </label>
