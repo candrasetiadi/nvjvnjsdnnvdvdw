@@ -18,15 +18,6 @@
         height: 50px;
         background-color: #ee5b2c;
     }
-
-    .types{
-        display:inline-block; 
-        margin-right:10px; 
-        background-color:#ddd; 
-        padding:10px;
-        border: 1px solid #aaa;
-    }
-
     
 </style>
 <!-- MAIN CONTAINER -->
@@ -37,19 +28,19 @@
             <form class="form-horizontal panel-body">
                 <div class="form-group ">
                     <label class="col-sm-2 control-label">Type</label>
-                    <label class="types">
+                    <label class="search-type">
                         >$500.000
                         <input type="radio" name="type" id="radio1">
                     </label>
-                    <label class="types">
+                    <label class="search-type">
                         <$500.000
                         <input type="radio" name="type" id="radio2">
                     </label>
-                    <label class="types">
+                    <label class="search-type">
                         Home & Retir.
                         <input type="radio" name="type" id="radio3">
                     </label>
-                    <label class="types">
+                    <label class="search-type">
                         Beachfront
                         <input type="radio" name="type" id="radio4">
                     </label>
@@ -65,16 +56,14 @@
                 <div class="form-group" >
                     <label class="col-sm-2 control-label">Price range</label>
                     <span style="display:inline-block;" class="col-lg-8">
-                        <div id="slider-range"></div>
-                        <label id="amount"></label>
-                        <!-- <input type="text" id="amount" readonly style="border:0;"> -->
-                        
+                        <input type="text" ui-jq="slider" class="slider form-control" data-slider-step="1" data-slider-value="[500,3000]">
                     </span>
                     <input type="hidden" name="amount_start" id="amount_start">
                     <input type="hidden" name="amount_end" id="amount_end">
                     
                     <br/>
                 </div>
+                
             </form>
 
             <div class="row panel panel-body" >
@@ -192,8 +181,6 @@
 
     $(document).ready(function(){
 
-        
-
         $(function() {
             $( "#tabs" ).tabs();
             $('.carousel').each(function(){
@@ -274,10 +261,8 @@
         });
 
         var dots = {
-            path: 'M 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 z',
-            fillOpacity: 0,
-            strokeWeight: 0
-        };
+            url: 'assets/img/map-pointer.png'
+          };
         
         var infowindow = new google.maps.InfoWindow(),
             geocoder = new google.maps.Geocoder(),
@@ -291,15 +276,15 @@
                 marker = new MarkerWithLabel({
                     position: new google.maps.LatLng(item.lat, item.lng),
                     map: map,
-                    icon: dots,
-                    labelContent: "",
-                    labelAnchor: new google.maps.Point(38, 29),
-                    labelClass: "labelsmarker", // the CSS class for the label
-                    labelStyle: {opacity: 0.75},
-                    labelInBackground: false
+                    icon: dots
+                    // labelContent: "",
+                    // labelAnchor: new google.maps.Point(38, 29),
+                    // labelClass: "labelsmarker", // the CSS class for the label
+                    // labelStyle: {opacity: 0.75},
+                    // labelInBackground: false
                 });
 
-                marker.set("labelContent", "<div class='arrow'></div><div class='inner'><sup>Rp </sup>"+ item.price +"</div>");
+                // marker.set("labelContent", "<div class='arrow'></div><div class='inner'><sup>Rp </sup>"+ item.price +"</div>");
 
                 markersToRemove.push(marker);
 
@@ -360,15 +345,15 @@
                     marker = new MarkerWithLabel({
                         position: new google.maps.LatLng(item.lat, item.lng),
                         map: map,
-                        icon: dots,
-                        labelContent: "",
-                        labelAnchor: new google.maps.Point(38, 29),
-                        labelClass: "labelsmarker", // the CSS class for the label
-                        labelStyle: {opacity: 0.75},
-                        labelInBackground: false
+                        icon: dots
+                        // labelContent: "",
+                        // labelAnchor: new google.maps.Point(38, 29),
+                        // labelClass: "labelsmarker", // the CSS class for the label
+                        // labelStyle: {opacity: 0.75},
+                        // labelInBackground: false
                     });
 
-                    marker.set("labelContent", "<div class='arrow'></div><div class='inner'><sup>Rp </sup>"+ item.price +"</div>");
+                    // marker.set("labelContent", "<div class='arrow'></div><div class='inner'><sup>Rp </sup>"+ item.price +"</div>");
 
                     markersToRemove.push(marker);
 
@@ -390,26 +375,27 @@
     });
 
     $(function() {
-        $( "#slider-range" ).slider({
+        $( ".slider" ).slider({
             range: true,
             min: 0,
             max: 5000,
-            values: [ 500, 3000 ],
+            tooltop: 'hide',
             slide: function( event, ui ) {
-                $( "#amount" ).html( ui.values[ 0 ] + " $ - " + ui.values[ 1 ] + " $" );
-                $("#amount_start").val( ui.values[ 0 ] );
-                $("#amount_end").val( ui.values[ 1 ] );
+                alert('drag');
+                // $( "#amount" ).html( ui.values[ 0 ] + " $ - " + ui.values[ 1 ] + " $" );
+                // $("#amount_start").val( ui.values[ 0 ] );
+                // $("#amount_end").val( ui.values[ 1 ] );
             }
         });
 
-        $("#slider-range").on("slidestop", function() {
+        $(".slider").on("slideStop", function() {
             searching();
         });
 
-        $( "#amount" ).html( $( "#slider-range" ).slider( "values", 0 ) + " $  - " + $( "#slider-range" ).slider( "values", 1 ) +  " $" );
+        // $( "#amount" ).html( $( "#slider-range" ).slider( "values", 0 ) + " $  - " + $( "#slider-range" ).slider( "values", 1 ) +  " $" );
 
-        $("#amount_start").val( $( "#slider-range" ).slider( "values", 0 ) );
-        $("#amount_end").val( $( "#slider-range" ).slider( "values", 1 ) );
+        // $("#amount_start").val( $( "#slider-range" ).slider( "value", 0 ) );
+        // $("#amount_end").val( $( "#slider-range" ).slider( "value", 1 ) );
     });
 
     //calculates distance between two points in km's

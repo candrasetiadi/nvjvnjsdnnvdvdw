@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/simple-line-icons.css">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/bootstrap-slider.css">
     <link rel="stylesheet" href="assets/css/responsive-slider.css">
     <link rel="stylesheet" href="assets/css/normalize.min.css">
     <link rel="stylesheet" href="assets/css/styles_old.css">

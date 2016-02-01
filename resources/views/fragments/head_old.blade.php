@@ -64,7 +64,6 @@ NNhhhdmNNNmhmNNNdoooohddhodysooooooooso///::///:://o+s++ssosyyshhhyyyhhhhdmmhs+/
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/simple-line-icons.css') }}">
     <!-- <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}"> -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-slider.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive-slider.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/normalize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/styles_old.css') }}">
