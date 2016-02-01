@@ -60,6 +60,7 @@ class CategoryController extends Controller
 
         $category = new Category;
 
+        $category->route = str_slug($request->title);
         $category->parent = $request->parent;
         $category->order = 0;
 

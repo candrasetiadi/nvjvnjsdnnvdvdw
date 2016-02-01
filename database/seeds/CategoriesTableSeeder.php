@@ -13,6 +13,7 @@ class CategoriesTableSeeder extends Seeder
     {
         //
         $category = \App\Category::create([
+            'route' => 'villa',
             'parent' => 0,
             'order' => 1
         ]);
@@ -20,10 +21,11 @@ class CategoriesTableSeeder extends Seeder
         \App\CategoryLanguage::create([
             'category_id' => $category->id,
             'locale' => 'en',
-            'title' => 'villa'
+            'title' => 'villas'
         ]);
 
         $category = \App\Category::create([
+            'route' => 'land',
             'parent' => 0,
             'order' => 2
         ]);
@@ -31,7 +33,7 @@ class CategoriesTableSeeder extends Seeder
         \App\CategoryLanguage::create([
             'category_id' => $category->id,
             'locale' => 'en',
-            'title' => 'land'
+            'title' => 'lands'
         ]);
 
     }

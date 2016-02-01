@@ -16,6 +16,17 @@ return [
     'home' => 'home',
     'search' => 'search',
     'properties' => 'properties',
+
+    // property
+    'villa' => 'villas',
+    'land' => 'lands',
+
+    // lawyer
+    'lawyer_notary' => 'lawyer-notary',
+
+    // testimony
+    'testimony' => 'testimonials',
+
     'products' => 'products',
     'product_detail' => 'product-detail',
     'overstock' => 'overstock',
@@ -23,8 +34,15 @@ return [
     'projects' => 'projects',
     'materials' => 'materials',
     'showroom' => 'showroom',
+
     'account' => 'account',
+
     'contact' => 'contact',
+
+    'blog' => 'blog',
+
+    'sell_property' => 'sell-property',
+
     'checkout' => 'checkout',
     'contact_us' => 'contact-us',
     'blogs' => 'blogs',

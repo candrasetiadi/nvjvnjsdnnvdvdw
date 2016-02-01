@@ -99,42 +99,45 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
 
-    Route::get('search', 'PagesController@propertySearch');
-
     // Home
-    Route::get('/', 'PagesController@home');
+    Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
 
-    Route::get('/{about}/', 'PagesController@about');
+    Route::get('/{about}/', ['as' => 'about', 'uses' => 'PagesController@about']);
 
-    Route::get('/{about}/', 'PagesController@about');
+    Route::get('/{contact}/', ['as' => 'contact', 'uses' => 'PagesController@contact']);
+
+    Route::get('/{testimony}/', ['as' => 'testimony', 'uses' => 'PagesController@testimony']);
+
+    Route::get('/{lawyer_notary}/', ['as' => 'lawyer_notary', 'uses' => 'PagesController@lawyerNotary']);
+
+    Route::get('/{sell_property}/', ['as' => 'sell_property', 'uses' => 'PagesController@sellProperty']);
+
+    // Blogs
+    Route::get('{blog}', ['as' => 'blog', 'uses' => 'PagesController@blogListing']);
+
+    Route::get('blog/{url}', ['as' => 'url','uses' => 'PagesController@blogView']);
 
 
     // Customer
-    Route::get('/{login}/', 'PagesController@login');
+    Route::get('/{login}/', ['as' => 'login', 'uses' => 'PagesController@login']);
     Route::post('/{login}/', 'Auth\AuthController@postLogin');
-    Route::get('/{logout}/', 'Auth\AuthController@getLogout');
+    Route::get('/{logout}/', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 
-    Route::get('/{register}/', 'PagesController@register');
+    Route::get('/{register}/', ['as' => 'register', 'uses' => 'PagesController@register']);
 
     Route::group(['middleware' => 'auth.customer'], function () {
 
-        Route::get('/{account}/', 'PagesController@account');
-    });
+        Route::get('/{account}/', ['as' => 'account', 'uses' => 'PagesController@account']);
+    }); 
 
 
     // Properties
-    Route::get('/{properties}/', 'PagesController@propertyListing');
+    Route::get('/{search}/', ['as' => 'search', 'uses' => 'PagesController@propertySearch']);
+    Route::get('/{villa}/', ['as' => 'villa', 'uses' => 'PagesController@propertyListing']);
+    Route::get('/{land}/', ['as' => 'land', 'uses' => 'PagesController@propertyListing']);
 
-    Route::get('property/category/{url}', ['as' => 'url','uses' => 'PagesController@propertyCategoryListing']);
-
-    Route::get('property/{url}', ['as' => 'url','uses' => 'PagesController@propertyView']);
-
-
-
-    // Blogs
-    Route::get('blogs', 'PagesController@blogListing');
-
-    Route::get('blog/{url}', ['as' => 'url','uses' => 'PagesController@blogView']);
+    Route::get('/{villa}/{property}', ['as' => 'property.villa', 'uses' => 'PagesController@propertyView']);
+    Route::get('/{land}/{property}', ['as' => 'property.land', 'uses' => 'PagesController@propertyView']);
 
 
 });

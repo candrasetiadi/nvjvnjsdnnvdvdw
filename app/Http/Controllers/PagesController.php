@@ -50,47 +50,74 @@ class PagesController extends Controller
     }
 
 
-    public function propertyListing() {
+    public function propertyListing($cat) {
 
         // Improvement required for infinity scrolling
+        foreach(\Lang::get('url') as $k => $v) {
 
-        $properties = \App\Property::with(array('propertyFiles' => function($query) {
-                $query->where('type', 'image');
-            }))
-            ->orderBy('updated_at', 'DESC')->paginate(24);
+            if ($v == $cat) {
+                $route = $k;
+                break;
+            }
+        }
+
+        $category = \App\Category::where('route', $route)->first();
+
+        if ($category) {
+
+            $properties = \App\Property::with(array('propertyFiles' => function($query) {
+                    $query->where('type', 'image');
+                }))
+                ->where('category_id', $category->id)
+                ->orderBy('updated_at', 'DESC')->paginate(24);
+
+        } else {
+
+            $properties = \App\Property::with(array('propertyFiles' => function($query) {
+                    $query->where('type', 'image');
+                }))
+                ->orderBy('updated_at', 'DESC')->paginate(24);
+        }
 
         return view('pages.property-listing', compact('properties'));
     }
 
 
-    public function propertyCategoryListing($url) {
+    // public function propertyCategoryListing($url) {
 
-        $slug = str_replace('-', ' ', $url);
+    //     $slug = str_replace('-', ' ', $url);
 
-        $category = \App\CategoryLanguage::where('locale', 'en')->where('title', $slug)->first();
+    //     $category = \App\CategoryLanguage::where('locale', 'en')->where('title', $slug)->first();
 
-        $properties = \App\Property::with(array('propertyFiles' => function($query) {
-                $query->where('type', 'image');
-            }))
-            ->where('category_id', $category->id)
-            ->orderBy('updated_at', 'DESC')->paginate(24);
+    //     $properties = \App\Property::with(array('propertyFiles' => function($query) {
+    //             $query->where('type', 'image');
+    //         }))
+    //         ->where('category_id', $category->id)
+    //         ->orderBy('updated_at', 'DESC')->paginate(24);
 
-        return view('pages.property-listing', compact('properties'));
-    }
+    //     return view('pages.property-listing', compact('properties'));
+    // }
 
 
-    public function propertyView($url) {
+    public function propertyView($category, $slug) {
 
         // Improvement required for infinity scrolling
 
-        $slug = explode('-', $url);
+        foreach(\Lang::get('url') as $k => $v) {
+
+            if ($v == $category) {
+                $route = $k;
+                break;
+            }
+        }
+
+        $slug = explode('-', $slug);
 
         $id = end($slug);
 
         $property = Property::find($id);
 
-
-        // return $property;
+        if ($property->category->route != $route) return redirect(\Config::get('app.locale_prefix') . '/' . \Lang::get('url')[$route]);
 
         return view('pages.property-view', compact('property'));
     }
@@ -99,6 +126,12 @@ class PagesController extends Controller
     public function propertySearch()
     {
         return view('pages.search-property');
+    }
+
+    public function lawyerPage()
+    {
+
+        return 'LAWYER';
     }
 
 

@@ -15,13 +15,32 @@ return [
 
     'home' => 'beranda',
     'search' => 'cari',
-    'products' => 'produk',
+    'properties' => 'properti',
+
+    // property
+    'villa' => 'vila',
+    'land' => 'tanah',
+
+    // lawyer
+    'lawyer_notary' => 'notaris',
+
+    // testimony
+    'testimony' => 'testimoni',
+
     'overstock' => 'overstock',
     'bestseller' => 'bestseller',
     'projects' => 'proyek',
     'materials' => 'material',
     'showroom' => 'showroom',
+
+    'account' => 'akun',
+
     'contact' => 'hubungi-kami',
+
+    'blog' => 'blog',
+
+    'sell_property' => 'jual-properti',
+
     'contact_us' => 'hubungi-kami',
     'about' => 'tentang',
     'about_us' => 'tentang-kami',

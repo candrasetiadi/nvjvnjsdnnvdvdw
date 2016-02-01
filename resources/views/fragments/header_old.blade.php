@@ -8,12 +8,12 @@
             <section class="bottom-nav">
                 <nav>
                     <ul>
-                        <li class="current"><a href="">Villas</a></li>
-                        <li><a href="">Lands</a></li>
-                        <li><a href="">Lawyer &amp; Notary</a></li>
-                        <li><a href="">Testimonials</a></li>
-                        <li><a href="">Contact</a></li>
-                        <li><a href=""><i class="material-icons">search</i></a></li>
+                        <li><a href="{{ route('villa', Lang::get('url')['villa']) }}">Villas</a></li>
+                        <li><a href="{{ route('land', Lang::get('url')['land']) }}">Lands</a></li>
+                        <li><a href="{{ route('lawyer_notary', Lang::get('url')['lawyer_notary']) }}">Lawyer &amp; Notary</a></li>
+                        <li><a href="{{ route('testimony', Lang::get('url')['testimony']) }}">Testimonials</a></li>
+                        <li><a href="{{ route('contact', Lang::get('url')['contact']) }}">Contact</a></li>
+                        <li><a href="{{ route('search', Lang::get('url')['search']) }}"><i class="material-icons">search</i></a></li>
                     </ul>
                 </nav>
 
@@ -21,9 +21,9 @@
 
                 <section class="top-nav">
                     <ul>
-                        <li><a href=""><i class="material-icons">business</i> Sell my Property</a></li>
-                        <li><a href=""><i class="material-icons">chat</i> Blog</a></li>
-                        <li><a href="{{ url('account') }}"><i class="material-icons">person</i> Account</a></li>
+                        <li><a href="{{ route('sell_property', Lang::get('url')['sell_property']) }}"><i class="material-icons">business</i> Sell my Property</a></li>
+                        <li><a href="{{ route('blog', Lang::get('url')['blog']) }}"><i class="material-icons">chat</i> Blog</a></li>
+                        <li><a href="{{ route('account', Lang::get('url')['account']) }}"><i class="material-icons">person</i> Account</a></li>
                     </ul>
                 </section>
 
@@ -38,10 +38,10 @@
                         <i class="material-icons">keyboard_arrow_down</i>
                     </div>
                     <ul>
-                        <li><a href="">English</a></li>
-                        <li><a href="">French</a></li>
-                        <li><a href="">Indonesian</a></li>
-                        <li><a href="">Russian</a></li>
+                        <li><a href="{{ url() }}">English</a></li>
+                        <li><a href="{{ url('fr') }}">French</a></li>
+                        <li><a href="{{ url('id') }}">Indonesian</a></li>
+                        <li><a href="{{ url('ru') }}">Russian</a></li>
                     </ul>
                 </div>
 

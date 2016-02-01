@@ -14,14 +14,34 @@ return [
     */
 
     'home' => 'home-it',
-    'search' => 'cari-it',
+    'search' => 'search-it',
+    'properties' => 'properties-it',
+
+    // property
+    'villa' => 'villas-it',
+    'land' => 'lands-it',
+
+    // lawyer
+    'lawyer_notary' => 'lawyer-notary-it',
+
+    // testimony
+    'testimony' => 'testimonials-it',
+
     'products' => 'products-it',
     'overstock' => 'overstock-it',
     'bestseller' => 'bestseller-it',
     'projects' => 'projects-it',
     'materials' => 'materials-it',
-    'showroom' => 'showroom-it',
+    'showroom' => 'showroom-it',    
+
+    'account' => 'account-it',
+
     'contact' => 'contact-it',
+
+    'blog' => 'blog-it',
+
+    'sell_property' => 'sell-property-it',
+
     'contact_us' => 'contact-us-it',
     'about' => 'about-it',
     'about_us' => 'about-us-it',

@@ -17,6 +17,7 @@
             <td><a href class="m-table-item-select m-table-item-select-all"><i class="m-checkbox"></i></a></td>
             <td>Title</td>
             <td>Description</td>
+            <td>Route</td>
             <td>Parent</td>
             <td>Action</td>
 
@@ -27,6 +28,7 @@
                 <td class="select"><a href class="m-table-item-select m-table-item-select-single" data-id="1"><i class="m-checkbox"></i></a></td>
                 <td class="created_at">{{ $category->lang()->title }}</td>
                 <td class="code">{{ $category->lang()->description }}</td>
+                <td class="code">{{ $category->route }}</td>
                 <td class="code">{{ $category->parentName() }}</td>
                 <td button>
                     <m-table-list-more>
