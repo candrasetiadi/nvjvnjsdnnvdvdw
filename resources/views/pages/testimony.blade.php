@@ -1,7 +1,7 @@
 @extends('index')
 @section('content')
 <div class="bc-bg">
-    <ul class="breadcrumb">
+    <ul class="breadcrumb container">
         <li><a href="{{ baseUrl() }}">Home</a></li>
         <li class="active">Testimony</li>
     </ul>
