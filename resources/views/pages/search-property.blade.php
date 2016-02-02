@@ -51,7 +51,17 @@
                     <div class="form-group" >
                         <label class="col-sm-2 control-label">Price range</label>
                         <span style="display:inline-block;" class="col-lg-8">
-                            <input type="text" ui-jq="slider" class="slider form-control" data-slider-step="1" data-slider-value="[500,3000]">
+                            <div class="row">
+                                <input type="text" ui-jq="slider" class="slider form-control" data-slider-step="1" data-slider-value="[500,3000]">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6" id="amount_from">
+                                    
+                                </div>
+                                <div class="col-md-6 text-right" id="amount_to">
+                                    
+                                </div>
+                            </div>
                         </span>
                         <!-- <input type="text" name="amount" id="amount"> -->
                         <input type="hidden" name="amount_start" id="amount_start">
@@ -390,6 +400,21 @@
                 });
             }
         });
+        
+        $(".slider").on("slideStop", function() {
+            searching();
+        });
+
+        $(".slider").on("slide", function() {
+            var val = $(this).val(),
+                split_val = val.split(",");
+
+            $("#amount_from").html(split_val[0] + ' $');
+            $("#amount_to").html(split_val[1] + ' $');
+        });
+
+        $("#amount_from").html(' $');
+        $("#amount_to").html(' $');
     });
 
     $(function() {
@@ -397,35 +422,8 @@
             range: true,
             min: 0,
             max: 5000,
-            tooltop: 'hide',
-            slide: function( event, ui ) {
-                
-            }
+            tooltip: 'hide'
         });
-
-        $(".slider").on("slide", function() {
-            var val = $(this).val(),
-                split_val = val.split(","),
-                amount_from = split_val[0],
-                amount_to = split_val[1];
-            // $( "#amount" ).val( amount_from + " $ - " + amount_to + " $" );
-            $("#amount_start").val( amount_from );
-            $("#amount_end").val( amount_to );
-        });
-
-        $(".slider").on("slideStop", function() {
-            searching();
-            var val = $(this).val(),
-                split_val = val.split(","),
-                amount_from = split_val[0],
-                amount_to = split_val[1];
-            console.log("stop "+amount_from);
-        });
-
-        // $( "#amount" ).html( $( "#slider-range" ).slider( "values", 0 ) + " $  - " + $( "#slider-range" ).slider( "values", 1 ) +  " $" );
-
-        // $("#amount_start").val( $( "#slider-range" ).slider( "value", 0 ) );
-        // $("#amount_end").val( $( "#slider-range" ).slider( "value", 1 ) );
     });
 
     //calculates distance between two points in km's

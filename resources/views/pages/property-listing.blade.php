@@ -53,7 +53,7 @@ $(document).ready(function() {
         debug: false,
         autoTrigger: true,
         autoTriggerUntil: lastPage,
-        loadingHtml: '<img src="loading.gif" alt="Loading" /> Loading...',
+        loadingHtml: '<img src="assets/img/loading_bar.gif" alt="Loading" />',
         padding: 300,
         nextSelector: 'a.jscroll-next:last',
         pagingSelector: 'a.jscroll-next:last',
