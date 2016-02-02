@@ -10,5 +10,5 @@
 <script src="assets/js/responsive-slider.js"></script>
 <script src="assets/js/bootstrap.js"></script>
 <script src="assets/js/bootstrap-slider.js"></script>
-<script src="bower/jscroll/jquery.jscroll.js"></script>
+<script src="assets/js/jquery.jscroll.js"></script>
 
