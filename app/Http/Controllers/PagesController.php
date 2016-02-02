@@ -87,7 +87,7 @@ class PagesController extends Controller
 
 
     public function propertyListing($cat) {
-
+        
         // Improvement required for infinity scrolling
         foreach(\Lang::get('url') as $k => $v) {
 

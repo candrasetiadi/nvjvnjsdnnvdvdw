@@ -8,10 +8,8 @@
     </ul>
 </div>
 <div class="line-top"></div>
-
 <div class="container">
     <h3>ACCOUNT</h3>
-
     <ul>
         <li><a href="{{ route('account.wishlist', ['account' => Lang::get('url')['account']]) }}">Wishlist</a></li>
         <li><a href="{{ route('account.setting', ['account' => Lang::get('url')['account']]) }}">Setting</a></li>

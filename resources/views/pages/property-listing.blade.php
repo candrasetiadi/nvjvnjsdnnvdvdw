@@ -1,7 +1,7 @@
 @extends('index')
 @section('content')
-<div class="bs-component">
-    <ul class="breadcrumb">
+<div class="bc-bg">
+    <ul class="breadcrumb container">
         <li><a href="#">Home</a></li>
         <li class="active">Properties</li>
     </ul>
