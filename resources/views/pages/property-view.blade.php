@@ -4,7 +4,7 @@
 <div class="bc-bg">
     <ul class="breadcrumb container">
         <li><a href="{{ baseUrl() }}">Home</a></li>
-        <li><a href="{{ route($property->category->route, Lang::get('url')[$property->category->route]) }}">{{ Lang::get('url')[$property->category->route] }}</a></li>
+        <li><a href="{{ route($property->category->route, Lang::get('url')[$property->category->route]) }}">{{ ucfirst(Lang::get('url')[$property->category->route]) }}</a></li>
         <li class="active">{{ $property->lang()->title }}</li>
     </ul>
 </div>
@@ -13,7 +13,7 @@
 <div class="container">
     <div class="row detail">
 
-        <div class="col-md-8">
+        <div class="col-md-12">
             <h3>{{ $property->lang()->title }}</h3>
 
             <div class="thumbnail">

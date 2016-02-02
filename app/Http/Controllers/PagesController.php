@@ -88,7 +88,8 @@ class PagesController extends Controller
 
     public function propertyListing($cat) {
 
-        // Improvement required for infinity scrolling
+        $limit = 24;
+
         foreach(\Lang::get('url') as $k => $v) {
 
             if ($v == $cat) {
@@ -105,39 +106,61 @@ class PagesController extends Controller
                     $query->where('type', 'image');
                 }))
                 ->where('category_id', $category->id)
-                ->orderBy('updated_at', 'DESC')->paginate(24);
+                ->orderBy('updated_at', 'DESC')->paginate($limit);
 
         } else {
 
             $properties = \App\Property::with(array('propertyFiles' => function($query) {
                     $query->where('type', 'image');
                 }))
-                ->orderBy('updated_at', 'DESC')->paginate(24);
+                ->orderBy('updated_at', 'DESC')->paginate($limit);
         }
 
-        if ($cat == 'villas')
-            $tipe = 'Villas';
-        else
-            $tipe = 'Lands';
+        $type = \Lang::get('url')[$route];
 
-        return view('pages.property-listing', compact('properties', 'tipe'));
+        if (\Input::get('page') > 1) {
+
+            $html = '';
+
+            foreach ($properties as $property) {
+
+                $html .= '<div class="col-md-4 list-item">
+                            <a href="' . route('property.' . $property->category->route, 
+                                [
+                                    $property->category->route => \Lang::get('url')[$property->category->route],
+                                    'property' => str_slug($property->lang()->title) . '-' . $property->id
+
+                                ]) . '">
+
+                                <div class="thumbnail">';
+
+                                    if (count($property->propertyFiles) > 0) {
+
+                                        $html .= '<img src="'. asset('uploads/property/' . $property->propertyFiles[0]->file) .'">';
+                                    } else {
+
+                                        $html .= '<img src="'. asset('no-image.png') .'">';
+                                    }
+
+                                $html .= '<div class="caption">
+                                        <h3 class="list-item-title">'. $property->lang()->title .'</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>';
+
+            }
+            
+            $html .= '<a class="jscroll-next hidden" href="'. $properties->nextPageUrl() .'">next page</a>';
+
+            return $html;
+
+        } else {
+
+            return view('pages.property-listing', compact('properties', 'type'));
+        }
+
     }
-
-
-    // public function propertyCategoryListing($url) {
-
-    //     $slug = str_replace('-', ' ', $url);
-
-    //     $category = \App\CategoryLanguage::where('locale', 'en')->where('title', $slug)->first();
-
-    //     $properties = \App\Property::with(array('propertyFiles' => function($query) {
-    //             $query->where('type', 'image');
-    //         }))
-    //         ->where('category_id', $category->id)
-    //         ->orderBy('updated_at', 'DESC')->paginate(24);
-
-    //     return view('pages.property-listing', compact('properties'));
-    // }
 
 
     public function propertyView($category, $slug) {

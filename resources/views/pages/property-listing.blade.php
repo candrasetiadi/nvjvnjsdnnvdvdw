@@ -3,13 +3,12 @@
 <div class="bc-bg">
     <ul class="breadcrumb container">
         <li><a href="{{ baseUrl() }}">Home</a></li>
-        <li>Properties</li>
-        <li class="active">{{ $tipe }}</li>
+        <li class="active">{{ ucfirst($type) }}</li>
     </ul>
 </div>
 <div class="line-top"></div>
 <div class="container">
-    <div class="row list">
+    <div class="row list jscroll">
 
         @foreach($properties as $property)
         <div class="col-md-4 list-item">
@@ -35,11 +34,36 @@
         </div>
         @endforeach
 
-    </div>
-</div>
+        <a class="jscroll-next hidden" href="{{ $properties->nextPageUrl() }}">next page</a>
 
-<div class="text-center">
-    {!! $properties->render() !!}
+    </div>
+
 </div>
 
 @stop
+
+@section('scripts')
+<script type="text/javascript">
+
+var lastPage = {{ $properties->lastPage() }};
+
+$(document).ready(function() {
+    
+    $('.jscroll').jscroll({
+        debug: false,
+        autoTrigger: true,
+        autoTriggerUntil: lastPage,
+        loadingHtml: '<img src="loading.gif" alt="Loading" /> Loading...',
+        padding: 300,
+        nextSelector: 'a.jscroll-next:last',
+        pagingSelector: 'a.jscroll-next:last',
+        callback: function () {
+            console.log('loaded');
+        }
+    });
+
+});
+
+</script>
+@stop
+
