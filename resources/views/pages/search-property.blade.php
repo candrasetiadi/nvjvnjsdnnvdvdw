@@ -26,16 +26,13 @@
 
 <!-- MAIN CONTAINER -->
 <section class="">
-<<<<<<< HEAD
-=======
-    <div class="bs-component">
+    <div class="bc-bg">
         <ul class="breadcrumb">
             <li><a href="#">Home</a></li>
             <li class="active">Properties</li>
         </ul>
     </div>
     <div class="line-top"></div>
->>>>>>> frontend : add breadcrumb
         <!-- <div style="width:60%; min-height:1000px; margin:10px;" class="panel-header pre-scrollable"> -->
         <div class="panel panel-default pre-scrollable col-lg-8" style="min-height:1000px;">
             <form class="form-horizontal panel-body">
