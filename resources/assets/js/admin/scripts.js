@@ -470,6 +470,34 @@ function doNothing() {
     return false;
 }
 
+function selectList() {    
+
+    $(document).on('click', 'm-list-item-check[single]', function(e) {
+
+        e.preventDefault();
+
+        console.log('clicked');
+
+        // if($(this).hasClass('checked')) { $('m-list-item-check[all]').removeClass('checked'); }
+
+        // $(this).toggleClass('checked');
+    });
+
+    $(document).on('click', 'm-list-item-check[all]', function(e) {
+
+        e.preventDefault();
+
+        if($(this).hasClass('checked')) {
+
+            $('m-list-item-check[single]').removeClass('checked');
+
+        } else {
+
+            $('m-list-item-check[single]').addClass('checked');
+        }
+    });
+}
+
 var Module = {
 
     system:{
@@ -694,6 +722,8 @@ var Matter = {
 
         inquiries: function() {
 
+            selectList();
+
             $(document).on('click', 'm-list-menu-item', function() {
 
                 var id = $(this).parents('m-list-menu').attr('data-id'),
@@ -760,6 +790,8 @@ var Matter = {
 
         customers: function() {
 
+            selectList();
+
             $(document).on('click', 'm-list-menu-item', function() {
 
                 var id = $(this).parents('m-list-menu').attr('data-id'),
@@ -825,6 +857,8 @@ var Matter = {
         },
 
         categories: function() {
+
+            selectList();
 
             $(document).on('click', '[save-form]', function() {
 
@@ -926,6 +960,8 @@ var Matter = {
         },
 
         properties: function() {
+
+            selectList();
 
             $(document).on('click', '[edit]', function() {
 
@@ -1129,6 +1165,8 @@ var Matter = {
 
         blog: function() {
 
+            selectList();
+
             $(document).on('click', 'm-list-menu-item', function() {
 
                 var id = $(this).parents('m-list-menu').attr('data-id'),
@@ -1150,6 +1188,8 @@ var Matter = {
         },
 
         accounts: function() {
+
+            selectList();
 
             // $(document).on('click', 'm-list-menu-item', function() {
 

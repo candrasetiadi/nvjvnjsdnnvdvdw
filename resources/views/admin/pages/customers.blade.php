@@ -10,16 +10,23 @@
 @stop
 
 @section('content')
+
+<div class="search-input w25-6">
+    <form>
+        <input value="{{ Input::get('q') }}" class="w50-6" name="q" type="text" placeholder="search">
+    </form>
+</div>
+
 <m-template list class="customer-wrapper">
 
     @if(isset($customers) AND count($customers) > 0)
-
+<!-- 
     <m-action-bar class="flexbox fwidth">
         <m-input class="w33" id="action-search-wrapper">
             <input type="text" ajax-search data-source="customers/search" data-function="populateCustomersSearch" required>
             <i class="material-icons">search</i>
         </m-input>
-    </m-action-bar>
+    </m-action-bar> -->
 
     <table class="m-table-list customers-table">
         <thead>

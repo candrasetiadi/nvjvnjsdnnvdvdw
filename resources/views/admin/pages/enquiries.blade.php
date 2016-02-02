@@ -8,13 +8,20 @@
 @stop
 
 @section('content')
+
+<div class="search-input w25-6">
+    <form>
+        <input value="{{ Input::get('q') }}" class="w50-6" name="q" type="text" placeholder="search">
+    </form>
+</div>
+
 <m-template list class="inquiry-wrapper">
 
     @if(isset($enquiries) AND count($enquiries) > 0)
 
     <table class="m-table-list enquiry-table">
         <thead>
-            <td><a href class="m-table-item-select m-table-item-select-all"><i class="m-checkbox"></i></a></td>
+            <td><a href class="m-table-item-select m-table-item-select-all inquiry-item-select-all"><i class="m-checkbox"></i></a></td>
             <td>Property</td>
             <td>Subject</td>
             <td>Name</td>

@@ -29,14 +29,6 @@ class AdminController extends Controller {
     }
 
 
-
-    public function inquiries() {
-
-        return view('admin.pages.enquiries');
-    }
-
-
-
     public function customers() {
 
         $search = \Input::get('q');
@@ -49,7 +41,6 @@ class AdminController extends Controller {
 
         return view('admin.pages.customers', compact('customers'));
     }
-
 
 
     public function properties() {

@@ -22,13 +22,20 @@
 @stop
 
 @section('content')
+
+<div class="search-input w25-6">
+    <form>
+        <input value="{{ Input::get('q') }}" class="w50-6" name="q" type="text" placeholder="search">
+    </form>
+</div>
+
 <m-template list class="property-wrapper">
 
     @if(isset($properties) AND count($properties) > 0)
     <table>
         <thead>
             <td width="5%">
-                <m-list-item-check all></m-list-item-check>
+                <m-list-item-check all class="item-select-all"></m-list-item-check>
             </td>
             <td>Image</td>
             <td>Title</td>
@@ -47,7 +54,7 @@
             <?php $images = $property->propertyFiles()->where('type', 'image'); ?>
             <tr class="property-item" id="property-item-{{ $property->id }}">
                 <td width="5%">
-                    <m-list-item-check single data-id="{{ $property->id }}"></m-list-item-check>
+                    <m-list-item-check single data-id="{{ $property->id }}" class="item-select-single"></m-list-item-check>
                 </td>
                 <td class="image">
                     {!! ($images->count() > 0) ? '<img width="100" src="'. asset('uploads/property/' . $images->first()->file) . '">' : '-'; !!}
