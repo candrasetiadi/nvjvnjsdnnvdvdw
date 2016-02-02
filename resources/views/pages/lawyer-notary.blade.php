@@ -1,6 +1,6 @@
 @extends('index')
 @section('content')
-<div class="bs-component">
+<div class="bc-bg">
     <ul class="breadcrumb">
         <li><a href="{{ baseUrl() }}">Home</a></li>
         <li class="active">Lawyer & Notary</li>
