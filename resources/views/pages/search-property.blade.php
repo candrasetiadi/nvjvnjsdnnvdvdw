@@ -1,20 +1,5 @@
 @extends('index')
 @section('content')
-<style type="text/css">
-
-    @media only screen and (max-width: 980px) {
-        #map{
-            visibility: hidden;
-        }
-    }
-
-    #map {
-        height: 1000px;
-        display: inline-block;
-
-    }
-    
-</style>
 
 <div class="bc-bg">
     <ul class="breadcrumb container">
@@ -24,52 +9,81 @@
 </div>
 <div class="line-top"></div>
 
-<!-- MAIN CONTAINER -->
-<section class="">
-        <!-- <div style="width:60%; min-height:1000px; margin:10px;" class="panel-header pre-scrollable"> -->
-        <div class="panel panel-default pre-scrollable col-lg-8" style="min-height:1000px;">
-            <form class="form-horizontal panel-body">
-                <div class="form-group ">
-                    <label class="col-sm-2 control-label">Type</label>
-                    <label class="search-type">
-                        >$500.000
-                        <input type="radio" name="type" id="radio1">
-                    </label>
-                    <label class="search-type">
-                        <$500.000
-                        <input type="radio" name="type" id="radio2">
-                    </label>
-                    <label class="search-type">
-                        Home & Retir.
-                        <input type="radio" name="type" id="radio3">
-                    </label>
-                    <label class="search-type">
-                        Beachfront
-                        <input type="radio" name="type" id="radio4">
-                    </label>
+<section class="" style="display:inline-block">
+    <div class="col-lg-8 well">
+        <div style="min-height:1000px;" class="pre-scrollable">
+            <section class="panel panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group ">
+                        <label class="col-sm-2 control-label">Type</label>
+                        <div class="col-lg-8 col-lg-offset">
+                            <label class="search-type">
+                                >$500.000 &nbsp;
+                                <input type="radio" name="type" id="radio1">
+                            </label>
+                            <label class="search-type">
+                                <$500.000 &nbsp;
+                                <input type="radio" name="type" id="radio2">
+                            </label>
+                            <label class="search-type">
+                                Home & Retir. &nbsp;
+                                <input type="radio" name="type" id="radio3">
+                            </label>
+                            <label class="search-type">
+                                Beachfront &nbsp;
+                                <input type="radio" name="type" id="radio4">
+                            </label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Location</label>
+                        <span class="col-lg-8">
+                            <div class="input-group">
+                                <input class="form-control" id="searchTextField" type="text" value="" placeholder="" onChange="searching()">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default fa fa-search" type="button"></button>
+                                </span>
+                            </div>
+                        </span>
+                    </div>
+                    <br>
+                    <div class="form-group" >
+                        <label class="col-sm-2 control-label">Price range</label>
+                        <span style="display:inline-block;" class="col-lg-8">
+                            <input type="text" ui-jq="slider" class="slider form-control" data-slider-step="1" data-slider-value="[500,3000]">
+                        </span>
+                        <!-- <input type="text" name="amount" id="amount"> -->
+                        <input type="hidden" name="amount_start" id="amount_start">
+                        <input type="hidden" name="amount_end" id="amount_end">
+                        
+                        <br/>
+                    </div>
+                </form>
+            </section>
+            <div class="list-inline" >
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="col-lg-6 col-lg-offset pagination">
+                            <a href class="btn btn-default fa fa-filter">&nbsp; More Filter</a>
+                            <a href class="btn btn-default fa fa-sort-amount-desc">&nbsp; Prices</a>
+                        </div>
+                        <div class="col-lg-6 text-right pagination">
+                            Villas Found
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-right">
+                        <ul class="pagination">
+                          <li class="disabled"><a href="#">&laquo;</a></li>
+                          <li class="active"><a href="#">1</a></li>
+                          <li><a href="#">2</a></li>
+                          <li><a href="#">3</a></li>
+                          <li><a href="#">4</a></li>
+                          <li><a href="#">5</a></li>
+                          <li><a href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <br>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Location</label>
-                    <span style="display:inline-block;" >
-                        <input id="searchTextField" type="text" value="" placeholder="Location" onChange="searching()">
-                    </span>
-                </div>
-                <br>
-                <div class="form-group" >
-                    <label class="col-sm-2 control-label">Price range</label>
-                    <span style="display:inline-block;" class="col-lg-8">
-                        <input type="text" ui-jq="slider" class="slider form-control" data-slider-step="1" data-slider-value="[500,3000]">
-                    </span>
-                    <input type="hidden" name="amount_start" id="amount_start">
-                    <input type="hidden" name="amount_end" id="amount_end">
-                    
-                    <br/>
-                </div>
-                
-            </form>
-
-            <div class="row panel panel-body" >
                 @for( $i = 0; $i <= 6; $i++ )
                     <div class="col-lg-6 col-sm-6 col-xs-12" style="margin-bottom:30px;">
                         <a href="#">
@@ -171,7 +185,8 @@
                 @endfor
             </div>
         </div>
-        <div id="map" class="panel panel-default col-lg-4"></div>
+    </div>
+    <div id="map" class=" col-lg-4 well hidden-md hidden-sm hidden-xs" style="height: 1040px; display: inline-block;"></div>
 </section>
     
 
@@ -384,15 +399,27 @@
             max: 5000,
             tooltop: 'hide',
             slide: function( event, ui ) {
-                alert('drag');
-                // $( "#amount" ).html( ui.values[ 0 ] + " $ - " + ui.values[ 1 ] + " $" );
-                // $("#amount_start").val( ui.values[ 0 ] );
-                // $("#amount_end").val( ui.values[ 1 ] );
+                
             }
+        });
+
+        $(".slider").on("slide", function() {
+            var val = $(this).val(),
+                split_val = val.split(","),
+                amount_from = split_val[0],
+                amount_to = split_val[1];
+            // $( "#amount" ).val( amount_from + " $ - " + amount_to + " $" );
+            $("#amount_start").val( amount_from );
+            $("#amount_end").val( amount_to );
         });
 
         $(".slider").on("slideStop", function() {
             searching();
+            var val = $(this).val(),
+                split_val = val.split(","),
+                amount_from = split_val[0],
+                amount_to = split_val[1];
+            console.log("stop "+amount_from);
         });
 
         // $( "#amount" ).html( $( "#slider-range" ).slider( "values", 0 ) + " $  - " + $( "#slider-range" ).slider( "values", 1 ) +  " $" );
