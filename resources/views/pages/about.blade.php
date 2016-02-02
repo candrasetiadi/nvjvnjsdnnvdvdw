@@ -1,14 +1,17 @@
 @extends('index')
 @section('content')
 
+<div class="bs-component">
+    <ul class="breadcrumb">
+        <li><a href="{{ url() }}">Home</a></li>
+        <li class="active">About</li>
+    </ul>
+</div>
+<div class="line-top"></div>
 
-<!-- MAIN CONTAINER -->
-<section id="main">
-
-        <br><br><br><br><br><br><br>
-        <h3>ABOUT</h3>
-
-</section>
+<div class="container">
+    <h3>ABOUT</h3>
+</div>
 
 @endsection
 
