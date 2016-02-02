@@ -2,8 +2,9 @@
 @section('content')
 <div class="bc-bg">
     <ul class="breadcrumb container">
-        <li><a href="#">Home</a></li>
-        <li class="active">Properties</li>
+        <li><a href="{{ baseUrl() }}">Home</a></li>
+        <li>Properties</li>
+        <li class="active">{{ $tipe }}</li>
     </ul>
 </div>
 <div class="line-top"></div>

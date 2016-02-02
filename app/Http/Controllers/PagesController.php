@@ -87,7 +87,7 @@ class PagesController extends Controller
 
 
     public function propertyListing($cat) {
-        
+
         // Improvement required for infinity scrolling
         foreach(\Lang::get('url') as $k => $v) {
 
@@ -115,7 +115,12 @@ class PagesController extends Controller
                 ->orderBy('updated_at', 'DESC')->paginate(24);
         }
 
-        return view('pages.property-listing', compact('properties'));
+        if ($cat == 'villas')
+            $tipe = 'Villas';
+        else
+            $tipe = 'Lands';
+
+        return view('pages.property-listing', compact('properties', 'tipe'));
     }
 
 
