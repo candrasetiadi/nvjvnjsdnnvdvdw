@@ -172,20 +172,25 @@ class PagesController extends Controller
     }
 
 
-    public function propertySearch($src, $slug)
+    public function propertySearch($slug)
     {
-        if ( $slug != 'all' ) {
-            $slug = explode('-', $slug);
-            $type = end($slug);
-            $srctype = $slug[ 3 ];
-            $titles = ($srctype == '1' || $srctype == '2') ? $slug[ 0 ] .' '. $slug [ 1 ] .' $'. $slug[ 2 ] : $slug[ 0 ] .' '. $slug [ 1 ] .' '. $slug[ 2 ];
+        $find = \Input::get('find');
+
+        $category = \Input::get('category');
+
+        $price = \Input::get('price');
+
+        if ( $find != 'all' ) {
+            $find = explode('-', $find);
+            $type = end($find);
+            $srctype = $find[ 3 ];
+            $titles = ($srctype == '1' || $srctype == '2') ? $find[ 0 ] .' '. $find [ 1 ] .' $'. $find[ 2 ] : $find[ 0 ] .' '. $find [ 1 ] .' '. $find[ 2 ];
         }
         else {
             $type = 'Search';
             $srctype = '';
             $titles = 'All';
         }
-
         return view('pages.search-property', compact('type', 'titles', 'srctype'));
     }
 

@@ -58,9 +58,45 @@
     		<div class="well bs-component">
 	    		<div class="row">
 	    			<div class="col-lg-12">
-	    				<div class="thumbnail">
-	    					<img src="{{ asset('assets/img/photo.jpg') }}">
-	    				</div>
+	    				<a href="#">
+                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                                </ol>
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active hovereffect">
+					    				<img src="{{ asset('assets/img/photo.jpg') }}">
+					    				
+					    			</div>
+					    			<div class="item hovereffect">
+                                        <img src="http://placehold.it/800x600" alt="Chania" height="345">
+                                        
+                                    </div>
+                                    <div class="item hovereffect">
+                                        <img src="http://placehold.it/800x600" alt="Chania" height="345">
+                                        
+                                    </div>
+                                    <div class="item hovereffect">
+                                        <img src="http://placehold.it/800x600" alt="Chania" height="345">
+                                        
+                                    </div>
+					    		</div>
+					    		<!-- Left and right controls -->
+                                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+					    	</div>
+					    </a>
 	    			</div>
 	    			<div class="col-lg-3"><strong>Address</strong></div><div class="col-lg-9">: Jalan Petitenget No.9, Badung, Bali 80361</div>
 	    			<div class="col-lg-3"><strong>Phone</strong></div><div class="col-lg-9">: (0361) 4741212 </div>
@@ -85,6 +121,14 @@
 @section('scripts')
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 	<script type="text/javascript">
+
+		$(document).ready(function(){
+			$('.carousel').each(function(){
+                $(this).carousel({
+                    interval: false
+                });
+            });
+		});
 		var myCenter=new google.maps.LatLng(-8.6714246,115.1607031);
 
 		function initialize() {

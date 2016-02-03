@@ -6,16 +6,16 @@
 
         <div class="fullscreen-nav flexbox flex-wrap justify-between">
             <section class="bottom-nav">
-                <nav>
+                <div class="navbottom">
                     <ul>
                         <li><a href="{{ route('villa', Lang::get('url')['villa']) }}">Villas</a></li>
                         <li><a href="{{ route('land', Lang::get('url')['land']) }}">Lands</a></li>
                         <li><a href="{{ route('lawyer_notary', Lang::get('url')['lawyer_notary']) }}">Lawyer &amp; Notary</a></li>
                         <li><a href="{{ route('testimony', Lang::get('url')['testimony']) }}">Testimonials</a></li>
                         <li><a href="{{ route('contact', Lang::get('url')['contact']) }}">Contact</a></li>
-                        <li><a href="{{ route('search', ['search' => Lang::get('url')['search'], 'type' => 'all']) }}"><i class="material-icons">search</i></a></li>
+                        <li><a href="{{ route('search', ['search' => Lang::get('url')['search'], 'find' => 'all']) }}"><i class="fa fa-search"></i></a></li>
                     </ul>
-                </nav>
+                </div>
 
                 <span class="title-border"></span>
 

@@ -20,19 +20,19 @@
                         <div class="col-lg-8 col-lg-offset">
                             <label class="search-type">
                                 <$500.000 &nbsp;
-                                <input type="radio" name="type" id="radio1" {{ ($srctype == '1') ? 'checked' : '' }} >
+                                <input type="radio" name="type" id="radio1" {{ ($srctype == '1') ? 'checked' : '' }} value="<$500000">
                             </label>
                             <label class="search-type">
                                 >$500.000 &nbsp;
-                                <input type="radio" name="type" id="radio2" {{ ($srctype == '2') ? 'checked' : '' }} >
+                                <input type="radio" name="type" id="radio2" {{ ($srctype == '2') ? 'checked' : '' }} value=">$500000">
                             </label>
                             <label class="search-type">
                                 Home & Retir. &nbsp;
-                                <input type="radio" name="type" id="radio3" {{ ($srctype == '3') ? 'checked' : '' }} >
+                                <input type="radio" name="type" id="radio3" {{ ($srctype == '3') ? 'checked' : '' }} value="home">
                             </label>
                             <label class="search-type">
                                 Beachfront &nbsp;
-                                <input type="radio" name="type" id="radio4" {{ ($srctype == '4') ? 'checked' : '' }} >
+                                <input type="radio" name="type" id="radio4" {{ ($srctype == '4') ? 'checked' : '' }} value="beachfront">
                             </label>
                         </div>
                     </div>
@@ -41,10 +41,7 @@
                         <label class="col-sm-2 control-label">Location</label>
                         <span class="col-lg-8">
                             <div class="input-group">
-                                <input class="form-control" id="searchTextField" type="text" value="" placeholder="" onChange="searching()">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default fa fa-search" type="button"></button>
-                                </span>
+                                <input class="form-control" id="searchTextField" type="text" value="Bali" placeholder="" style="width:950px;">
                             </div>
                         </span>
                     </div>
@@ -53,7 +50,7 @@
                         <label class="col-sm-2 control-label">Price range</label>
                         <span style="display:inline-block;" class="col-lg-8">
                             <div class="row">
-                                <input type="text" ui-jq="slider" class="slider form-control" data-slider-step="1" data-slider-value="[500,3000]">
+                                <input type="text" ui-jq="slider" class="slider form-control" data-slider-step="1" data-slider-min="1" data-slider-max="2000000000" data-slider-value="[500,100000000]">
                             </div>
                             <div class="row">
                                 <div class="col-md-6" id="amount_from">
@@ -287,6 +284,8 @@
                 }
             });
             map.fitBounds(bounds);
+
+            searching();
         });
 
         var dots = {
@@ -401,6 +400,10 @@
                 });
             }
         });
+
+        $("input[name='type']").change(function(){
+            searching();
+        });
         
         $(".slider").on("slideStop", function() {
             searching();
@@ -412,6 +415,9 @@
 
             $("#amount_from").html(split_val[0] + ' $');
             $("#amount_to").html(split_val[1] + ' $');
+
+            $("#amount_from").val(split_val[0]);
+            $("#amount_to").val(split_val[1]);
         });
 
         $("#amount_from").html('500 $');
@@ -421,8 +427,6 @@
     $(function() {
         $( ".slider" ).slider({
             range: true,
-            min: 0,
-            max: 5000,
             tooltip: 'hide'
         });
     });
@@ -440,14 +444,12 @@
 
     function searching() {
         var srch = $("#searchTextField").val(),
-            tipe = ($("#villa").prop("checked") == true) ? 'villa' : 'land',
+            tipe = '<?php echo $type ?>',
             prices_from = $("#amount_start").val(),
             prices_to = $("#amount_end").val(),
-            code = (tipe == 'villa') ? $("#villa-code").val() : $("#land-code").val(),
-            status = (tipe == 'villa') ? $("#search-input-status-villa").val() : $("#search-input-status-land").val(),
-            category = $("#search-input-category").val(),
-            bedroom_from = $("#search-input-bedroomfrom").val(),
-            bedroom_to = $("#search-input-bedroomto").val();
+            check = $("input[name='type']:checked").val();
+
+        alert(check);
     }
 
 </script>

@@ -27,25 +27,25 @@
     <div class="categories">
 
         <div class="wrapper flexbox flexbox-wrap justify-between" id="villa">
-            <a href="{{ url('search/investment-under-500000-1-villas') }}">
+            <a href="{{ route('search', ['search' => Lang::get('url')['search'], 'find' => 'investment-under-500000-1-villas']) }}">
                 <div class="text-wrapper">
                     <h3>Investment <br> <span>under $500.000</span></h3>
                     <h4>First investment <br><span>8% - 12% NET R.O.I.</span></h4>
                 </div>
             </a>
-            <a href="{{ url('search/investment-over-500000-2-villas') }}">
+            <a href="{{ route('search', ['search' => Lang::get('url')['search'], 'find' => 'investment-over-500000-2-villas']) }}">
                 <div class="text-wrapper">
                     <h3>Investment <br><span>over $500.000</span></h3>
                     <h4>Luxurious <br><span>8% - 12% NET R.O.I. Capital gain</span></h4>
                 </div>
             </a>
-            <a href="{{ url('search/home-&-retirement-3-villas') }}">
+            <a href="{{ route('search', ['search' => Lang::get('url')['search'], 'find' => 'home-&-retirement-3-villas']) }}">
                 <div class="text-wrapper">
                     <h3>Home &amp; <br><span>Retirement</span></h3>
                     <h4>Find here more than 1000 real estate for sale</h4>
                 </div>
             </a>
-            <a href="{{ url('search/beachfront-properties--4-villas') }}">
+            <a href="{{ route('search', ['search' => Lang::get('url')['search'], 'find' => 'beachfront-properties--4-villas']) }}">
                 <div class="text-wrapper">
                     <h3>Beachfront <br><span>Properties</span></h3>
                     <h4>Your tropical Dolce Vita</h4>
@@ -54,25 +54,25 @@
         </div>
 
         <div class="wrapper flexbox flexbox-wrap justify-between" id="land">
-            <a href="{{ url('search/investment-under-500000-1-lands') }}">
+            <a href="{{ route('search', ['search' => Lang::get('url')['search'], 'find' => 'investment-under-500000-1-lands']) }}">
                 <div class="text-wrapper">
                     <h3>Investment <br> <span>under $500.000</span></h3>
                     <h4>First investment <br><span>8% - 12% NET R.O.I.</span></h4>
                 </div>
             </a>
-            <a href="{{ url('search/investment-over-500000-2-lands') }}">
+            <a href="{{ route('search', ['search' => Lang::get('url')['search'], 'find' => 'investment-over-500000-2-lands']) }}">
                 <div class="text-wrapper">
                     <h3>Investment <br><span>over $500.000</span></h3>
                     <h4>Luxurious Villas <br><span>8% - 12% NET R.O.I. Capital gain</span></h4>
                 </div>
             </a>
-            <a href="{{ url('search/home-&-retirement-3-lands') }}">
+            <a href="{{ route('search', ['search' => Lang::get('url')['search'], 'find' => 'home-&-retirement-3-lands']) }}">
                 <div class="text-wrapper">
                     <h3>Home &amp; <br><span>Retirement</span></h3>
                     <h4>Find here more than 1000 real estate for sale</h4>
                 </div>
             </a>
-            <a href="{{ url('search/beachfront-properties--4-lands') }}">
+            <a href="{{ route('search', ['search' => Lang::get('url')['search'], 'find' => 'beachfront-properties--4-lands']) }}">
                 <div class="text-wrapper">
                     <h3>Beachfront <br><span>Properties</span></h3>
                     <h4>Your tropical Dolce Vita</h4>
