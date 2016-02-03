@@ -59,6 +59,22 @@ class Property extends Model
         return $this->hasMany('App\Distance');
     }
 
+    public function scopeFilterCategory($query, $category)
+    {
+        $query->where('category_id', $category->id);
+
+        if ($category->childs) {
+
+            foreach ($category->childs as $key => $value) {
+                
+                $query->orWhere('category_id', $value->id);
+            }
+        }
+
+
+        return $query;
+    }
+
     public function lang()
     {
 

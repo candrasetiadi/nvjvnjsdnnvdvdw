@@ -106,7 +106,9 @@ class PagesController extends Controller
                     $query->where('type', 'image');
                 }))
                 ->where('category_id', $category->id)
-                ->orderBy('updated_at', 'DESC')->paginate($limit);
+                ->filterCategory($category)
+                ->orderBy('updated_at', 'DESC')
+                ->paginate($limit);
 
         } else {
 
@@ -125,12 +127,7 @@ class PagesController extends Controller
             foreach ($properties as $property) {
 
                 $html .= '<div class="col-md-4 list-item">
-                            <a href="' . route('property.' . $property->category->route, 
-                                [
-                                    $property->category->route => \Lang::get('url')[$property->category->route],
-                                    'property' => str_slug($property->lang()->title) . '-' . $property->id
-
-                                ]) . '">
+                            <a href="' . route('property.detail', str_slug($property->lang()->title) . '-' . $property->id) . '">
 
                                 <div class="thumbnail">';
 
@@ -163,25 +160,13 @@ class PagesController extends Controller
     }
 
 
-    public function propertyView($category, $slug) {
-
-        // Improvement required for infinity scrolling
-
-        foreach(\Lang::get('url') as $k => $v) {
-
-            if ($v == $category) {
-                $route = $k;
-                break;
-            }
-        }
+    public function propertyView($slug) {
 
         $slug = explode('-', $slug);
 
         $id = end($slug);
 
         $property = Property::find($id);
-
-        if ($property->category->route != $route) return redirect(\Config::get('app.locale_prefix') . '/' . \Lang::get('url')[$route]);
 
         return view('pages.property-view', compact('property'));
     }

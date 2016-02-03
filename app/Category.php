@@ -9,6 +9,17 @@ class Category extends Model
     //
     protected $table = 'Categories';
 
+
+    public function parent()
+    {
+        return $this->belongsTo('App\Category', 'parent_id');
+    }
+
+    public function childs()
+    {
+        return $this->hasMany('App\Category', 'parent_id');
+    }
+
     public function properties()
     {
         return $this->hasMany('App\Property');
@@ -41,9 +52,9 @@ class Category extends Model
 
     public function parentName()
     {
-        $categoryLanguages = \App\CategoryLanguage::where('locale', \Lang::getLocale())->where('category_id', $this->parent)->first();
+        $categoryLanguages = \App\CategoryLanguage::where('locale', \Lang::getLocale())->where('category_id', $this->parent_id)->first();
 
-        if(!$categoryLanguages) $categoryLanguages = \App\CategoryLanguage::where('locale', 'en')->where('category_id', $this->parent)->first();
+        if(!$categoryLanguages) $categoryLanguages = \App\CategoryLanguage::where('locale', 'en')->where('category_id', $this->parent_id)->first();
 
         return $categoryLanguages ? $categoryLanguages->title : '-' ;
 

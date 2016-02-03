@@ -12,12 +12,7 @@
 
         @foreach($properties as $property)
         <div class="col-md-4 list-item">
-            <a href="{{ route('property.' . $property->category->route, 
-                [
-                    $property->category->route => Lang::get('url')[$property->category->route],
-                    'property' => str_slug($property->lang()->title) . '-' . $property->id
-
-                ]) }}">
+            <a href="{{ route('property.detail', str_slug($property->lang()->title) . '-' . $property->id) }}">
 
                 <div class="thumbnail">
                     @if(count($property->propertyFiles) > 0)
@@ -45,7 +40,7 @@
 @section('scripts')
 <script type="text/javascript">
 
-var lastPage = {{ $properties->lastPage() }};
+var lastPage = {{ $properties->lastPage() }} - 1;
 
 $(document).ready(function() {
     

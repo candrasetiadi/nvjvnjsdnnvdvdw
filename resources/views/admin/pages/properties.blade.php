@@ -227,9 +227,7 @@
                             <label for="property-input-category_id">{{ $categories[0]->name() }}</label>
                             <m-select>
 
-                                @foreach($categories as $category)
-                                <m-option value="{{ $category->id }}">{{ $category->name() }}</m-option>
-                                @endforeach
+                                {!! renderCategory($categories) !!}
 
                             </m-select>
                         </m-input>

@@ -4,7 +4,6 @@
 <div class="bc-bg">
     <ul class="breadcrumb container">
         <li><a href="{{ baseUrl() }}">Home</a></li>
-        <li><a href="{{ route($property->category->route, Lang::get('url')[$property->category->route]) }}">{{ ucfirst(Lang::get('url')[$property->category->route]) }}</a></li>
         <li class="active">{{ $property->lang()->title }}</li>
     </ul>
 </div>

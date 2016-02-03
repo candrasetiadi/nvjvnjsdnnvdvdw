@@ -76,3 +76,36 @@ function currency($cur) {
     return json_decode(File::get(storage_path('json/conversion.json')));
 }
 
+function renderCategory($categories, $count = 0)
+{
+    $space = '';
+
+    $t = $count;
+
+    for ($i=0; $i< $t; $i++) {
+        $space .= '&nbsp;&nbsp;&nbsp;&nbsp;';
+    }
+
+    foreach ($categories as $category) {
+
+        if ($category->parent) {
+            if ($category->id == $category->parent->id) break;
+        }
+
+        echo '<m-option value="' . $category->id .'">'. $space . $category->name() .'</m-option>';
+
+        if ($category->childs) {
+
+            renderCategory($category->childs, ++$count);
+
+        }
+
+    }
+}
+
+function rootCategory($category)
+{
+    if ($category->parent) rootCategory($category->parent);
+    else return $category;
+}
+

@@ -87,7 +87,7 @@ class AdminController extends Controller {
 
         }
 
-        $categories = \App\Category::orderBy('order', 'asc')->get();
+        $categories = \App\Category::orderBy('order', 'asc')->where('parent_id', 0)->get();
 
         return view('admin.pages.properties', compact('properties', 'categories'));
 

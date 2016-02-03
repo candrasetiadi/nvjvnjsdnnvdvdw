@@ -20,6 +20,8 @@ return [
     // property
     'villa' => 'vila',
     'land' => 'tanah',
+    'beachfront-property' => 'beachfront-property',
+    'home-and-retirement' => 'home-and-retirement',
 
     // lawyer
     'lawyer_notary' => 'notaris',

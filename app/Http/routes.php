@@ -140,10 +140,13 @@ Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
     // Properties
     Route::get('/{villa}/', ['as' => 'villa', 'uses' => 'PagesController@propertyListing']);
     Route::get('/{land}/', ['as' => 'land', 'uses' => 'PagesController@propertyListing']);
+    Route::get('/{beachfront-property}/', ['as' => 'beachfront-property', 'uses' => 'PagesController@propertyListing']);
+    Route::get('/{home-and-retirement}/', ['as' => 'home-and-retirement', 'uses' => 'PagesController@propertyListing']);
+
+
     Route::get('/{search}/{type}', ['as' => 'search', 'uses' => 'PagesController@propertySearch']);
 
-    Route::get('/{villa}/{property}', ['as' => 'property.villa', 'uses' => 'PagesController@propertyView']);
-    Route::get('/{land}/{property}', ['as' => 'property.land', 'uses' => 'PagesController@propertyView']);
+    Route::get('property/{slug}', ['as' => 'property.detail', 'uses' => 'PagesController@propertyView']);
 
 
 });
