@@ -101,15 +101,42 @@ class AdminController extends Controller {
         // AGENT
         if ($this->admin->role_id == 3) {
 
-            $enquiries = \App\Inquiry::select('Inquiries.*')
-                ->join('Properties', 'Properties.id', '=', 'Inquiries.property_id')
-                ->where('Properties.user_id', $this->admin->id)
-                ->orderBy('created_at', 'desc')
-                ->paginate($this->limit);
+            if ($search) {
+
+                $enquiries = \App\Inquiry::select('Inquiries.*')
+                    ->join('Properties', 'Properties.id', '=', 'Inquiries.property_id')
+                    ->where('Properties.user_id', $this->admin->id)
+                    ->orderBy('created_at', 'desc')
+                    ->paginate($this->limit);
+
+            } else {
+
+                $enquiries = \App\Inquiry::select('Inquiries.*')
+                    ->join('Properties', 'Properties.id', '=', 'Inquiries.property_id')
+                    ->where('Properties.user_id', $this->admin->id)
+                    ->orderBy('created_at', 'desc')
+                    ->paginate($this->limit);
+            }
 
         } else {
 
-            $enquiries = \App\Inquiry::orderBy('created_at', 'desc')->paginate($this->limit);
+            if ($search) {
+
+                $locale = $this->lang;
+
+                $enquiries = \App\Inquiry::whereHas('property', function ($q) use ($search, $locale) {
+
+                        $q->whereHas('propertyLanguages', function ($q) use ($search, $locale) {
+
+                            $q->where('locale', $locale)->where('title', 'like', $search .'%');
+                        });
+
+                    })->orderBy('created_at', 'desc')->paginate($this->limit);
+
+            } else {
+
+                $enquiries = \App\Inquiry::orderBy('created_at', 'desc')->paginate($this->limit);
+            }
         }
 
         return view('admin.pages.enquiries', compact('enquiries'));
