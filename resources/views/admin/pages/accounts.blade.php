@@ -9,6 +9,12 @@
 
 @section('content')
 
+<div class="search-input w25-6">
+    <form>
+        <input value="{{ Input::get('q') }}" class="w50-6" name="q" type="text" placeholder="search">
+    </form>
+</div>
+
 <m-template list class="flexbox flexbox-wrap">
 
     @if(isset($accounts) AND count($accounts) > 0)
