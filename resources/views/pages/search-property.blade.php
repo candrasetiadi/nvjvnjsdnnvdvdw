@@ -4,10 +4,11 @@
 <div class="bc-bg">
     <ul class="breadcrumb container">
         <li><a href="{{ baseUrl() }}">Home</a></li>
-        <li class="active">Search</li>
+        <li>{{ ucfirst($type) }}</li>
+        <li class="active">{{ ucfirst($titles) }}</li>
     </ul>
 </div>
-<div class="line-top"></div>
+<div class="line-top"><h3>{{ $titles }}</h3></div>
 
 <section class="" style="display:inline-block">
     <div class="col-lg-8 well">
@@ -413,8 +414,8 @@
             $("#amount_to").html(split_val[1] + ' $');
         });
 
-        $("#amount_from").html(' $');
-        $("#amount_to").html(' $');
+        $("#amount_from").html('500 $');
+        $("#amount_to").html('3000 $');
     });
 
     $(function() {

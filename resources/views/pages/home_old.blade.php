@@ -27,25 +27,25 @@
     <div class="categories">
 
         <div class="wrapper flexbox flexbox-wrap justify-between" id="villa">
-            <a href="{{ url('search') }}">
+            <a href="{{ url('search/investment-under-500000-villas') }}">
                 <div class="text-wrapper">
                     <h3>Investment <br> <span>under $500.000</span></h3>
                     <h4>First investment <br><span>8% - 12% NET R.O.I.</span></h4>
                 </div>
             </a>
-            <a href="{{ url('search') }}">
+            <a href="{{ url('search/investment-over-500000-villas') }}">
                 <div class="text-wrapper">
                     <h3>Investment <br><span>over $500.000</span></h3>
-                    <h4>Luxurious Villas <br><span>8% - 12% NET R.O.I. Capital gain</span></h4>
+                    <h4>Luxurious <br><span>8% - 12% NET R.O.I. Capital gain</span></h4>
                 </div>
             </a>
-            <a href="{{ url('search') }}">
+            <a href="{{ url('search/home-&-retirement-villas') }}">
                 <div class="text-wrapper">
                     <h3>Home &amp; <br><span>Retirement</span></h3>
                     <h4>Find here more than 1000 real estate for sale</h4>
                 </div>
             </a>
-            <a href="{{ url('search') }}">
+            <a href="{{ url('search/beachfront-properties-villas') }}">
                 <div class="text-wrapper">
                     <h3>Beachfront <br><span>Properties</span></h3>
                     <h4>Your tropical Dolce Vita</h4>

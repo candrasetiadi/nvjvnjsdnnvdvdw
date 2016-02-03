@@ -187,9 +187,20 @@ class PagesController extends Controller
     }
 
 
-    public function propertySearch()
+    public function propertySearch($src, $slug)
     {
-        return view('pages.search-property');
+        switch ($slug) {
+            case 'investment-under-500000-villas':
+                $slug = explode('-', $slug);
+                $type = end($slug);
+                $titles = $slug[0].' '.$slug[1].' $'.$slug[2];
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+        return view('pages.search-property', compact('type', 'titles'));
     }
 
     public function lawyerPage()

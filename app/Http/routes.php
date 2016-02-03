@@ -136,7 +136,7 @@ Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
 
 
     // Properties
-    Route::get('/{search}/', ['as' => 'search', 'uses' => 'PagesController@propertySearch']);
+    Route::get('/{search}/{type}', ['as' => 'search', 'uses' => 'PagesController@propertySearch']);
     Route::get('/{villa}/', ['as' => 'villa', 'uses' => 'PagesController@propertyListing']);
     Route::get('/{land}/', ['as' => 'land', 'uses' => 'PagesController@propertyListing']);
 
