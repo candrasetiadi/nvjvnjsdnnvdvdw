@@ -506,5 +506,10 @@ class PropertiesController extends Controller
         return response()->json(array('status' => 200, 'monolog' => array('title' => 'update translation success', 'message' => 'Translation has been updated')));
     }
 
+    public function postSellProperty()
+    {
+        return 'post';
+    }
+
 
 }

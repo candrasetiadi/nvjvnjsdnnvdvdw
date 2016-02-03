@@ -15,6 +15,8 @@
 
     <form class="form-horizontal" method="post">
 
+    {!! csrf_field() !!}
+
       <div class="form-group">
         <div class="col-sm-6">
           <input type="text" name="name" class="form-control" placeholder="Name">

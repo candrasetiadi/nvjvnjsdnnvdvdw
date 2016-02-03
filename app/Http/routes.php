@@ -112,6 +112,8 @@ Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
 
     Route::get('/{sell_property}/', ['as' => 'sell_property', 'uses' => 'PagesController@sellProperty']);
 
+    Route::post('/{sell_property}/', ['as' => 'sell_property.store', 'uses' => 'Properties@postSellProperty']);
+
     // Blogs
     Route::get('{blog}', ['as' => 'blog', 'uses' => 'PagesController@blogListing']);
 
