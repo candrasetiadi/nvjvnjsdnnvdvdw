@@ -2,7 +2,7 @@
 @section('title', "$blog->title")
 @section('content')
 
-<div class="content blog">
+<div class="content blog container">
     <div class="wrapper">
         <h1 class="title_page">{{ $blog->title }}</h1>
         <div class="blog-image-wrapper"><img src="{{ asset('media/blog') }}/{{ $blog->image }}" alt="{{ $blog->title }}"></div>

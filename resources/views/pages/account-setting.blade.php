@@ -2,8 +2,8 @@
 @section('content')
 
 
-<div class="bs-component">
-    <ul class="breadcrumb">
+<div class="bc-bg">
+    <ul class="breadcrumb container">
         <li><a href="{{ baseUrl() }}">Home</a></li>
         <li><a href="{{ route('account', Lang::get('url')['account']) }}">Account</a></li>
         <li class="active">Setting</li>

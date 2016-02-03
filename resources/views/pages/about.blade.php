@@ -1,8 +1,8 @@
 @extends('index')
 @section('content')
 
-<div class="bs-component">
-    <ul class="breadcrumb">
+<div class="bc-bg">
+    <ul class="breadcrumb container">
         <li><a href="{{ url() }}">Home</a></li>
         <li class="active">{{ $titles }}</li>
     </ul>
