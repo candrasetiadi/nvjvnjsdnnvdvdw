@@ -98,22 +98,30 @@ class AdminController extends Controller {
 
         $search = \Input::get('q');
 
+        $locale = $this->lang;
+
         // AGENT
         if ($this->admin->role_id == 3) {
 
             if ($search) {
 
-                $enquiries = \App\Inquiry::select('Inquiries.*')
-                    ->join('Properties', 'Properties.id', '=', 'Inquiries.property_id')
-                    ->where('Properties.user_id', $this->admin->id)
+                $enquiries = \App\Inquiry::whereHas('property', function ($q) use ($search, $locale) {
+
+                        $q->where('user_id', $this->admin->id)
+                            ->whereHas('propertyLanguages', function ($q) use ($search, $locale) {
+
+                                $q->where('locale', $locale)->where('title', 'like', $search .'%');
+                            });
+                    })
                     ->orderBy('created_at', 'desc')
                     ->paginate($this->limit);
 
             } else {
 
-                $enquiries = \App\Inquiry::select('Inquiries.*')
-                    ->join('Properties', 'Properties.id', '=', 'Inquiries.property_id')
-                    ->where('Properties.user_id', $this->admin->id)
+                $enquiries = \App\Inquiry::whereHas('property', function ($q) {
+
+                        $q->where('user_id', $this->admin->id);
+                    })
                     ->orderBy('created_at', 'desc')
                     ->paginate($this->limit);
             }
@@ -121,8 +129,6 @@ class AdminController extends Controller {
         } else {
 
             if ($search) {
-
-                $locale = $this->lang;
 
                 $enquiries = \App\Inquiry::whereHas('property', function ($q) use ($search, $locale) {
 
