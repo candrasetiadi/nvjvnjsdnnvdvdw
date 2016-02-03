@@ -41,7 +41,7 @@
                         <label class="col-sm-2 control-label">Location</label>
                         <span class="col-lg-8">
                             <div class="input-group">
-                                <input class="form-control" id="searchTextField" type="text" value="Bali" placeholder="" style="width:950px;">
+                                <input class="form-control" id="searchTextField" type="text" value="Bali" placeholder="" style="width:100%;">
                             </div>
                         </span>
                     </div>
@@ -449,7 +449,7 @@
             prices_to = $("#amount_end").val(),
             check = $("input[name='type']:checked").val();
 
-        alert(check);
+        // alert(check);
     }
 
 </script>
