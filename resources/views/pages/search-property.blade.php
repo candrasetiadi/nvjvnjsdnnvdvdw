@@ -8,7 +8,7 @@
         <li class="active">{{ ucfirst($titles) }}</li>
     </ul>
 </div>
-<div class="line-top"><h3>{{ $titles }}</h3></div>
+<div class="line-top"><h3><small>{{ $titles }}</small></h3></div>
 
 <section class="" style="display:inline-block">
     <div class="col-lg-8 well">
@@ -19,20 +19,20 @@
                         <label class="col-sm-2 control-label">Type</label>
                         <div class="col-lg-8 col-lg-offset">
                             <label class="search-type">
-                                >$500.000 &nbsp;
-                                <input type="radio" name="type" id="radio1">
+                                <$500.000 &nbsp;
+                                <input type="radio" name="type" id="radio1" {{ ($srctype == '1') ? 'checked' : '' }} >
                             </label>
                             <label class="search-type">
-                                <$500.000 &nbsp;
-                                <input type="radio" name="type" id="radio2">
+                                >$500.000 &nbsp;
+                                <input type="radio" name="type" id="radio2" {{ ($srctype == '2') ? 'checked' : '' }} >
                             </label>
                             <label class="search-type">
                                 Home & Retir. &nbsp;
-                                <input type="radio" name="type" id="radio3">
+                                <input type="radio" name="type" id="radio3" {{ ($srctype == '3') ? 'checked' : '' }} >
                             </label>
                             <label class="search-type">
                                 Beachfront &nbsp;
-                                <input type="radio" name="type" id="radio4">
+                                <input type="radio" name="type" id="radio4" {{ ($srctype == '4') ? 'checked' : '' }} >
                             </label>
                         </div>
                     </div>

@@ -4,12 +4,11 @@
 <div class="bc-bg">
     <ul class="breadcrumb container">
         <li><a href="{{ baseUrl() }}">Home</a></li>
-        <li class="active">Contact</li>
+        <li class="active">{{ ucfirst($titles) }}</li>
     </ul>
 </div>
-<div class="line-top"></div>
+<div class="line-top"><h3><small>{{ $titles }}</small></h3></div>
 <div class="container">
-    <h3>CONTACT</h3>
     <div class="row">
     	<div class="col-lg-12 bs-component" style="height:340px;">
 	    	<div id="googleMap" style="width:100%;height:300px;"></div>

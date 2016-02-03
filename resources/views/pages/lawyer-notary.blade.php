@@ -3,13 +3,12 @@
 <div class="bc-bg">
     <ul class="breadcrumb container">
         <li><a href="{{ baseUrl() }}">Home</a></li>
-        <li class="active">Lawyer & Notary</li>
+        <li class="active">{{ ucfirst($titles) }}</li>
     </ul>
 </div>
-<div class="line-top"></div>
+<div class="line-top"><h3><small>{{ $titles }}</small></h3></div>
 <div class="container">
 
-    <h3>LAWYER & NOTARY</h3>
     <div class="row">
     	<div class="col-lg-4">
     		<h3>Visa Categories</h3>

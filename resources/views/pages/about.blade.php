@@ -4,10 +4,10 @@
 <div class="bs-component">
     <ul class="breadcrumb">
         <li><a href="{{ url() }}">Home</a></li>
-        <li class="active">About</li>
+        <li class="active">{{ $titles }}</li>
     </ul>
 </div>
-<div class="line-top"></div>
+<div class="line-top"><h3><small>{{ $titles }}</small></h3></div>
 
 <div class="container">
     <h3>ABOUT</h3>

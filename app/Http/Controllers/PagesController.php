@@ -32,20 +32,20 @@ class PagesController extends Controller
 
     public function about() {
         //
-
-        return view('pages.about');
+        $titles = 'About';
+        return view('pages.about', compact('titles'));
     }
 
     public function contact() {
         //
-
-        return view('pages.contact');
+        $titles = 'Contact';
+        return view('pages.contact', compact('titles'));
     }
 
     public function testimony() {
         //
-
-        return view('pages.testimony');
+        $titles = 'Testimonial';
+        return view('pages.testimony', compact('titles'));
     }
 
     public function sellProperty() {
@@ -56,8 +56,8 @@ class PagesController extends Controller
 
     public function lawyerNotary() {
         //
-
-        return view('pages.lawyer-notary');
+        $titles = 'Lawyer & Notary';
+        return view('pages.lawyer-notary', compact('titles'));
     }
 
     public function login() {
@@ -189,18 +189,19 @@ class PagesController extends Controller
 
     public function propertySearch($src, $slug)
     {
-        switch ($slug) {
-            case 'investment-under-500000-villas':
-                $slug = explode('-', $slug);
-                $type = end($slug);
-                $titles = $slug[0].' '.$slug[1].' $'.$slug[2];
-                break;
-            
-            default:
-                # code...
-                break;
+        if ( $slug != 'all' ) {
+            $slug = explode('-', $slug);
+            $type = end($slug);
+            $srctype = $slug[ 3 ];
+            $titles = ($srctype == '1' || $srctype == '2') ? $slug[ 0 ] .' '. $slug [ 1 ] .' $'. $slug[ 2 ] : $slug[ 0 ] .' '. $slug [ 1 ] .' '. $slug[ 2 ];
         }
-        return view('pages.search-property', compact('type', 'titles'));
+        else {
+            $type = 'Search';
+            $srctype = '';
+            $titles = 'All';
+        }
+
+        return view('pages.search-property', compact('type', 'titles', 'srctype'));
     }
 
     public function lawyerPage()
