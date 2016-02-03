@@ -114,7 +114,7 @@ $factory->define(App\Property::class, function (Faker\Generator $faker) {
         'currency' => $faker->randomElement($array = array ('IDR', 'USD', 'EUR')),
         'price' => $faker->randomNumber(7),
         'discount' => $faker->randomNumber(2),
-        'type' => $faker->randomElement($array = array ('for sale', 'for rent')),
+        'type' => $faker->randomElement($array = array ('free hold', 'lease hold')),
         'publish' => $faker->randomElement($array = array ('draft', 'moderation', 'publish')),
         'building_size' => $faker->randomNumber(2),
         'land_size' => $faker->randomNumber(3),

@@ -23,7 +23,7 @@ class CreatePropertiesTable extends Migration
             $table->enum('currency', array('IDR', 'USD', 'EUR'));
             $table->double('price')->default(0);
             $table->double('discount')->default(0);
-            $table->enum('type', array('for sale', 'for rent'));
+            $table->enum('type', array('free hold', 'lease hold'));
 
             $table->enum('publish', array('draft', 'moderation', 'publish'));
             $table->double('building_size')->default(0);

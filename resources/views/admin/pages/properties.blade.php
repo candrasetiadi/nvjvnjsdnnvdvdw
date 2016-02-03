@@ -217,8 +217,8 @@
                             <input type="text" select id="property-input-type" name="type" value="for sell" required>
                             <label for="property-input-type">type</label>
                             <m-select>
-                                <m-option value="for sell">for sell</m-option>
-                                <m-option value="for rent">for rent</m-option>
+                                <m-option value="free hold">free hold</m-option>
+                                <m-option value="lease hold">lease hold</m-option>
                             </m-select>
                         </m-input>
 
