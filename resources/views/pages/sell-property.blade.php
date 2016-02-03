@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="bs-component">
-    <ul class="breadcrumb">
+    <ul class="breadcrumb container">
         <li><a href="{{ baseUrl() }}">Home</a></li>
         <li class="active">Sell Property</li>
     </ul>
