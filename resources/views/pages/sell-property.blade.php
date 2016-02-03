@@ -1,7 +1,7 @@
 @extends('index')
 @section('content')
 
-<div class="bs-component">
+<div class="bc-bg">
     <ul class="breadcrumb container">
         <li><a href="{{ baseUrl() }}">Home</a></li>
         <li class="active">Sell Property</li>
