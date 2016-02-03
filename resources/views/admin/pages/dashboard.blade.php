@@ -4,8 +4,6 @@
 
 <div class="dashboard-wrapper flexbox flexbox-wrap justify-between">
 
-   {{ bcrypt('Viceversa123') }}
-
     <div class="md-card shadow dashboard-item flexbox flexbox-wrap" id="overview">
         <h3>Overview</h3>
 

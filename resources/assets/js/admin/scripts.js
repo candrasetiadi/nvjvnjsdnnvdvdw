@@ -147,6 +147,15 @@ $(document).on('click', '.modal-open', function(e) {
 
 
 
+$(document).on('change', 'input[select]', function() {
+
+    $(this).siblings('label').html($(this).val());
+
+    console.log($(this));
+});
+
+
+
 // OLD
 $(document).on('click', '.modal-close', function(e) {
 
@@ -433,6 +442,13 @@ function populateBlogForm(data) {
         if(k == 'content' || k == 'image') { return true; }
 
         $('#blog-input-' + k).val(v);
+
+        var isSelect = $('#property-input-' + k).attr('select');
+
+        if(typeof isSelect !== typeof undefined && isSelect !== false) {
+
+            $('#property-input-' + k).siblings('label').html(v);
+        }
     });
 
     $('#blog-content').html(data.content);
@@ -770,6 +786,13 @@ var Matter = {
                 $.each(data, function(k, v) {
 
                     $('#inquiry-input-' + k).val(v);
+
+                    var isSelect = $('#property-input-' + k).attr('select');
+
+                    if(typeof isSelect !== typeof undefined && isSelect !== false) {
+
+                        $('#property-input-' + k).siblings('label').html(v);
+                    }
                 });
 
                 modalOpen('#enquiry-add');
@@ -838,6 +861,13 @@ var Matter = {
                 $.each(data, function(k, v) {
 
                     if(k != 'password') $('#customer-input-' + k).val(v);
+
+                    var isSelect = $('#property-input-' + k).attr('select');
+
+                    if(typeof isSelect !== typeof undefined && isSelect !== false) {
+
+                        $('#property-input-' + k).siblings('label').html(v);
+                    }
                 });
 
                 modalOpen('#customer-add');
@@ -1025,7 +1055,14 @@ var Matter = {
 
                 $.each(data, function(k, v) {
 
-                   $('#property-input-' + k).val(v);
+                    $('#property-input-' + k).val(v);
+
+                    var isSelect = $('#property-input-' + k).attr('select');
+
+                    if(typeof isSelect !== typeof undefined && isSelect !== false) {
+
+                        $('#property-input-' + k).siblings('label').html(v);
+                    }
 
                 });
 
@@ -1037,8 +1074,8 @@ var Matter = {
                     facilityHtml += ''
 
                         + '<m-input w33-8>'
-                            + '<input type="text" value="'+ v.description +'" name="facilities['+ v.name +']" id="property-input-facilities['+ v.name +']" required>'
-                            + '<label for="facilities['+ v.name +']">'+ v.name +'</label>'
+                        + '<input type="text" value="'+ v.description +'" name="facilities['+ v.name +']" id="property-input-facilities['+ v.name +']" required>'
+                        + '<label for="facilities['+ v.name +']">'+ v.name +'</label>'
                         + '</m-input>'
 
                         + '<input type="hidden" name="facility_id[' + v.name + ']" value="' + v.id + '">';
@@ -1056,23 +1093,23 @@ var Matter = {
                     distanceHtml += '<div class="m-input-wrapper w50-6">'
                         + '<input type="text" value="' + v.value + '" name="distance_value[' + v.from + ']" id="distance_value_' + k + '" required>'
                         + '<label for="distance_value_' + k + '">' + v.from + '</label>'
-                    + '</div>'
+                        + '</div>'
 
-                    + '<m-input select w50-6>'
+                        + '<m-input select w50-6>'
                         + '<input type="text" value="' + v.unit + '" select name="distance_unit[' + v.from + ']" required>'
                         + '<label for="property-input-distance_unit_beach">unit</label>'
                         + '<m-select>'
-                            + '<m-option value="km" selected>KM</m-option>'
-                            + '<m-option value="m">Meters</m-option>'
-                            + '<m-option value="minutes">Minutes</m-option>'
-                            + '<m-option value="hours">Hours</m-option>'
+                        + '<m-option value="km" selected>KM</m-option>'
+                        + '<m-option value="m">Meters</m-option>'
+                        + '<m-option value="minutes">Minutes</m-option>'
+                        + '<m-option value="hours">Hours</m-option>'
                         + '</m-select>'
-                    + '</m-input>'
+                        + '</m-input>'
 
-                    + '<input type="hidden" name="distance_id[' + v.from + ']" value="' + v.id + '">';
+                        + '<input type="hidden" name="distance_id[' + v.from + ']" value="' + v.id + '">';
 
-                });    
-                
+                });
+
                 $('#caroussel-distance').html(distanceHtml);
                 // End
 
@@ -1081,15 +1118,15 @@ var Matter = {
 
                 $.each(data.gallery, function(k, v) {
 
-                         galleryHtml += '<m-gallery-item style="background-image: url(\'' + baseUrl + '/uploads/property/' + v.file + '\')" data-id="' + v.id + '">'
-                            + '<m-gallery-item-menu>'
-                                + '<m-button class="make-thumbnail" data-function="makeThumbnail">'
-                                +'<i class="material-icons">star_border</i>'
-                                + '</m-button>'
-                                + '<m-button delete data-url="property/image/destroy">'
-                                    + '<i class="material-icons">close</i>'
-                                + '</m-button>'
-                            + '</m-gallery-item-menu>'
+                    galleryHtml += '<m-gallery-item style="background-image: url(\'' + baseUrl + '/uploads/property/' + v.file + '\')" data-id="' + v.id + '">'
+                        + '<m-gallery-item-menu>'
+                        + '<m-button class="make-thumbnail" data-function="makeThumbnail">'
+                        +'<i class="material-icons">star_border</i>'
+                        + '</m-button>'
+                        + '<m-button delete data-url="property/image/destroy">'
+                        + '<i class="material-icons">close</i>'
+                        + '</m-button>'
+                        + '</m-gallery-item-menu>'
                         + '</m-gallery-item>';
 
                 });
@@ -1120,7 +1157,7 @@ var Matter = {
 
                 Monolog.confirm('delete image', 'Are you sure to delete this property\'s image? This cannot be undone!', function() {
 
-                   Ajax.get(url + '/' + id, removePropertyImage, id);
+                    Ajax.get(url + '/' + id, removePropertyImage, id);
                 });
             });
 
@@ -1284,7 +1321,14 @@ var Matter = {
 
                 $.each(data, function(k, v) {
 
-                   $('#accounts-input-' + k).val(v);
+                    $('#accounts-input-' + k).val(v);
+
+                    var isSelect = $('#property-input-' + k).attr('select');
+
+                    if(typeof isSelect !== typeof undefined && isSelect !== false) {
+
+                        $('#property-input-' + k).siblings('label').html(v);
+                    }
 
                 });
 
@@ -1333,6 +1377,13 @@ var Matter = {
                 $.each(data, function(k, v) {
 
                     $('#general-input-' + k).val(v);
+
+                    var isSelect = $('#property-input-' + k).attr('select');
+
+                    if(typeof isSelect !== typeof undefined && isSelect !== false) {
+
+                        $('#property-input-' + k).siblings('label').html(v);
+                    }
                 });
 
                 modalOpen('#settings-general-form');
