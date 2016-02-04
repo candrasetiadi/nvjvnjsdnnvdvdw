@@ -125,7 +125,7 @@ $factory->define(App\Property::class, function (Faker\Generator $faker) {
 
         'code' => 'VL' . $faker->randomNumber(4),
 
-        'map_latitude' => rand(8082268, 8842932) / 1000000,
+        'map_latitude' => (rand(8082268, 8842932) / 1000000) * -1,
         'map_longitude' => rand(114443923, 115689498) / 1000000,
 
         'view_north' => $faker->sentence($nbWords = 3, $variableNbWords = true),
