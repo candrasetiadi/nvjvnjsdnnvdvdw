@@ -116,7 +116,7 @@ class PagesController extends Controller
 
 
     public function propertyListing($cat) {
-
+        
         $limit = 24;
 
         foreach(\Lang::get('url') as $k => $v) {
@@ -236,8 +236,10 @@ class PagesController extends Controller
     public function blogListing() {
         //
         $blogs = Blog::orderBy('id', 'DESC')->get();
+        
+        $titles = 'Blog';
 
-        return view('pages.blog-listing', ['blogs' => $blogs]);
+        return view('pages.blog-listing', compact('blogs', 'titles'));
     }
 
 

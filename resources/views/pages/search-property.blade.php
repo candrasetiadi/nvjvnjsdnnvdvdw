@@ -41,7 +41,7 @@
                         <label class="col-sm-2 control-label">Location</label>
                         <span class="col-lg-8">
                             <div class="input-group">
-                                <input class="form-control" id="searchTextField" type="text" value="Bali" placeholder="" style="width:100%;">
+                                <input class="form-control" id="searchTextField" type="text" value="Bali" placeholder="" style="min-width:500px;">
                             </div>
                         </span>
                     </div>
@@ -119,23 +119,23 @@
                                                 <ul>
                                                     <li>
                                                         <i class="fa fa-barcode block m-b-xs"></i>
-                                                        <span class="spanhover">Code</span><span class="spanhover">VL 123</span>
+                                                        <span class="spanhover">Code</span><span class="spanhover">{{ $value->code }}</span>
                                                     </li>
                                                     <li>
                                                         <i class="fa fa-map-marker block m-b-xs"></i>
-                                                        <span class="spanhover">Location</span><span class="spanhover">Balangan</span>
+                                                        <span class="spanhover">Location</span><span class="spanhover">{{ $value->city }}</span>
                                                     </li>
                                                     <li>
                                                         <i class="fa fa-clock-o block m-b-xs"></i>
-                                                        <span class="spanhover">Status</span><span class="spanhover">Leasehold / 19 Years</span>
+                                                        <span class="spanhover">Status</span><span class="spanhover">{{ $value->type }} </span>
                                                     </li>
                                                     <li>
                                                         <i class="fa fa-arrows-alt block m-b-xs"></i>
-                                                        <span class="spanhover">Land Size</span><span class="spanhover">3.08 are</span>
+                                                        <span class="spanhover">Land Size</span><span class="spanhover">{{ $value->land_size }} are</span>
                                                     </li>
                                                     <li>
                                                         <i class="fa fa-home block m-b-xs"></i>
-                                                        <span class="spanhover">Building Size</span><span class="spanhover">105 sqm</span>
+                                                        <span class="spanhover">Building Size</span><span class="spanhover">{{ $value->building_size }} sqm</span>
                                                     </li>
                                                     <li>
                                                         <i class="fa fa-bed block m-b-xs">&#xf236;</i>
@@ -161,20 +161,21 @@
                                     </div>
                                     <div class="item hovereffect">
                                         <img src="http://placehold.it/800x600" alt="Chania" height="345">
+                                        <p>USD {{ $value->price }}</p>
                                         <div class="overlay">
-                                           <h2>USD 150,000</h2>
+                                           <h2>USD {{ $value->price }}</h2>
                                         </div>
                                     </div>
                                     <div class="item hovereffect">
                                         <img src="http://placehold.it/800x600" alt="Chania" height="345">
                                         <div class="overlay">
-                                           <h2>USD 150,000</h2>
+                                           <h2>USD {{ $value->price }}</h2>
                                         </div>
                                     </div>
                                     <div class="item hovereffect">
                                         <img src="http://placehold.it/800x600" alt="Chania" height="345">
                                         <div class="overlay">
-                                           <h2>USD 150,000</h2>
+                                           <h2>USD {{ $value->price }}</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -218,42 +219,6 @@
                 });
             });
         });
-
-        var json = [
-            {
-                "st":"Pantai Kuta",
-                "lat": -8.714309, 
-                "lng": 115.168725,
-                "price": 479000
-            },
-            {
-                "st":"Hotel Pullman",
-                "lat": -8.709664, 
-                "lng": 115.167513,
-                "price": 2147750
-            }
-        ];
-
-        var json2 = [
-            {
-                "st":"Lazy bar & jungle",
-                "lat": -8.710594, 
-                "lng": 115.166912,
-                "price": 1000000
-            },
-            {
-                "st":"The Stones",
-                "lat": -8.711178, 
-                "lng": 115.167271,
-                "price": 299510
-            },
-            {
-                "st":"Bali Anggrek inn",
-                "lat": -8.712295, 
-                "lng": 115.167759,
-                "price": 398000
-            }
-        ];
 
         // init map
         var map = new google.maps.Map(document.getElementById('map'), {

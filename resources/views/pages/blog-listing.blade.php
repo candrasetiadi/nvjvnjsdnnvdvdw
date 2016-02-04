@@ -5,14 +5,13 @@
 <div class="bc-bg">
     <ul class="breadcrumb container">
         <li><a href="{{ baseUrl() }}">Home</a></li>
-        <li class="active">Account</li>
+        <li class="active">{{ ucfirst($titles) }}</li>
     </ul>
 </div>
-<div class="line-top"></div>
+<div class="line-top"><h3><small>{{ $titles }}</small></h3></div>
 
 <div class="content blogs container">
     <div class="wrapper">
-        <h1 class="title_page">Blogs</h1>
         <div class="column-left">
 
             @foreach($blogs as $blog)

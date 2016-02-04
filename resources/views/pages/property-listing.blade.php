@@ -6,7 +6,8 @@
         <li class="active">{{ ucfirst($type) }}</li>
     </ul>
 </div>
-<div class="line-top"></div>
+<div class="line-top"><h3><small>{{ $type }}</small></h3></div></div>
+<br>
 <div class="container">
     <div class="row list jscroll">
 
