@@ -58,11 +58,24 @@
             <tr>
                 <td>
                     <p>You have received an invitation to sign up as an agent and be able to manage content on kibarer's content management system. Please login using the email address you received this message on.</p>
+
+
                 </td>
             </tr>
             <tr>
+                <td>Your Email</td>
+                <td>: {{ $email }}</td>
+
+            </tr>
+            <tr>
+                <td>Your Password</td>
+                <td>: {{ $password }}</td>
+
+            </tr>
+
+            <tr>
                 <td>
-                    <a href="kibarer.com/admin/register?email=boris">register now</a>
+                    <a href="{{ url('admin/register?email=') . $email }}">register now</a>
                 </td>
             </tr>
         </table>

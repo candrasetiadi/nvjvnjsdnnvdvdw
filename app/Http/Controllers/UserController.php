@@ -49,7 +49,7 @@ class UserController extends Controller {
         $user->password = bcrypt($password);
 
 
-        Mail::send('emails.invite', ['email' => $user->email], function ($message) use ($user) {
+        Mail::send('emails.invite', ['email' => $user->email, 'password' => $password], function ($message) use ($user) {
 
             $message->from('boris@kesato.com', 'Kibarer');
 
