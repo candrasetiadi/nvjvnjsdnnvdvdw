@@ -60,6 +60,35 @@ class PagesController extends Controller
         return view('pages.lawyer-notary', compact('titles'));
     }
 
+    public function register() {
+        //
+        if (\Auth::customer()->check()) return redirect('account');
+
+        return view('pages.register');
+    }
+
+    public function confirm($confirmation_code)
+    {
+        if( ! $confirmation_code)
+        {
+            throw \App::abort(404);
+        }
+
+        $customer = \App\Customer::where('confirmation_code', $confirmation_code)->first();
+
+        if ( ! $customer)
+        {
+            throw \App::abort(404);
+        }
+
+        $customer->active = 1;
+        $customer->confirmed = 1;
+        $customer->confirmation_code = null;
+        $customer->save();
+
+        return redirect()->route('login', \Lang::get('url')['login'])->with('alert-success', 'You have successfully verified your account.');;
+    }
+
     public function login() {
         //
         if (\Auth::customer()->check()) return redirect('account');

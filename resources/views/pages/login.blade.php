@@ -9,6 +9,17 @@
 <div class="line-top"><h3><small>{{ 'login' }}</small></h3></div>
 <br>
 <div class="container">
+
+
+  <div class="flash-message">
+    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+      @if(Session::has('alert-' . $msg))
+
+      <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+      @endif
+    @endforeach
+  </div> <!-- end .flash-message -->
+  
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <div class="panel panel-primary">
@@ -23,13 +34,10 @@
             <label for="exampleInputPassword1">Password</label>
             <input class="form-control" type="password" name="password" id="password">
           </div>
-          <div class="checkbox">
-            <label>
-              <input name="remember" type="checkbox"> Remember Me
-            </label>
-          </div>
           <button type="submit" class="btn btn-primary">Login</button>
           {!! Form::close() !!}
+
+          <p class="pull-right"><a href="{{ route('register', Lang::get('url')['register']) }}">Register</a></p>
         </div>
       </div>
     </div>

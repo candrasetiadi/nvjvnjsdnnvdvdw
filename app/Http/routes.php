@@ -122,10 +122,17 @@ Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
 
     // Customer
     Route::get('/{login}/', ['as' => 'login', 'uses' => 'PagesController@login']);
-    Route::post('/{login}/', 'Auth\AuthController@postLogin');
+
+    Route::post('login', 'Auth\AuthController@postLogin');
     Route::get('/{logout}/', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 
     Route::get('/{register}/', ['as' => 'register', 'uses' => 'PagesController@register']);
+    Route::post('register', 'Auth\AuthController@postRegister');
+
+    Route::get('register/verify/{confirmationCode}', [
+        'as' => 'confirm',
+        'uses' => 'PagesController@confirm'
+    ]);
 
     Route::group(['middleware' => 'auth.customer'], function () {
 

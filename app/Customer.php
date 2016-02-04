@@ -59,6 +59,14 @@ CanResetPasswordContract
         return $this->hasMany('App\Inquiry');
     }
 
+    public function getUsername($firstName) {
+        $username = str_slug($firstName);
+        $userRows  = $this->whereRaw("username REGEXP '^{$username}([0-9]*)?$'")->get();
+        $countUser = count($userRows) + 1;
+
+        return ($countUser > 1) ? "{$username}{$countUser}" : $username;
+    }
+
     public static function boot()
     {
         parent::boot();

@@ -8,6 +8,7 @@
         <li class="active">Account</li>
     </ul>
 </div>
+<div class="line-top"></div>
 
 <div class="content blogs container">
     <div class="wrapper">

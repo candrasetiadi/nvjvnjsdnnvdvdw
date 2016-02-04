@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Customer;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -10,6 +11,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Mail;
 
 class AuthController extends Controller
 {
@@ -118,6 +120,56 @@ class AuthController extends Controller
 
         return redirect()->back();
 
+    }
+
+
+    // Customer registration
+    public function postRegister(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|unique:Customers',
+            'password' => 'required|confirmed',
+            'firstname' => 'required'
+        ]);
+
+
+        $confirmation_code = str_random(30);
+
+        $customer = new Customer;
+
+        $customer->username = $customer->getUsername($request->firstname);
+        $customer->email = $request->email;
+        $customer->password = \Hash::make($request->password);
+        $customer->firstname = $request->firstname;
+        $customer->lastname = $request->lastname;
+        $customer->address = $request->address;
+        $customer->city = $request->city;
+        $customer->province = $request->province;
+        $customer->country = $request->country;
+
+        $customer->confirmation_code = $confirmation_code;
+
+        $customer->save();
+
+        // send confirm email
+        $this->sendConfirmationEmail($customer->email, $confirmation_code);
+
+        $request->session()->flash('alert-success', 'Thankyou for registration. Please check your email address to activate your account.');
+
+        return redirect()->back();
+    }
+
+    public function sendConfirmationEmail($email, $confirmation_code)
+    {
+
+        Mail::send('emails.confirmation', ['confirmation_code' => $confirmation_code], function($message) use ($email) {
+
+            $message->from('boris@kesato.com', 'Kibarer');
+
+            $message->to($email, $email)->subject('Verify your email address');
+        });
+
+        return true;
     }
 
 }
