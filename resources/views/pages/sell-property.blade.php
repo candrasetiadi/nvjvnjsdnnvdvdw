@@ -60,7 +60,7 @@
 
 @section('scripts')
   <script type="text/javascript">
-
+    var markersToRemove = [];
     var myCenter=new google.maps.LatLng(-8.4420734,114.9356164);
 
     function initialize() {
@@ -101,7 +101,7 @@
       });
 
       google.maps.event.addListener(map, "click", function (e) {
-
+        removeMarkers();
         var latLng = e.latLng,
             strlatlng = latLng.toString(),
             spllatlng = strlatlng.split(','),
@@ -123,6 +123,14 @@
           position: location, 
           map: map
       });
+
+      markersToRemove.push(marker);
+    }
+
+    function removeMarkers() {
+      for(var i = 0; i < markersToRemove.length; i++) {
+          markersToRemove[i].setMap(null);
+      }
     }
   </script>
 @endsection
