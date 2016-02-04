@@ -84,14 +84,28 @@
         </div>
 
         <div class="col-md-4">
-            <!-- <div class="panel panel-default">
+            <div class="panel panel-default">
                 <div class="panel-heading">
-                    <span class="currency col-md-6">{!! \Config::get('currency') !!} {{ number_format($property->price, 2) }} </span> <span class="col-md-6 text-right">per Night</span>
+                   <span class="currency "><sup>{!! \Config::get('currency') !!} </sup> {{ number_format($property->price, 2) }} </span> 
                 </div>
                 <div class="panel-body">
-                    
+                    <div class="" >
+                        <div class="col-lg-12" style="padding-bottom: 20px;">
+                            <a href="#" class="btn btn-primary btn-lg btn-block">Inquire this property</a>
+                        </div>
+                    </div>
+                    <br>
+                    <div class=" text-center" >
+                        <div class="col-lg-6">
+                            <a href="#" class="btn btn-default fa fa-print"> Print PDF</a>
+                        </div>
+                        <div class="col-lg-6">
+                            <a href="#" class="btn btn-default fa fa-heart-o"> Favorites</a>
+                        </div>
+                    </div>
+                        
                 </div>
-            </div> -->
+            </div>
         </div>
 
     </div>
