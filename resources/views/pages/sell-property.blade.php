@@ -1,79 +1,59 @@
 @extends('index')
 @section('content')
-<style type="text/css">
-  .controls {
-  margin-top: 10px;
-  border: 1px solid transparent;
-  border-radius: 2px 0 0 2px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  height: 32px;
-  outline: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
 
-#pac-input {
-  background-color: #fff;
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
-  margin-left: 12px;
-  padding: 0 11px 0 13px;
-  text-overflow: ellipsis;
-  width: 300px;
-}
-</style>
 <div class="bc-bg">
     <ul class="breadcrumb container">
         <li><a href="{{ baseUrl() }}">Home</a></li>
-        <li class="active">Sell Property</li>
+        <li class="active">{{ ucfirst($titles) }}</li>
     </ul>
 </div>
-<div class="line-top"></div>
-
+<div class="line-top"><h3><small>{{ $titles }}</small></h3></div>
+<br>
 <div class="container">
+  <div class="col-md-12">
+    <div class="panel panel-primary">
+      <div class="panel-body">
+        <form class="form-horizontal" method="post">
 
-    <h3>SELL PROPERTY</h3>
+        {!! csrf_field() !!}
 
-    <form class="form-horizontal" method="post">
+          <div class="form-group">
+            <div class="col-sm-6">
+              <input type="text" name="name" class="form-control" placeholder="Name">
+            </div>
+            <div class="col-sm-6">
+              <input type="email" name="email" class="form-control" placeholder="Email">
+            </div>
+          </div>
 
-    {!! csrf_field() !!}
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" name="phone" class="form-control" placeholder="Phone">
+            </div>
+          </div>
 
-      <div class="form-group">
-        <div class="col-sm-6">
-          <input type="text" name="name" class="form-control" placeholder="Name">
-        </div>
-        <div class="col-sm-6">
-          <input type="email" name="email" class="form-control" placeholder="Email">
-        </div>
+          <div class="form-group map">  
+            <div class="col-sm-12">
+              <textarea name="comment" class="form-control" rows="5" placeholder="Comment"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group map-box">
+            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+            <div id="googleMap" style="width:100%;height:500px;"></div>
+            <input type="hidden" value="0" name="map_latitude" id="map_latitude">
+            <input type="hidden" value="0" name="map_longitude" id="map_longitude">
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-12">
+              <button type="submit" class="btn btn-primary">Send</button>
+            </div>
+          </div>
+        </form>
       </div>
-
-      <div class="form-group">
-        <div class="col-sm-12">
-          <input type="text" name="phone" class="form-control" placeholder="Phone">
-        </div>
-      </div>
-
-      <div class="form-group map">  
-        <div class="col-sm-12">
-          <textarea name="comment" class="form-control" rows="5" placeholder="Comment"></textarea>
-        </div>
-      </div>
-
-      <div class="form-group map-box">
-        <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-        <div id="googleMap" style="width:100%;height:300px;"></div>
-        <input type="hidden" value="0" name="map_latitude">
-        <input type="hidden" value="0" name="map_longitude">
-      </div>
-
-      <div class="form-group">
-        <div class="col-sm-12">
-          <button type="submit" class="btn btn-primary">Send</button>
-        </div>
-      </div>
-    </form>
-
+    </div>
+  </div>
 </div>
 
 @stop
@@ -81,12 +61,12 @@
 @section('scripts')
   <script type="text/javascript">
 
-    var myCenter=new google.maps.LatLng(-8.6714246,115.1607031);
+    var myCenter=new google.maps.LatLng(-8.4420734,114.9356164);
 
     function initialize() {
       var mapProp = {
         center:myCenter,
-        zoom:15,
+        zoom:10,
         mapTypeId:google.maps.MapTypeId.ROADMAP
       };
 
@@ -120,8 +100,29 @@
           map.fitBounds(bounds);
       });
 
+      google.maps.event.addListener(map, "click", function (e) {
+
+        var latLng = e.latLng,
+            strlatlng = latLng.toString(),
+            spllatlng = strlatlng.split(','),
+            lats = spllatlng[0].replace("(", ""), 
+            longs = spllatlng[1].replace(")", "");
+
+        $("#map_latitude").val(lats);
+        $("#map_longitude").val(longs);
+        placeMarker(latLng, map);
+
+      });
+
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
+
+    function placeMarker(location, map) {
+      var marker = new google.maps.Marker({
+          position: location, 
+          map: map
+      });
+    }
   </script>
 @endsection

@@ -77,7 +77,7 @@
                             <a href class="btn btn-default fa fa-sort-amount-desc">&nbsp; Prices</a>
                         </div>
                         <div class="col-lg-6 text-right pagination">
-                            Villas Found
+                            <strong><span class="badge">{{ count($property) }}</span></strong>&nbsp;{{ $type }} Found
                         </div>
                     </div>
                     <div class="col-lg-6 text-right">
@@ -92,27 +92,28 @@
                         </ul>
                     </div>
                 </div>
-                @for( $i = 0; $i <= 6; $i++ )
+                <?php $i = 0; ?>
+                @foreach( $property as $value )
                     <div class="col-lg-6 col-sm-6 col-xs-12" style="margin-bottom:30px;">
                         <a href="#">
-                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                            <div id="myCarousel{{ $i }}" class="carousel slide" data-ride="carousel">
                                 <!-- Indicators -->
                                 <ol class="carousel-indicators">
-                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                                    <li data-target="#myCarousel{{ $i }}" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel{{ $i }}" data-slide-to="1"></li>
+                                    <li data-target="#myCarousel{{ $i }}" data-slide-to="2"></li>
+                                    <li data-target="#myCarousel{{ $i }}" data-slide-to="3"></li>
                                 </ol>
 
                                 <!-- Wrapper for slides -->
                                 <div class="carousel-inner" role="listbox">
                                     <div class="item active hovereffect">
                                         <img src="http://placehold.it/800x600" alt="Chania" height="345">
-                                        <p>USD 150,000</p>
+                                        <p>USD {{ $value->price }}</p>
                                         <div class="overlay">
                                             <div class="panel panel-header">
-                                                <h2>USD 150,000</h2>
-                                                <p> Brand new 2 bedroom villa for sale in balangan</p>
+                                                <h2>USD {{ $value->price }}</h2>
+                                                <!-- <p> Brand new 2 bedroom villa for sale in balangan</p> -->
                                             </div>
                                             <div class="pabel-body" style="min-height:220px;">
                                                 <ul>
@@ -179,18 +180,19 @@
                                 </div>
 
                                 <!-- Left and right controls -->
-                                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                <a class="left carousel-control" href="#myCarousel{{ $i }}" role="button" data-slide="prev">
                                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                 </a>
-                                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                <a class="right carousel-control" href="#myCarousel{{ $i }}" role="button" data-slide="next">
                                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                 </a>
                             </div>
                         </a>
                     </div>
-                @endfor
+                    <?php $i++; ?>
+                @endforeach
             </div>
         </div>
     </div>
@@ -204,6 +206,7 @@
 
 <script>
     var markersToRemove = [];
+    var property = <?php echo json_encode($property); ?>;
 
     $(document).ready(function(){
 
@@ -298,11 +301,13 @@
 
         removeMarkers();
 
-        if (json.length > 0) {
+        if (property.length > 0) {
             var i = 0;
-            json.forEach(function (item) {
+            property.forEach(function (item) {
+                console.log(item.map_latitude);
+                console.log(item.map_longitude);
                 marker = new MarkerWithLabel({
-                    position: new google.maps.LatLng(item.lat, item.lng),
+                    position: new google.maps.LatLng(item.map_latitude, item.map_longitude),
                     map: map,
                     icon: dots
                     // labelContent: "",
@@ -367,9 +372,9 @@
 
             removeMarkers();
             
-            if (json2.length > 0) {
+            if (property.length > 0) {
                 var i = 0;
-                json2.forEach(function (item) {
+                property.forEach(function (item) {
                     marker = new MarkerWithLabel({
                         position: new google.maps.LatLng(item.lat, item.lng),
                         map: map,

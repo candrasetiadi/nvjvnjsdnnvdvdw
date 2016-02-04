@@ -50,8 +50,8 @@ class PagesController extends Controller
 
     public function sellProperty() {
         //
-
-        return view('pages.sell-property');
+        $titles = 'Sell Property';
+        return view('pages.sell-property', compact('titles'));
     }
 
     public function lawyerNotary() {
@@ -187,11 +187,14 @@ class PagesController extends Controller
             $titles = ($srctype == '1' || $srctype == '2') ? $find[ 0 ] .' '. $find [ 1 ] .' $'. $find[ 2 ] : $find[ 0 ] .' '. $find [ 1 ] .' '. $find[ 2 ];
         }
         else {
-            $type = 'Search';
+            $type = 'Properties';
             $srctype = '';
             $titles = 'All';
         }
-        return view('pages.search-property', compact('type', 'titles', 'srctype'));
+
+        $property = Property::where('id','<','20')->get();
+
+        return view('pages.search-property', compact('type', 'titles', 'srctype', 'property'));
     }
 
     public function lawyerPage()
