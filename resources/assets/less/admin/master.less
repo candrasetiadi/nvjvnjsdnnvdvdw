@@ -908,6 +908,23 @@ m-template{
         font-weight: 100;
     }
 
+    &[dashboard]{
+
+        m-dashboard-item{
+            margin-bottom: 24px;
+
+            >h3{
+                color: #646464;
+                font-weight: 700;
+                font-size: 12px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                margin-bottom: 12px;
+                text-indent: 12px;
+            }
+        }
+    }
+
     &[settings]{
 
         m-settings-group{
@@ -926,6 +943,7 @@ m-template{
                 .transition();
                 padding: 8px;
                 .relative();
+                overflow: hidden;
 
                 &:nth-last-child(n+2) {
 
@@ -1128,37 +1146,37 @@ m-card{
     display: block;
     .card();
 
-    &-blue{
+    &[blue]{
         .card();
         background: @gblue;
     }
 
-    &-salmon{
+    &[salmon]{
         .card();
         background: @gsalmon;
     }
 
-    &-red{
+    &[red]{
         .card();
         background: @gred;
     }
 
-    &-purple{
+    &[purple]{
         .card();
         background: @gpurple;
     }
 
-    &-teal{
+    &[teal]{
         .card();
         background: @gteal;
     }
 
-    &-yellow{
+    &[yellow]{
         .card();
         background: @gyellow;
     }
 
-    &-base{
+    &[base]{
         .card();
         background: @base;
     }
@@ -1384,6 +1402,27 @@ m-button{
     }
 }
 
+m-ripple{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 720px;
+    height: 720px;
+    background: rgba(0, 0, 0, .15);
+    border-radius: 50%;
+    transform: scale(0);
+    .transition(all .66s ease);
+    margin-top: -360px;
+    margin-left: -360px;
+    opacity: 1;
+
+    &.expand{
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
 m-burger-button{
     width: 22px;
     height: 16px;
@@ -1450,10 +1489,11 @@ m-burger-button{
 m-checkbox{
     width: 30px;
     height: 32px;
+    position: relative;
 
     lever{
         top: 8px;
-        width: 100%;
+        width: 32px;
         height: 16px;
         border: 12px;
         pointer-events: none;
@@ -1493,6 +1533,17 @@ m-checkbox{
                 }
             }
         }
+    }
+
+    &:after{
+        content: attr(data-label);
+        font-weight: 700;
+        color: #6d6d6d;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        position: absolute;
+        left: 40px;
+        top: 8px;
     }
 }
 

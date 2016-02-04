@@ -373,6 +373,35 @@ $(document).on('click', 'm-caroussel-switch', function(e) {
 });
 
 
+$(document).on('click', '[ripple], [button], m-button, [mono-button]', function(e) {
+
+    var offset = $(this).offset(),
+        offsetY = offset.top,
+        offsetX = offset.left,
+        mouseOffsetY = e.pageY,
+        mouseOffsetX = e.pageX,
+        top = mouseOffsetY - offsetY,
+        left = mouseOffsetX - offsetX,
+        target = e.target.localName,
+        isMono = (target == 'm-button' ? ' background: rgba(255, 255, 255, .35);' : '');
+
+    $(this).append('<m-ripple style="top: ' + top + 'px; left:' + left + 'px;' + isMono + '"></m-ripple>');
+
+    setTimeout(function() {
+
+        $('m-ripple').addClass('expand');
+
+    }, 10);
+
+    setTimeout(function() {
+
+        $('m-ripple').remove();
+
+    }, 670);
+
+});
+
+
 
 // Matter Select
 $(document).on('click', 'm-input[select] input', function() {
@@ -486,7 +515,7 @@ function doNothing() {
     return false;
 }
 
-function selectList() {    
+function selectList() {
 
     $(document).on('click', 'm-list-item-check[single]', function(e) {
 

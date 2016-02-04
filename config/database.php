@@ -55,7 +55,6 @@ return [
         'mysql' => [
             'driver'    => 'mysql',
             'host'      => env('DB_HOST', 'localhost'),
-            'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',
             'database'  => env('DB_DATABASE', 'atlantis'),
             'username'  => env('DB_USERNAME', 'homestead'),
             'password'  => env('DB_PASSWORD', 'secret'),
