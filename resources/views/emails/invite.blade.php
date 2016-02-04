@@ -75,7 +75,7 @@
 
             <tr>
                 <td>
-                    <a href="{{ url('admin/register?email=') . $email }}">register now</a>
+                    <a href="{{ url('admin') }}">register now</a>
                 </td>
             </tr>
         </table>

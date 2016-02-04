@@ -8,7 +8,7 @@
 
         <div>
             Thanks for creating an account. Please follow the link below to verify your email address
-            {{ url('register/verify/' . $confirmation_code) }}.<br/>
+            <a href="{{ url('register/verify/' . $confirmation_code) }}">{{ url('register/verify/' . $confirmation_code) }}</a><br/>
 
         </div>
 
