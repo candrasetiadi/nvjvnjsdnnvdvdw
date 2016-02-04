@@ -69,6 +69,8 @@
 
 </m-template>
 
+<p style="float: left">Total: {{ $accounts->total() }} rows</p>
+
 @include('admin.fragments.pagination', ['paginator' => $accounts])
 
 @stop

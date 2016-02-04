@@ -10,31 +10,51 @@
 <div class="line-top"><h3><small>{{ $titles }}</small></h3></div>
 <br>
 <div class="container">
+
+
+  @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+  @endif
+
+  <div class="flash-message">
+    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+      @if(Session::has('alert-' . $msg))
+
+      <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+      @endif
+    @endforeach
+  </div> <!-- end .flash-message -->
+  
   <div class="col-md-12">
     <div class="panel panel-primary">
       <div class="panel-body">
-        <form class="form-horizontal" method="post">
 
-        {!! csrf_field() !!}
+        {!! Form::open(array('url' => url('sell-property'))) !!}
 
           <div class="form-group">
             <div class="col-sm-6">
-              <input type="text" name="name" class="form-control" placeholder="Name">
+              <input type="text" name="owner_name" class="form-control" placeholder="Name">
             </div>
             <div class="col-sm-6">
-              <input type="email" name="email" class="form-control" placeholder="Email">
+              <input type="email" name="owner_email" class="form-control" placeholder="Email">
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-12">
-              <input type="text" name="phone" class="form-control" placeholder="Phone">
+              <input type="text" name="owner_phone" class="form-control" placeholder="Phone">
             </div>
           </div>
 
           <div class="form-group map">  
             <div class="col-sm-12">
-              <textarea name="comment" class="form-control" rows="5" placeholder="Comment"></textarea>
+              <textarea name="sell_note" class="form-control" rows="5" placeholder="Comment"></textarea>
             </div>
           </div>
 
@@ -50,7 +70,8 @@
               <button type="submit" class="btn btn-primary">Send</button>
             </div>
           </div>
-        </form>
+        {!! Form::close() !!}
+
       </div>
     </div>
   </div>

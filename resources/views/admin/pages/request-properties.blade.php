@@ -60,16 +60,30 @@
                     {!! ($images->count() > 0) ? '<img width="100" src="'. asset('uploads/property/' . $images->first()->file) . '">' : '-'; !!}
                 </td>
 
+                @if($property->lang())
                 <td class="title">{{ $property->lang()->title }}</td>
+                @else
+                <td class="title">-</td>
+                @endif
 
                 <td class="created_at">{{ $property->created_at }}</td>
                 <td class="code">{{ $property->code }}</td>
                 <td class="type">{{ ucwords($property->type) }}</td>
 
+                @if($property->category)
                 <td class="type">{{ ucwords($property->category->lang()->title) }}</td>
+                @else
+                <td class="title">-</td>
+                @endif
 
                 <td class="publish">{{ propertyStatus($property->status) }}</td>
+
+                @if($property->user)
                 <td class="view">{{ $property->user->firstname }}</td>
+                @else
+                <td class="title">-</td>
+                @endif
+
                 <td class="price align-center">{{ number_format($property->price, 2) }}</td>
                 <td class="view align-center">{{ humanize($property->view) }}</td>
                 <td button>
@@ -424,45 +438,46 @@
                     <div class="m-input-group textarea fwidth flexbox flexbox-wrap" id="documents-received">
                         <h3 class="input-group-title">Documents Received</h3>
 
-                        <m-checkbox data-label="Agent Agreement" w25-9>
-                            <input type="checkbox" name="documents[agent agreement]" id="property-input-documents[agent agreement]">
-                            <lever></lever>
-                        </m-checkbox>
-
-                        <m-checkbox data-label="pondok wisata license" w25-9>
-                            <input type="checkbox" name="documents[pondok wisata license]" id="property-input-documents[pondok wisata license]">
-                            <lever></lever>
-                        </m-checkbox>
-
-                        <m-checkbox data-label="tax construction" w25-9>
-                            <input type="checkbox" name="documents[tax construction]" id="property-input-documents[tax construction]">
-                            <lever></lever>
-                        </m-checkbox>
-
-                        <m-checkbox data-label="photographs" w25-9>
-                            <input type="checkbox" name="documents[photographs]" id="property-input-documents[photographs]">
-                            <lever></lever>
-                        </m-checkbox>
-
-                        <m-checkbox data-label="imb" w25-9>
-                            <input type="checkbox" name="documents[imb]" id="property-input-documents[imb]">
-                            <lever></lever>
-                        </m-checkbox>
-
-                        <m-checkbox data-label="land certificate" w25-9>
-                            <input type="checkbox" name="documents[land certificate]" id="property-input-documents[land certificate]">
-                            <lever></lever>
-                        </m-checkbox>
-
-                        <m-checkbox data-label="Notary Details" w25-9>
-                            <input type="checkbox" name="documents[Notary Details]" id="property-input-documents[Notary Details]">
-                            <lever></lever>
-                        </m-checkbox>
-
-                        <m-checkbox data-label="owner idcard" w25-9>
-                            <input type="checkbox" name="documents[owner idcard]" id="property-input-documents[owner idcard]">
-                            <lever></lever>
-                        </m-checkbox>
+                        <m-input checkbox neutral w25-9>
+                            <label for="property-input-documents[agent agreement]">
+                                <input type="checkbox" name="documents[agent agreement]" id="property-input-documents[agent agreement]">
+                                Agent Agreement
+                            </label>
+                            <label for="property-input-documents[pondok wisata license]">
+                                <input type="checkbox" name="documents[pondok wisata license]" id="property-input-documents[pondok wisata license]">
+                                Pondok Wisata License
+                            </label>
+                        </m-input>
+                        <m-input checkbox neutral w25-9>
+                            <label for="property-input-documents[tax construction]">
+                                <input type="checkbox" name="documents[tax construction]" id="property-input-documents[tax construction]">
+                                Tax Construction
+                            </label>
+                            <label for="property-input-documents[photographs]">
+                                <input type="checkbox" name="documents[photographs]" id="property-input-documents[photographs]">
+                                Photographs
+                            </label>
+                        </m-input>
+                        <m-input checkbox neutral w25-9>
+                            <label for="property-input-documents[imb]">
+                                <input type="checkbox" name="documents[imb]" id="property-input-documents[imb]">
+                                IMB
+                            </label>
+                            <label for="property-input-documents[land certificate">
+                                <input type="checkbox" name="documents[land certificate]" id="property-input-documents[land certificate]">
+                                Land Certificate
+                            </label>
+                        </m-input>
+                        <m-input checkbox neutral w25-9>
+                            <label for="property-input-documents[notary details]">
+                                <input type="checkbox" name="documents[notary details]" id="property-input-documents[notary details]">
+                                Notary Details
+                            </label>
+                            <label for="property-input-documents[owner idcard]">
+                                <input type="checkbox" name="documents[owner idcard]" id="property-input-documents[owner idcard]">
+                                Owner ID Card
+                            </label>
+                        </m-input>
                     </div>
 
                     <div class="m-input-group textarea fwidth flexbox flexbox-wrap">

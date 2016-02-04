@@ -343,8 +343,22 @@ class PropertiesController extends Controller
         // lang
         $language = $property->propertyLanguages()->where('locale', 'en')->first();
 
-        $language->title = $request->title;
-        $language->description = $request->description;
+        if ($language) {
+
+            $language->title = $request->title;
+            $language->description = $request->description;
+
+        } else {
+
+            $language = new App\PropertyLanguage;
+
+            $language->title = $request->title;
+            $language->description = $request->description;
+            $language->locale = 'en';
+
+            $language->property_id = $property->id;
+
+        }
 
         $language->save();
 
@@ -506,9 +520,31 @@ class PropertiesController extends Controller
         return response()->json(array('status' => 200, 'monolog' => array('title' => 'update translation success', 'message' => 'Translation has been updated')));
     }
 
-    public function postSellProperty()
+    public function postSellProperty(Request $request)
     {
-        return 'post';
+        $this->validate($request, [
+            'owner_name' => 'required',
+            'owner_phone' => 'required'
+        ]);
+
+        $property = new Property;
+
+        $property->map_latitude = $request->map_latitude;
+        $property->map_longitude = $request->map_longitude;
+        $property->owner_name = $request->owner_name;
+        $property->owner_email = $request->owner_email;
+        $property->owner_phone = $request->owner_phone;
+        $property->sell_note = $request->sell_note;
+
+        //moderation
+        $property->status = -2;
+
+        $property->save();
+
+        $request->session()->flash('alert-success', 'Data saved successfully. Your Listing will be published after our agent finish moderation.');
+
+        return redirect()->route('sell_property', \Lang::get('url')['sell_property']);
+
     }
 
 

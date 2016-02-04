@@ -76,6 +76,8 @@
     @endif
 </m-template>
 
+<p style="float: left">Total: {{ $customers->total() }} rows</p>
+
 @include('admin.fragments.pagination', ['paginator' => $customers])
 
 @endsection

@@ -25,13 +25,13 @@ class CreatePropertiesTable extends Migration
             $table->double('discount')->default(0);
             $table->enum('type', array('free hold', 'lease hold'));
 
-            $table->enum('publish', array('draft', 'moderation', 'publish'));
+            // $table->enum('publish', array('draft', 'moderation', 'publish'));
             $table->double('building_size')->default(0);
             $table->double('land_size')->default(0); 
 
-            $table->tinyinteger('sold')->default(0);
+            $table->boolean('sold')->default(0);
             $table->string('code')->nullable();
-            $table->enum('status', array(1, 0, -1));
+            $table->enum('status', array(1, 0, -1, -2));
             $table->string('year')->nullable();
 
             $table->double('map_latitude')->nullable();
@@ -49,8 +49,8 @@ class CreatePropertiesTable extends Migration
             $table->string('view_west')->nullable();
             $table->string('view_south')->nullable();
 
-            $table->tinyinteger('is_price_request')->default(0)->nullable();
-            $table->tinyinteger('is_exclusive')->default(0)->nullable();
+            $table->boolean('is_price_request')->default(0)->nullable();
+            $table->boolean('is_exclusive')->default(0)->nullable();
 
             $table->string('owner_name')->nullable();
             $table->string('owner_email')->nullable();
@@ -65,7 +65,7 @@ class CreatePropertiesTable extends Migration
             $table->string('sell_note')->nullable();
             $table->string('other_agent')->nullable();
 
-            $table->tinyinteger('display')->default(0);
+            $table->boolean('display')->default(0);
             $table->string('orientation')->nullable();
             $table->string('sell_in_furnish')->nullable();
 

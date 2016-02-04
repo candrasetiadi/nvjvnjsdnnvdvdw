@@ -109,3 +109,21 @@ function rootCategory($category)
     else return $category;
 }
 
+function propertyStatus($status) {
+
+    switch ($status) {
+        case -2:
+            return 'MODERATION';
+        case -1:
+            return 'HIDDEN';
+        case 0:
+            return 'UNAVAILABLE';
+        case 1:
+            return 'AVAILABLE';
+        
+        default:
+            return 'UNAVAILABLE';
+    }
+
+}
+

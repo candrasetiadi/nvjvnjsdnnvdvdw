@@ -115,11 +115,11 @@ $factory->define(App\Property::class, function (Faker\Generator $faker) {
         'price' => $faker->randomNumber(7),
         'discount' => $faker->randomNumber(2),
         'type' => $faker->randomElement($array = array ('free hold', 'lease hold')),
-        'publish' => $faker->randomElement($array = array ('draft', 'moderation', 'publish')),
+        // 'publish' => $faker->randomElement($array = array ('draft', 'moderation', 'publish')),
         'building_size' => $faker->randomNumber(2),
         'land_size' => $faker->randomNumber(3),
         'sold' => $faker->randomElement([0, 1]),
-        'status' => $faker->randomElement([-1, 0, 1]),
+        'status' => $faker->randomElement([-2, -1, 0, 1]),
         'year' => $faker->year($max = 'now'),
         'view' => $faker->randomDigit,
 

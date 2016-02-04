@@ -27,7 +27,6 @@
             <td>Name</td>
             <td>Phone</td>
             <td>Email</td>
-            <td>Action</td>
 
         </thead>
         <tbody>
@@ -69,6 +68,8 @@
     @endif
 
 </m-template>
+
+<p style="float: left">Total: {{ $enquiries->total() }} rows</p>
 
 @include('admin.fragments.pagination', ['paginator' => $enquiries])
 

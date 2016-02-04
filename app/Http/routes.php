@@ -59,6 +59,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         // CMS
         Route::get('properties', 'AdminController@properties');
+        Route::get('property/sold', 'AdminController@propertySold');
+        Route::get('property/customer-request', 'AdminController@propertyCustomer');
         Route::get('property/categories', 'AdminController@propertyCategories');
 
 
@@ -112,7 +114,7 @@ Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
 
     Route::get('/{sell_property}/', ['as' => 'sell_property', 'uses' => 'PagesController@sellProperty']);
 
-    Route::post('/{sell_property}/', ['as' => 'sell_property.store', 'uses' => 'Properties@postSellProperty']);
+    Route::post('sell-property', ['as' => 'sell_property.store', 'uses' => 'PropertiesController@postSellProperty']);
 
     // Blogs
     Route::get('{blog}', ['as' => 'blog', 'uses' => 'PagesController@blogListing']);

@@ -1078,9 +1078,11 @@ var Matter = {
 
             function populatePropertyEdit(data) {
 
-                $('#property-input-title').val(data.propertyLanguages.title);
+                if (data.propertyLanguages) {
+                    $('#property-input-title').val(data.propertyLanguages.title);
 
-                $('#property-input-description').val(data.propertyLanguages.description);
+                    $('#property-input-description').val(data.propertyLanguages.description);
+                }
 
                 $.each(data, function(k, v) {
 

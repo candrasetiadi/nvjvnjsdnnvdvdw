@@ -9,7 +9,9 @@ return [
 
     "properties" => [
 
-        "properties" => "manage properties",
+        "properties" => "available properties",
+        "property/sold" => "sold properties",
+        "property/customer-request" => "customer request",
         "property/categories" => "categories"
 
     ],
