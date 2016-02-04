@@ -61,7 +61,7 @@ NNhhhdmNNNmhmNNNdoooohddhodysooooooooso///::///:://o+s++ssosyyshhhyyyhhhhdmmhs+/
     <link rel="apple-touch-icon" href="{{ asset('assets/img/common/apple-touch-icon.png') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/simple-line-icons.css') }}">
     <!-- <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}"> -->
     <link rel="stylesheet" href="{{ asset('assets/css/responsive-slider.css') }}">

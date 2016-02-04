@@ -76,6 +76,11 @@
             <div id="googleMap" style="width:100%;height:500px;"></div>
             <input type="hidden" value="0" name="map_latitude" id="map_latitude">
             <input type="hidden" value="0" name="map_longitude" id="map_longitude">
+            
+          </div>
+
+          <div class="form-group">
+            <div class="g-recaptcha" data-sitekey="6LcdHRcTAAAAAMUKsjZDzArdb0e8Fk2HU-duNhJP" style=" margin-left: 20px;"></div>
           </div>
 
           <div class="form-group">
@@ -93,7 +98,7 @@
 @stop
 
 @section('scripts')
-
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <script src="assets/js/select2.js"></script>
 <script type="text/javascript">
 
