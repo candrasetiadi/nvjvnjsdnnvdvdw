@@ -129,6 +129,14 @@ class PropertiesController extends Controller
         $property->sell_in_furnish = $request->sell_in_furnish;
         $property->lease_period = $request->lease_period;
         $property->lease_year = $request->lease_year;
+        
+        
+        // find province, country
+        $city = \App\City::where('city_name', $request->city)->first();
+
+        $property->city = $request->city;
+        $property->province = $city->province->province_name;
+        $property->country = $city->province->country->nicename;
 
         $property->save();
 
@@ -335,6 +343,14 @@ class PropertiesController extends Controller
         $property->lease_period = $request->lease_period;
         $property->lease_year = $request->lease_year;
 
+
+        // find province, country
+        $city = \App\City::where('city_name', $request->city)->first();
+
+        $property->city = $request->city;
+        $property->province = $city->province->province_name;
+        $property->country = $city->province->country->nicename;
+
         $property->save();
 
 
@@ -350,7 +366,7 @@ class PropertiesController extends Controller
 
         } else {
 
-            $language = new App\PropertyLanguage;
+            $language = new \App\PropertyLanguage;
 
             $language->title = $request->title;
             $language->description = $request->description;
@@ -524,8 +540,12 @@ class PropertiesController extends Controller
     {
         $this->validate($request, [
             'owner_name' => 'required',
-            'owner_phone' => 'required'
+            'owner_phone' => 'required',
+            'city' => 'required'
         ]);
+
+        // find province, country
+        $city = \App\City::where('city_name', $request->city)->first();
 
         $property = new Property;
 
@@ -535,6 +555,11 @@ class PropertiesController extends Controller
         $property->owner_email = $request->owner_email;
         $property->owner_phone = $request->owner_phone;
         $property->sell_note = $request->sell_note;
+
+        $property->city = $request->city;
+        $property->province = $city->province->province_name;
+        $property->country = $city->province->country->nicename;
+
 
         //moderation
         $property->status = -2;

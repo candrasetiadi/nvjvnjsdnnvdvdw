@@ -135,6 +135,7 @@ class PagesController extends Controller
                     $query->where('type', 'image');
                 }))
                 ->where('category_id', $category->id)
+                ->where('status', 1)
                 ->filterCategory($category)
                 ->orderBy('updated_at', 'DESC')
                 ->paginate($limit);
@@ -144,6 +145,7 @@ class PagesController extends Controller
             $properties = \App\Property::with(array('propertyFiles' => function($query) {
                     $query->where('type', 'image');
                 }))
+                ->where('status', 1)
                 ->orderBy('updated_at', 'DESC')->paginate($limit);
         }
 

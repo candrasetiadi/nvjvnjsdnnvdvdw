@@ -47,8 +47,21 @@
           </div>
 
           <div class="form-group">
-            <div class="col-sm-12">
+            <div class="col-sm-6">
               <input type="text" name="owner_phone" class="form-control" placeholder="Phone">
+            </div>
+            <div class="col-sm-6">
+
+              <select name="city" class="form-control select-city" placeholder="City">
+
+                <option value=""></option>
+
+                @foreach(\App\City::orderBy('city_name', 'asc')->get() as $city)
+                <option value="{{ $city->city_name }}">{{ $city->city_name }}</option>
+                @endforeach
+
+              </select>
+
             </div>
           </div>
 
@@ -80,6 +93,17 @@
 @stop
 
 @section('scripts')
+
+<script src="assets/js/select2.js"></script>
+<script type="text/javascript">
+
+  $(".select-city").select2({
+    placeholder: "Select a city",
+    allowClear: true
+  });
+
+</script>
+
   <script type="text/javascript">
     var markersToRemove = [];
     var myCenter=new google.maps.LatLng(-8.4420734,114.9356164);

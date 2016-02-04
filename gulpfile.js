@@ -23,6 +23,7 @@ elixir(function(mix) {
         .scripts('website/responsive-slider.js', 'public/assets/js/responsive-slider.js')
         .scripts('website/bootstrap-slider.js', 'public/assets/js/bootstrap-slider.js')
         .scripts('website/jquery.jscroll.js', 'public/assets/js/jquery.jscroll.js')
+        .scripts('website/select2.js', 'public/assets/js/select2.js')
         .scripts('website/scripts.js', 'public/assets/js/scripts.js')
         .scripts([
         'admin/scripts.js',

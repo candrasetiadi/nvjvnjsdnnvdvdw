@@ -11,7 +11,7 @@ class Country extends Model
 
     public function provinces()
     {
-        return $this->hasMany('App\Province');
+        return $this->hasMany('App\Province', 'country_iso', 'iso');
     }
 
     public static function boot()

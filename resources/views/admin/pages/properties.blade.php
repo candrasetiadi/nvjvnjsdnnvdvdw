@@ -261,6 +261,22 @@
                         </m-input>
                     </div>
 
+                    <div class="m-input-group fwidth flexbox flexbox-wrap justify-between">
+
+                        <m-input data-label="city" fwidth select w50-6>
+                            <input type="text" select id="property-input-city" name="city" value="" required>
+                            <label for="property-input-city">City</label>
+                            <m-select>
+
+                                @foreach(\App\City::orderBy('city_name', 'asc')->get() as $city)
+                                <m-option value="{{ $city->city_name }}">{{ $city->city_name }}</m-option>
+                                @endforeach
+
+                            </m-select>
+                        </m-input>
+
+                    </div>
+
                     <div class="m-input-group textarea fwidth flexbox flexbox-wrap">
                         <h3 class="input-group-title">Property Description</h3>
                         <div class="input-wrapper fwidth">

@@ -11,7 +11,7 @@ class Province extends Model
 
     public function country()
     {
-        return $this->belongsTo('App\Country');
+        return $this->belongsTo('App\Country', 'country_iso', 'iso');
     }
 
     public function cities()
