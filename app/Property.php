@@ -59,6 +59,11 @@ class Property extends Model
         return $this->hasMany('App\Distance');
     }
 
+    public function thumb()
+    {
+        return $this->propertyFiles()->where('type', 'image')->first();
+    }
+
     public function scopeFilterCategory($query, $category)
     {
         $query->where('category_id', $category->id);

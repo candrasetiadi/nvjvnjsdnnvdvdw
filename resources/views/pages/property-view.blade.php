@@ -1,6 +1,10 @@
 @extends('index')
 @section('content')
 
+<?php  
+    $custLog = Auth::customer()->get();
+?>
+
 <div class="bc-bg">
     <ul class="breadcrumb container">
         <li><a href="{{ baseUrl() }}">Home</a></li>
@@ -12,7 +16,7 @@
 <div class="container">
     <div class="row detail">
 
-        <div class="col-md-8">
+        <div class="col-md-8 property-detail" data-id="{{ $property->id }}" data-customerId="{{ ($custLog)? $custLog->id : 0 }}">
 
             <div class="thumbnail nohovereffect">
                 @if(count($property->propertyFiles) > 0)
@@ -100,7 +104,7 @@
                             <a href="#" class="btn btn-default fa fa-print"> Print PDF</a>
                         </div>
                         <div class="col-lg-6">
-                            <a href="#" class="btn btn-default fa fa-heart-o"> Favorites</a>
+                            <a href="#" class="btn btn-default fa fa-heart-o" id="btn-favorite"> Favorites</a>
                         </div>
                     </div>
                         
@@ -111,5 +115,43 @@
     </div>
 </div>
 
+
+@stop
+
+@section('scripts')
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    
+    $('#btn-favorite').click(function(event) {
+        /* Act on the event */
+
+        console.log('favorite clicked');
+
+        var propertyId = $('.property-detail').attr('data-id');
+
+        var customerId = $('.property-detail').attr('data-customerId');
+
+        if (customerId != 0) {
+
+            var url = "{{ route('property.favorite') }}";
+            var token = "{{ csrf_token() }}";
+
+            $.post(url, {property_id: propertyId, customer_id: customerId, _token: token}, function(data, textStatus, xhr) {
+                
+                console.log(data);
+            });
+
+        } else {
+
+            alert('Please login!');
+        }
+
+        event.preventDefault();
+    });
+});
+
+</script>
 
 @stop

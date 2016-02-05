@@ -60,10 +60,27 @@
             <label for="exampleInputPassword1">Address</label>
             <input class="form-control" type="text" name="address">
           </div>
+
+
           <div class="form-group">
             <label for="exampleInputPassword1">City</label>
-            <input class="form-control" type="text" name="city">
+
+              <select name="city" class="form-control select-city" placeholder="City">
+
+                <option value=""></option>
+
+                @foreach(\App\City::orderBy('city_name', 'asc')->get() as $city)
+                <option value="{{ $city->city_name }}">{{ $city->city_name }}</option>
+                @endforeach
+
+              </select>
           </div>
+
+
+          <div class="form-group">
+            <div class="g-recaptcha" data-sitekey="6LcdHRcTAAAAAMUKsjZDzArdb0e8Fk2HU-duNhJP"></div>
+          </div>
+          <!-- 
           <div class="form-group">
             <label for="exampleInputPassword1">Province / State</label>
             <input class="form-control" type="text" name="province">
@@ -72,6 +89,7 @@
             <label for="exampleInputPassword1">Country</label>
             <input class="form-control" type="text" name="country">
           </div>
+           -->
           <button type="submit" class="btn btn-primary">Register</button>
           {!! Form::close() !!}
 
@@ -85,7 +103,19 @@
 @endsection
 
 @section('scripts')
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="assets/js/select2.js"></script>
+<script type="text/javascript">
+
+  $(".select-city").select2({
+    placeholder: "Select a city",
+    allowClear: true
+  });
+
+</script>
+
 <script>
     Kibarer.home();
 </script>
+
 @endsection

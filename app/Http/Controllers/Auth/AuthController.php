@@ -129,7 +129,8 @@ class AuthController extends Controller
         $this->validate($request, [
             'email' => 'required|unique:Customers',
             'password' => 'required|confirmed',
-            'firstname' => 'required'
+            'firstname' => 'required',
+            'city' => 'required'
         ]);
 
 
@@ -143,9 +144,13 @@ class AuthController extends Controller
         $customer->firstname = $request->firstname;
         $customer->lastname = $request->lastname;
         $customer->address = $request->address;
+
+        // find province, country
+        $city = \App\City::where('city_name', $request->city)->first();
+
         $customer->city = $request->city;
-        $customer->province = $request->province;
-        $customer->country = $request->country;
+        $customer->province = $city->province->province_name;
+        $customer->country = $city->province->country->nicename;
 
         $customer->confirmation_code = $confirmation_code;
 

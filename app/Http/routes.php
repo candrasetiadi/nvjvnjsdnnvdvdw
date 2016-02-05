@@ -151,6 +151,8 @@ Route::group(['prefix' => Config::get('app.locale_prefix')], function() {
     Route::get('/{land}/', ['as' => 'land', 'uses' => 'PagesController@propertyListing']);
     Route::get('/{search}/', ['as' => 'search', 'uses' => 'PagesController@propertySearch']);
 
+    Route::post('property/favorite', ['as' => 'property.favorite', 'uses' => 'PropertiesController@postFavorite']);
+    Route::post('property/favorite/delete', ['as' => 'property.favorite.delete', 'uses' => 'PropertiesController@postFavoriteDelete']);
     Route::get('property/{slug}', ['as' => 'property.detail', 'uses' => 'PagesController@propertyView']);
 
 

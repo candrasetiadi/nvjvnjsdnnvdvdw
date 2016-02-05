@@ -104,8 +104,13 @@ class PagesController extends Controller
 
     public function accountWishlist() {
         //
+        $limit = 20;
 
-        return view('pages.account-wishlist');
+        $customer = \Auth::customer()->get();
+
+        $wishlists = \App\WishList::where('customer_id', $customer->id)->orderBy('created_at', 'desc')->paginate($limit);
+
+        return view('pages.account-wishlist', compact('wishlists', 'customer'));
     }
 
     public function accountSetting() {

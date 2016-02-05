@@ -60,7 +60,8 @@ class PropertiesController extends Controller
 
 
         $validator = \Validator::make($request->all(), [
-            'title' => 'required'
+            'title' => 'required',
+            'city' =>'required'
         ]);
 
 
@@ -273,7 +274,8 @@ class PropertiesController extends Controller
 
 
         $validator = \Validator::make($request->all(), [
-            'title' => 'required'
+            'title' => 'required',
+            'city' =>'required'
         ]);
 
 
@@ -544,8 +546,6 @@ class PropertiesController extends Controller
             'city' => 'required'
         ]);
 
-        // find province, country
-        $city = \App\City::where('city_name', $request->city)->first();
 
         $property = new Property;
 
@@ -555,6 +555,10 @@ class PropertiesController extends Controller
         $property->owner_email = $request->owner_email;
         $property->owner_phone = $request->owner_phone;
         $property->sell_note = $request->sell_note;
+
+
+        // find province, country
+        $city = \App\City::where('city_name', $request->city)->first();
 
         $property->city = $request->city;
         $property->province = $city->province->province_name;
@@ -570,6 +574,34 @@ class PropertiesController extends Controller
 
         return redirect()->route('sell_property', \Lang::get('url')['sell_property']);
 
+    }
+
+    public function postFavorite(Request $request)
+    {
+
+        // check exist or not
+        $exist = \App\WishList::where('property_id', $request->property_id)->where('customer_id', $request->customer_id)->count();
+
+        if ($exist > 0) return 'exist';
+
+        $wishlist = new \App\WishList;
+        $wishlist->property_id = $request->property_id;
+        $wishlist->customer_id = $request->customer_id;
+
+        $wishlist->save();
+
+        return 'saved';
+    }
+
+
+    public function postFavoriteDelete(Request $request)
+    {
+
+        $wishlist = \App\WishList::where('id', $request->id)->where('customer_id', $request->customer_id);
+
+        $wishlist->delete();
+
+        return 'deleted';
     }
 
 
